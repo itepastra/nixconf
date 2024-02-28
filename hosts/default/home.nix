@@ -284,6 +284,49 @@
 				action = "vim.cmd.Ex";
 				options.desc = "Open the integrated file explorer";
 			}
+			{
+				mode = "x";
+				key = "<leader>p";
+				action = "[[\"_dP]]";
+				options.desc = "Paste but not override";
+			}
+			{
+				mode = [
+					"n"
+					"v"
+				];
+				key = "<leader>d";
+				action = "[[\"_d]]";
+				options.desc = "Delete no without copying";
+			}
+			{
+				mode = [
+					"n"
+					"v"
+				];
+				key = "<leader>y";
+				action = "[[\"+y]]";
+				options.desc = "Copy to system clipboard";
+			}
+			{
+				mode = "n";
+				key = "<leader>Y";
+				action = "[[\"+Y]]";
+				# TODO find out what this remap does
+				options.desc = "IDK";
+			}
+			{
+				mode = "v";
+				key = "J";
+				action = ":m '>+1<CR>gv=gv";
+				options.desc = "Move selected lines down";
+			}
+			{
+				mode = "v";
+				key = "K";
+				action = ":m '<-2<CR>gv=gv";
+				options.desc = "Move selected lines up";
+			}
 		];
 
 		plugins = {
