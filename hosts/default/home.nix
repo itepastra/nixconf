@@ -32,10 +32,15 @@
 		mtr
 
 		firefox
-		# (writeShellScriptBin "spotify" ''
-		# 		exec ${pkgs.spotify}/bin/spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
-		# 	'')
-		spotify
+		(symlinkJoin {
+			name = "spotify";
+			paths = [
+				(writeShellScriptBin "spotify" ''  
+		exec ${spotify}/bin/spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
+				'')
+				spotify
+			];
+		})
 
 		hyprland
 		dunst
@@ -43,11 +48,18 @@
 		wl-clipboard
 
 		dconf
-
-		# (writeShellScriptBin "discord" ''
-		# 		exec ${discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
-		# 	'')
-		discord
+		(symlinkJoin {
+			name = "discord";
+			paths = [
+				(writeShellScriptBin "discord" ''  
+		exec ${discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
+				'')
+				(writeShellScriptBin "Discord" ''  
+		exec ${discord}/bin/Discord --enable-features=UseOzonePlatform --ozone-platform=wayland
+				'')
+				discord
+			];
+		})
 		kitty
 		pipewire
 		lsd
