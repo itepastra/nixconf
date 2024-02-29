@@ -21,6 +21,10 @@
 
 	nixpkgs.config.allowUnfree = true;
 
+	nixpkgs.overlays = [
+		(import ./electron-wayland.nix)
+	];
+
 	# The home.packages option allows you to install Nix packages into your
 	# environment.
 	home.packages = with pkgs; [
@@ -32,18 +36,22 @@
 		mtr
 
 		firefox
-		(writeShellScriptBin "spotify" ''
-				exec ${pkgs.spotify}/bin/spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
-			'')
+		# (writeShellScriptBin "spotify" ''
+		# 		exec ${pkgs.spotify}/bin/spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
+		# 	'')
+		spotify
 
 		hyprland
 		dunst
 		waybar
 		wl-clipboard
 
-		(writeShellScriptBin "discord" ''
-				exec ${discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
-			'')
+		dconf
+
+		# (writeShellScriptBin "discord" ''
+		# 		exec ${discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
+		# 	'')
+		discord
 		kitty
 		pipewire
 		lsd
@@ -124,6 +132,15 @@
 	xdg.userDirs.enable = true;
 	xdg.userDirs.createDirectories = true;
 
+	dconf = {
+		enable = true;
+		settings = {
+			"org/gnome/desktop/interface" = {
+				color-scheme = "prefer-dark";
+			};
+		};
+	};
+
 	# Let Home Manager install and manage itself.
 	programs.home-manager.enable = true;
 
@@ -142,7 +159,7 @@
 			#window {
 				margin: 10px;
 				border: none;
-				background-color: transparent;
+				background-color: #530035;
 				border-radius: 10px;
 				font-family:
 					JetBrains Mono NF,
