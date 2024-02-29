@@ -26,11 +26,15 @@
 	# Enable networking
 	networking.networkmanager.enable = true;
 
-	nix.settings = {
-		# auto optimise every so often
-		auto-optimise-store = true;
-		experimental-features = ["nix-command" "flakes"];
+	nix = {
+		settings = {
+			# auto optimise every so often
+			auto-optimise-store = true;
+			experimental-features = ["nix-command" "flakes"];
+		};
+		gc.automatic = true;
 	};
+
 	# Set your time zone.
 	time.timeZone = "Europe/Amsterdam";
 

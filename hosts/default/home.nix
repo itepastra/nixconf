@@ -21,10 +21,6 @@
 
 	nixpkgs.config.allowUnfree = true;
 
-	nixpkgs.overlays = [
-		(import ./electron-wayland.nix)
-	];
-
 	# The home.packages option allows you to install Nix packages into your
 	# environment.
 	home.packages = with pkgs; [
@@ -428,7 +424,7 @@
 					"v"
 				];
 				key = "<leader>d";
-				action = "[[\"_d]]";
+				action = ''[["_d]]'';
 				options.desc = "Delete no without copying";
 			}
 			{
@@ -437,13 +433,13 @@
 					"v"
 				];
 				key = "<leader>y";
-				action = "[[\"+y]]";
+				action = ''[["+y]]'';
 				options.desc = "Copy to system clipboard";
 			}
 			{
 				mode = "n";
 				key = "<leader>Y";
-				action = "[[\"+Y]]";
+				action = ''[["+Y]]'';
 				# TODO find out what this remap does
 				options.desc = "IDK";
 			}
