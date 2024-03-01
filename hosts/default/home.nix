@@ -39,6 +39,9 @@
 
 		firefox
 		steam
+		obs-studio
+
+		btop
 
 		dconf
 		pipewire
@@ -115,7 +118,7 @@
 				gtk.enable = true;
 				x11.enable = true;
 				name = name;
-				size = 48;
+				size = 32;
 				package = 
 					pkgs.runCommand "moveUp" {} ''
 					mkdir -p $out/share/icons
@@ -127,7 +130,7 @@
 			};
 		in
 			getFrom 
-				"https://github.com/ful1e5/fuchsia-cursor/releases/download/v2.0.0/Fuchsia-Pop.tar.gz"
-				"sha256-BvVE9qupMjw7JRqFUj1J0a4ys6kc9fOLBPx2bGaapTk="
-				"Fuchsia-Pop";
+				"https://github.com/ful1e5/Bibata_Cursor_Rainbow/releases/download/v1.1.2/Bibata-Rainbow-Modern.tar.gz"
+				"sha256-Ps+IKPwQoRwO9Mqxwc/1nHhdBT2R25IoeHLKe48uHB8="
+				"Bibata-Rainbow-Modern";
 }

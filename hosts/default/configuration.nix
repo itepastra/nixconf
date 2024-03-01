@@ -16,6 +16,7 @@
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
 
+
 	networking.hostName = "lambdaOS"; # Define your hostname.
 	# networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
 
@@ -117,7 +118,10 @@
 	# };
 	programs.zsh.enable = true;
 
-	programs.hyprland.enable = true;
+	programs.hyprland = {
+		enable = true;
+		portalPackage = pkgs.xdg-desktop-portal-hyprland;
+	};
 
 	users.defaultUserShell = pkgs.zsh;
 
@@ -130,6 +134,13 @@
 		jack.enable = true;
 	};
 
+	boot.extraModulePackages = with config.boot.kernelPackages; [ 
+		v4l2loopback 
+	];
+	boot.extraModprobeConfig = ''
+		options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+	'';
+	security.polkit.enable = true;
 
 	# List services that you want to enable:
 
