@@ -63,9 +63,9 @@
 		pipewire
 		lsd
 
-			# Programming langs
-			go
-			nodejs
+		# Programming langs
+		go
+		nodejs
 
 	];
 
