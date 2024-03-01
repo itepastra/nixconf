@@ -13,6 +13,9 @@
 		# I always want these with hyprland anyways
 		dunst
 		wl-clipboard
+
+		slurp
+		grim
 	];
 	wayland.windowManager.hyprland = {
 		enable = true;
