@@ -8,6 +8,8 @@
 		../../common/hyprland.nix
 		../../common/git.nix
 		../../common/nvim/nvim.nix
+		../../common/discord.nix
+		../../common/spotify.nix
 	];
 	# Home Manager needs a bit of information about you and the paths it should
 	# manage.
@@ -36,30 +38,9 @@
 		mtr
 
 		firefox
-		(symlinkJoin {
-			name = "spotify";
-			paths = [
-				(writeShellScriptBin "spotify" ''  
-		exec ${spotify}/bin/spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
-				'')
-				spotify
-			];
-		})
 
 
 		dconf
-		(symlinkJoin {
-			name = "discord";
-			paths = [
-				(writeShellScriptBin "discord" ''  
-		exec ${discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
-				'')
-				(writeShellScriptBin "Discord" ''  
-		exec ${discord}/bin/Discord --enable-features=UseOzonePlatform --ozone-platform=wayland
-				'')
-				discord
-			];
-		})
 		pipewire
 		lsd
 
