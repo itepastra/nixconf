@@ -34,6 +34,9 @@
 			exec-once = [
 				"waybar"
 				"dunst"
+				"automapaper -C ${config.xdg.configHome}/automapaper/config.toml"
+				"automapaper -C ${config.xdg.configHome}/automapaper/config2nd.toml"
+				"hyprctl dispatcher focusmonitor 1"
 			];
 			general = {
 				sensitivity = "1.2";

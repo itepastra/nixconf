@@ -10,6 +10,7 @@
 		../../common/nvim/nvim.nix
 		../../common/discord.nix
 		../../common/spotify.nix
+		../../common/automapaper/automapaper.nix
 	];
 	# Home Manager needs a bit of information about you and the paths it should
 	# manage.
@@ -84,9 +85,15 @@
 	#
 	#	/etc/profiles/per-user/noa/etc/profile.d/hm-session-vars.sh
 	#
+
+
 	home.sessionVariables = {
 		EDITOR = "nvim";
 		TERM = "kitty";
+	};
+
+	xdg = {
+		enable = true;
 	};
 
 	xdg.userDirs = {

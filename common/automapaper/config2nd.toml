@@ -1,0 +1,23 @@
+# this is the config for Automapaper
+[display]
+# name of the display in wayland
+name = "DP-2"
+# the horizontal cell amount to simulate
+horizontal = 192
+# the vertical cell amount to simulate
+vertical = 108
+# target simulation ticks per second
+tps = 20
+# automaton shader
+# this has access to the previous state, which is a (horizontal, vertical) sized texture2D that uses the rgba values
+state_frag="/home/noa/.config/automapaper/state.frag"
+# initial state / reset shader
+# this has access to the resolution, and the time since the program was started
+init_frag="/home/noa/.config/automapaper/init.frag"
+# scaling/display shader
+# this has access to the current and previous state to display
+display_frag="/home/noa/.config/automapaper/display.frag"
+# the amount of cycles before the init_frag shader reruns
+cycles = 2500
+# the amount of frames to display per state tick
+frames_per_tick = 1

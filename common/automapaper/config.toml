@@ -1,0 +1,24 @@
+# this is the config for Automapaper
+# you need one for each display you want the wallpaper on
+[display]
+# name of the display in wayland
+name="DP-3"
+# the horizontal cell amount to simulate
+horizontal=256
+# the vertical cell amount to simulate
+vertical=144
+# target simulation ticks per second
+tps=30
+# automaton shader
+# this has access to the previous state, which is a (horizontal, vertical) sized texture2D that uses rgba float values
+state_frag="/home/noa/.config/automapaper/state.frag"
+# initial state / reset shader
+# this has access to the resolution, and the time since the program was started
+init_frag="/home/noa/.config/automapaper/init.frag"
+# scaling/display shader
+# this has access to the current and previous state to display
+display_frag="/home/noa/.config/automapaper/display.frag"
+# the amount of cycles before the init_frag shader reruns
+cycles=2500
+# the amount of frames to display per state tick
+frames_per_tick=1
