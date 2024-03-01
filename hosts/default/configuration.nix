@@ -93,10 +93,10 @@
 	# List packages installed in system profile. To search, run:
 	# $ nix search wget
 	environment.systemPackages = with pkgs; [
-		neovim
 		sddm
 		git
 		zsh
+		neovim
 	];
 
 	# TODO find list of fonts to install
@@ -115,10 +115,6 @@
 	#	 enable = true;
 	#	 enableSSHSupport = true;
 	# };
-
-	programs.neovim.enable = true;
-	programs.neovim.defaultEditor = true;
-
 	programs.zsh.enable = true;
 
 	programs.hyprland.enable = true;

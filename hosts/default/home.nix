@@ -69,7 +69,6 @@
 		kitty
 		pipewire
 		lsd
-		neovim
 		(writeShellScriptBin "wofi-launch" ''
 				${wofi}/bin/wofi --show drun
 			'')
@@ -106,6 +105,11 @@
 					echo "No match"
 				fi
 			'')
+
+			# Programming langs
+			go
+			nodejs
+
 	];
 
 
