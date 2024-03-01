@@ -1,6 +1,9 @@
 { config, pkgs, inputs, ... }:
 
 {
+	home.packages = with pkgs; [
+		waybar
+	];
 	programs.waybar = {
 		enable = true;
 		settings = {

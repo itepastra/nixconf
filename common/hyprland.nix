@@ -1,6 +1,19 @@
 { config, pkgs, inputs, ... }:
 
 {
+	# these are necessary for the config to function correctly
+	imports = [
+		./kitty.nix
+		./waybar.nix
+		./wofi.nix
+	];
+	home.packages = with pkgs; [
+		hyprland
+
+		# I always want these with hyprland anyways
+		dunst
+		wl-clipboard
+	];
 	wayland.windowManager.hyprland = {
 		enable = true;
 		settings = {

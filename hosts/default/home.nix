@@ -4,10 +4,8 @@
 	imports =
 	[
 		inputs.nixvim.homeManagerModules.nixvim
-		../../common/wofi.nix
 		../../common/zsh.nix
 		../../common/hyprland.nix
-		../../common/waybar.nix
 		../../common/git.nix
 		../../common/nvim/nvim.nix
 	];
@@ -48,10 +46,6 @@
 			];
 		})
 
-		hyprland
-		dunst
-		waybar
-		wl-clipboard
 
 		dconf
 		(symlinkJoin {
@@ -66,45 +60,8 @@
 				discord
 			];
 		})
-		kitty
 		pipewire
 		lsd
-		(writeShellScriptBin "wofi-launch" ''
-				${wofi}/bin/wofi --show drun
-			'')
-		(writeShellScriptBin "wofi-power" ''
-				lock="Lock"
-				logout="Logout"
-				poweroff="Poweroff"
-				reboot="Reboot"
-				sleep="Suspend"
-				
-				selected_option=$(echo -e "$lock\n$logout\n$sleep\n$reboot\n$poweroff" | wofi --dmenu -i -p "Powermenu")
-
-				if [ "$selected_option" == "$lock" ]
-				then
-					echo "lock"
-					swaylock
-				elif [ "$selected_option" == "$logout" ]
-				then
-					echo "logout"
-					loginctl terminate-user `whoami`
-				elif [ "$selected_option" == "$poweroff" ]
-				then
-					echo "poweroff"
-					poweroff
-				elif [ "$selected_option" == "$reboot" ]
-				then
-					echo "reboot"
-					reboot
-				elif [ "$selected_option" == "$sleep" ]
-				then
-					echo "sleep"
-					suspend
-				else
-					echo "No match"
-				fi
-			'')
 
 			# Programming langs
 			go
@@ -148,8 +105,10 @@
 		TERM = "kitty";
 	};
 
-	xdg.userDirs.enable = true;
-	xdg.userDirs.createDirectories = true;
+	xdg.userDirs = {
+		enable = true;
+		createDirectories = true;
+	};
 
 	dconf = {
 		enable = true;

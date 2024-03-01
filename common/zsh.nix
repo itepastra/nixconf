@@ -1,6 +1,9 @@
 { config, pkgs, inputs, ... }:
 
 {
+	home.packages = with pkgs; [
+		zsh
+	];
 	programs.zsh = {
 		enable=true;
 		shellAliases = {
@@ -19,14 +22,6 @@
 			plugins = [ "git" ];
 			theme = "frisk";
 		};
-	};
-
-	programs.kitty = {
-		enable = true;
-		settings = {
-			confirm_os_window_close = 0;
-		};
-		shellIntegration.enableZshIntegration = true;
 	};
 
 }
