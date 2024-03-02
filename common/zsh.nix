@@ -15,7 +15,7 @@
 		};
 		initExtra = ''
 nrun() {
-	NIXPKGS_ALLOW_UNFREE=1 nix run --impure "nixpkgs#$1" | xargs hyprctl dispatch exec --
+	NIXPKGS_ALLOW_UNFREE=1 hyprctl dispatch exec -- nix run --impure "nixpkgs#$1" -- "''${@:2}"
 }
 		'';
 		history = {
