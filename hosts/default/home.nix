@@ -11,6 +11,7 @@
 		../../common/discord.nix
 		../../common/spotify.nix
 		../../common/automapaper/automapaper.nix
+		../../common/firefox.nix
 	];
 	# Home Manager needs a bit of information about you and the paths it should
 	# manage.
@@ -38,7 +39,6 @@
 		dig
 		mtr
 
-		firefox
 		steam
 		obs-studio
 
