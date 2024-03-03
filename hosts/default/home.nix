@@ -39,7 +39,6 @@
 		dig
 		mtr
 
-		steam
 		obs-studio
 
 		btop
