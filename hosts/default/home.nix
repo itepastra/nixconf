@@ -8,7 +8,7 @@
 		../../common/hyprland.nix
 		../../common/git.nix
 		../../common/nvim/nvim.nix
-		../../common/discord.nix
+		../../common/discord/discord.nix
 		../../common/spotify.nix
 		../../common/automapaper/automapaper.nix
 		../../common/firefox.nix
