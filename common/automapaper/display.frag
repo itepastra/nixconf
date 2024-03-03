@@ -9,8 +9,8 @@ uniform float frame_part;
 in highp vec2 texCoords;
 out vec4 stateColor;
 
-const vec4 bgColor = vec4(0.15, 0.02, 0.18, 1.0);
-const vec4 fgColor = vec4(0.58, 0.06, 0.68, 1.0);
+const vec4 bgColor = vec4(38.0/255.0, 5.0/255.0, 46.0/255.0, 1.0); // #26052e
+const vec4 fgColor = vec4(148.0/255.0, 15.0/255.0, 173.0/255.0, 1.0); // #950fad
 
 void main() {
     vec2 canvasSize = vec2(textureSize(tex2D, 0));
