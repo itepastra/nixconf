@@ -25,7 +25,7 @@
 				"DP-2,1920x1080@60,0x0,1"
 			];
 			windowrulev2 = [
-				"opacity 0.8 0.8,class:^(kitty)$"
+				"opacity 1.0 0.6,class:^(kitty)$"
 				"stayfocused,class:^(wofi)$"
 			];
 			env = [
@@ -43,8 +43,8 @@
 				gaps_in = "2";
 				gaps_out = "3";
 				border_size = "3";
-				"col.active_border"="0xff7c94bf";
-				"col.inactive_border"="0x00ffffff";
+				"col.active_border"="0xff950fad";
+				"col.inactive_border"="0xff26052e";
 			};
 			decoration = {
 				rounding = "6";

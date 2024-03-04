@@ -6,7 +6,7 @@
 		driSupport32Bit = true;
 	};
 
-	services.xserver.videoDriver = "nvidia";
+	services.xserver.videoDrivers = [ "nvidia" ];
 
 	hardware.nvidia = {
 		

@@ -17,7 +17,7 @@
 				];
 				modules-left = [ "hyprland/workspaces" "tray" "custom/pronouns" "custom/spotify" ];
 				modules-center = [ "hyprland/window" "clock" ];
-				modules-right = [ "custom/vpn" "wireplumber" "network" "cpu" "memory" "keyboard-state" "custom/poweroff" ];
+				modules-right = [ "custom/vpn" "wireplumber" "network" "cpu" "memory" "temperature" "custom/poweroff" ];
 				"clock" = {
 					tooltip-format = "<big>{:%Y %B}</big>\n\n<small>{calendar}</small>";
 					interval = 1;
@@ -49,12 +49,26 @@
 					exec-if = "test -d /proc/sys/net/ipv4/conf/tun0";
 					return-type = "json";
 					interval = 5;
+	 			};
+				"temperature" = {
+					thermal-zone = 2;
+					hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+					critical-threshold = 80;
+					format = "{temperatureC}°C {icon}";
+					format-icons = ["" "" ""];
 				};
 				"custom/poweroff" = {
-					# TODO fix format 
-					format = "P";
+					format = "";
 					on-click = "wofi-power";
 					on-click-right = "swaylock";
+				};
+				"network" = {
+					format-wifi = "{essid} ({signalStrength}%) 󰖩";
+					format-ethernet = "{ipaddr}/{cidr} 󰛳";
+					tooltip-format = "{ifname} via {gwaddr} 󰛳";
+					format-linked = "{ifname} (No IP) 󰛳";
+					format-disconnected = "Disconnected ";
+					format-alt = "{ifname}: {ipaddr}/{cidr}";
 				};
 				"custom/pronouns" = {
 					format = "{}";

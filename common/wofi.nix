@@ -1,6 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, nix-colors, ... }:
 
 {
+	imports = [
+		./colors.nix
+	];
 	home.packages = with pkgs; [
 		(writeShellScriptBin "wofi-launch" ''
 				${wofi}/bin/wofi --show drun
@@ -53,7 +56,7 @@
 			#window {
 				margin: 10px;
 				border: none;
-				background-color: #030035;
+				background-color: #${config.colorScheme.palette.base0E};
 				border-radius: 10px;
 				font-family:
 					JetBrains Mono NF,
@@ -64,7 +67,7 @@
 
 			#outer-box {
 				margin: 10px;
-				border: 2px @lavender;
+				border: 2px #${config.colorScheme.palette.base07};
 				border-radius: 10px;
 				background-color: transparent;
 			}
@@ -73,17 +76,17 @@
 				border: none;
 				border-radius: 10px;
 				margin-left: 2px;
-				color: @text;
+				color: #${config.colorScheme.palette.base05};
 				outline-style: none;
-				background-color: @base;
+				background-color: #${config.colorScheme.palette.base00};
 			}
 
 			#scroll {
-				border: 10px solid @mantle;
+				border: 10px solid #${config.colorScheme.palette.base06};
 				border-radius: 10px;
 				/*padding-right: 10px;*/
 				outline: none;
-				background-color: @base;
+				background-color: #${config.colorScheme.palette.base00};
 			}
 
 			#inner-box {
@@ -99,17 +102,17 @@
 					margin-left: 15px;*/
 				padding-right: 10px;
 				padding-left: 10px;
-				color: @subtext0;
-				background-color: @base;
+				color: #${config.colorScheme.palette.base02};
+				background-color: #${config.colorScheme.palette.base00};
 			}
 			#entry:selected {
 				border: none;
-				background-color: @green;
+				background-color: #${config.colorScheme.palette.base0B};
 			}
 
 			#text:selected {
 				border: none;
-				color: @crust;
+				color: #${config.colorScheme.palette.base03};
 			}
 
 			#img {

@@ -2,7 +2,7 @@
 # your system.	Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, nix-colors, ... }:
 
 {
 	imports =
@@ -81,7 +81,10 @@
 	};
 
 	home-manager = {
-		extraSpecialArgs = { inherit inputs; };
+		extraSpecialArgs = { 
+			inherit inputs; 
+			inherit nix-colors;
+		};
 		users = {
 			"noa" = import ./home.nix;
 			"root" = import ./root.nix;
