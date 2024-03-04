@@ -3,6 +3,7 @@
 {
 	home.packages = with pkgs; [
 		waybar
+		font-awesome
 	];
 	programs.waybar = {
 		enable = true;
