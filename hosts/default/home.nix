@@ -40,6 +40,8 @@
 		mtr
 
 		obs-studio
+		steam-run
+		steam-tui
 
 		btop
 
