@@ -127,6 +127,12 @@
 		portalPackage = pkgs.xdg-desktop-portal-hyprland;
 	};
 
+	programs.nix-ld.enable = true;
+	programs.nix-ld.libraries = with pkgs; [
+		wayland
+
+	];
+
 	users.defaultUserShell = pkgs.zsh;
 
 	security.rtkit.enable = true;
