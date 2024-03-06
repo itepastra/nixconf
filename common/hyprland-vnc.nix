@@ -22,10 +22,10 @@
 		settings = {
 			monitor = [
 				"DP-3,2560x1440@144,0x0,1"
-				"HEADLESS-2,2256x1504,0x1440,1"
+				"DP-2,disable"
 			];
 			windowrulev2 = [
-				"opacity 1.0 0.6,class:^(kitty)$"
+				"opacity 0.8 0.8,class:^(kitty)$"
 				"stayfocused,class:^(wofi)$"
 			];
 			env = [
@@ -33,7 +33,7 @@
 			];
 			exec-once = [
 				"waybar"
-				"hyprctl output create headless && wayvnc 0.0.0.0 5909 && wayvncctl -w output-set HEADLESS-2"
+				"wayvnc --output=DP-3 0.0.0.0 5909"
 				"dunst"
 				"hyprctl dispatcher focusmonitor 1"
 			];
