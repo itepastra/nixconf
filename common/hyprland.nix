@@ -23,7 +23,6 @@
 			monitor = [
 				"DP-3,2560x1440@144,1920x0,1"
 				"DP-2,1920x1080@60,0x0,1"
-				"HEADLESS-2,2256x1504,1920x1440,1"
 			];
 			windowrulev2 = [
 				"opacity 1.0 0.6,class:^(kitty)$"
@@ -34,7 +33,6 @@
 			];
 			exec-once = [
 				"waybar"
-				"hyprctl output create headless && wayvnc 0.0.0.0 5909 && wayvncctl -w output-set HEADLESS-2"
 				"dunst"
 				"automapaper -C ${config.xdg.configHome}/automapaper/config.toml"
 				"automapaper -C ${config.xdg.configHome}/automapaper/config2nd.toml"

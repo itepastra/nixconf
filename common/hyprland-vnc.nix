@@ -4,7 +4,7 @@
 	# these are necessary for the config to function correctly
 	imports = [
 		./kitty.nix
-		./waybar.nix
+		./waybar-vnc.nix
 		./wofi.nix
 	];
 	home.packages = with pkgs; [
@@ -21,9 +21,8 @@
 		enable = true;
 		settings = {
 			monitor = [
-				"DP-3,disable"
-				"DP-2,disable"
-				"HEADLESS-2,2256x1504,1920x1440,1"
+				"DP-3,2560x1440@144,0x0,1"
+				"HEADLESS-2,2256x1504,0x1440,1"
 			];
 			windowrulev2 = [
 				"opacity 1.0 0.6,class:^(kitty)$"
@@ -54,8 +53,7 @@
 				inactive_opacity = "1";
 			};
 			workspace = [
-				"DP-3,1"
-				"DP-2,2"
+				"HEADLESS-2,1"
 			];
 			animations = {
 				enabled = "1";
