@@ -40,6 +40,16 @@
 	    inputs.home-manager.nixosModules.default
 	  ];
 	};
+        vnc = nixpkgs.lib.nixosSystem {
+  	  specialArgs = {
+	    inherit inputs; 
+	    inherit nix-colors;
+	  };
+	  modules = [ 
+	    ./hosts/vnc/configuration.nix
+	    inputs.home-manager.nixosModules.default
+	  ];
+	};
       };
 
     };
