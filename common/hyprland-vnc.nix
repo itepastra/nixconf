@@ -35,8 +35,6 @@
 				"waybar"
 				"hyprctl output create headless && wayvnc 0.0.0.0 5909 && wayvncctl -w output-set HEADLESS-2"
 				"dunst"
-				"automapaper -C ${config.xdg.configHome}/automapaper/config.toml"
-				"automapaper -C ${config.xdg.configHome}/automapaper/config2nd.toml"
 				"hyprctl dispatcher focusmonitor 1"
 			];
 			general = {
