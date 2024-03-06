@@ -33,6 +33,7 @@
 			];
 			exec-once = [
 				"waybar"
+				"wayvnc"
 				"dunst"
 				"automapaper -C ${config.xdg.configHome}/automapaper/config.toml"
 				"automapaper -C ${config.xdg.configHome}/automapaper/config2nd.toml"

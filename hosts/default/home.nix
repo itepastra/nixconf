@@ -42,6 +42,7 @@
 		obs-studio
 		steam-run
 		steam-tui
+		wayvnc
 
 		btop
 
