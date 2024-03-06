@@ -15,6 +15,7 @@
 				output = [
 					"DP-3"
 					"DP-2"
+					"HEADLESS-2"
 				];
 				modules-left = [ "hyprland/workspaces" "tray" "custom/pronouns" "custom/spotify" ];
 				modules-center = [ "hyprland/window" "clock" ];

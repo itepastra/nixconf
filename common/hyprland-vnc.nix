@@ -21,8 +21,8 @@
 		enable = true;
 		settings = {
 			monitor = [
-				"DP-3,2560x1440@144,1920x0,1"
-				"DP-2,1920x1080@60,0x0,1"
+				"DP-3,disable"
+				"DP-2,disable"
 				"HEADLESS-2,2256x1504,1920x1440,1"
 			];
 			windowrulev2 = [
