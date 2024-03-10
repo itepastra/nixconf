@@ -50,6 +50,8 @@
 		pipewire
 		lsd
 
+		lm_sensors
+
 		# Programming langs
 		go
 		nodejs

@@ -16,6 +16,9 @@
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
 
+	# LOVE me some blob
+	hardware.enableRedistributableFirmware = true;
+	hardware.enableAllFirmware = true;
 
 	networking.hostName = "lambdaOS"; # Define your hostname.
 	# networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
@@ -110,6 +113,7 @@
 		fira-code
 		fira-code-symbols
 		liberation_ttf
+		maple-mono-NF
 	];
 
 	# Some programs need SUID wrappers, can be configured further or are
@@ -144,9 +148,12 @@
 		jack.enable = true;
 	};
 
-	boot.extraModulePackages = with config.boot.kernelPackages; [ 
-		v4l2loopback 
+	boot.kernelModules = [
+		"v4l2loopback"
+		"nct6775"
+		"k10temp"
 	];
+
 	boot.extraModprobeConfig = ''
 		options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
 	'';

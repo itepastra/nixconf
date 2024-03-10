@@ -18,7 +18,7 @@ stdenv.mkDerivation rec {
 	src = fetchgit {
 		url = "https://github.com/itepastra/automapaper";
 		rev = "f102526244d954a4e4ae30a4b11f070e821f66ec";
-		sha256 = "sha256-IS9vqSmDbiLwLwUeIxxPI2t7yksxvACgiECeSV43Wug=";
+		sha256 = "sha256-WyD8NlA6T0v0ixMpN67Tro1Cy06rmx2FDaf5qriiFQA=";
 	};
 
 	meta = with lib; {
