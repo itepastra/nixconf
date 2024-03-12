@@ -56,7 +56,7 @@
 			#window {
 				margin: 10px;
 				border: none;
-				background-color: #${config.colorScheme.palette.base0E};
+				background-color: #${config.colorScheme.palette.background};
 				border-radius: 10px;
 				font-family:
 					JetBrains Mono NF,
@@ -67,7 +67,7 @@
 
 			#outer-box {
 				margin: 10px;
-				border: 2px #${config.colorScheme.palette.base07};
+				border: 2px #${config.colorScheme.palette.backgroundMuted};
 				border-radius: 10px;
 				background-color: transparent;
 			}
@@ -76,17 +76,17 @@
 				border: none;
 				border-radius: 10px;
 				margin-left: 2px;
-				color: #${config.colorScheme.palette.base05};
+				color: #${config.colorScheme.palette.info};
 				outline-style: none;
-				background-color: #${config.colorScheme.palette.base00};
+				background-color: #${config.colorScheme.palette.background};
 			}
 
 			#scroll {
-				border: 10px solid #${config.colorScheme.palette.base06};
+				border: 10px solid #${config.colorScheme.palette.border};
 				border-radius: 10px;
 				/*padding-right: 10px;*/
 				outline: none;
-				background-color: #${config.colorScheme.palette.base00};
+				background-color: #${config.colorScheme.palette.background};
 			}
 
 			#inner-box {
@@ -102,17 +102,17 @@
 					margin-left: 15px;*/
 				padding-right: 10px;
 				padding-left: 10px;
-				color: #${config.colorScheme.palette.base02};
-				background-color: #${config.colorScheme.palette.base00};
+				color: #${config.colorScheme.palette.text};
+				background-color: #${config.colorScheme.palette.background};
 			}
 			#entry:selected {
 				border: none;
-				background-color: #${config.colorScheme.palette.base0B};
+				background-color: #${config.colorScheme.palette.info};
 			}
 
 			#text:selected {
 				border: none;
-				color: #${config.colorScheme.palette.base03};
+				color: #${config.colorScheme.palette.textMuted};
 			}
 
 			#img {

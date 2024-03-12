@@ -28,7 +28,8 @@
 			base0D = "#FF77FF";
 			base0E = "#FFFF77";
 			base0F = "#AAAAAA";
-			text = "#EEEEEE";
+			text = "#222222";
+			textInverted = "#DDDDDD";
 			textMuted = "#5F5F5F";
 			background = "#FFD2D2";
 			backgroundMuted = "#CCCCCC";
