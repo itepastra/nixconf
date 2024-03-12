@@ -1,8 +1,8 @@
-{ config, pkgs, inputs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
-	home.packages = with pkgs; [
-		(callPackage ../../custom/automapaper/default.nix { })
+	home.packages = [
+		inputs.automapaper.packages.${pkgs.system}.default
 	];
 
 	home.file = {

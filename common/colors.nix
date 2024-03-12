@@ -30,7 +30,7 @@
 			base0F = "#AAAAAA";
 			text = "#222222";
 			textInverted = "#DDDDDD";
-			textMuted = "#5F5F5F";
+			textMuted = "#DDDDDD";
 			background = "#FFD2D2";
 			backgroundMuted = "#CCCCCC";
 			warn = "#FF0000";
@@ -38,7 +38,7 @@
 			danger = "#F53C3C";
 			succes = "#5BBD63";
 			spotifyGreen = "#39A04A";
-			border = "#DDDDDD";
+			border = "#5F5F5F";
 			info = "#2CB6AF";
 			ok = "#38B148";
 		};

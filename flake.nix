@@ -20,20 +20,25 @@
 	inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    automapaper = {
+	url = "github:itepastra/automapaper";
+	inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { self, nixpkgs, nix-colors, ... }@inputs:
+  outputs = { self, nixpkgs, nix-colors, automapaper, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-    
       nixosConfigurations = {
         default = nixpkgs.lib.nixosSystem {
-  	  specialArgs = {
+	  specialArgs = {
 	    inherit inputs; 
 	    inherit nix-colors;
+	    inherit automapaper;
 	  };
 	  modules = [ 
 	    ./hosts/default/configuration.nix
@@ -41,7 +46,7 @@
 	  ];
 	};
         vnc = nixpkgs.lib.nixosSystem {
-  	  specialArgs = {
+	  specialArgs = {
 	    inherit inputs; 
 	    inherit nix-colors;
 	  };
