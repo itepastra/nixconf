@@ -21,7 +21,7 @@
 				];
 				modules-left = [ "hyprland/workspaces" "tray" "custom/pronouns" "hyprland/window" ];
 				modules-center = [ "clock" ];
-				modules-right = [ "custom/vpn" "wireplumber" "network" "cpu" "memory" "temperature" "custom/poweroff" ];
+				modules-right = [ "custom/vpn" "wireplumber" "battery" "network" "cpu" "memory" "temperature" "custom/poweroff" ];
 				"clock" = {
 					tooltip-format = "<big>{:%Y %B}</big>\n\n{calendar}";
 					interval = 1;
@@ -87,9 +87,10 @@
 					on-click-right = "swaylock";
 				};
 				"battery" = {
+					bat = "hidpp_battery_2";
 					states = {
 						full = 100;
-						good = 100;
+						good = 50;
 						warning = 30;
 						critical = 30;
 					};
@@ -119,7 +120,7 @@
 				};
 				"custom/pronouns" = {
 					format = "{}";
-					exec = "${config.xdg.configHome}/waybar/pronouns";
+					# exec = "${config.xdg.configHome}/waybar/pronouns"; # TODO: install pronouns
 					interval = 5;
 				};
 				"hyprland/workspaces" = {
@@ -140,7 +141,7 @@
 				background-color: transparent;
 				
 				border-radius: 999px;
-				color: #dddddd;
+				color: #${config.colorScheme.palette.text};
 				transition-property: background-color;
 				transition-duration: .5s;
 			}
@@ -177,22 +178,22 @@
 				min-width: 15px;
 				min-height: 15px;
 				background-color: transparent;
-				color: #5F5F5F;
+				color: #${config.colorScheme.palette.textMuted};
 				border-radius: 999px;
 			}
 
 			#workspaces button:hover {
-				background-color: #FBAF44;       
+				background-color: #${config.colorScheme.palette.highlight};
 			}
 
 			#workspaces button.active {
-				color: #ffffff;
+				color: #${config.colorScheme.palette.text};
 				font-weight: bold;
-				background-color: #FBAF44;  
+				background-color: #${config.colorScheme.palette.highlight};
 			}
 
-			#workspaces button.urgent {    
-				background-color: #eb4d4b;    
+			#workspaces button.urgent {
+				background-color: #${config.colorScheme.palette.danger};
 			}
 
 			#clock,
@@ -212,12 +213,12 @@
 			#tray,
 			#custom-updates,
 			#mpd {
-				color: #5F5F5F;
+				color: #${config.colorScheme.palette.textMuted};
 				margin: 0px 2px;
 				padding: 0 15px;
 				
 				border-radius: 999px;
-				box-shadow: inset 0 0 0 1px #cccccc;
+				box-shadow: inset 0 0 0 1px #${config.colorScheme.palette.backgroundMuted};
 			}
 
 			.modules-right > widget:last-child > #battery {
@@ -227,19 +228,19 @@
 			#tray {    
 				padding: 4px 10px;        
 				border-radius: 999px 999px 999px 999px;
-				box-shadow: inset 0px 0px 0 1px #cccccc;    
+				box-shadow: inset 0px 0px 0 1px #${config.colorScheme.palette.backgroundMuted};
 			}
 
 			#window { 
 				margin-left: 6px;
-				color: #5F5F5F;
+				color: #${config.colorScheme.palette.textMuted};
 			}
 
 			#workspaces {   
 				margin: 0 4px;
 				padding: 4px 4px;   
 				border-radius: 999px;
-				box-shadow: inset 0px 0px 0 1px #cccccc;
+				box-shadow: inset 0px 0px 0 1px #${config.colorScheme.palette.backgroundMuted};
 			}
 
 			#cpu {
@@ -251,8 +252,8 @@
 				border-radius: 0px;
 				padding: 0 10px;
 				margin: 0px;
-				box-shadow: inset 0px 2px 0 -1px #cccccc,
-							inset 0px -2px 0 -1px #cccccc;
+				box-shadow: inset 0px 2px 0 -1px #${config.colorScheme.palette.backgroundMuted},
+							inset 0px -2px 0 -1px #${config.colorScheme.palette.backgroundMuted};
 			}
 
 			#clock {    
@@ -263,13 +264,13 @@
 			#battery {    
 				min-width: 50px;
 				border-radius: 999px;
-				box-shadow: inset 0 0 0 1px #cccccc;
-				background-color: #cccccc;
+				box-shadow: inset 0 0 0 1px #${config.colorScheme.palette.backgroundMuted};
+				background-color: #${config.colorScheme.palette.backgroundMuted};
 				transition: all 0.3s;
 			}
 
 			#battery.charging, #battery.plugged {   
-				color: #5bbd63; 
+				color: #${config.colorScheme.palette.succes}; 
 				background-color: transparent;
 				animation: batteryCharging 1.2s linear 0s infinite normal forwards,               
 			}
@@ -277,7 +278,7 @@
 				animation: batteryFull 7.0s linear 0s infinite normal forwards;    
 			}
 			#battery.critical:not(.charging) {    
-				background-color: #ffd2d2;
+				background-color: #${config.colorScheme.palette.background};
 				animation: batteryCritical 1.2s linear 0s infinite normal forwards;        
 			}
 
@@ -288,16 +289,12 @@
 			#network.disconnected,
 			#pulseaudio.muted {
 				transition: all 0.2s;
-				color: #cccccc;    
+				color: #${config.colorScheme.palette.backgroundMuted};
 			}
 
 			.custom-spotify {
-				color: #39a04a;
+				color: #${config.colorScheme.palette.spotifyGreen};
 				margin-right: 10px;
-			}
-
-			#custom-media.custom-vlc {
-				background-color: #ffa000;
 			}
 
 			#temperature {
@@ -307,7 +304,7 @@
 
 			#temperature.critical {
 				background-color: transparent;
-				color: #f53c3c;
+				color: #${config.colorScheme.palette.danger};
 			}
 
 			#tray {    
@@ -320,41 +317,8 @@
 			}
 
 			#tray > .needs-attention {
-				background-color: #f53c3c;    
+				background-color: #${config.colorScheme.palette.danger};
 				border-radius: 999px;
-			}
-
-			#idle_inhibitor {
-				background-color: #2d3436;
-			}
-
-			#idle_inhibitor.activated {
-				background-color: #ecf0f1;
-				color: #2d3436;
-			}
-
-			#language {
-				background: #00b093;
-				color: #740864;
-				padding: 0 5px;
-				margin: 0 5px;
-				min-width: 16px;
-			}
-
-			#keyboard-state {
-				background: #97e1ad;
-				color: #000000;
-				padding: 0 0px;
-				margin: 0 5px;
-				min-width: 16px;
-			}
-
-			#keyboard-state > label {
-				padding: 0 5px;
-			}
-
-			#keyboard-state > label.locked {
-				background: rgba(0, 0, 0, 0.05);
 			}
 
 			#scratchpad {
@@ -365,24 +329,24 @@
 			}
 
 			#custom-updates {
-				box-shadow: inset 0 0 0 1px #cccccc;
-				color: #888888;
+				box-shadow: inset 0 0 0 1px #${config.colorScheme.palette.backgroundMuted};
+				color: #${config.colorScheme.palette.textMuted};
 				transition: all 0.5s;
 			}
 
 			#custom-updates.pending {
-				box-shadow: inset 0 0 0 2px #fbaf44;
-				color: #fbaf44;
+				box-shadow: inset 0 0 0 2px #${config.colorScheme.palette.highlight};
+				color: #${config.colorScheme.palette.highlight};
 				font-weight: bold;
 				transition: all 0.5s;
 			}
 
 			tooltip {
-				background-color: #eeeeee;
+				background-color: #${config.colorScheme.palette.background};
 				border: 1px solid;
-				border-color: #dddddd;    
+				border-color: #${config.colorScheme.palette.border};    
 				border-radius: 10px;
-				color: #5F5F5F;
+				color: #${config.colorScheme.palette.text};
 			}
 			tooltip label {
 				padding: 5px;
@@ -392,47 +356,47 @@
 
 			@keyframes batteryCritical {
 				0% {
-					box-shadow: inset 0px 20px 8px -16px #f53c3c,
-								inset 0px -20px 8px -16px #f53c3c;
-					color: #f53c3c;
+					box-shadow: inset 0px 20px 8px -16px #${config.colorScheme.palette.danger},
+								inset 0px -20px 8px -16px #${config.colorScheme.palette.danger};
+					color: #${config.colorScheme.palette.danger};
 				}
 				50% {
-					box-shadow: inset 0px 12px 8px -16px #f53c3c,
-								inset 0px -12px 8px -16px #f53c3c;
-					color: #555555;
+					box-shadow: inset 0px 12px 8px -16px #${config.colorScheme.palette.danger},
+								inset 0px -12px 8px -16px #${config.colorScheme.palette.danger};
+					color: #${config.colorScheme.palette.textMuted};
 				} 
 				100% {
-					box-shadow: inset 0px 20px 8px -16px #f53c3c,
-								inset 0px -20px 8px -16px #f53c3c;
-					color: #f53c3c;
+					box-shadow: inset 0px 20px 8px -16px #${config.colorScheme.palette.danger},
+								inset 0px -20px 8px -16px #${config.colorScheme.palette.danger};
+					color: #${config.colorScheme.palette.danger};
 				}
 			}
 
 			@keyframes batteryCharging {
 				0% {
-					box-shadow: inset 0px 0px 8px 0px #2cb6af,
-								inset 0px 20px 8px -18px  #38b148,
-								inset 0px -20px 8px -18px  #38b148;                    
+					box-shadow: inset 0px 0px 8px 0px #${config.colorScheme.palette.info},
+								inset 0px 20px 8px -18px  #${config.colorScheme.palette.ok},
+								inset 0px -20px 8px -18px  #${config.colorScheme.palette.ok};
 				}
 				25% {
-					box-shadow: inset 0px 0px 8px 0px #2cb6af,
-								inset 14px 14px 8px -18px #38b148,
-								inset -14px -14px 8px -18px #38b148;                
+					box-shadow: inset 0px 0px 8px 0px #${config.colorScheme.palette.info},
+								inset 14px 14px 8px -18px #${config.colorScheme.palette.ok},
+								inset -14px -14px 8px -18px #${config.colorScheme.palette.ok};
 				}
 				50% {
-					box-shadow: inset 0px 0px 8px 0px #2cb6af,
-								inset 20px 0px 8px -18px #38b148,
-								inset -20px 0px 8px -18px #38b148;                    
+					box-shadow: inset 0px 0px 8px 0px #${config.colorScheme.palette.info},
+								inset 20px 0px 8px -18px #${config.colorScheme.palette.ok},
+								inset -20px 0px 8px -18px #${config.colorScheme.palette.ok};
 				}
 				75% {
-					box-shadow: inset 0px 0px 8px 0px #2cb6af,
-								inset 14px -14px 8px -18px #38b148,
-								inset -14px 14px 8px -18px #38b148;                   
+					box-shadow: inset 0px 0px 8px 0px #${config.colorScheme.palette.info},
+								inset 14px -14px 8px -18px #${config.colorScheme.palette.ok},
+								inset -14px 14px 8px -18px #${config.colorScheme.palette.ok};
 				}
 				100% {
-					box-shadow: inset 0px 0px 8px 0px #2cb6af,
-								inset 0px -20px 8px -18px #38b148,
-								inset 0px 20px 8px -18px #38b148;                  
+					box-shadow: inset 0px 0px 8px 0px #${config.colorScheme.palette.info},
+								inset 0px -20px 8px -18px #${config.colorScheme.palette.ok},
+								inset 0px 20px 8px -18px #${config.colorScheme.palette.ok};
 				}
 			}
 
@@ -440,29 +404,29 @@
 
 			@keyframes batteryFull {
 				0% {
-					box-shadow: inset 0px 20px 8px -16px #87D96C,
-								inset 0px -20px 8px -16px #87D96C;
-					color: #87D96C;
+					box-shadow: inset 0px 20px 8px -16px #${config.colorScheme.palette.warn},
+								inset 0px -20px 8px -16px #${config.colorScheme.palette.warn};
+					color: #${config.colorScheme.palette.warn};
 				}
 				25% {
-					box-shadow: inset 0px 19px 8px -16px #87D96C,
-								inset 0px -19px 8px -16px #87D96C;
-					color: #87D96C;
+					box-shadow: inset 0px 19px 8px -16px #${config.colorScheme.palette.warn},
+								inset 0px -19px 8px -16px #${config.colorScheme.palette.warn};
+					color: #${config.colorScheme.palette.warn};
 				}
 				50% {
-					box-shadow: inset 0px 15px 8px -16px #87D96C,
-								inset 0px -15px 8px -16px #87D96C;
-					color: #87D96C;
+					box-shadow: inset 0px 15px 8px -16px #${config.colorScheme.palette.warn},
+								inset 0px -15px 8px -16px #${config.colorScheme.palette.warn};
+					color: #${config.colorScheme.palette.warn};
 				} 
 				75% {
-					box-shadow: inset 0px 19px 8px -16px #87D96C,
-								inset 0px -19px 8px -16px #87D96C;
-					color: #87D96C;
+					box-shadow: inset 0px 19px 8px -16px #${config.colorScheme.palette.warn},
+								inset 0px -19px 8px -16px #${config.colorScheme.palette.warn};
+					color: #${config.colorScheme.palette.warn};
 				}
 				100% {
-					box-shadow: inset 0px 20px 8px -16px #87D96C,
-								inset 0px -20px 8px -16px #87D96C;
-					color: #87D96C;
+					box-shadow: inset 0px 20px 8px -16px #${config.colorScheme.palette.warn},
+								inset 0px -20px 8px -16px #${config.colorScheme.palette.warn};
+					color: #${config.colorScheme.palette.warn};
 				}
 			}
 		'';

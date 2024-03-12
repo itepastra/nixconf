@@ -28,9 +28,18 @@
 			base0D = "#FF77FF";
 			base0E = "#FFFF77";
 			base0F = "#AAAAAA";
-			text = "#FFFFFF";
+			text = "#EEEEEE";
+			textMuted = "#5F5F5F";
+			background = "#FFD2D2";
+			backgroundMuted = "#CCCCCC";
 			warn = "#FF0000";
-			background = "#000000";
+			highlight = "#FBAF44";
+			danger = "#F53C3C";
+			succes = "#5BBD63";
+			spotifyGreen = "#39A04A";
+			border = "#DDDDDD";
+			info = "#2CB6AF";
+			ok = "#38B148";
 		};
 	};
 
