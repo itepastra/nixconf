@@ -56,7 +56,7 @@
 		go
 		nodejs
 		rustup
-		python
+		python3
 	];
 
 
