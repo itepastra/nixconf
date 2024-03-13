@@ -102,7 +102,7 @@ vim.o.hlsearch = true
 vim.opt.number = true
 -- You can also add relative line numbers, for help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
@@ -837,11 +837,7 @@ require("lazy").setup({
 
 	{
 		"nvim-treesitter/nvim-treesitter-context",
-		config = function()
-			require("nvim-treesitter-context").setup({
-				enable = true,
-			})
-		end,
+		opts = { enable = true },
 	},
 
 	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
