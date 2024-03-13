@@ -30,6 +30,8 @@
 	# Enable networking
 	networking.networkmanager.enable = true;
 
+	programs.nm-applet.enable = true;
+
 	nix = {
 		settings = {
 			# auto optimise every so often
