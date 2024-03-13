@@ -728,7 +728,7 @@ require("lazy").setup({
 					-- Accept ([y]es) the completion.
 					--  This will auto-import if your LSP supports it.
 					--  This will expand snippets if the LSP sent a snippet.
-					["<CR>"] = cmp.mapping.confirm({ cmp.ConfirmBehavior.Replace, select = true }),
+					["<C-y>"] = cmp.mapping.confirm({ cmp.ConfirmBehavior.Replace, select = true }),
 
 					-- Manually trigger a completion from nvim-cmp.
 					--  Generally you don't need this, because nvim-cmp will display
