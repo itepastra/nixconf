@@ -11,13 +11,13 @@
 	};
 	programs.zsh = {
 		enable=true;
-		shellAliases = (lib.mkDefault {
+		shellAliases = {
 			ll = "lsd -l";
 			lt = "lsd -l --tree";
 			# TODO find if i can make these use the 'current' flake
-			utest = "sudo nixos-rebuild test --flake $HOME/nixos#default";
-			update = "sudo nixos-rebuild switch --flake $HOME/nixos#default";
-		});
+			utest = lib.mkDefault "sudo nixos-rebuild test --flake $HOME/nixos#default";
+			update = lib.mkDefault "sudo nixos-rebuild switch --flake $HOME/nixos#default";
+		};
 		initExtra = ''
 nrun() {
 	NIXPKGS_ALLOW_UNFREE=1 nix run --impure "nixpkgs#$1"
