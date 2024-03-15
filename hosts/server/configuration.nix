@@ -60,16 +60,24 @@
 	# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
 	# Define a user account. Don't forget to set a password with ‘passwd’.
-	users.users.noa = {
-		 isNormalUser = true;
-		 extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-		 packages = with pkgs; [
-			 firefox
-			 tree
-		 ];
-		 openssh.authorizedKeys.keys = [
+	users.users = {
+		root = {
+			openssh.authorizedKeys.keys = [
 				"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWtje7dGqyrBY7PLq6DANvUR6yfungQNsXGkTO6PP6/ noa@NoasPCArch"
-		 ];
+			];
+		};
+		noa = {
+			isNormalUser = true;
+			extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+			packages = with pkgs; [
+				 firefox
+				 tree
+			];
+			openssh.authorizedKeys.keys = [
+				"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWtje7dGqyrBY7PLq6DANvUR6yfungQNsXGkTO6PP6/ noa@NoasPCArch"
+			];
+			hashedPassword = "$y$j9T$Essu0/awyRr6Z8PfSlYod.$B.TZp3vh4t84NAgEhLDJ5E8ESbPao/X8uqrU/E.xxr4";
+		};
 	};
 
 	# Allow unfree packages
