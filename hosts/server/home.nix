@@ -79,7 +79,6 @@
 
 	home.sessionVariables = {
 		EDITOR = "nvim";
-		TERM = "kitty";
 	};
 
 	xdg = {

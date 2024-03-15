@@ -70,7 +70,6 @@
 	#
 	home.sessionVariables = {
 		EDITOR = "nvim";
-		TERM = "kitty";
 	};
 
 	xdg.userDirs.enable = true;
