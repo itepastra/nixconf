@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ modulesPath, pkgs, inputs, nix-colors, ... }:
+{ modulesPath, pkgs, inputs, lib, nix-colors, ... }:
 
 {
 	imports =
@@ -105,10 +105,10 @@
 	services.openssh.enable = true;
 	programs.zsh.enable = true;
 
-	programs.zsh.shellAliases = {
+	programs.zsh.shellAliases = lib.mkForce ({
 		utest = "sudo nixos-rebuild test --flake github:itepastra/nixconf#server";
 		update = "sudo nixos-rebuild switch --flake github:itepastra/nixconf#server";
-	};
+	});
 
 	home-manager = {
 		extraSpecialArgs = { 
