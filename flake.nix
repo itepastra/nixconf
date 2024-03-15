@@ -33,10 +33,6 @@
   };
 
   outputs = { self, nixpkgs, nix-colors, automapaper, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
     {
       nixosConfigurations = {
         default = nixpkgs.lib.nixosSystem {
@@ -50,13 +46,13 @@
 	    inputs.home-manager.nixosModules.default
 	  ];
 	};
-        vnc = nixpkgs.lib.nixosSystem {
+        server = nixpkgs.lib.nixosSystem {
 	  specialArgs = {
 	    inherit inputs; 
 	    inherit nix-colors;
 	  };
 	  modules = [ 
-	    ./hosts/vnc/configuration.nix
+	    ./hosts/server/configuration.nix
 	    inputs.home-manager.nixosModules.default
 	  ];
 	};
