@@ -45,10 +45,6 @@
 		rustup
 	];
 
-	programs.zsh.shellAliases = {
-		utest = "sudo nixos-rebuild test --flake github:itepastra/nixconf#server";
-		update = "sudo nixos-rebuild switch --flake github:itepastra/nixconf#server";
-	};
 
 	# Home Manager is pretty good at managing dotfiles. The primary way to manage
 	# plain files is through 'home.file'.

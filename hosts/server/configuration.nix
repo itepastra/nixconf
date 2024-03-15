@@ -105,6 +105,11 @@
 	services.openssh.enable = true;
 	programs.zsh.enable = true;
 
+	programs.zsh.shellAliases = {
+		utest = "sudo nixos-rebuild test --flake github:itepastra/nixconf#server";
+		update = "sudo nixos-rebuild switch --flake github:itepastra/nixconf#server";
+	};
+
 	home-manager = {
 		extraSpecialArgs = { 
 			inherit inputs; 
