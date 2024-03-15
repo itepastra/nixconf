@@ -77,7 +77,7 @@
 			openssh.authorizedKeys.keys = [
 				"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWtje7dGqyrBY7PLq6DANvUR6yfungQNsXGkTO6PP6/ noa@NoasPCArch"
 			];
-			hashedPassword = "$y$j9T$Essu0/awyRr6Z8PfSlYod.$B.TZp3vh4t84NAgEhLDJ5E8ESbPao/X8uqrU/E.xxr4";
+			hashedPassword = "$6$rounds=512400$g/s4dcRttXi4ux6c$Z6pKnhJXcWxv0TBSMtvJu5.piETdUBSgBVN7oDPKiQV.lbTYz1r.0XQLwMYxzcvaaX0DL6Iw/SEUTiC2M50wC/";
 		};
 	};
 

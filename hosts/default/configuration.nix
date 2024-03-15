@@ -79,12 +79,17 @@
 
 	users.groups.nixpow.members = [ "root" ];
 	# Define a user account. Don't forget to set a password with ‘passwd’.
-	users.users.noa = {
-		isNormalUser = true;
-		description = "Noa Aarts";
-		extraGroups = [ "networkmanager" "wheel" "nixpow" ];
-		packages = with pkgs; [
-		];
+	users.users = {
+		root = {
+			isSystemUser = true;
+			description = "Root";
+			hashedPassword = "!";
+		noa = {
+			isNormalUser = true;
+			description = "Noa Aarts";
+			extraGroups = [ "networkmanager" "wheel" "nixpow" ];
+			hashedPassword = "$6$rounds=512400$Zip3xoK2zcoR4qEL$N13YTHO5tpWfx2nKb1sye.ZPwfoRtMQ5f3YrMZqKzzoFoSSHHJ.l5ulCEa9HygFxZmBtPnwlseFEtl8ERnwF50";
+		};
 	};
 
 	home-manager = {
