@@ -2,13 +2,16 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, inputs, nix-colors, ... }:
+{ modulesPath, pkgs, inputs, nix-colors, ... }:
 
 {
 	imports =
 	[ # Include the results of the hardware scan.
 		./hardware-configuration.nix
 		inputs.home-manager.nixosModules.default
+		./disk-config.nix    
+		(modulesPath + "/installer/scan/not-detected.nix")
+		(modulesPath + "/profiles/qemu-guest.nix")
 	];
 
 	# Use the systemd-boot EFI boot loader.

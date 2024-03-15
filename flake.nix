@@ -30,9 +30,14 @@
 	# inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+	url = "github:nix-community/disko";
+	inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { self, nixpkgs, nix-colors, automapaper, ... }@inputs:
+  outputs = { self, nixpkgs, nix-colors, automapaper, disko, ... }@inputs:
     {
       nixosConfigurations = {
         default = nixpkgs.lib.nixosSystem {
@@ -52,6 +57,7 @@
 	    inherit nix-colors;
 	  };
 	  modules = [ 
+	    disko.nixosModules.disko
 	    ./hosts/server/configuration.nix
 	    inputs.home-manager.nixosModules.default
 	  ];
