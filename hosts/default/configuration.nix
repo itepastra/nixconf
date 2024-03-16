@@ -111,7 +111,6 @@
 		sddm
 		git
 		zsh
-		neovim
 	];
 
 	# TODO find list of fonts to install
