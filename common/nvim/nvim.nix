@@ -5,18 +5,6 @@
 		# needed for the nvim config, neovim itself is a system package already
 		ripgrep
 	];
-	# programs.neovim = {
-	# 	enable = true;
-	# 	defaultEditor = true;
-	#
-	# 	viAlias = true;
-	# 	vimAlias = true;
-	# 	vimdiffAlias = true;
-	#
-	# 	extraLuaConfig = ''
-	# 		${builtins.readFile ./init.lua}
-	# 	'';
-	# };
 	programs.nixvim = {
 		enable = true;
 		defaultEditor = true;
@@ -59,31 +47,29 @@
 			foldmethod = "expr";
 			foldexpr = "nvim_treesitter#foldexpr()";
 
-			autoGroups = {
-				"kickstart-highlight-yank" = { clear = true; };
-				"kickstart-lsp-attach" = {clear = true; };
-			};
+		};
+		autoGroups = {
+			"kickstart-highlight-yank" = { clear = true; };
+		};
 
-			autoCmd = [
-				{
-					event = "TextYankPost";
-					group = "kickstart-highlight-yank";
-					callback = ''function() vim.highlight.on_yank() end'';
-				}
-				{
-					event = "LspAttach";
-					group = "kickstart-lsp-attach";
-					callback = builtins.readFile ./lsp_autocmd.lua;
-				}
-			];
+		autoCmd = [
+			{
+				event = "TextYankPost";
+				group = "kickstart-highlight-yank";
+				command = ''lua vim.highlight.on_yank()'';
+			}
+			{
+				event = ["BufReadPost" "FileReadPost"];
+				command = "normal zR";
+			}
+		];
+
+		filetype.extension = {
+			templ = "templ";
 		};
 
 		keymaps = [
 			{ mode = "n"; key = "<Esc>"; action = "<cmd>nohlsearch<CR>";}
-			{ mode = "n"; key = "[d"; lua = true; action = "vim.diagnostic.goto_prev"; options.desc = "Go to previous [D]iagnostic message" ;}
-			{ mode = "n"; key = "]d"; lua = true; action = "vim.diagnostic.goto_next"; options.desc = "Go to next [D]iagnostic message" ;}
-			{ mode = "n"; key = "<leader>e"; lua = true; action = "vim.diagnostic.open_float"; options.desc = "Show diagnostic [E]rror messages" ;}
-			{ mode = "n"; key = "<leader>q"; lua = true; action = "vim.diagnostic.setloclist"; options.desc = "Open diagnostic [Q]uickfix list" ;}
 			{ mode = "t"; key = "<Esc><Esc>"; action = "<C-\\><C-n>"; options.desc = "Exit terminal mode" ;}
 			{ mode = "n"; key = "<C-h>"; action = "<C-w><C-h>"; options.desc = "Move focus to the left window" ;}
 			{ mode = "n"; key = "<C-l>"; action = "<C-w><C-l>"; options.desc = "Move focus to the right window" ;}
@@ -130,10 +116,7 @@
 					ui-select.enable = true;
 				};
 				keymaps = {
-					"<leader>sh" = {
-						action = "help_tags";
-						desc = "[S]earch [H]elp";
-					};
+					"<leader>sh" = { action = "help_tags"; desc = "[S]earch [H]elp"; };
 					"<leader>sk" = { action = "keymaps"; desc = "[S]earch [K]eymaps"; };
 					"<leader>sf" = { action = "find_files"; desc = "[S]earch [F]iles"; };
 					"<leader>ss" = { action = "builtin"; desc = "[S]earch [S]elect Telescope"; };
@@ -179,10 +162,79 @@
 				indent = true;
 				folding = true;
 				nixvimInjections = true;
+				ignoreInstall = [
+					"comment"
+				];
 			};
 			treesitter-context = {
 				enable = true;
 				maxLines = 8;
+			};
+			lsp = {
+				enable = true;
+				# TODO: use onAttach instead of the autocmd
+				onAttach = ''
+  local map = function(keys, func, desc)
+    vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+  end
+  map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+  map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+  map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+  map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+  map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+  map(
+    "<leader>ws",
+    require("telescope.builtin").lsp_dynamic_workspace_symbols,
+    "[W]orkspace [S]ymbols"
+  )
+  local client = vim.lsp.get_client_by_id(event.data.client_id)
+  if client and client.server_capabilities.documentHighlightProvider then
+  vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    buffer = event.buf,
+    callback = vim.lsp.buf.document_highlight,
+  })
+  vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+    buffer = event.buf,
+    callback = vim.lsp.buf.clear_references,
+  })
+  end
+				'';
+				# NOTE: there can also be keymaps for lsp apparently
+
+				keymaps = {
+					diagnostic = {
+						"[d" = "goto_prev";
+						"]d" = "goto_next";
+						"<leader>e" = "open_float";
+						"<leader>q" = "setloclist";
+					};
+					lspBuf = {
+						"K" = "hover";
+						"<leader>rn" = "rename";
+						"<leader>ca" = "code_action";
+						"gD" = "declaration";
+					};
+				};
+
+# { mode = "n"; key = "[d"; lua = true; action = "vim.diagnostic.goto_prev"; options.desc = "Go to previous [D]iagnostic message" ;}
+# { mode = "n"; key = "]d"; lua = true; action = "vim.diagnostic.goto_next"; options.desc = "Go to next [D]iagnostic message" ;}
+# { mode = "n"; key = "<leader>e"; lua = true; action = "vim.diagnostic.open_float"; options.desc = "Show diagnostic [E]rror messages" ;}
+# { mode = "n"; key = "<leader>q"; lua = true; action = "vim.diagnostic.setloclist"; options.desc = "Open diagnostic [Q]uickfix list" ;}
+				servers = {
+					gopls.enable = true;
+					htmx.enable = true;
+					lua-ls.enable = true;
+					nil_ls.enable = true;
+					pyright.enable = true;
+					rust-analyzer = {
+						enable = true;
+						installRustc = false;
+						installCargo = false;
+					};
+				};
+			};
+			lsp-format = {
+				enable = true;
 			};
 		};
 		extraPlugins = with pkgs.vimPlugins; [
