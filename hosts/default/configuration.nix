@@ -37,8 +37,8 @@
 			# auto optimise every so often
 			auto-optimise-store = true;
 			experimental-features = ["nix-command" "flakes"];
-			substituters = ["https://hyprland.cachix.org"];
-			trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+			substituters = ["https://hyprland.cachix.org" "https://cache.iog.io"];
+			trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="];
 		};
 		gc.automatic = true;
 	};
@@ -81,9 +81,8 @@
 	# Define a user account. Don't forget to set a password with ‘passwd’.
 	users.users = {
 		root = {
-			isSystemUser = true;
-			description = "Root";
 			hashedPassword = "!";
+		};
 		noa = {
 			isNormalUser = true;
 			description = "Noa Aarts";
@@ -143,7 +142,6 @@
 	programs.nix-ld.enable = true;
 	programs.nix-ld.libraries = with pkgs; [
 		wayland
-
 	];
 
 	users.defaultUserShell = pkgs.zsh;
