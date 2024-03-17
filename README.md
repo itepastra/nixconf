@@ -1,5 +1,5 @@
-1. Install NixOS
-2. Clone this using `git clone https://github.com/itepastra/nixconf`
-3. activate the flake `sudo nixos-rebuild switch --flake ./nixconf#default`
-4. ...
-5. profit
+1. Fork the repo
+2. Edit things like usernames and passwords hashes (create one with mkpasswd)
+3. install nixos
+4. `sudo nixos-rebuild switch git:{username}/nixconf#default`
+5. you now have nixos 
