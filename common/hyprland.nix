@@ -97,10 +97,7 @@
 				++ (
 					builtins.concatLists (builtins.genList (
 						x: let
-							ws = let
-								c = (x+1);
-							in
-								builtins.toString (x);
+							ws = builtins.toString (x);
 						in [
 							"$mod,${ws},workspace,${ws}"
 							"ALT,${ws},movetoworkspace,${ws}"
