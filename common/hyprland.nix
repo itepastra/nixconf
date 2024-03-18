@@ -6,6 +6,7 @@
 		./kitty.nix
 		./waybar.nix
 		./wofi.nix
+		./hypridle.nix
 	];
 	home.packages = with pkgs; [
 		hyprland
