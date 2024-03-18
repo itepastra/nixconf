@@ -3,11 +3,11 @@
 # name of the display in wayland
 name = "DP-2"
 # the horizontal cell amount to simulate
-horizontal = 192
+horizontal = 256
 # the vertical cell amount to simulate
-vertical = 108
+vertical = 144
 # target simulation ticks per second
-tps = 20
+tps = 30
 # automaton shader
 # this has access to the previous state, which is a (horizontal, vertical) sized texture2D that uses the rgba values
 state_frag="/home/noa/.config/automapaper/state.frag"

@@ -21,7 +21,7 @@
 		enable = true;
 		settings = {
 			monitor = [
-				"DP-3,2560x1440@360,1920x0,1,bitdepth,10,vrr,1"
+				"DP-3,2560x1440@360,2560x0,1,bitdepth,10,vrr,1"
 				"DP-2,2560x1440@144,0x0,1,bitdepth,10,vrr,1"
 			];
 			windowrulev2 = [
