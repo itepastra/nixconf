@@ -14,6 +14,7 @@
 
 		# I always want these with hyprland anyways
 		dunst
+		libnotify # to enable the notify-send command
 		wl-clipboard
 
 		slurp
