@@ -28,7 +28,7 @@ void main() {
         if (current.r == 0.0) {
             stateColor.g = max(current.g - 0.01, 0.0);
         }
-    } else {        
+    } else {
         stateColor = vec4(0.0, max(current.g - 0.01, 0.0), 0.0, 1.0);
     }
 
