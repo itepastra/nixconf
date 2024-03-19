@@ -6,7 +6,8 @@
 		./kitty.nix
 		./waybar.nix
 		./wofi.nix
-		./hypridle.nix
+		# ./hypridle.nix # TODO: find out why these bitches not work
+		# ./hyprlock.nix
 	];
 	home.packages = with pkgs; [
 		hyprland
@@ -22,8 +23,8 @@
 		enable = true;
 		settings = {
 			monitor = [
-				"DP-3,2560x1440@360,2560x0,1,bitdepth,10,vrr,1"
-				"DP-2,2560x1440@144,0x0,1,bitdepth,10,vrr,1"
+				"DP-3,2560x1440@360,2560x0,1,vrr,1"
+				"DP-2,2560x1440@144,0x0,1,vrr,1"
 			];
 			windowrulev2 = [
 				"opacity 1.0 0.6,class:^(kitty)$"
@@ -46,6 +47,9 @@
 				border_size = "3";
 				"col.active_border"="0xff950fad";
 				"col.inactive_border"="0xff26052e";
+			};
+			misc = {
+				key_press_enables_dpms = true;
 			};
 			decoration = {
 				rounding = "6";

@@ -1,7 +1,7 @@
 { config, pkgs, inputs, ... }:
 
 {
-	services.hypridle = {
+	programs.hyprlock = {
 		enable = true;
 		# TODO: find commands to turn on/off monitors
 	};

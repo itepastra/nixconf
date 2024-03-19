@@ -30,6 +30,11 @@
 	inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprlock = {
+	url = "github:hyprwm/hyprlock";
+	inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     disko = {
 	url = "github:nix-community/disko";
 	inputs.nixpkgs.follows = "nixpkgs";
@@ -37,7 +42,7 @@
 
   };
 
-  outputs = { self, nixpkgs, nix-colors, automapaper, disko, hypridle, ... }@inputs:
+  outputs = { self, nixpkgs, nix-colors, automapaper, disko, home-manager, ... }@inputs:
     {
       nixosConfigurations = {
         default = nixpkgs.lib.nixosSystem {
@@ -45,7 +50,6 @@
 	    inherit inputs; 
 	    inherit nix-colors;
 	    inherit automapaper;
-	    inherit hypridle;
 	  };
 	  modules = [ 
 	    ./hosts/default/configuration.nix
