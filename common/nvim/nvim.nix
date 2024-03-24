@@ -216,16 +216,12 @@
 					};
 				};
 
-# { mode = "n"; key = "[d"; lua = true; action = "vim.diagnostic.goto_prev"; options.desc = "Go to previous [D]iagnostic message" ;}
-# { mode = "n"; key = "]d"; lua = true; action = "vim.diagnostic.goto_next"; options.desc = "Go to next [D]iagnostic message" ;}
-# { mode = "n"; key = "<leader>e"; lua = true; action = "vim.diagnostic.open_float"; options.desc = "Show diagnostic [E]rror messages" ;}
-# { mode = "n"; key = "<leader>q"; lua = true; action = "vim.diagnostic.setloclist"; options.desc = "Open diagnostic [Q]uickfix list" ;}
 				servers = {
 					gopls.enable = true;
 					htmx.enable = true;
 					lua-ls.enable = true;
 					nil_ls.enable = true;
-					pyright.enable = true;
+					pylsp.enable = true;
 					rust-analyzer = {
 						enable = true;
 						installRustc = false;
