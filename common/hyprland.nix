@@ -22,6 +22,8 @@
 
 		hypridle # TODO: remove when fixed with config
 	];
+
+	services.playerctld.enable = true;
 	wayland.windowManager.hyprland = {
 		enable = true;
 		settings = {
