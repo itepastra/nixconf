@@ -87,7 +87,7 @@
 		plugins = {
 			fugitive.enable = true;
 			nvim-colorizer.enable = true;
-			comment-nvim.enable = true;
+			comment.enable = true;
 			gitsigns = {
 				enable = true;
 				signs = {
