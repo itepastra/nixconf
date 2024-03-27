@@ -21,6 +21,7 @@
 		grim
 
 		hypridle # TODO: remove when fixed with config
+		playerctl
 	];
 
 	services.playerctld.enable = true;

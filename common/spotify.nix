@@ -1,6 +1,7 @@
 { config, pkgs, inputs, ... }:
 
 {
+	services.spotifyd.enable = true;
 	home.packages = with pkgs; [
 		(symlinkJoin {
 			name = "spotify";

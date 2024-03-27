@@ -154,6 +154,18 @@
 		jack.enable = true;
 	};
 
+	services.fail2ban = {
+		enable = true;
+		maxretry = 5;
+		bantime = "1s";
+		bantime-increment = {
+			enable = true;
+			formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
+			maxtime = "1h";
+			overalljails = true;
+		};
+	};
+
 	boot.kernelModules = [
 		"v4l2loopback"
 		"nct6775"
@@ -176,8 +188,8 @@
 	};
 
 	# Open ports in the firewall.
-	# networking.firewall.allowedTCPPorts = [ 5909 ];
-	# networking.firewall.allowedUDPPorts = [ 5909 ];
+	networking.firewall.allowedTCPPorts = [ 2000 ];
+	networking.firewall.allowedUDPPorts = [ 2000 ];
 	# Or disable the firewall altogether.
 	# networking.firewall.enable = false;
 
