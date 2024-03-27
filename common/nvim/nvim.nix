@@ -37,6 +37,9 @@
 			splitright = true;
 			splitbelow = true;
 
+			shiftwidth = 4;
+			tabstop = 4;
+
 			list = true;
 			listchars = { tab = "» "; trail = "·"; nbsp = "␣"; };
 
@@ -76,12 +79,12 @@
 			{ mode = "n"; key = "<C-j>"; action = "<C-w><C-j>"; options.desc = "Move focus to the lower window" ;}
 			{ mode = "n"; key = "<C-k>"; action = "<C-w><C-k>"; options.desc = "Move focus to the upper window" ;}
 			{ mode = "n"; key = "<leader>pv"; lua = true; action = "vim.cmd.Ex";}
-			{ mode = "x"; key = "<leader>p"; action = ''[["_dP]]'';}
-			{ mode = [ "n" "v" ]; key = "<leader>y"; action = ''[["+y]]'';}
-			{ mode = "n"; key = "<leader>Y"; action = ''[["+Y]]'';}
-			{ mode = [ "n" "v" ]; key = "<leader>d"; action = ''[["_d]]'';}
-			{ mode = "v"; key = "J"; action = ":m '>+1<CR>gv=gv";}
-			{ mode = "v"; key = "K"; action = ":m '<-2<CR>gv=gv";}
+			{ mode = "x"; key = "<leader>p"; action = ''"_dP''; options.desc = "paste without override";}
+			{ mode = [ "n" "v" ]; key = "<leader>y"; action = ''"+y''; options.desc = "copy to system clipboard";}
+			{ mode = "n"; key = "<leader>Y"; action = ''"+Y''; options.desc = "copy line to system clipboard";}
+			{ mode = [ "n" "v" ]; key = "<leader>d"; action = ''"_d''; options.desc = "delete without override";}
+			{ mode = "v"; key = "J"; action = ":m '>+1<CR>gv=gv"; options.desc = "move selected down";}
+			{ mode = "v"; key = "K"; action = ":m '<-2<CR>gv=gv"; options.desc = "move selected up";}
 		];
 
 		plugins = {
@@ -137,6 +140,7 @@
 				formattersByFt = {
 					lua = [ "stylua" ];
 					python = [ "black" ];
+					yaml = [ "yamlls" ];
 				};
 			};
 			cmp = {
@@ -170,6 +174,7 @@
 				enable = true;
 				maxLines = 8;
 			};
+			fidget.enable = true;
 			lsp = {
 				enable = true;
 				# TODO: use onAttach instead of the autocmd
@@ -227,6 +232,7 @@
 						installRustc = false;
 						installCargo = false;
 					};
+					yamlls.enable = true;
 				};
 			};
 			lsp-format = {
@@ -235,6 +241,7 @@
 		};
 		extraPlugins = with pkgs.vimPlugins; [
 			vim-sleuth
+			neodev-nvim
 		];
 	};
 }
