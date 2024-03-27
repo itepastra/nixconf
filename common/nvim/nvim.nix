@@ -1,12 +1,20 @@
-{ config, pkgs, inputs, ... }:
+{  pkgs, lib, ... }:
 
 {
 	home.packages = with pkgs; [
 		# needed for the nvim config, neovim itself is a system package already
 		ripgrep
 	];
-	programs.nixvim = {
+	programs.neovim = {
 		enable = true;
+		defaultEditor = true;
+		viAlias = true;
+		vimAlias = true;
+
+		extraConfig = lib.fileContents ./nvim.lua;
+	};
+	programs.nixvim = {
+		enable = false;
 		defaultEditor = true;
 		viAlias = true;
 		vimAlias = true;
