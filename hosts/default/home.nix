@@ -55,7 +55,6 @@
 		# Programming langs
 		go
 		nodejs
-		rustup
 	];
 
 

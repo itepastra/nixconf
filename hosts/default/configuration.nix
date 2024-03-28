@@ -164,6 +164,27 @@
 			maxtime = "1h";
 			overalljails = true;
 		};
+
+		jails = {
+			go-login.settings = {
+				enabled = true;
+				filter = "go-login";
+				action = ''iptables-multiport[name=HTTP, port="http,https,2000"]'';
+				logpath = "/home/noa/Documents/programming/SODS/login.log";
+				backend = "systemd";
+				findtime = 600;
+				bantime = 600;
+				maxretry = 5;
+			};
+		};
+
+	};
+
+	environment.etc = {
+		"fail2ban/filter.d/go-login.local".text = pkgs.lib.mkDefault (pkgs.lib.mkAfter ''
+			[Definition]
+			failregex=^time= level=WARN msg=".*?" ip=<ADDR> status=4\d\d$
+		'');
 	};
 
 	boot.kernelModules = [

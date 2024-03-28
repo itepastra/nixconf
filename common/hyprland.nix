@@ -8,12 +8,12 @@
 		./wofi.nix
 		# ./hypridle.nix # TODO: find out why these bitches not work
 		# ./hyprlock.nix
+		./dunst.nix
 	];
 	home.packages = with pkgs; [
 		hyprland
 
 		# I always want these with hyprland anyways
-		dunst
 		libnotify # to enable the notify-send command
 		wl-clipboard
 

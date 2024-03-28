@@ -11,7 +11,7 @@
 			mainBar = {
 				layer = "top";
 				position = "top";
-				height = 28;
+				height = 39;
 				margin-top = 8;
 				margin-left = 10;
 				margin-right = 10;
@@ -46,26 +46,10 @@
 					tooltip = false;
 				};
 				"wireplumber" = {
-					format = "{icon} {volume}% {format_source}";
-					format-bluetooth = "󰂯 {icon} {volume}% {format_source}";
-					format-bluetooth-muted = "󰂯 󰝟 {format_source}";
-					format-muted = "󰝟 {format_source}";
-					format-source = "󰍬";
-					format-source-muted = "󰍭";
-					format-icons = {
-						headphone = "󰋋";
-						hands-free = "󰋎";
-						headset = "󰋎";
-						phone = "";
-						portable = "";
-						car = "󰄋";
-						default = [
-							"󰕾"
-							"󰕾"
-							"󰕾"
-						];
-					};
-					on-click = "pavucontrol"; # TODO: find an alternative
+					format = "{volume}% {icon}";
+					format-muted = "";
+					on-click = "helvum";
+					format-icons = ["" "" ""];
 				};
 				"custom/vpn" = {
 					format = "VPN";
@@ -209,6 +193,7 @@
 			#custom-media,
 			#mode,
 			#idle_inhibitor,
+			#custom-vpn,
 			#scratchpad,
 			#tray,
 			#custom-updates,

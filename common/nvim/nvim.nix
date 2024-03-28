@@ -4,6 +4,12 @@
 	home.packages = with pkgs; [
 		# needed for the nvim config, neovim itself is a system package already
 		ripgrep
+
+		# TODO: find how I can make this build dependencies only
+		gnumake
+		cargo
+		rustc
+		python3
 	];
 	programs.neovim = {
 		enable = true;
@@ -11,7 +17,7 @@
 		viAlias = true;
 		vimAlias = true;
 
-		extraConfig = lib.fileContents ./nvim.lua;
+		extraLuaConfig = lib.fileContents ./init.lua;
 	};
 	programs.nixvim = {
 		enable = false;
