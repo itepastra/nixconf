@@ -86,7 +86,7 @@
 		noa = {
 			isNormalUser = true;
 			description = "Noa Aarts";
-			extraGroups = [ "networkmanager" "wheel" "nixpow" "boinc" ];
+			extraGroups = [ "networkmanager" "wheel" "nixpow" ];
 			hashedPassword = "$6$rounds=512400$Zip3xoK2zcoR4qEL$N13YTHO5tpWfx2nKb1sye.ZPwfoRtMQ5f3YrMZqKzzoFoSSHHJ.l5ulCEa9HygFxZmBtPnwlseFEtl8ERnwF50";
 		};
 	};
