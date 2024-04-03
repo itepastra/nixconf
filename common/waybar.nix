@@ -197,6 +197,7 @@
 			#scratchpad,
 			#tray,
 			#custom-updates,
+			#custom-poweroff,
 			#mpd {
 				color: #${config.colorScheme.palette.textMuted};
 				margin: 0px 2px;

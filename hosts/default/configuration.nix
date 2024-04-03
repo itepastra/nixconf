@@ -154,6 +154,10 @@
 		jack.enable = true;
 	};
 
+	services.boinc = {
+		enable = true;
+	};
+
 	services.fail2ban = {
 		enable = true;
 		maxretry = 5;
