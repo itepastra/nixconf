@@ -28,8 +28,17 @@ in
   };
 
   imports = [
+    ./cpu.nix
+    ./vpn.nix
+    ./tray.nix
     ./clock.nix
+    ./power.nix
+    ./memory.nix
+    ./window.nix
+    ./network.nix
     ./workspaces.nix
+    ./temperature.nix
+    ./wireplumber.nix
   ];
 
   config = lib.mkIf cfg.enable {
@@ -58,77 +67,6 @@ in
           modules-left = cfg.modules.left;
           modules-center = cfg.modules.center;
           modules-right = cfg.modules.right;
-          "tray".spacing = 10;
-          "cpu" = {
-            format = "cpu: {usage}%";
-            tooltip = false;
-          };
-          "memory" = {
-            format = "mem: {}%";
-            tooltip = false;
-          };
-          "wireplumber" = {
-            format = "{volume}% {icon}";
-            format-muted = "";
-            on-click = "helvum";
-            format-icons = ["" "" ""];
-          };
-          "custom/vpn" = {
-            format = "VPN";
-            exec = "echo '{\"class\": \"connected\"}'";
-            exec-if = "test -d /proc/sys/net/ipv4/conf/tun0";
-            return-type = "json";
-            interval = 5;
-          };
-          "temperature" = {
-            thermal-zone = 2;
-            hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
-            critical-threshold = 80;
-            format = "{temperatureC}°C {icon}";
-            format-icons = ["" "" ""];
-          };
-          "custom/poweroff" = {
-            format = "";
-            on-click = "wofi-power";
-            on-click-right = "swaylock";
-          };
-          "battery" = {
-            bat = "hidpp_battery_2";
-            states = {
-              full = 100;
-              good = 50;
-              warning = 30;
-              critical = 30;
-            };
-            format = "mouse: {capacity}% {icon}";
-            format-charging = "mouse: {capacity}% {icon}";
-            format-plugged = "mouse: {capacity}% {icon}";
-            format-alt = "mouse: {time} {icon}";
-            interval = 1;
-            format-icons = [
-              "󰂎"
-              "󰁻"
-              "󰁾"
-              "󰂀"
-              "󰁹"
-            ];
-          };
-          "hyprland/window" = {
-            max-length = 36;
-          };
-          "network" = {
-            format-wifi = "{essid} ({signalStrength}%) 󰖩";
-            format-ethernet = "{ipaddr}/{cidr} 󰛳";
-            tooltip-format = "{ifname} via {gwaddr} 󰛳";
-            format-linked = "{ifname} (No IP) 󰛳";
-            format-disconnected = "Disconnected ";
-            format-alt = "{ifname}: {ipaddr}/{cidr}";
-          };
-          "custom/pronouns" = {
-            format = "{}";
-            # exec = "${config.xdg.configHome}/waybar/pronouns"; # TODO: install pronouns
-            interval = 5;
-          };
         };
       };
       style = ''
@@ -140,7 +78,6 @@ in
 
         window#waybar {
           background-color: transparent;
-          
           border-radius: 999px;
           color: #${config.colorScheme.palette.text};
           transition-property: background-color;

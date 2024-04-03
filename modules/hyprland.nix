@@ -27,10 +27,9 @@ in
       waybar = {
 	enable = lib.mkDefault true;
 	modules = {
-          # left = [ "hyprland/workspaces" "tray" "hyprland/window" ];
-          # center = [ "clock" ];
-          # right = [ "custom/vpn" "wireplumber" "network" "cpu" "memory" "temperature" "custom/poweroff" ];
+          left = [ "hyprland/workspaces" "tray" "hyprland/window" ];
 	  center = [ "clock" ];
+          right = [ "custom/vpn" "wireplumber" "network" "cpu" "memory" "temperature" "custom/poweroff" ];
 	};
       };
       wofi.enable = lib.mkDefault true;
