@@ -1,27 +1,34 @@
 { config, lib, pkgs, inputs, ... }:
 let 
-  hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   cfg = config.modules.hyprland;
 in
 {
-  options = {
-    cfg.enable = lib.mkEnableOption "enable hyprland";
-    # TODO: make custom terminal support work better
-    # cfg.terminal = lib.mkOption {
-    #   type = lib.types.package;
-    #   default = pkgs.kitty;
-    #   description = "What terminal emulator should be used in hyprland";
-    # };
+  options.modules.hyprland = {
+    enable = lib.mkEnableOption "enable hyprland";
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.hyprland;
+      example = lib.literalExpression ''inputs.hyprland.packages.${pkgs.system}.hyprland'';
+    };
+    terminal = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.kitty;
+      description = "What terminal emulator should be used in hyprland";
+    };
   };
 
+  imports = [
+    ./waybar.nix
+    ./wofi.nix
+    ./dunst.nix
+  ];
   config = lib.mkIf cfg.enable {
+    modules = {
+      waybar.enable = lib.mkDefault true;
+      wofi.enable = lib.mkDefault true;
+      dunst.enable = lib.mkDefault true;
+    };
     # these are necessary for the config to function correctly
-    imports = [
-      ./kitty.nix
-      ./waybar.nix
-      ./wofi.nix
-      ./dunst.nix
-    ];
     home.packages = with pkgs; [
       # I always want these with hyprland anyways
       libnotify # to enable the notify-send command
@@ -34,14 +41,13 @@ in
       playerctl
     ];
 
-    programs.waybar.enable = true;
 
-    xdg.portal.configPackages = [ hyprland ];
+    xdg.portal.configPackages = [ cfg.package ];
 
     services.playerctld.enable = true;
     wayland.windowManager.hyprland = {
       enable = true;
-      package = hyprland;
+      package = cfg.package;
       settings = {
 	monitor = [
 	  "DP-3,2560x1440@360,2560x0,1"
@@ -93,7 +99,7 @@ in
 	};
 	"$mod" = "SUPER";
 	bind = [
-	  "$mod,Return,exec,${pkgs.kitty.pname}"
+	  "$mod,Return,exec,${cfg.terminal.pname}"
 	  "$mod,tab,cyclenext"
 	  "SUPERSHIFT,Q,killactive"
 	  "$mod,SPACE,exec,wofi-launch"
