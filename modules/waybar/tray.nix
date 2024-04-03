@@ -8,7 +8,7 @@ in
     enable = lib.mkEnableOption "enable ${name} waybar module";
   };
   config = lib.mkIf config.modules.waybar.${name}.enable {
-    programs.waybar.settings.mainbar."${name}" = {
+    programs.waybar.settings.mainBar."${name}" = {
       spacing = 10;
     };
   };

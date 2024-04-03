@@ -8,7 +8,7 @@ in
     enable = lib.mkEnableOption "enable ${name} waybar module";
   };
   config = lib.mkIf config.modules.waybar.${name}.enable {
-    programs.waybar.settings.mainbar.${name} = {
+    programs.waybar.settings.mainBar.${name} = {
       tooltip-format = "<big>{:%Y %B}</big>\n\n{calendar}";
       interval = 1;
       format = "{:%H:%M:%S}";

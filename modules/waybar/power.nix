@@ -12,7 +12,7 @@ in
   ];
   config = lib.mkIf config.modules.waybar.${name}.enable {
     modules.wofi.enable = true;
-    programs.waybar.settings.mainbar."${name}" = {
+    programs.waybar.settings.mainBar."${name}" = {
       format = "";
       on-click = "wofi-power";
       # on-click-right = "swaylock"; # TODO: change to whatever lock screen i want
