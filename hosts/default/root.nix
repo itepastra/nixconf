@@ -4,12 +4,6 @@
 	imports =
 	[
 		inputs.nixvim.homeManagerModules.nixvim
-		../../common/wofi.nix
-		../../common/zsh.nix
-		../../common/hyprland.nix
-		../../common/waybar.nix
-		../../common/git.nix
-		../../common/nvim/nvim.nix
 	];
 	# Home Manager needs a bit of information about you and the paths it should
 	# manage.
