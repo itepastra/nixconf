@@ -3,6 +3,5 @@
 {
 	services.dunst = {
 		enable = true;
-
 	};
 }
