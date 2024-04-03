@@ -10,21 +10,16 @@
 			'')
 		(writeShellScriptBin "wofi-power" ''
 				lock="Lock"
-				logout="Logout"
 				poweroff="Poweroff"
 				reboot="Reboot"
 				sleep="Suspend"
 				
-				selected_option=$(echo -e "$lock\n$logout\n$sleep\n$reboot\n$poweroff" | wofi --dmenu -i -p "Powermenu")
+				selected_option=$(echo -e "$lock\n$sleep\n$reboot\n$poweroff" | wofi --dmenu -i -p "Powermenu")
 
 				if [ "$selected_option" == "$lock" ]
 				then
 					echo "lock"
 					swaylock
-				elif [ "$selected_option" == "$logout" ]
-				then
-					echo "logout"
-					loginctl terminate-user `whoami`
 				elif [ "$selected_option" == "$poweroff" ]
 				then
 					echo "poweroff"
