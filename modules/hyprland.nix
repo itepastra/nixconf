@@ -18,13 +18,21 @@ in
   };
 
   imports = [
-    ./waybar.nix
+    ./waybar/default.nix
     ./wofi.nix
     ./dunst.nix
   ];
   config = lib.mkIf cfg.enable {
     modules = {
-      waybar.enable = lib.mkDefault true;
+      waybar = {
+	enable = lib.mkDefault true;
+	modules = {
+          # left = [ "hyprland/workspaces" "tray" "hyprland/window" ];
+          # center = [ "clock" ];
+          # right = [ "custom/vpn" "wireplumber" "network" "cpu" "memory" "temperature" "custom/poweroff" ];
+	  center = [ "clock" ];
+	};
+      };
       wofi.enable = lib.mkDefault true;
       dunst.enable = lib.mkDefault true;
     };
