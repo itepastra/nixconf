@@ -86,7 +86,7 @@
 		noa = {
 			isNormalUser = true;
 			description = "Noa Aarts";
-			extraGroups = [ "networkmanager" "wheel" "nixpow" ];
+			extraGroups = [ "networkmanager" "wheel" "nixpow" "boinc" ];
 			hashedPassword = "$6$rounds=512400$Zip3xoK2zcoR4qEL$N13YTHO5tpWfx2nKb1sye.ZPwfoRtMQ5f3YrMZqKzzoFoSSHHJ.l5ulCEa9HygFxZmBtPnwlseFEtl8ERnwF50";
 		};
 	};
@@ -152,10 +152,6 @@
 		alsa.support32Bit = true;
 		pulse.enable = true;
 		jack.enable = true;
-	};
-
-	services.boinc = {
-		enable = true;
 	};
 
 	services.fail2ban = {
