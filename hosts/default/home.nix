@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
 	imports =
@@ -32,7 +32,7 @@
 
 	modules = {
 		hyprland.enable = true;
-		wofi.lazy = true;
+		wofi.lazy = false;
 	};
 
 	# The home.packages option allows you to install Nix packages into your
@@ -47,6 +47,8 @@
 
 		obs-studio
 		wayvnc
+
+		(lib.mkIf (!config.modules.wofi.lazy) steam-run)
 
 		btop
 
@@ -109,7 +111,7 @@
 			enable = true;
 			extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
 		};
-		mimeApps = {
+		mimeApps = lib.mkIf config.modules.wofi.lazy {
 			enable = true;
 			associations.added = {
 				"video/mp4" = [ "mpv.out.desktop" ];
