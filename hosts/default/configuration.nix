@@ -35,7 +35,7 @@
 	nix = {
 		settings = {
 			# auto optimise every so often
-			auto-optimise-store = true;
+			# auto-optimise-store = true;
 			experimental-features = ["nix-command" "flakes"];
 			substituters = ["https://hyprland.cachix.org" "https://cache.iog.io"];
 			trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="];
