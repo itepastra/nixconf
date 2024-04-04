@@ -30,7 +30,10 @@
 
 	nixpkgs.config.allowUnfree = true;
 
-	modules.hyprland.enable = true;
+	modules = {
+		hyprland.enable = true;
+		wofi.lazy = true;
+	};
 
 	# The home.packages option allows you to install Nix packages into your
 	# environment.
@@ -43,8 +46,6 @@
 		mtr
 
 		obs-studio
-		steam-run
-		steam-tui
 		wayvnc
 
 		btop
@@ -100,17 +101,26 @@
 
 	xdg = {
 		enable = true;
+		userDirs = {
+			enable = true;
+			createDirectories = true;
+		};
+		portal = {
+			enable = true;
+			extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+		};
+		mimeApps = {
+			enable = true;
+			associations.added = {
+				"video/mp4" = [ "mpv.out.desktop" ];
+			};
+			defaultApplications = {
+				"video/mp4" = [ "mpv.out.desktop" ];
+			};
+		};
 	};
 
-	xdg.userDirs = {
-		enable = true;
-		createDirectories = true;
-	};
 
-	xdg.portal = {
-		enable = true;
-		extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-	};
 
 	dconf = {
 		enable = true;
