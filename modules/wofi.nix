@@ -1,16 +1,31 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, inputs, ... }:
 let
 	cfg = config.modules.wofi;
 in
 {
 	options.modules.wofi = {
 		enable = lib.mkEnableOption "enable wofi app launcher";
+		lazy = lib.mkEnableOption "enable lazy desktop entries";
 	};
 	imports = [
 		../common/colors.nix
 	];
 	config = lib.mkIf cfg.enable {
 		home.packages = with pkgs; [
+			(lib.mkIf cfg.lazy inputs.lazy.packages.${pkgs.system}.lazy-desktop)
+			(lib.mkIf cfg.lazy (writeShellApplication { 
+				name = "lo"; 
+				runtimeInputs = [ xdg-utils ];
+				text = ''
+					echo "opening $*"
+					xdg-open "$*"
+				'';
+			}))
+			(lib.mkIf cfg.lazy (writeShellApplication { 
+				name = "mt"; 
+				runtimeInputs = [ xdg-utils ];
+				text = ''xdg-mime query filetype "$@"'';
+			}))
 			(writeShellScriptBin "wofi-launch" ''
 					${wofi}/bin/wofi --show drun
 				'')

@@ -35,9 +35,14 @@
 	inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lazy = {
+	url = "github:bobvanderlinden/nixos-config";
+	inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { self, nixpkgs, nix-colors, automapaper, disko, home-manager, hyprland, ... }@inputs:
+  outputs = { self, nixpkgs, nix-colors, automapaper, disko, home-manager, hyprland, lazy, ... }@inputs:
     {
       nixosConfigurations = {
         default = nixpkgs.lib.nixosSystem {
