@@ -6,6 +6,7 @@
 		inputs.nixvim.homeManagerModules.nixvim
 		../../common/zsh.nix
 		../../modules/hyprland.nix
+		../../common/kitty.nix
 		../../common/git.nix
 		../../common/nvim/nvim.nix
 		../../common/discord/discord.nix
