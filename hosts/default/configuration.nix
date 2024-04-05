@@ -20,7 +20,12 @@
 	hardware.enableRedistributableFirmware = true;
 	hardware.enableAllFirmware = true;
 
-	networking.hostName = "lambdaOS"; # Define your hostname.
+	networking = {
+		hostName = "lambdaOS"; # Define your hostname.
+		extraHosts = ''
+			::1 noa.voorwaarts.nl
+		'';
+	};
 	# networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
 
 	# Configure network proxy if necessary
@@ -219,8 +224,8 @@
 	};
 
 	# Open ports in the firewall.
-	networking.firewall.allowedTCPPorts = [ 2000 ];
-	networking.firewall.allowedUDPPorts = [ 2000 ];
+	networking.firewall.allowedTCPPorts = [ 80 443 ];
+	networking.firewall.allowedUDPPorts = [ 80 443 ];
 	# Or disable the firewall altogether.
 	# networking.firewall.enable = false;
 
