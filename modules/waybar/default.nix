@@ -1,8 +1,6 @@
 { config, pkgs, lib, ... }:
 let
   cfg = config.modules.waybar;
-
-  ifIsDef = name: builtins.any (row: builtins.any (x: x == name) row) (with cfg.modules; [left center right]);
 in
 {
   options.modules.waybar = {
@@ -42,10 +40,7 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
-    modules.waybar = {
-      clock.enable = ifIsDef "clock";
-      "hyprland/workspaces".enable = ifIsDef "hyprland/workspaces";
-    };
+    modules.waybar = import ./createmodules.nix cfg.modules;
     home.packages = with pkgs; [
       font-awesome
     ];
