@@ -15,7 +15,7 @@ in
     programs.waybar.settings.mainBar."${name}" = {
       format = "";
       on-click = "wofi-power";
-      # on-click-right = "swaylock"; # TODO: change to whatever lock screen i want
+      on-click-right = "swaylock"; # TODO: change to whatever lock screen i want
     };
   };
 }

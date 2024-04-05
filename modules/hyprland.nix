@@ -25,12 +25,12 @@ in
   config = lib.mkIf cfg.enable {
     modules = {
       waybar = {
-	enable = lib.mkDefault true;
 	modules = {
           left = [ "hyprland/workspaces" "tray" "hyprland/window" ];
 	  center = [ "clock" ];
-          right = [ "custom/vpn" "wireplumber" "network" "cpu" "memory" "temperature" "custom/poweroff" ];
+          right = [ "custom/vpn" "wireplumber" "network" "cpu" "memory" "custom/poweroff" ];
 	};
+	enable = lib.mkDefault true;
       };
       wofi.enable = lib.mkDefault true;
       dunst.enable = lib.mkDefault true;
