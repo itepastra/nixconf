@@ -61,6 +61,7 @@
 		# Programming langs
 		go
 		nodejs
+		opam
 	];
 
 
