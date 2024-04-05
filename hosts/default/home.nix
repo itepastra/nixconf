@@ -112,15 +112,6 @@
 			enable = true;
 			extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
 		};
-		mimeApps = lib.mkIf config.modules.wofi.lazy {
-			enable = true;
-			associations.added = {
-				"video/mp4" = [ "mpv.out.desktop" ];
-			};
-			defaultApplications = {
-				"video/mp4" = [ "mpv.out.desktop" ];
-			};
-		};
 	};
 
 
