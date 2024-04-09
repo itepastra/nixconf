@@ -32,7 +32,6 @@
 
 	modules = {
 		hyprland.enable = true;
-		wofi.lazy = false;
 	};
 
 	# The home.packages option allows you to install Nix packages into your
@@ -47,8 +46,6 @@
 
 		obs-studio
 		wayvnc
-
-		(lib.mkIf (!config.modules.wofi.lazy) steam-run)
 
 		btop
 
