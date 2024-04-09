@@ -527,6 +527,26 @@
         "type": "github"
       }
     },
+    "hyprpicker": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1711283076,
+        "narHash": "sha256-Cda+XbHpvyz3HhdJ7FlXFoaazOWtdBoOWmEaj4ZFwRM=",
+        "owner": "hyprwm",
+        "repo": "hyprpicker",
+        "rev": "0eb49192a5cdd5e6e8e6c2c82c33857d78d6cd56",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "hyprpicker",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -859,6 +879,7 @@
         "disko": "disko",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "hyprpicker": "hyprpicker",
         "lazy": "lazy",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_4",
