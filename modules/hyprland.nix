@@ -41,8 +41,8 @@ in
       libnotify # to enable the notify-send command
       wl-clipboard
 
-      slurp
-      grim
+      inputs.hyprpicker
+      hyprshot
 
       hypridle # TODO: remove when fixed with config
       playerctl
@@ -123,8 +123,7 @@ in
 	  "$mod,F,togglefloating"
 	  "$mod,X,togglespecialworkspace"
 	  "SUPERSHIFT,X,movetoworkspace,special"
-	  "$mod,Print,exec,grim - | wl-copy && notify-send 'Screenshot Copied to Clipboard'"
-	  "SUPERSHIFT,S,exec,slurp | grim -g - /tmp/photo && wl-copy < /tmp/photo && notify-send 'Screenshot Copied to Clipboard'"
+	  "SUPERSHIFT,S,exec,hyprshot -m region --clipboard-only"
 	  "$mod,f11,fullscreen,0"
 	  ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_SINK@ 1%-"
 	  ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_SINK@ 1%+"
