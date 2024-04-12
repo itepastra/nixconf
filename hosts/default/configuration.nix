@@ -62,17 +62,22 @@
 	};
 
 	services.xserver = {
-		enable = true;
-		displayManager = {
-			sddm.enable = true;
-			defaultSession = "hyprland";
-		};
 		xkb = {
 			layout = "us";
 			variant = "intl";
 		};
 	};
 
+	services.greetd = {
+		enable = true;
+		settings = rec {
+			initial_session = {
+				command = "${pkgs.hyprland}/bin/Hyprland";
+				user = "noa";
+			};
+			default_session = initial_session;
+		};
+	};
 
 	# Configure console keymap
 	console.keyMap = "us-acentos";
@@ -108,7 +113,6 @@
 	# List packages installed in system profile. To search, run:
 	# $ nix search wget
 	environment.systemPackages = with pkgs; [
-		sddm
 		git
 		zsh
 	];
