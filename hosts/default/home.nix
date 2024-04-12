@@ -59,6 +59,7 @@
 		go
 		nodejs
 		opam
+		localsend
 	];
 
 
