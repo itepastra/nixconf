@@ -1,18 +1,16 @@
 { config, pkgs, inputs, ... }:
-
+let 
+	hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
+in
 {
 	# these are necessary for the config to function correctly
 	imports = [
 		./kitty.nix
 		./waybar.nix
 		./wofi.nix
-		# ./hypridle.nix # TODO: find out why these bitches not work
-		# ./hyprlock.nix
 		./dunst.nix
 	];
 	home.packages = with pkgs; [
-		hyprland
-
 		# I always want these with hyprland anyways
 		libnotify # to enable the notify-send command
 		wl-clipboard
@@ -24,9 +22,13 @@
 		playerctl
 	];
 
+
+	xdg.portal.configPackages = [ hyprland ];
+
 	services.playerctld.enable = true;
 	wayland.windowManager.hyprland = {
 		enable = true;
+		package = hyprland;
 		settings = {
 			monitor = [
 				"DP-3,2560x1440@360,2560x0,1"
@@ -122,5 +124,4 @@
 			];
 		};
 	};
-
 }

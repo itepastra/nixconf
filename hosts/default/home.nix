@@ -5,7 +5,7 @@
 	[
 		inputs.nixvim.homeManagerModules.nixvim
 		../../common/zsh.nix
-		../../common/hyprland.nix
+		../../modules/hyprland.nix
 		../../common/git.nix
 		../../common/nvim/nvim.nix
 		../../common/discord/discord.nix
@@ -28,6 +28,8 @@
 	home.stateVersion = "23.11"; # Please read the comment before changing.
 
 	nixpkgs.config.allowUnfree = true;
+
+	modules.hyprland.enable = true;
 
 	# The home.packages option allows you to install Nix packages into your
 	# environment.
@@ -107,7 +109,6 @@
 	xdg.portal = {
 		enable = true;
 		extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-		configPackages = [ pkgs.hyprland ];
 	};
 
 	dconf = {
