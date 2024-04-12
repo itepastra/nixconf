@@ -14,8 +14,7 @@
 		shellAliases = {
 			ll = "lsd -l";
 			lt = "lsd -l --tree";
-			# TODO find if i can make these use the 'current' flake
-			update = "nix flake update --commit-lock-file $HOME/nixos#default && sudo nixos-rebuild switch --flake $HOME/nixos#default";
+			update = "nix flake update --commit-lock-file $HOME/nixos && sudo nixos-rebuild switch --flake $HOME/nixos";
 		};
 		history = {
 			path = "${config.xdg.dataHome}/zsh/history";

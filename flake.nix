@@ -50,7 +50,7 @@
   outputs = { self, nixpkgs, nix-colors, automapaper, disko, home-manager, hyprland, lazy, ... }@inputs:
     {
       nixosConfigurations = {
-        default = nixpkgs.lib.nixosSystem {
+        lambdaOS = nixpkgs.lib.nixosSystem {
 	  specialArgs = {
 	    inherit inputs; 
 	    inherit nix-colors;
