@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
 	home.packages = with pkgs; [
@@ -6,7 +6,7 @@
 		font-awesome
 	];
 	programs.waybar = {
-		enable = true;
+		enable = lib.mkDefault true;
 		settings = {
 			mainBar = {
 				layer = "top";
