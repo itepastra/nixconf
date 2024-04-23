@@ -6,6 +6,7 @@
 		inputs.nixvim.homeManagerModules.nixvim
 		../../common/zsh.nix
 		../../modules/hyprland.nix
+		../../modules/games
 		../../common/kitty.nix
 		../../common/git.nix
 		../../common/nvim/nvim.nix
@@ -32,6 +33,7 @@
 
 	modules = {
 		hyprland.enable = true;
+		games.enable = true;
 	};
 
 	# The home.packages option allows you to install Nix packages into your
