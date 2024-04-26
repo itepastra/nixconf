@@ -203,6 +203,8 @@
 		'');
 	};
 
+	virtualisation.docker.enable = true;
+
 	boot.kernelModules = [
 		"v4l2loopback"
 		"nct6775"
