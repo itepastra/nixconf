@@ -14,7 +14,7 @@
 
 		# NOTE change this if borked
 		powerManagement = {
-			enable = true;
+			enable = false;
 			finegrained = false;
 		};
 
