@@ -4,7 +4,7 @@
 
 { config, pkgs, inputs, nix-colors, ... }:
 
-{
+rec {
 	imports =
 		[ # Include the results of the hardware scan.
 			./hardware-configuration.nix
@@ -30,6 +30,7 @@
 		};
 		open = false;
 		nvidiaSettings = true;
+		package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
 	};
 	hardware.opengl = {
 		enable = true;
