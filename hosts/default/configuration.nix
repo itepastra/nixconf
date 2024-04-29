@@ -19,6 +19,28 @@
 	hardware.enableRedistributableFirmware = true;
 	hardware.enableAllFirmware = true;
 
+
+	hardware.opengl = {
+		enable = true;
+		driSupport = true;
+	};
+
+	services.xserver.videoDrivers = [ "nvidia" ];
+
+	hardware.nvidia = {
+		modesetting.enable = true;
+
+		# NOTE change this if borked
+		powerManagement = {
+			enable = false;
+			finegrained = false;
+		};
+
+		open = true;
+
+		nvidiaSettings = true;
+	};
+
 	networking = {
 		hostName = "lambdaOS"; # Define your hostname.
 		extraHosts = ''
