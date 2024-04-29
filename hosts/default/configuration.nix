@@ -14,33 +14,33 @@
 	# Bootloader.
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
-	boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
 	# LOVE me some blob
 	hardware.enableRedistributableFirmware = true;
 	hardware.enableAllFirmware = true;
 
+	services.xserver.videoDrivers = [ "nvidia" ];
+	boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
+	hardware.nvidia = {
+		modesetting.enable = true;
+		powerManagement = {
+			enable = true;
+			finegrained = false;
+		};
+		open = false;
+		nvidiaSettings = true;
+	};
 	hardware.opengl = {
 		enable = true;
 		driSupport = false;
 		package = config.hardware.nvidia.package;
 	};
 
-	services.xserver.videoDrivers = [ "nvidia" ];
-
-	hardware.nvidia = {
-		modesetting.enable = true;
-
-		# NOTE change this if borked
-		powerManagement = {
-			enable = false;
-			finegrained = false;
-		};
-
-		open = false;
-
-		nvidiaSettings = true;
+	# Allow unfree packages
+	nixpkgs.config = {
+		allowUnfree = true;
+		nvidia.acceptLicense = true;
 	};
 
 	networking = {
@@ -139,12 +139,6 @@
 			"noa" = import ./home.nix;
 			"root" = import ./root.nix;
 		};
-	};
-
-	# Allow unfree packages
-	nixpkgs.config = {
-		allowUnfree = true;
-		nvidia.acceptLicense = true;
 	};
 
 	# List packages installed in system profile. To search, run:
