@@ -36,10 +36,12 @@
 			finegrained = false;
 		};
 
-		open = true;
+		open = false;
 
 		nvidiaSettings = true;
 	};
+
+	config.nvidia.acceptLicense = true;
 
 	networking = {
 		hostName = "lambdaOS"; # Define your hostname.
