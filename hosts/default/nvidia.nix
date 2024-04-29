@@ -2,8 +2,8 @@
 {
 	hardware.opengl = {
 		enable = true;
-		driSupport = true;
-		driSupport32Bit = true;
+		driSupport = false;
+		driSupport32Bit = false;
 	};
 
 	services.xserver.videoDrivers = [ "nvidia" ];
