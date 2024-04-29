@@ -36,10 +36,9 @@ rec {
 		enable = true;
 		driSupport = false;
 		package = config.hardware.nvidia.package;
-	};
-
-	environment.variables = {
-		VK_DRIVER_FILES=/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json;
+		extraPackages = with pkgs; [
+			vaapiVdpau
+		];
 	};
 
 	# Allow unfree packages
