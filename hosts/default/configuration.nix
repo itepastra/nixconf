@@ -14,6 +14,7 @@
 	# Bootloader.
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
+	boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
 	# LOVE me some blob
 	hardware.enableRedistributableFirmware = true;
@@ -22,7 +23,8 @@
 
 	hardware.opengl = {
 		enable = true;
-		driSupport = true;
+		driSupport = false;
+		package = config.hardware.nvidia.package;
 	};
 
 	services.xserver.videoDrivers = [ "nvidia" ];
@@ -40,8 +42,6 @@
 
 		nvidiaSettings = true;
 	};
-
-	config.nvidia.acceptLicense = true;
 
 	networking = {
 		hostName = "lambdaOS"; # Define your hostname.
@@ -142,7 +142,10 @@
 	};
 
 	# Allow unfree packages
-	nixpkgs.config.allowUnfree = true;
+	nixpkgs.config = {
+		allowUnfree = true;
+		nvidia.acceptLicense = true;
+	};
 
 	# List packages installed in system profile. To search, run:
 	# $ nix search wget
