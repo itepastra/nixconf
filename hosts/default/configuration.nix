@@ -145,6 +145,7 @@ rec {
 	environment.systemPackages = with pkgs; [
 		git
 		zsh
+		mangohud
 	];
 
 	# TODO find list of fonts to install
@@ -164,19 +165,25 @@ rec {
 	#	 enable = true;
 	#	 enableSSHSupport = true;
 	# };
-	programs.zsh.enable = true;
-	programs.steam.enable = true;
+	programs = {
+		zsh.enable = true;
 
-	programs.hyprland = {
-		enable = true;
-		package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-		portalPackage = pkgs.xdg-desktop-portal-hyprland;
+		steam.enable = true;
+		steam.gamescopeSession.enable = true;
+
+		gamemode.enable = true;
+
+		hyprland = {
+			enable = true;
+			package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+			portalPackage = pkgs.xdg-desktop-portal-hyprland;
+		};
+
+		nix-ld.enable = true;
+		nix-ld.libraries = with pkgs; [
+			wayland
+		];
 	};
-
-	programs.nix-ld.enable = true;
-	programs.nix-ld.libraries = with pkgs; [
-		wayland
-	];
 
 	users.defaultUserShell = pkgs.zsh;
 
