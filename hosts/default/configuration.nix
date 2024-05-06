@@ -19,9 +19,6 @@ rec {
 	hardware.enableRedistributableFirmware = true;
 	hardware.enableAllFirmware = true;
 
-	services.xserver.videoDrivers = [ "nvidia" ];
-	boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
-
 	hardware.nvidia = {
 		modesetting.enable = true;
 		powerManagement = {
@@ -34,12 +31,10 @@ rec {
 	};
 	hardware.opengl = {
 		enable = true;
-		driSupport = false;
-		package = config.hardware.nvidia.package;
-		extraPackages = with pkgs; [
-			vaapiVdpau
-		];
+		driSupport = true;
+		driSupport32Bit = true;
 	};
+	services.xserver.videoDrivers = [ "nvidia" ];
 
 	# Allow unfree packages
 	nixpkgs.config = {
