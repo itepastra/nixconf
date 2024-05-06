@@ -49,6 +49,8 @@
 		obs-studio
 		wayvnc
 
+		signal-desktop
+
 		btop
 
 		dconf
