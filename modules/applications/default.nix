@@ -19,7 +19,10 @@ in
 			firefox.enable = true;
 			git.enable = true;
 			kitty.enable = true;
-			zsh.enable = true;
+			zsh = {
+				enable = true;
+				enableAliases = true;
+			};
 		};
 	};
 }
