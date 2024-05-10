@@ -15,15 +15,23 @@ in
       default = pkgs.kitty;
       description = "What terminal emulator should be used in hyprland";
     };
+    wallpapers.automapaper = {
+      enable = lib.mkEnableOption "enable automapaper";
+    };
   };
 
   imports = [
     ./waybar/default.nix
     ./wofi.nix
     ./dunst.nix
+    ./automapaper/automapaper.nix
   ];
+
   config = lib.mkIf cfg.enable {
     modules = {
+      automapaper = {
+	enable = true;
+      };
       waybar = {
 	modules = {
           left = [ "hyprland/workspaces" "tray" "hyprland/window" ];
@@ -70,8 +78,8 @@ in
 	exec-once = [
 	  "waybar"
 	  "dunst"
-	  "automapaper -C ${config.xdg.configHome}/automapaper/config.toml"
-	  "automapaper -C ${config.xdg.configHome}/automapaper/config2nd.toml"
+	  (lib.mkIf cfg.wallpapers.automapaper.enable "automapaper -C ${config.xdg.configHome}/automapaper/config.toml")
+	  (lib.mkIf cfg.wallpapers.automapaper.enable "automapaper -C ${config.xdg.configHome}/automapaper/config2nd.toml")
 	  "hyprctl dispatcher focusmonitor 1"
 	  "hypridle"
 	];

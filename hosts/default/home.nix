@@ -4,16 +4,12 @@
 	imports =
 	[
 		inputs.nixvim.homeManagerModules.nixvim
-		../../common/zsh.nix
 		../../modules/hyprland.nix
 		../../modules/games
-		../../common/kitty.nix
-		../../common/git.nix
+		../../modules/applications
 		../../common/nvim/nvim.nix
 		../../common/discord/discord.nix
 		../../common/spotify.nix
-		../../common/automapaper/automapaper.nix
-		../../common/firefox.nix
 	];
 	# Home Manager needs a bit of information about you and the paths it should
 	# manage.
@@ -34,6 +30,13 @@
 	modules = {
 		hyprland.enable = true;
 		games.enable = true;
+		apps = {
+			enable = true;
+			git = {
+				name = "Noa Aarts";
+				email = "itepastra@gmail.com";
+			};
+		};
 	};
 
 	# The home.packages option allows you to install Nix packages into your
