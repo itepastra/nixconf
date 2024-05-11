@@ -20,11 +20,6 @@
 	inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mineflake = {
-      url = "github:nix-community/mineflake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,7 +42,7 @@
 
   };
 
-  outputs = { self, nixpkgs, nix-colors, automapaper, disko, home-manager, hyprland, lazy, mineflake, ... }@inputs:
+  outputs = { self, nixpkgs, nix-colors, automapaper, disko, home-manager, hyprland, lazy, ... }@inputs:
     {
       nixosConfigurations = {
         lambdaOS = nixpkgs.lib.nixosSystem {
@@ -65,7 +60,6 @@
 	  specialArgs = {
 	    inherit inputs; 
 	    inherit nix-colors;
-	    inherit mineflake;
 	  };
 	  modules = [ 
 	    disko.nixosModules.disko

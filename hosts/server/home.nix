@@ -40,13 +40,6 @@
 		# Programming langs
 		go
 		nodejs
-		(mineflake.buildMineflakeContainer {
-			package = mineflake.paper;
-			command = "${jre_headless}/bin/java -Xms 128M -Xmx1G -jar {} nogui";
-			plugins = with mineflake; [];
-			configs = [
-			];
-		})
 	];
 
 	modules = {
