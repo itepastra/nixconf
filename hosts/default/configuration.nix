@@ -226,6 +226,26 @@ rec {
 		flatpak.enable = true;
 	};
 
+	systemd.timers."update-flake" = {
+		wantedBy = [ "timers.target" ];
+		timerConfig = {
+			OnCalendar = "daily";
+			Persistent = true;
+		};
+	};
+
+	systemd.services."update-flake" = {
+		script = ''
+		nix flake update --commit-lock-file /home/noa/nixos/
+		nixos-rebuild switch --flake /home/noa/nixos/
+		git -C /home/noa/nixos/ push
+		'';
+		serviceConfig = {
+			Type = "oneshot";
+			User = "root";
+		};
+	};
+
 	environment.etc = {
 		"fail2ban/filter.d/go-login.local".text = pkgs.lib.mkDefault (pkgs.lib.mkAfter ''
 			[Definition]
