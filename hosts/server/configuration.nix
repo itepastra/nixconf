@@ -117,6 +117,22 @@
 		};
 	};
 
+	systemd.timers."update-from-flake" = {
+		wantedBy = [ "timers.target" ];
+		timerConfig = {
+			OnCalendar = "daily";
+			Persistent = true;
+		};
+	};
+
+	systemd.services."update-from-flake" = {
+		script = ''nixos-rebuild switch --flake github:itepastra/nixconf'';
+		serviceConfig = {
+			Type = "oneshot";
+			User = "root";
+		};
+	};
+
 	# Open ports in the firewall.
 	# networking.firewall.allowedTCPPorts = [ ... ];
 	# networking.firewall.allowedUDPPorts = [ ... ];
