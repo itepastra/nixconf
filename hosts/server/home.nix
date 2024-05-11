@@ -44,7 +44,11 @@
 	];
 
 	modules = {
-		apps.git.enable = true;
+		apps.git = {
+			enable = true;
+			name = "Noa Aarts";
+			email = "itepastra@gmail.com";
+		};
 		apps.zsh.enable = true;
 	};
 
