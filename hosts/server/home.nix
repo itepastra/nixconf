@@ -1,9 +1,8 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, mineflake, inputs, ... }:
 
 {
 	imports =
 	[
-		inputs.nixvim.homeManagerModules.nixvim
 		../../modules/applications
 		../../common/nvim/nvim.nix
 	];
@@ -41,6 +40,13 @@
 		# Programming langs
 		go
 		nodejs
+		(mineflake.buildMineflakeContainer {
+			package = mineflake.paper;
+			command = "${jre_headless}/bin/java -Xms 128M -Xmx1G -jar {} nogui";
+			plugins = with mineflake; [];
+			configs = [
+			];
+		})
 	];
 
 	modules = {
@@ -51,6 +57,10 @@
 		};
 		apps.zsh.enable = true;
 	};
+
+
+
+
 
 
 	# Home Manager is pretty good at managing dotfiles. The primary way to manage
