@@ -78,8 +78,8 @@ in
 	exec-once = [
 	  "waybar"
 	  "dunst"
-	  (lib.mkIf cfg.wallpapers.automapaper.enable "automapaper -C ${config.xdg.configHome}/automapaper/config.toml")
-	  (lib.mkIf cfg.wallpapers.automapaper.enable "automapaper -C ${config.xdg.configHome}/automapaper/config2nd.toml")
+	  (lib.mkIf config.modules.automapaper.enable "automapaper -C ${config.xdg.configHome}/automapaper/config.toml")
+	  (lib.mkIf config.modules.automapaper.enable "automapaper -C ${config.xdg.configHome}/automapaper/config2nd.toml")
 	  "hyprctl dispatcher focusmonitor 1"
 	  "hypridle"
 	];
