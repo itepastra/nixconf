@@ -152,21 +152,6 @@
         "type": "github"
       }
     },
-    "flake-utils_3": {
-      "locked": {
-        "lastModified": 1667395993,
-        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -384,21 +369,6 @@
         "type": "github"
       }
     },
-    "import-cargo": {
-      "locked": {
-        "lastModified": 1594305518,
-        "narHash": "sha256-frtArgN42rSaEcEOYWg8sVPMUK+Zgch3c+wejcpX3DY=",
-        "owner": "edolstra",
-        "repo": "import-cargo",
-        "rev": "25d40be4a73d40a2572e0cc233b83253554f06c5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "import-cargo",
-        "type": "github"
-      }
-    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -444,28 +414,6 @@
       "original": {
         "owner": "bobvanderlinden",
         "repo": "nixos-config",
-        "type": "github"
-      }
-    },
-    "mineflake": {
-      "inputs": {
-        "flake-utils": "flake-utils_3",
-        "import-cargo": "import-cargo",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1710150590,
-        "narHash": "sha256-JECcMWoGY7OLryUKrhfukJB7YLDcIy1xs5quY+9NuJ0=",
-        "owner": "nix-community",
-        "repo": "mineflake",
-        "rev": "0dd1a64b5e6c938cbb1161620939aa927377cab2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "mineflake",
         "type": "github"
       }
     },
@@ -627,7 +575,6 @@
         "hyprland": "hyprland",
         "hyprpicker": "hyprpicker",
         "lazy": "lazy",
-        "mineflake": "mineflake",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_3"
       }
