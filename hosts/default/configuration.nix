@@ -223,6 +223,7 @@ rec {
 			};
 			videoDrivers = [ "nvidia" ];
 		};
+		flatpak.enable = true;
 	};
 
 	environment.etc = {
