@@ -4,8 +4,7 @@
 	imports =
 	[
 		inputs.nixvim.homeManagerModules.nixvim
-		../../common/zsh.nix
-		../../common/git.nix
+		../../modules/applications
 		../../common/nvim/nvim.nix
 	];
 	# Home Manager needs a bit of information about you and the paths it should
@@ -43,6 +42,11 @@
 		go
 		nodejs
 	];
+
+	modules = {
+		apps.git.enable = true;
+		apps.zsh.enable = true;
+	};
 
 
 	# Home Manager is pretty good at managing dotfiles. The primary way to manage
