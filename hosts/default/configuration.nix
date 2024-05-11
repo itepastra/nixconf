@@ -9,6 +9,7 @@ rec {
 		[ # Include the results of the hardware scan.
 			./hardware-configuration.nix
 			inputs.home-manager.nixosModules.default
+			../../modules/games/steam.nix
 		];
 
 	# Bootloader.
@@ -34,7 +35,6 @@ rec {
 		driSupport = true;
 		driSupport32Bit = true;
 	};
-	services.xserver.videoDrivers = [ "nvidia" ];
 
 	# Allow unfree packages
 	nixpkgs.config = {
@@ -93,24 +93,6 @@ rec {
 		LC_TIME = "nl_NL.UTF-8";
 	};
 
-	services.xserver = {
-		enable = true;
-		xkb = {
-			layout = "us";
-			variant = "intl";
-		};
-	};
-
-	services.greetd = {
-		enable = true;
-		settings = rec {
-			initial_session = {
-				command = "${pkgs.hyprland}/bin/Hyprland";
-				user = "noa";
-			};
-			default_session = initial_session;
-		};
-	};
 
 	# Configure console keymap
 	console.keyMap = "us-acentos";
@@ -168,11 +150,6 @@ rec {
 	programs = {
 		zsh.enable = true;
 
-		steam.enable = true;
-		steam.gamescopeSession.enable = true;
-
-		gamemode.enable = true;
-
 		hyprland = {
 			enable = true;
 			package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -185,41 +162,67 @@ rec {
 		];
 	};
 
+	modules.games.steam.enable = true;
+
 	users.defaultUserShell = pkgs.zsh;
 
 	security.rtkit.enable = true;
-	services.pipewire = {
-		enable = true;
-		alsa.enable = true;
-		alsa.support32Bit = true;
-		pulse.enable = true;
-		jack.enable = true;
-	};
 
-	services.fail2ban = {
-		enable = true;
-		maxretry = 5;
-		bantime = "1s";
-		bantime-increment = {
+	services = {
+		pipewire = {
 			enable = true;
-			formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
-			maxtime = "1h";
-			overalljails = true;
+			alsa.enable = true;
+			alsa.support32Bit = true;
+			pulse.enable = true;
+			jack.enable = true;
 		};
-
-		jails = {
-			go-login.settings = {
-				enabled = true;
-				filter = "go-login";
-				action = ''iptables-multiport[name=HTTP, port="http,https,2000"]'';
-				logpath = "/home/noa/Documents/programming/SODS/login.log";
-				backend = "systemd";
-				findtime = 600;
-				bantime = 600;
-				maxretry = 5;
+		fail2ban = {
+			enable = true;
+			maxretry = 5;
+			bantime = "1s";
+			bantime-increment = {
+				enable = true;
+				formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
+				maxtime = "1h";
+				overalljails = true;
+			};
+			jails = {
+				go-login.settings = {
+					enabled = true;
+					filter = "go-login";
+					action = ''iptables-multiport[name=HTTP, port="http,https,2000"]'';
+					logpath = "/home/noa/Documents/programming/SODS/login.log";
+					backend = "systemd";
+					findtime = 600;
+					bantime = 600;
+					maxretry = 5;
+				};
 			};
 		};
+		greetd = {
+			enable = true;
+			settings = rec {
+				initial_session = {
+					command = "${pkgs.hyprland}/bin/Hyprland";
+					user = "noa";
+				};
+				default_session = initial_session;
+			};
+		};
+		openssh = {
+			enable = true;
 
+			settings.PasswordAuthentication = false;
+			settings.KbdInteractiveAuthentication = false;
+		};
+		xserver = {
+			enable = true;
+			xkb = {
+				layout = "us";
+				variant = "intl";
+			};
+			videoDrivers = [ "nvidia" ];
+		};
 	};
 
 	environment.etc = {
@@ -241,16 +244,6 @@ rec {
 		options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
 	'';
 	security.polkit.enable = true;
-
-	# List services that you want to enable:
-
-	# Enable the OpenSSH daemon.
-	services.openssh = {
-		enable = true;
-
-		settings.PasswordAuthentication = false;
-		settings.KbdInteractiveAuthentication = false;
-	};
 
 	# Open ports in the firewall.
 	networking.firewall.allowedTCPPorts = [ 80 443 53317 ];
