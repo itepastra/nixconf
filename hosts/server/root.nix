@@ -4,8 +4,6 @@
 	imports =
 	[
 		inputs.nixvim.homeManagerModules.nixvim
-		../../common/zsh.nix
-		../../common/git.nix
 		../../common/nvim/nvim.nix
 	];
 	# Home Manager needs a bit of information about you and the paths it should
