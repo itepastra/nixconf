@@ -3,13 +3,13 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, nix-colors, ... }:
-
-rec {
+{
 	imports =
 		[ # Include the results of the hardware scan.
 			./hardware-configuration.nix
 			inputs.home-manager.nixosModules.default
 			../../modules/games/steam.nix
+			inputs.nix-minecraft.nixosModules.minecraft-servers
 		];
 
 	# Bootloader.
@@ -41,6 +41,7 @@ rec {
 		allowUnfree = true;
 		nvidia.acceptLicense = true;
 	};
+	nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
 
 	networking = {
 		hostName = "lambdaOS"; # Define your hostname.
@@ -207,6 +208,17 @@ rec {
 					user = "noa";
 				};
 				default_session = initial_session;
+			};
+		};
+		minecraft-servers = {
+			enable = true;
+			eula = true;
+			openFirewall = true;
+			servers = {
+				"no-flicker" = {
+					enable = true;
+					package = pkgs.minecraftServers.paper-1_20_4;
+				};
 			};
 		};
 		openssh = {
