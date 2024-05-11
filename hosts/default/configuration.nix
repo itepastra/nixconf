@@ -162,7 +162,7 @@ rec {
 		];
 	};
 
-	modules.games.steam.enable = true;
+	modules.games.steam.enable = false;
 
 	users.defaultUserShell = pkgs.zsh;
 
