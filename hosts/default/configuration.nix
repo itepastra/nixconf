@@ -253,7 +253,13 @@ rec {
 		'');
 	};
 
-	virtualisation.docker.enable = true;
+	virtualisation.docker = {
+		enable = true;
+		rootless = {
+			enable = true;
+			setSocketVariable = true;
+		};
+	};
 
 	boot.kernelModules = [
 		"v4l2loopback"
