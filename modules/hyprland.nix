@@ -30,7 +30,7 @@ in
   config = lib.mkIf cfg.enable {
     modules = {
       automapaper = {
-	enable = true;
+	enable = lib.mkDefault true;
       };
       waybar = {
 	modules = {
