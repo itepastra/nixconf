@@ -248,9 +248,11 @@
 
 	systemd.services."update-flake" = {
 		script = ''
-		nix flake update --commit-lock-file /home/noa/nixos/
-		nixos-rebuild switch --flake /home/noa/nixos/
-		git -C /home/noa/nixos/ push
+		cd /root/nixconf
+		git pull
+		nix flake update --commit-lock-file /root/nixconf
+		nixos-rebuild switch --flake .
+		git push
 		'';
 		serviceConfig = {
 			Type = "oneshot";
