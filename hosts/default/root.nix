@@ -32,6 +32,16 @@
 	];
 
 
+	modules = {
+		apps = {
+			enable = true;
+			git = {
+				name = "Noa Auto";
+				email = "itepastra@gmail.com";
+			};
+		};
+	};
+
 	# Home Manager is pretty good at managing dotfiles. The primary way to manage
 	# plain files is through 'home.file'.
 	home.file = {
