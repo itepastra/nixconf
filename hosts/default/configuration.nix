@@ -247,6 +247,12 @@
 	};
 
 	systemd.services."update-flake" = {
+		path = with pkgs; [
+			git
+			openssh
+			nix
+			nixos-rebuild
+		];
 		script = ''
 		[[ ! -d '/root/nixconf' ]] && cd /root && git clone git@github.com:itepastra/nixconf
 		cd /root/nixconf
