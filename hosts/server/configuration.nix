@@ -126,6 +126,9 @@
 	};
 
 	systemd.services."update-from-flake" = {
+		path = with pkgs; [
+			nixos-rebuild
+		];
 		script = ''nixos-rebuild switch --flake github:itepastra/nixconf'';
 		serviceConfig = {
 			Type = "oneshot";
