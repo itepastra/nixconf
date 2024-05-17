@@ -136,6 +136,20 @@
 		};
 	};
 
+	gtk = {
+		enable = true;
+		theme = {
+			name = "Adwaita-dark";
+			package = pkgs.gnome.gnome-themes-extra;
+		};
+	};
+
+	qt = {
+		enable = true;
+		platformTheme = "gnome";
+		style = "adwaita-dark";
+	};
+
 	# Let Home Manager install and manage itself.
 	programs.home-manager.enable = true;
 	programs.zsh.shellAliases.bzzt = ''nix-shell -p mpv --command "mpv ~/Videos/BZZZM.mp4"'';
