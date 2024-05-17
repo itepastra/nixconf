@@ -777,6 +777,6 @@ require("lazy").setup({
 	--    For additional information see: :help lazy.nvim-lazy.nvim-structuring-your-plugins
 	-- { import = 'custom.plugins' },
 }, {})
-
+require("luasnip.loaders.from_vscode").lazy_load()
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
