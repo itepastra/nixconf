@@ -65,6 +65,8 @@
 		go
 		nodejs
 		opam
+		stack
+
 		localsend
 	];
 
