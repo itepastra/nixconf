@@ -208,7 +208,7 @@
 			};
 		};
 		minecraft-servers = {
-			enable = true;
+			enable = false;
 			eula = true;
 			openFirewall = true;
 			servers = {
