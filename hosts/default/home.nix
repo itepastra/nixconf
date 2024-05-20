@@ -66,6 +66,8 @@
 		nodejs
 		opam
 		stack
+		rustup
+		bend
 
 		localsend
 	];

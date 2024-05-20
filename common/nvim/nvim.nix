@@ -7,7 +7,6 @@
 
 		# TODO: find how I can make this build dependencies only
 		gnumake
-		cargo
 		rustc
 		python3
 	];
