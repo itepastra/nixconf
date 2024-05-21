@@ -224,6 +224,12 @@
 			settings.PasswordAuthentication = false;
 			settings.KbdInteractiveAuthentication = false;
 		};
+		syncthing = {
+			enable = true;
+			user = "noa";
+			dataDir = "/home/noa/Syncthing";
+			configDir = "/home/noa/Syncthing/.config/syncthing";
+		};
 		xserver = {
 			enable = true;
 			xkb = {
