@@ -23,11 +23,6 @@
       fsType = "vfat";
     };
 
-	fileSystems."/home/noa/Syncthing" = {
-		device = "/dev/disk/by-id/wwn-0x55cd2e414dd065e2-part1";
-		fsType = "ext4";
-	};
-
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
