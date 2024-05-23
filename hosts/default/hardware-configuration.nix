@@ -23,7 +23,7 @@
       fsType = "vfat";
     };
 
-	fileSystems."/home/noa/Syncthing" =
+	fileSystems."/home/noa/Sync" =
 		{ device = "/dev/disk/by-uuid/93a74173-8719-4be2-86b3-dc80588b9cf8";
 			fsType = "ext4";
 		};

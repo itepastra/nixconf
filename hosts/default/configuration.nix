@@ -227,8 +227,8 @@
 		syncthing = {
 			enable = true;
 			user = "noa";
-			dataDir = "/home/noa/Syncthing";
-			configDir = "/home/noa/Syncthing/.config/syncthing";
+			dataDir = "/home/noa/Sync";
+			configDir = "/home/noa/Sync/.config/syncthing";
 		};
 		xserver = {
 			enable = true;
