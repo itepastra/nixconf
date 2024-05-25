@@ -2,7 +2,8 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
 
     # nixpkgs.url = "github:NixOS/nixpkgs/d8e0944e6d2ce0f326040e654c07a410e2617d47";
 
@@ -16,13 +17,13 @@
     };
 
     automapaper = {
-	url = "github:itepastra/automapaper";
-	inputs.nixpkgs.follows = "nixpkgs";
+  url = "github:itepastra/automapaper";
+  inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-minecraft = {
-	url = "github:Infinidoge/nix-minecraft";
-	inputs.nixpkgs.follows = "nixpkgs";
+  url = "github:Infinidoge/nix-minecraft";
+  inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland = {
@@ -36,13 +37,13 @@
     };
 
     disko = {
-	url = "github:nix-community/disko";
-	inputs.nixpkgs.follows = "nixpkgs";
+  url = "github:nix-community/disko";
+  inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lazy = {
-	url = "github:bobvanderlinden/nixos-config";
-	inputs.nixpkgs.follows = "nixpkgs";
+  url = "github:bobvanderlinden/nixos-config";
+  inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
@@ -51,28 +52,27 @@
     {
       nixosConfigurations = {
         lambdaOS = nixpkgs.lib.nixosSystem {
-	  specialArgs = {
-	    inherit inputs; 
-	    inherit nix-colors;
-	    inherit automapaper;
-	  };
-	  modules = [ 
-	    ./hosts/default/configuration.nix
-	    inputs.home-manager.nixosModules.default
-	  ];
-	};
+          specialArgs = {
+            inherit inputs; 
+            inherit nix-colors;
+            inherit automapaper;
+          };
+          modules = [ 
+            ./hosts/default/configuration.nix
+            inputs.home-manager.nixosModules.default
+          ];
+        };
         NoasServer = nixpkgs.lib.nixosSystem {
-	  specialArgs = {
-	    inherit inputs; 
-	    inherit nix-colors;
-	  };
-	  modules = [ 
-	    disko.nixosModules.disko
-	    ./hosts/server/configuration.nix
-	    inputs.home-manager.nixosModules.default
-	  ];
-	};
+          specialArgs = {
+            inherit inputs; 
+            inherit nix-colors;
+          };
+          modules = [ 
+            disko.nixosModules.disko
+            ./hosts/server/configuration.nix
+            inputs.home-manager.nixosModules.default
+          ];
+        };
       };
-
     };
 }
