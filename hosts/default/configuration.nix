@@ -218,6 +218,43 @@
 				};
 			};
 		};
+		nginx = {
+			enable = true;
+			virtualHosts = {
+				"noa.voorwaarts.nl" = {
+					default = true;
+					enableACME = true;
+					forceSSL = false;
+					addSSL = true;
+					locations = {
+						"/immich/" = {
+							extraConfig = ''
+# allow large file uploads
+								client_max_body_size 50000M;
+
+# Set headers
+							proxy_set_header Host              $host;
+							proxy_set_header X-Real-IP         $remote_addr;
+							proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+							proxy_set_header X-Forwarded-Proto $scheme;
+
+# enable websockets: http://nginx.org/en/docs/http/websocket.html
+							proxy_http_version 1.1;
+							proxy_set_header   Upgrade    $http_upgrade;
+							proxy_set_header   Connection "upgrade";
+							proxy_redirect     off;
+
+# set timeout
+							proxy_read_timeout 600s;
+							proxy_send_timeout 600s;
+							send_timeout       600s;
+							'';
+							proxyPass = "http://127.0.0.1:2283/";
+						};
+					};
+				};
+			};
+		};
 		openssh = {
 			enable = true;
 
@@ -294,11 +331,17 @@
 	boot.extraModprobeConfig = ''
 		options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
 	'';
-	security.polkit.enable = true;
+	security = {
+		acme = {
+			acceptTerms = true;
+			defaults.email = "acme@voorwaarts.nl";
+		};
+		polkit.enable = true;
+	};
 
 	# Open ports in the firewall.
-	networking.firewall.allowedTCPPorts = [ 80 443 53317 ];
-	networking.firewall.allowedUDPPorts = [ 80 443 53317 ];
+	networking.firewall.allowedTCPPorts = [ 80 443 ];
+	networking.firewall.allowedUDPPorts = [ 80 443 ];
 	# Or disable the firewall altogether.
 	# networking.firewall.enable = false;
 
