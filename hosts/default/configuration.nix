@@ -227,7 +227,7 @@
 					forceSSL = false;
 					addSSL = true;
 					locations = {
-						"/immich/" = {
+						"/" = {
 							extraConfig = ''
 # allow large file uploads
 								client_max_body_size 50000M;
