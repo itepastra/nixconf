@@ -66,7 +66,8 @@
 		nodejs
 		opam
 		stack
-		rustup
+		cargo
+
 		bend
 
 		localsend
