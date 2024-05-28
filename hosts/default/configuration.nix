@@ -220,62 +220,70 @@
 		};
 		nginx = {
 			enable = true;
+
+			recommendedGzipSettings = true;
+			recommendedOptimisation = true;
+			recommendedProxySettings = true;
+			recommendedTlsSettings = true;
+
+			sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
+
 			virtualHosts = {
 				"noa.voorwaarts.nl" = {
 					default = true;
+					forceSSL = true;
 					enableACME = true;
-					forceSSL = false;
-					addSSL = true;
-					locations = {
-						"/sods/" = {
-							extraConfig = ''
-# allow large file uploads
-								client_max_body_size 50000M;
 
-# Set headers
-							proxy_set_header Host              $host;
-							proxy_set_header X-Real-IP         $remote_addr;
-							proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-							proxy_set_header X-Forwarded-Proto $scheme;
-							proxy_set_header X-Forwarded-Prefix sods;
+					serverAliases = [ "images.noa.voorwaarts.nl" "sods.noa.voorwaarts.nl" ];
+				};
 
-# enable websockets: http://nginx.org/en/docs/http/websocket.html
-							proxy_http_version 1.1;
-							proxy_set_header   Upgrade    $http_upgrade;
-							proxy_set_header   Connection "upgrade";
-							proxy_redirect     off;
+				"images.noa.voorwaarts.nl" = {
+					forceSSL = true;
+					useACMEHost = "noa.voorwaarts.nl";
+					extraConfig = ''
+						client_max_body_size 50000M;
 
-# set timeout
-							proxy_read_timeout 600s;
-							proxy_send_timeout 600s;
-							send_timeout       600s;
-							'';
-							proxyPass = "http://127.0.0.1:2000/";
-						};
-						"/" = {
-							extraConfig = ''
-# allow large file uploads
-								client_max_body_size 50000M;
+						proxy_set_header Host              $host;
+						proxy_set_header X-Real-IP         $remote_addr;
+						proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+						proxy_set_header X-Forwarded-Proto $scheme;
 
-# Set headers
-							proxy_set_header Host              $host;
-							proxy_set_header X-Real-IP         $remote_addr;
-							proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-							proxy_set_header X-Forwarded-Proto $scheme;
+						proxy_http_version 1.1;
+						proxy_set_header   Upgrade    $http_upgrade;
+						proxy_set_header   Connection "upgrade";
+						proxy_redirect     off;
 
-# enable websockets: http://nginx.org/en/docs/http/websocket.html
-							proxy_http_version 1.1;
-							proxy_set_header   Upgrade    $http_upgrade;
-							proxy_set_header   Connection "upgrade";
-							proxy_redirect     off;
+						proxy_read_timeout 600s;
+						proxy_send_timeout 600s;
+						send_timeout       600s;
+					'';
+					locations."/" = {
+						proxyPass = "http://127.0.0.1:2283/";
+					};
+				};
 
-# set timeout
-							proxy_read_timeout 600s;
-							proxy_send_timeout 600s;
-							send_timeout       600s;
-							'';
-							proxyPass = "http://127.0.0.1:2283/";
-						};
+				"sods.noa.voorwaarts.nl" = {
+					forceSSL = true;
+					useACMEHost = "noa.voorwaarts.nl";
+					extraConfig = ''
+						client_max_body_size 50000M;
+
+						proxy_set_header Host              $host;
+						proxy_set_header X-Real-IP         $remote_addr;
+						proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+						proxy_set_header X-Forwarded-Proto $scheme;
+
+						proxy_http_version 1.1;
+						proxy_set_header   Upgrade    $http_upgrade;
+						proxy_set_header   Connection "upgrade";
+						proxy_redirect     off;
+
+						proxy_read_timeout 600s;
+						proxy_send_timeout 600s;
+						send_timeout       600s;
+					'';
+					locations."/" = {
+						proxyPass = "http://127.0.0.1:2000/";
 					};
 				};
 			};
