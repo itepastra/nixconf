@@ -7,7 +7,6 @@
 	imports =
 		[ # Include the results of the hardware scan.
 			./hardware-configuration.nix
-			inputs.home-manager.nixosModules.default
 			../../modules/games/steam.nix
 			inputs.nix-minecraft.nixosModules.minecraft-servers
 		];
@@ -128,7 +127,7 @@
 		mangohud
 	];
 
-	# TODO find list of fonts to install
+	# TODO: find list of fonts to install
 	fonts.packages = with pkgs; [
 		font-awesome
 		noto-fonts

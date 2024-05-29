@@ -50,7 +50,6 @@ in
       wl-clipboard
 
       inputs.hyprpicker
-      hyprshot
 
       hypridle # TODO: remove when fixed with config
       playerctl
@@ -77,11 +76,11 @@ in
 	  "WLR_NO_HARDWARE_CURSORS,1"
 	];
 	exec-once = [
-	  "waybar"
-	  "dunst"
-	  (lib.mkIf config.modules.automapaper.enable "automapaper -C ${config.xdg.configHome}/automapaper/config.toml")
-	  (lib.mkIf config.modules.automapaper.enable "automapaper -C ${config.xdg.configHome}/automapaper/config2nd.toml")
-	  "hyprctl dispatcher focusmonitor 1"
+	  "${pkgs.waybar}/bin/waybar"
+	  "${pkgs.dunst}/bin/dunst"
+	  (lib.mkIf config.modules.automapaper.enable "${inputs.automapaper}/bin/automapaper -C ${config.xdg.configHome}/automapaper/config.toml")
+	  (lib.mkIf config.modules.automapaper.enable "${inputs.automapaper}/bin/automapaper -C ${config.xdg.configHome}/automapaper/config2nd.toml")
+	  "${cfg.package}/bin/hyprctl dispatcher focusmonitor 1"
 	  "hypridle"
 	];
 	general = {
@@ -115,7 +114,7 @@ in
 	};
 	"$mod" = "SUPER";
 	bind = [
-	  "$mod,Return,exec,${cfg.terminal.pname}"
+	  "$mod,Return,exec,${cfg.terminal}/bin/${cfg.terminal.pname}"
 	  "$mod,tab,cyclenext"
 	  "SUPERSHIFT,Q,killactive"
 	  "$mod,SPACE,exec,wofi-launch"
@@ -132,14 +131,14 @@ in
 	  "$mod,F,togglefloating"
 	  "$mod,X,togglespecialworkspace"
 	  "SUPERSHIFT,X,movetoworkspace,special"
-	  "SUPERSHIFT,S,exec,hyprshot -m region --clipboard-only"
+	  "SUPERSHIFT,S,exec,${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
 	  "$mod,f11,fullscreen,0"
-	  ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_SINK@ 1%-"
-	  ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_SINK@ 1%+"
-	  ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_SINK@ toggle"
-	  ",XF86AudioPlay,exec,playerctl play-pause"
-	  ",XF86AudioPrev,exec,playerctl previous"
-	  ",XF86AudioNext,exec,playerctl next"
+	  ",XF86AudioLowerVolume,exec,${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 1%-"
+	  ",XF86AudioRaiseVolume,exec,${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 1%+"
+	  ",XF86AudioMute,exec,${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SINK@ toggle"
+	  ",XF86AudioPlay,exec,${pkgs.playerctl}/bin/playerctl play-pause"
+	  ",XF86AudioPrev,exec,${pkgs.playerctl}/bin/playerctl previous"
+	  ",XF86AudioNext,exec,${pkgs.playerctl}/bin/playerctl next"
 	  ]
 	  ++ (
 	    builtins.concatLists (builtins.genList (
