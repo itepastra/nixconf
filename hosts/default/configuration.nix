@@ -44,6 +44,9 @@
 
 	networking = {
 		hostName = "lambdaOS"; # Define your hostname.
+		hosts = {
+			"127.0.0.1" = ["images.noa.voorwaarts.nl" "sods.noa.voorwaarts.nl" "noa.voorwaarts.nl"];
+		};
 	};
 	# networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
 
