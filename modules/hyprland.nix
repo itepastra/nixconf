@@ -24,7 +24,7 @@ in
     ./waybar/default.nix
     ./wofi.nix
     ./dunst.nix
-    ./automapaper/automapaper.nix
+    ./automapaper
   ];
 
   config = lib.mkIf cfg.enable {
