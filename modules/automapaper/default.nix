@@ -46,19 +46,38 @@ in
 		};
 	};
 
-
-	config = lib.mkIf cfg.enable {
-		home.packages = [
-			inputs.automapaper.packages.${pkgs.system}.default
-		];
-
-		home.file = {
-			"${config.xdg.configHome}/automapaper/config.toml".source = ./config.toml;
-			"${config.xdg.configHome}/automapaper/config2nd.toml".source = ./config2nd.toml;
-			"${config.xdg.configHome}/automapaper/state.frag".source = ./state.frag;
-			"${config.xdg.configHome}/automapaper/init.frag".source = ./init.frag;
-			"${config.xdg.configHome}/automapaper/display.frag".source = ./display.frag;
-		};
-	};
+	config = lib.mkIf cfg.enable (
+	let
+		displays = lib.attrsets.mapAttrs (displayName: displayConfig:
+			let 
+				init = builtins.toFile "init.frag" displayConfig.init;
+				state = builtins.toFile "state.frag" displayConfig.state;
+				display = builtins.toFile "display.frag" displayConfig.display;
+			in
+			''
+			[display]
+			name="${displayName}"
+			horizontal=${displayConfig.horizontal}
+			vertical=${displayConfig.vertical}
+			tps=${displayConfig.tps}
+			state_frag="${state}"
+			init_frag="${init}"
+			display_frag="${display}"
+			cycles=${displayConfig.cycles}
+			frames_per_tick=${displayConfig.frames_per_tick}
+			''
+		) cfg.configurations;
+	in
+	{
+		wayland.windowManager.hyprland.exec-once =
+			lib.mkIf config.modules.hyprland.enable (
+				lib.mapAttrsToList (name: config: 
+					"${
+						inputs.automapaper.packages.${pkgs.system}.default
+					}/bin/automapaper -C ${
+						builtins.toFile "${name}.toml" config
+					}") cfg.displays
+			);
+	});
 
 }
