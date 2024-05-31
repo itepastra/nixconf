@@ -375,8 +375,16 @@
 	};
 
 	# Open ports in the firewall.
-	networking.firewall.allowedTCPPorts = [ 80 443 ];
-	networking.firewall.allowedUDPPorts = [ 80 443 ];
+	networking.firewall.allowedTCPPorts = [ 
+		80 # http
+		443 # https
+		53317 # Localsend
+	];
+	networking.firewall.allowedUDPPorts = [ 
+		80
+		443
+		53317
+	];
 	# Or disable the firewall altogether.
 	# networking.firewall.enable = false;
 
