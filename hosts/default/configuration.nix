@@ -340,6 +340,12 @@
 			Type = "oneshot";
 			User = "root";
 		};
+		wants = [
+			"network-online.target"
+		];
+		after = [
+			"network-online.target"
+		];
 	};
 
 	environment.etc = {
