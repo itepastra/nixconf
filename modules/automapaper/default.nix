@@ -5,9 +5,7 @@ in
 {
 	options.modules.automapaper = {
 		enable = lib.mkEnableOption "enable automapaper";
-		displays = lib.mkOption {
-			type = with lib.types; listOf str;
-		};
+		hyprland = lib.mkEnableOption "enable hyprland exec-once integration";
 		configurations = lib.mkOption {
 			description = "automapaper configurations per monitor";
 			type = with lib.types; attrsOf (submodule {
@@ -16,16 +14,16 @@ in
 						type = str;
 						description = "the shader executed to get the state for the initialisation, and re-initialisation steps";
 					};
-					state = lib.mkOption {
-						type = str;
+					state = lib.mkOption { 
+						type = str; # TODO: make filepath possible as well
 						description = "the shader executed to increment the state to the next generation";
 					};
 					display = lib.mkOption {
-						type = str;
+						type = str; # TODO: make filepath possible as well
 						description = "the shader executed to display the state to the monitor";
 					};
 					horizontal = lib.mkOption {
-						type = int;
+						type = int; # TODO: make filepath possible as well
 						description = "the amount of horizontal cells in the state";
 					};
 					vertical = lib.mkOption {
@@ -174,12 +172,14 @@ in
 			"DP-3" = conf;
 			"DP-2" = conf;
 		};
-		modules.automapaper.displays = 
+		wayland.windowManager.hyprland.settings.exec-once = lib.mkIf cfg.hyprland (
 			lib.mapAttrsToList (name: config:
 				"${
 					inputs.automapaper.packages.${pkgs.system}.default
 				}/bin/automapaper -C ${
 					builtins.toFile "${name}.toml" config
-				}") displays;
-	});
+				}") displays
+			);
+		}
+	);
 }

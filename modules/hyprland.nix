@@ -47,11 +47,8 @@ in
 		home.packages = with pkgs; [
 			# I always want these with hyprland anyways
 			libnotify # to enable the notify-send command
-			wl-clipboard
+			wl-clipboard # wl-copy and wl-paste
 
-			inputs.hyprpicker
-
-			hypridle # TODO: remove when fixed with config
 			playerctl
 		];
 
@@ -63,99 +60,97 @@ in
 			enable = true;
 			package = cfg.package;
 			settings = {
-			monitor = [
-				"DP-3,2560x1440@360,2560x0,1"
-				"DP-2,2560x1440@144,0x0,1"
-				"Unknown-1,disable" # NOTE: due to a driver bug a third monitor appears
-			];
-			windowrulev2 = [
-				"opacity 1.0 0.6,class:^(kitty)$"
-				"stayfocused,class:^(wofi)$"
-			];
-			env = [
-				"WLR_NO_HARDWARE_CURSORS,1"
-			];
-			exec-once = [
-				"${pkgs.waybar}/bin/waybar"
-				"${pkgs.dunst}/bin/dunst"
-				"${cfg.package}/bin/hyprctl dispatcher focusmonitor 1"
-				"${pkgs.hypridle}/bin/hypridle"
-			] ++ builtins.map (name: 
-				"${inputs.automapaper.packages.${pkgs.system}.default}/bin/automapaper -C ${name}"
-			) config.modules.automapaper.displays;
-			general = {
-				sensitivity = "1.2";
-				gaps_in = "2";
-				gaps_out = "3";
-				border_size = "3";
-				"col.active_border"="0xff950fad";
-				"col.inactive_border"="0xff26052e";
-			};
-			misc = {
-				key_press_enables_dpms = true;
-			};
-			decoration = {
-				rounding = "6";
-				active_opacity = "1";
-				inactive_opacity = "1";
-			};
-			workspace = [
-				"DP-3,1"
-				"DP-2,2"
-			];
-			animations = {
-				enabled = "1";
-				animation = [
-					"windows,1,2,default"
-					"border,1,10,default"
-					"fade,0,5,default"
-					"workspaces,1,4,default"
+				monitor = [
+					"DP-3,2560x1440@360,2560x0,1"
+					"DP-2,2560x1440@144,0x0,1"
+					"Unknown-1,disable" # NOTE: due to a driver bug a third monitor appears
+				];
+				windowrulev2 = [
+					"opacity 1.0 0.6,class:^(kitty)$"
+					"stayfocused,class:^(wofi)$"
+				];
+				env = [
+					"WLR_NO_HARDWARE_CURSORS,1"
+				];
+				exec-once = [
+					"${pkgs.waybar}/bin/waybar"
+					"${pkgs.dunst}/bin/dunst"
+					"${cfg.package}/bin/hyprctl dispatcher focusmonitor 1"
+					"${pkgs.hypridle}/bin/hypridle"
+				];
+				general = {
+					sensitivity = "1.2";
+					gaps_in = "2";
+					gaps_out = "3";
+					border_size = "3";
+					"col.active_border"="0xff950fad";
+					"col.inactive_border"="0xff26052e";
+				};
+				misc = {
+					key_press_enables_dpms = true;
+				};
+				decoration = {
+					rounding = "6";
+					active_opacity = "1";
+					inactive_opacity = "1";
+				};
+				workspace = [
+					"DP-3,1"
+					"DP-2,2"
+				];
+				animations = {
+					enabled = "1";
+					animation = [
+						"windows,1,2,default"
+						"border,1,10,default"
+						"fade,0,5,default"
+						"workspaces,1,4,default"
+					];
+				};
+				"$mod" = "SUPER";
+				bind = [
+					"$mod,Return,exec,${cfg.terminal}/bin/${cfg.terminal.pname}"
+					"$mod,tab,cyclenext"
+					"SUPERSHIFT,Q,killactive"
+					"$mod,SPACE,exec,wofi-launch"
+					"$mod,P,exec,wofi-power"
+					"SUPERSHIFT,m,exit"
+					"$mod,H,movefocus,l"
+					"$mod,J,movefocus,u"
+					"$mod,K,movefocus,d"
+					"$mod,L,movefocus,r"
+					"SUPERSHIFT,H,movewindow,l"
+					"SUPERSHIFT,J,movewindow,u"
+					"SUPERSHIFT,K,movewindow,d"
+					"SUPERSHIFT,L,movewindow,r"
+					"$mod,F,togglefloating"
+					"$mod,X,togglespecialworkspace"
+					"SUPERSHIFT,X,movetoworkspace,special"
+					"SUPERSHIFT,S,exec,${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
+					"$mod,f11,fullscreen,0"
+					",XF86AudioLowerVolume,exec,${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 1%-"
+					",XF86AudioRaiseVolume,exec,${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 1%+"
+					",XF86AudioMute,exec,${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SINK@ toggle"
+					",XF86AudioPlay,exec,${pkgs.playerctl}/bin/playerctl play-pause"
+					",XF86AudioPrev,exec,${pkgs.playerctl}/bin/playerctl previous"
+					",XF86AudioNext,exec,${pkgs.playerctl}/bin/playerctl next"
+					]
+					++ (
+						builtins.concatLists (builtins.genList (
+							x: let
+					ws = builtins.toString (x);
+							in [
+					"$mod,${ws},workspace,${ws}"
+					"ALT,${ws},movetoworkspace,${ws}"
+							]
+						)
+						10)
+					);
+				bindm = [
+					"$mod,mouse:272,movewindow"
+					"$mod,mouse:273,resizewindow"
 				];
 			};
-			"$mod" = "SUPER";
-			bind = [
-				"$mod,Return,exec,${cfg.terminal}/bin/${cfg.terminal.pname}"
-				"$mod,tab,cyclenext"
-				"SUPERSHIFT,Q,killactive"
-				"$mod,SPACE,exec,wofi-launch"
-				"$mod,P,exec,wofi-power"
-				"SUPERSHIFT,m,exit"
-				"$mod,H,movefocus,l"
-				"$mod,J,movefocus,u"
-				"$mod,K,movefocus,d"
-				"$mod,L,movefocus,r"
-				"SUPERSHIFT,H,movewindow,l"
-				"SUPERSHIFT,J,movewindow,u"
-				"SUPERSHIFT,K,movewindow,d"
-				"SUPERSHIFT,L,movewindow,r"
-				"$mod,F,togglefloating"
-				"$mod,X,togglespecialworkspace"
-				"SUPERSHIFT,X,movetoworkspace,special"
-				"SUPERSHIFT,S,exec,${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
-				"$mod,f11,fullscreen,0"
-				",XF86AudioLowerVolume,exec,${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 1%-"
-				",XF86AudioRaiseVolume,exec,${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 1%+"
-				",XF86AudioMute,exec,${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SINK@ toggle"
-				",XF86AudioPlay,exec,${pkgs.playerctl}/bin/playerctl play-pause"
-				",XF86AudioPrev,exec,${pkgs.playerctl}/bin/playerctl previous"
-				",XF86AudioNext,exec,${pkgs.playerctl}/bin/playerctl next"
-				]
-				++ (
-					builtins.concatLists (builtins.genList (
-						x: let
-				ws = builtins.toString (x);
-						in [
-				"$mod,${ws},workspace,${ws}"
-				"ALT,${ws},movetoworkspace,${ws}"
-						]
-					)
-					10)
-				);
-			bindm = [
-				"$mod,mouse:272,movewindow"
-				"$mod,mouse:273,resizewindow"
-			];
-		};
     };
   };
 }
