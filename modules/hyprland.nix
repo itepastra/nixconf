@@ -78,10 +78,10 @@ in
 	exec-once = [
 	  "${pkgs.waybar}/bin/waybar"
 	  "${pkgs.dunst}/bin/dunst"
-	  (lib.mkIf config.modules.automapaper.enable "${inputs.automapaper}/bin/automapaper -C ${config.xdg.configHome}/automapaper/config.toml")
-	  (lib.mkIf config.modules.automapaper.enable "${inputs.automapaper}/bin/automapaper -C ${config.xdg.configHome}/automapaper/config2nd.toml")
+	  (lib.mkIf config.modules.automapaper.enable "${inputs.automapaper.packages.${pkgs.system}.default}/bin/automapaper -C ${config.xdg.configHome}/automapaper/config.toml")
+	  (lib.mkIf config.modules.automapaper.enable "${inputs.automapaper.packages.${pkgs.system}.default}/bin/automapaper -C ${config.xdg.configHome}/automapaper/config2nd.toml")
 	  "${cfg.package}/bin/hyprctl dispatcher focusmonitor 1"
-	  "hypridle"
+	  "${pkgs.hypridle}/bin/hypridle"
 	];
 	general = {
 	  sensitivity = "1.2";
