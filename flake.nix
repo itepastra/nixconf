@@ -74,5 +74,8 @@
           ];
         };
       };
+			nixosModules = {
+				automapaper = ./modules/automapaper;
+			};
     };
 }
