@@ -64,6 +64,7 @@ in
         monitor = [
           "DP-3,2560x1440@360,2560x0,1"
           "DP-2,2560x1440@144,0x0,1"
+          "Unknown-1,disable" # NOTE: still borked on 04-06-2024
         ];
         windowrulev2 = [
           "opacity 1.0 0.6,class:^(kitty)$"
