@@ -31,6 +31,7 @@ in
     modules = {
       automapaper = {
 				enable = lib.mkDefault true;
+				hyprland = cfg.enable;
       };
       waybar = {
 				modules = {
