@@ -1,5 +1,5 @@
 # Edit this configuration file to define what should be installed on
-# your system.	Help is available in the configuration.nix(5) man page
+# your system.Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, nix-colors, ... }:
@@ -49,7 +49,7 @@
       "127.0.0.1" = [ "images.noa.voorwaarts.nl" "sods.noa.voorwaarts.nl" "noa.voorwaarts.nl" "testing.noa.voorwaarts.nl" ];
     };
   };
-  # networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = true;# Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -145,8 +145,8 @@
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
-  #	 enable = true;
-  #	 enableSSHSupport = true;
+  # enable = true;
+  # enableSSHSupport = true;
   # };
   programs = {
     zsh.enable = true;
@@ -232,62 +232,45 @@
       sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
 
       virtualHosts =
-        let extra = ''
-          				client_max_body_size 50000M;
+        let
+          extra = ''
+            client_max_body_size 50000M;
 
-          				proxy_set_header Host              $host;
-          				proxy_set_header X-Real-IP         $remote_addr;
-          				proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-          				proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header Host              $host;
+            proxy_set_header X-Real-IP         $remote_addr;
+            proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
 
-          				proxy_http_version 1.1;
-          				proxy_set_header   Upgrade    $http_upgrade;
-          				proxy_set_header   Connection "upgrade";
-          				proxy_redirect     off;
+            proxy_http_version 1.1;
+            proxy_set_header   Upgrade    $http_upgrade;
+            proxy_set_header   Connection "upgrade";
+            proxy_redirect     off;
 
-          				proxy_read_timeout 600s;
-          				proxy_send_timeout 600s;
-          				send_timeout       600s;'';
+            proxy_read_timeout 600s;
+            proxy_send_timeout 600s;
+            send_timeout       600s;'';
+          proxy = port: {
+            forceSSl = true;
+            useACMEHost = "noa.voorwaarts.nl";
+            extraConfig = extra;
+            locations."/" = {
+              proxyPass = "http://127.0.0.1:${builtins.toString port}/";
+            };
+          };
         in
         {
           "noa.voorwaarts.nl" = {
             default = true;
             forceSSL = true;
             enableACME = true;
-
           };
-
-          "images.noa.voorwaarts.nl" = {
-            forceSSL = true;
-            useACMEHost = "noa.voorwaarts.nl";
-            extraConfig = extra;
-            locations."/" = {
-              proxyPass = "http://127.0.0.1:2283/";
-            };
-          };
-
-          "testing.noa.voorwaarts.nl" = {
-            forceSSL = true;
-            useACMEHost = "noa.voorwaarts.nl";
-            extraConfig = extra;
-            locations."/" = {
-              proxyPass = "http://127.0.0.1:8000/";
-            };
-          };
-
-          "sods.noa.voorwaarts.nl" = {
-            forceSSL = true;
-            useACMEHost = "noa.voorwaarts.nl";
-            extraConfig = extra;
-            locations."/" = {
-              proxyPass = "http://127.0.0.1:2000/";
-            };
-          };
+          "images.noa.voorwaarts.nl" = proxy 2283;
+          "testing.noa.voorwaarts.nl" = proxy 8000;
+          "sods.noa.voorwaarts.nl" = proxy 2000;
         };
     };
     openssh = {
       enable = true;
-
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
     };
@@ -324,13 +307,13 @@
       nixos-rebuild
     ];
     script = ''
-      		[[ ! -d '/root/nixconf' ]] && cd /root && git clone git@github.com:itepastra/nixconf
-      		cd /root/nixconf
-      		git pull
-      		nix flake update --commit-lock-file /root/nixconf
-      		nixos-rebuild switch --flake .
-      		git push
-      		'';
+      [[ ! -d '/root/nixconf' ]] && cd /root && git clone git@github.com:itepastra/nixconf
+      cd /root/nixconf
+      git pull
+      nix flake update --commit-lock-file /root/nixconf
+      nixos-rebuild switch --flake .
+      git push
+    '';
     serviceConfig = {
       Type = "oneshot";
       User = "root";
@@ -345,9 +328,9 @@
 
   environment.etc = {
     "fail2ban/filter.d/go-login.local".text = pkgs.lib.mkDefault (pkgs.lib.mkAfter ''
-      			[Definition]
-      			failregex=^time= level=WARN msg=".*?" ip=<ADDR> status=4\d\d$
-      		'');
+      [Definition]
+      failregex=^time= level=WARN msg=".*?" ip=<ADDR> status=4\d\d$
+    '');
   };
 
   virtualisation.docker = {
@@ -365,8 +348,8 @@
   ];
 
   boot.extraModprobeConfig = ''
-    		options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
-    	'';
+    options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+  '';
   security = {
     acme = {
       acceptTerms = true;
