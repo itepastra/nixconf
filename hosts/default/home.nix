@@ -67,6 +67,7 @@
 		opam
 		stack
 		cargo
+		gcc
 
 		bend
 

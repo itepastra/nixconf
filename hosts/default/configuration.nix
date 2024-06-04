@@ -4,395 +4,401 @@
 
 { config, pkgs, inputs, nix-colors, ... }:
 {
-	imports =
-		[ # Include the results of the hardware scan.
-			./hardware-configuration.nix
-			../../modules/games/steam.nix
-			inputs.nix-minecraft.nixosModules.minecraft-servers
-		];
+  imports =
+    [
+      # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      ../../modules/games/steam.nix
+      inputs.nix-minecraft.nixosModules.minecraft-servers
+    ];
 
-	# Bootloader.
-	boot.loader.systemd-boot.enable = true;
-	boot.loader.efi.canTouchEfiVariables = true;
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-	# LOVE me some blob
-	hardware.enableRedistributableFirmware = true;
-	hardware.enableAllFirmware = true;
+  # LOVE me some blob
+  hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
 
-	hardware.nvidia = {
-		modesetting.enable = true;
-		powerManagement = {
-			enable = true;
-			finegrained = false;
-		};
-		open = false;
-		nvidiaSettings = true;
-		package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
-	};
-	hardware.opengl = {
-		enable = true;
-		driSupport = true;
-		driSupport32Bit = true;
-	};
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement = {
+      enable = true;
+      finegrained = false;
+    };
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+  };
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
 
-	# Allow unfree packages
-	nixpkgs.config = {
-		allowUnfree = true;
-		nvidia.acceptLicense = true;
-	};
-	nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
+  # Allow unfree packages
+  nixpkgs.config = {
+    allowUnfree = true;
+    nvidia.acceptLicense = true;
+  };
+  nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
 
-	networking = {
-		hostName = "lambdaOS"; # Define your hostname.
-		hosts = {
-			"127.0.0.1" = ["images.noa.voorwaarts.nl" "sods.noa.voorwaarts.nl" "noa.voorwaarts.nl" "testing.noa.voorwaarts.nl" ];
-		};
-	};
-	# networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
+  networking = {
+    hostName = "lambdaOS"; # Define your hostname.
+    hosts = {
+      "127.0.0.1" = [ "images.noa.voorwaarts.nl" "sods.noa.voorwaarts.nl" "noa.voorwaarts.nl" "testing.noa.voorwaarts.nl" ];
+    };
+  };
+  # networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
 
-	# Configure network proxy if necessary
-	# networking.proxy.default = "http://user:password@proxy:port/";
-	# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-	# Enable networking
-	networking.networkmanager.enable = true;
+  # Enable networking
+  networking.networkmanager.enable = true;
 
-	programs.nm-applet.enable = true;
+  programs.nm-applet.enable = true;
 
-	nix = {
-		settings = {
-			# auto optimise every so often
-			# auto-optimise-store = true;
-			experimental-features = ["nix-command" "flakes"];
-			substituters = ["https://hyprland.cachix.org" "https://cache.iog.io" "https://cuda-maintainers.cachix.org" ];
-			trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E=" ];
-		};
-		optimise.automatic = true;
-		gc = {
-			automatic = false;
-			dates = "weekly";
-			options = "--delete-older-than 7d";
-		};
-	};
+  nix = {
+    settings = {
+      # auto optimise every so often
+      # auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+      substituters = [ "https://hyprland.cachix.org" "https://cache.iog.io" "https://cuda-maintainers.cachix.org" ];
+      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E=" ];
+    };
+    optimise.automatic = true;
+    gc = {
+      automatic = false;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
 
-	# Set your time zone.
-	time.timeZone = "Europe/Amsterdam";
+  # Set your time zone.
+  time.timeZone = "Europe/Amsterdam";
 
-	# Select internationalisation properties.
-	i18n.defaultLocale = "en_US.UTF-8";
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
 
-	i18n.extraLocaleSettings = {
-		LC_ADDRESS = "nl_NL.UTF-8";
-		LC_IDENTIFICATION = "nl_NL.UTF-8";
-		LC_MEASUREMENT = "nl_NL.UTF-8";
-		LC_MONETARY = "nl_NL.UTF-8";
-		LC_NAME = "nl_NL.UTF-8";
-		LC_NUMERIC = "nl_NL.UTF-8";
-		LC_PAPER = "nl_NL.UTF-8";
-		LC_TELEPHONE = "nl_NL.UTF-8";
-		LC_TIME = "nl_NL.UTF-8";
-	};
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "nl_NL.UTF-8";
+    LC_IDENTIFICATION = "nl_NL.UTF-8";
+    LC_MEASUREMENT = "nl_NL.UTF-8";
+    LC_MONETARY = "nl_NL.UTF-8";
+    LC_NAME = "nl_NL.UTF-8";
+    LC_NUMERIC = "nl_NL.UTF-8";
+    LC_PAPER = "nl_NL.UTF-8";
+    LC_TELEPHONE = "nl_NL.UTF-8";
+    LC_TIME = "nl_NL.UTF-8";
+  };
 
 
-	# Configure console keymap
-	console.keyMap = "us-acentos";
+  # Configure console keymap
+  console.keyMap = "us-acentos";
 
-	users.groups.nixpow.members = [ "root" ];
-	# Define a user account. Don't forget to set a password with ‘passwd’.
-	users.users = {
-		root = {
-			hashedPassword = "!";
-		};
-		noa = {
-			isNormalUser = true;
-			description = "Noa Aarts";
-			extraGroups = [ "networkmanager" "wheel" "nixpow" ];
-			hashedPassword = "$6$rounds=512400$Zip3xoK2zcoR4qEL$N13YTHO5tpWfx2nKb1sye.ZPwfoRtMQ5f3YrMZqKzzoFoSSHHJ.l5ulCEa9HygFxZmBtPnwlseFEtl8ERnwF50";
-		};
-	};
+  users.groups.nixpow.members = [ "root" ];
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users = {
+    root = {
+      hashedPassword = "!";
+    };
+    noa = {
+      isNormalUser = true;
+      description = "Noa Aarts";
+      extraGroups = [ "networkmanager" "wheel" "nixpow" ];
+      hashedPassword = "$6$rounds=512400$Zip3xoK2zcoR4qEL$N13YTHO5tpWfx2nKb1sye.ZPwfoRtMQ5f3YrMZqKzzoFoSSHHJ.l5ulCEa9HygFxZmBtPnwlseFEtl8ERnwF50";
+    };
+  };
 
-	home-manager = {
-		extraSpecialArgs = { 
-			inherit inputs; 
-			inherit nix-colors;
-		};
-		users = {
-			"noa" = import ./home.nix;
-			"root" = import ./root.nix;
-		};
-	};
+  home-manager = {
+    extraSpecialArgs = {
+      inherit inputs;
+      inherit nix-colors;
+    };
+    users = {
+      "noa" = import ./home.nix;
+      "root" = import ./root.nix;
+    };
+  };
 
-	# List packages installed in system profile. To search, run:
-	# $ nix search wget
-	environment.systemPackages = with pkgs; [
-		git
-		zsh
-		mangohud
-	];
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    git
+    zsh
+    mangohud
+  ];
 
-	# TODO: find list of fonts to install
-	fonts.packages = with pkgs; [
-		font-awesome
-		noto-fonts
-		fira-code
-		fira-code-symbols
-		liberation_ttf
-		maple-mono-NF
-	];
+  # TODO: find list of fonts to install
+  fonts.packages = with pkgs; [
+    font-awesome
+    noto-fonts
+    fira-code
+    fira-code-symbols
+    liberation_ttf
+    maple-mono-NF
+  ];
 
-	# Some programs need SUID wrappers, can be configured further or are
-	# started in user sessions.
-	# programs.mtr.enable = true;
-	# programs.gnupg.agent = {
-	#	 enable = true;
-	#	 enableSSHSupport = true;
-	# };
-	programs = {
-		zsh.enable = true;
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #	 enable = true;
+  #	 enableSSHSupport = true;
+  # };
+  programs = {
+    zsh.enable = true;
 
-		hyprland = {
-			enable = true;
-			package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-			portalPackage = pkgs.xdg-desktop-portal-hyprland;
-		};
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    };
 
-		nix-ld.enable = true;
-		nix-ld.libraries = with pkgs; [
-			wayland
-		];
-	};
+    nix-ld.enable = true;
+    nix-ld.libraries = with pkgs; [
+      wayland
+    ];
+  };
 
-	modules.games.steam.enable = false;
+  modules.games.steam.enable = false;
 
-	users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.zsh;
 
-	security.rtkit.enable = true;
+  security.rtkit.enable = true;
 
-	services = {
-		pipewire = {
-			enable = true;
-			alsa.enable = true;
-			alsa.support32Bit = true;
-			pulse.enable = true;
-			jack.enable = true;
-		};
-		fail2ban = {
-			enable = true;
-			maxretry = 5;
-			bantime = "1s";
-			bantime-increment = {
-				enable = true;
-				formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
-				maxtime = "1h";
-				overalljails = true;
-			};
-			jails = {
-				go-login.settings = {
-					enabled = true;
-					filter = "go-login";
-					action = ''iptables-multiport[name=HTTP, port="http,https,2000"]'';
-					logpath = "/home/noa/Documents/programming/SODS/login.log";
-					backend = "systemd";
-					findtime = 600;
-					bantime = 600;
-					maxretry = 5;
-				};
-			};
-		};
-		greetd = {
-			enable = true;
-			settings = rec {
-				initial_session = {
-					command = "${pkgs.hyprland}/bin/Hyprland";
-					user = "noa";
-				};
-				default_session = initial_session;
-			};
-		};
-		minecraft-servers = {
-			enable = false;
-			eula = true;
-			openFirewall = true;
-			servers = {
-				"no-flicker" = {
-					enable = true;
-					package = pkgs.minecraftServers.paper-1_20_4;
-				};
-			};
-		};
-		nginx = {
-			enable = true;
+  services = {
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+    fail2ban = {
+      enable = true;
+      maxretry = 5;
+      bantime = "1s";
+      bantime-increment = {
+        enable = true;
+        formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
+        maxtime = "1h";
+        overalljails = true;
+      };
+      jails = {
+        go-login.settings = {
+          enabled = true;
+          filter = "go-login";
+          action = ''iptables-multiport[name=HTTP, port="http,https,2000"]'';
+          logpath = "/home/noa/Documents/programming/SODS/login.log";
+          backend = "systemd";
+          findtime = 600;
+          bantime = 600;
+          maxretry = 5;
+        };
+      };
+    };
+    greetd = {
+      enable = true;
+      settings = rec {
+        initial_session = {
+          command = "${pkgs.hyprland}/bin/Hyprland";
+          user = "noa";
+        };
+        default_session = initial_session;
+      };
+    };
+    minecraft-servers = {
+      enable = false;
+      eula = true;
+      openFirewall = true;
+      servers = {
+        "no-flicker" = {
+          enable = true;
+          package = pkgs.minecraftServers.paper-1_20_4;
+        };
+      };
+    };
+    nginx = {
+      enable = true;
 
-			recommendedGzipSettings = true;
-			recommendedOptimisation = true;
-			recommendedProxySettings = true;
-			recommendedTlsSettings = true;
+      recommendedGzipSettings = true;
+      recommendedOptimisation = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
 
-			sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
+      sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
 
-			virtualHosts = 
-			let extra = ''
-				client_max_body_size 50000M;
+      virtualHosts =
+        let extra = ''
+          				client_max_body_size 50000M;
 
-				proxy_set_header Host              $host;
-				proxy_set_header X-Real-IP         $remote_addr;
-				proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-				proxy_set_header X-Forwarded-Proto $scheme;
+          				proxy_set_header Host              $host;
+          				proxy_set_header X-Real-IP         $remote_addr;
+          				proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+          				proxy_set_header X-Forwarded-Proto $scheme;
 
-				proxy_http_version 1.1;
-				proxy_set_header   Upgrade    $http_upgrade;
-				proxy_set_header   Connection "upgrade";
-				proxy_redirect     off;
+          				proxy_http_version 1.1;
+          				proxy_set_header   Upgrade    $http_upgrade;
+          				proxy_set_header   Connection "upgrade";
+          				proxy_redirect     off;
 
-				proxy_read_timeout 600s;
-				proxy_send_timeout 600s;
-				send_timeout       600s;''; 
-			in {
-				"noa.voorwaarts.nl" = {
-					default = true;
-					forceSSL = true;
-					enableACME = true;
+          				proxy_read_timeout 600s;
+          				proxy_send_timeout 600s;
+          				send_timeout       600s;'';
+        in
+        {
+          "noa.voorwaarts.nl" = {
+            default = true;
+            forceSSL = true;
+            enableACME = true;
 
-					serverAliases = [ "images.noa.voorwaarts.nl" "sods.noa.voorwaarts.nl" "testing.noa.voorwaarts.nl" ];
-				};
+          };
 
-				"images.noa.voorwaarts.nl" = {
-					forceSSL = true;
-					useACMEHost = "noa.voorwaarts.nl";
-					extraConfig = extra;
-					locations."/" = {
-						proxyPass = "http://127.0.0.1:2283/";
-					};
-				};
+          "images.noa.voorwaarts.nl" = {
+            forceSSL = true;
+            useACMEHost = "noa.voorwaarts.nl";
+            extraConfig = extra;
+            locations."/" = {
+              proxyPass = "http://127.0.0.1:2283/";
+            };
+          };
 
-				"testing.noa.voorwaarts.nl" = {
-					forceSSL = true;
-					useACMEHost = "noa.voorwaarts.nl";
-					extraConfig = extra;
-					locations."/" = {
-						proxyPass = "http://127.0.0.1:8000/";
-					};
-				};
+          "testing.noa.voorwaarts.nl" = {
+            forceSSL = true;
+            useACMEHost = "noa.voorwaarts.nl";
+            extraConfig = extra;
+            locations."/" = {
+              proxyPass = "http://127.0.0.1:8000/";
+            };
+          };
 
-				"sods.noa.voorwaarts.nl" = {
-					forceSSL = true;
-					useACMEHost = "noa.voorwaarts.nl";
-					extraConfig = extra;
-					locations."/" = {
-						proxyPass = "http://127.0.0.1:2000/";
-					};
-				};
-			};
-		};
-		openssh = {
-			enable = true;
+          "sods.noa.voorwaarts.nl" = {
+            forceSSL = true;
+            useACMEHost = "noa.voorwaarts.nl";
+            extraConfig = extra;
+            locations."/" = {
+              proxyPass = "http://127.0.0.1:2000/";
+            };
+          };
+        };
+    };
+    openssh = {
+      enable = true;
 
-			settings.PasswordAuthentication = false;
-			settings.KbdInteractiveAuthentication = false;
-		};
-		syncthing = {
-			enable = true;
-			user = "noa";
-			dataDir = "/home/noa/Sync";
-			configDir = "/home/noa/Sync/.config/syncthing";
-		};
-		xserver = {
-			enable = true;
-			xkb = {
-				layout = "us";
-				variant = "intl";
-			};
-			videoDrivers = [ "nvidia" ];
-		};
-		flatpak.enable = true;
-	};
+      settings.PasswordAuthentication = false;
+      settings.KbdInteractiveAuthentication = false;
+    };
+    syncthing = {
+      enable = true;
+      user = "noa";
+      dataDir = "/home/noa/Sync";
+      configDir = "/home/noa/Sync/.config/syncthing";
+    };
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "us";
+        variant = "intl";
+      };
+      videoDrivers = [ "nvidia" ];
+    };
+    flatpak.enable = true;
+  };
 
-	systemd.timers."update-flake" = {
-		wantedBy = [ "timers.target" ];
-		timerConfig = {
-			OnCalendar = "daily";
-			Persistent = true;
-		};
-	};
+  systemd.timers."update-flake" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "daily";
+      Persistent = true;
+    };
+  };
 
-	systemd.services."update-flake" = {
-		path = with pkgs; [
-			git
-			openssh
-			nix
-			nixos-rebuild
-		];
-		script = ''
-		[[ ! -d '/root/nixconf' ]] && cd /root && git clone git@github.com:itepastra/nixconf
-		cd /root/nixconf
-		git pull
-		nix flake update --commit-lock-file /root/nixconf
-		nixos-rebuild switch --flake .
-		git push
-		'';
-		serviceConfig = {
-			Type = "oneshot";
-			User = "root";
-		};
-		wants = [
-			"network-online.target"
-		];
-		after = [
-			"network-online.target"
-		];
-	};
+  systemd.services."update-flake" = {
+    path = with pkgs; [
+      git
+      openssh
+      nix
+      nixos-rebuild
+    ];
+    script = ''
+      		[[ ! -d '/root/nixconf' ]] && cd /root && git clone git@github.com:itepastra/nixconf
+      		cd /root/nixconf
+      		git pull
+      		nix flake update --commit-lock-file /root/nixconf
+      		nixos-rebuild switch --flake .
+      		git push
+      		'';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+    };
+    wants = [
+      "network-online.target"
+    ];
+    after = [
+      "network-online.target"
+    ];
+  };
 
-	environment.etc = {
-		"fail2ban/filter.d/go-login.local".text = pkgs.lib.mkDefault (pkgs.lib.mkAfter ''
-			[Definition]
-			failregex=^time= level=WARN msg=".*?" ip=<ADDR> status=4\d\d$
-		'');
-	};
+  environment.etc = {
+    "fail2ban/filter.d/go-login.local".text = pkgs.lib.mkDefault (pkgs.lib.mkAfter ''
+      			[Definition]
+      			failregex=^time= level=WARN msg=".*?" ip=<ADDR> status=4\d\d$
+      		'');
+  };
 
-	virtualisation.docker = {
-		enable = true;
-		rootless = {
-			enable = true;
-			setSocketVariable = true;
-		};
-	};
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
 
-	boot.kernelModules = [
-		"v4l2loopback"
-		"nct6775"
-		"k10temp"
-	];
+  boot.kernelModules = [
+    "v4l2loopback"
+    "nct6775"
+    "k10temp"
+  ];
 
-	boot.extraModprobeConfig = ''
-		options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
-	'';
-	security = {
-		acme = {
-			acceptTerms = true;
-			defaults.email = "acme@voorwaarts.nl";
-		};
-		polkit.enable = true;
-	};
+  boot.extraModprobeConfig = ''
+    		options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    	'';
+  security = {
+    acme = {
+      acceptTerms = true;
+      defaults.email = "acme@voorwaarts.nl";
+      certs."noa.voorwaarts.nl".extraDomainNames = [
+        "images.noa.voorwaarts.nl"
+        "sods.noa.voorwaarts.nl"
+        "testing.noa.voorwaarts.nl"
+      ];
+    };
+    polkit.enable = true;
+  };
 
-	# Open ports in the firewall.
-	networking.firewall.allowedTCPPorts = [ 
-		80 # http
-		443 # https
-		53317 # Localsend
-	];
-	networking.firewall.allowedUDPPorts = [ 
-		80
-		443
-		53317
-	];
-	# Or disable the firewall altogether.
-	# networking.firewall.enable = false;
+  # Open ports in the firewall.
+  networking.firewall.allowedTCPPorts = [
+    80 # http
+    443 # https
+    53317 # Localsend
+  ];
+  networking.firewall.allowedUDPPorts = [
+    80
+    443
+    53317
+  ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
 
-	# This value determines the NixOS release from which the default
-	# settings for stateful data, like file locations and database versions
-	# on your system were taken. It‘s perfectly fine and recommended to leave
-	# this value at the release version of the first install of this system.
-	# Before changing this value read the documentation for this option
-	# (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-	system.stateVersion = "23.11"; # Did you read the comment?
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "23.11"; # Did you read the comment?
 }
