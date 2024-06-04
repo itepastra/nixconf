@@ -1,5 +1,5 @@
 { lib, config, pkgs, ... }:
-let 
+let
   name = "clock";
 in
 {

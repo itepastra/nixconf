@@ -12,15 +12,15 @@ in
     modules = {
       left = lib.mkOption {
         type = with lib.types; listOf (enum [ ]);
-        default = [];
+        default = [ ];
       };
       center = lib.mkOption {
         type = with lib.types; listOf (enum [ ]);
-        default = [];
+        default = [ ];
       };
       right = lib.mkOption {
         type = with lib.types; listOf (enum [ ]);
-        default = [];
+        default = [ ];
       };
     };
   };

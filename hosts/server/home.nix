@@ -1,105 +1,105 @@
 { config, pkgs, mineflake, inputs, ... }:
 
 {
-	imports =
-	[
-		../../modules/applications
-		../../common/nvim/nvim.nix
-	];
-	# Home Manager needs a bit of information about you and the paths it should
-	# manage.
-	home.username = "noa";
-	home.homeDirectory = "/home/noa";
+  imports =
+    [
+      ../../modules/applications
+      ../../common/nvim/nvim.nix
+    ];
+  # Home Manager needs a bit of information about you and the paths it should
+  # manage.
+  home.username = "noa";
+  home.homeDirectory = "/home/noa";
 
-	# This value determines the Home Manager release that your configuration is
-	# compatible with. This helps avoid breakage when a new Home Manager release
-	# introduces backwards incompatible changes.
-	#
-	# You should not change this value, even if you update Home Manager. If you do
-	# want to update the value, then make sure to first check the Home Manager
-	# release notes.
-	home.stateVersion = "23.11"; # Please read the comment before changing.
+  # This value determines the Home Manager release that your configuration is
+  # compatible with. This helps avoid breakage when a new Home Manager release
+  # introduces backwards incompatible changes.
+  #
+  # You should not change this value, even if you update Home Manager. If you do
+  # want to update the value, then make sure to first check the Home Manager
+  # release notes.
+  home.stateVersion = "23.11"; # Please read the comment before changing.
 
-	nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
-	# The home.packages option allows you to install Nix packages into your
-	# environment.
-	home.packages = with pkgs; [
-		file
-		unzip
-		zip
+  # The home.packages option allows you to install Nix packages into your
+  # environment.
+  home.packages = with pkgs; [
+    file
+    unzip
+    zip
 
-		dig
-		mtr
+    dig
+    mtr
 
-		btop
-		lsd
+    btop
+    lsd
 
-		lm_sensors
+    lm_sensors
 
-		# Programming langs
-		go
-		nodejs
-	];
+    # Programming langs
+    go
+    nodejs
+  ];
 
-	modules = {
-		apps.git = {
-			enable = true;
-			name = "Noa Aarts";
-			email = "itepastra@gmail.com";
-		};
-		apps.zsh.enable = true;
-	};
-
-
+  modules = {
+    apps.git = {
+      enable = true;
+      name = "Noa Aarts";
+      email = "itepastra@gmail.com";
+    };
+    apps.zsh.enable = true;
+  };
 
 
 
 
-	# Home Manager is pretty good at managing dotfiles. The primary way to manage
-	# plain files is through 'home.file'.
-	home.file = {
-		# # Building this configuration will create a copy of 'dotfiles/screenrc' in
-		# # the Nix store. Activating the configuration will then make '~/.screenrc' a
-		# # symlink to the Nix store copy.
-		# ".screenrc".source = dotfiles/screenrc;
 
-		# # You can also set the file content immediately.
-		# ".gradle/gradle.properties".text = ''
-		#	 org.gradle.console=verbose
-		#	 org.gradle.daemon.idletimeout=3600000
-		# '';
-	};
 
-	# Home Manager can also manage your environment variables through
-	# 'home.sessionVariables'. If you don't want to manage your shell through Home
-	# Manager then you have to manually source 'hm-session-vars.sh' located at
-	# either
-	#
-	#	~/.nix-profile/etc/profile.d/hm-session-vars.sh
-	#
-	# or
-	#
-	#	~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-	#
-	# or
-	#
-	#	/etc/profiles/per-user/noa/etc/profile.d/hm-session-vars.sh
-	#
+  # Home Manager is pretty good at managing dotfiles. The primary way to manage
+  # plain files is through 'home.file'.
+  home.file = {
+    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+    # # symlink to the Nix store copy.
+    # ".screenrc".source = dotfiles/screenrc;
 
-	home.sessionVariables = {
-		EDITOR = "nvim";
-	};
+    # # You can also set the file content immediately.
+    # ".gradle/gradle.properties".text = ''
+    #	 org.gradle.console=verbose
+    #	 org.gradle.daemon.idletimeout=3600000
+    # '';
+  };
 
-	xdg = {
-		enable = true;
-	};
+  # Home Manager can also manage your environment variables through
+  # 'home.sessionVariables'. If you don't want to manage your shell through Home
+  # Manager then you have to manually source 'hm-session-vars.sh' located at
+  # either
+  #
+  #	~/.nix-profile/etc/profile.d/hm-session-vars.sh
+  #
+  # or
+  #
+  #	~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
+  #
+  # or
+  #
+  #	/etc/profiles/per-user/noa/etc/profile.d/hm-session-vars.sh
+  #
 
-	xdg.userDirs = {
-		enable = true;
-		createDirectories = true;
-	};
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 
-	# Let Home Manager install and manage itself.
-	programs.home-manager.enable = true;
+  xdg = {
+    enable = true;
+  };
+
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
 }

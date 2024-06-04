@@ -1,5 +1,5 @@
 { lib, config, ... }:
-let 
+let
   name = "wireplumber";
 in
 {
@@ -12,7 +12,7 @@ in
       format = "{volume}% {icon}";
       format-muted = "";
       on-click = "helvum";
-      format-icons = ["" "" ""];
+      format-icons = [ "" "" "" ];
     };
   };
 }

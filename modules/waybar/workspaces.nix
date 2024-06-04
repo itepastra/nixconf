@@ -1,5 +1,5 @@
 { lib, config, ... }:
-let 
+let
   name = "hyprland/workspaces";
 in
 {
