@@ -230,60 +230,54 @@
 
 			sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
 
-			virtualHosts = {
+			virtualHosts = 
+			let extra = ''
+				client_max_body_size 50000M;
+
+				proxy_set_header Host              $host;
+				proxy_set_header X-Real-IP         $remote_addr;
+				proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+				proxy_set_header X-Forwarded-Proto $scheme;
+
+				proxy_http_version 1.1;
+				proxy_set_header   Upgrade    $http_upgrade;
+				proxy_set_header   Connection "upgrade";
+				proxy_redirect     off;
+
+				proxy_read_timeout 600s;
+				proxy_send_timeout 600s;
+				send_timeout       600s;''; 
+			in {
 				"noa.voorwaarts.nl" = {
 					default = true;
 					forceSSL = true;
 					enableACME = true;
 
-					serverAliases = [ "images.noa.voorwaarts.nl" "sods.noa.voorwaarts.nl" ];
+					serverAliases = [ "images.noa.voorwaarts.nl" "sods.noa.voorwaarts.nl" "testing.noa.voorwaarts.nl" ];
 				};
 
 				"images.noa.voorwaarts.nl" = {
 					forceSSL = true;
 					useACMEHost = "noa.voorwaarts.nl";
-					extraConfig = ''
-						client_max_body_size 50000M;
-
-						proxy_set_header Host              $host;
-						proxy_set_header X-Real-IP         $remote_addr;
-						proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-						proxy_set_header X-Forwarded-Proto $scheme;
-
-						proxy_http_version 1.1;
-						proxy_set_header   Upgrade    $http_upgrade;
-						proxy_set_header   Connection "upgrade";
-						proxy_redirect     off;
-
-						proxy_read_timeout 600s;
-						proxy_send_timeout 600s;
-						send_timeout       600s;
-					'';
+					extraConfig = extra;
 					locations."/" = {
 						proxyPass = "http://127.0.0.1:2283/";
+					};
+				};
+
+				"testing.noa.voorwaarts.nl" = {
+					forceSSL = true;
+					useACMEHost = "noa.voorwaarts.nl";
+					extraConfig = extra;
+					locations."/" = {
+						proxyPass = "http://127.0.0.1:8000/";
 					};
 				};
 
 				"sods.noa.voorwaarts.nl" = {
 					forceSSL = true;
 					useACMEHost = "noa.voorwaarts.nl";
-					extraConfig = ''
-						client_max_body_size 50000M;
-
-						proxy_set_header Host              $host;
-						proxy_set_header X-Real-IP         $remote_addr;
-						proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-						proxy_set_header X-Forwarded-Proto $scheme;
-
-						proxy_http_version 1.1;
-						proxy_set_header   Upgrade    $http_upgrade;
-						proxy_set_header   Connection "upgrade";
-						proxy_redirect     off;
-
-						proxy_read_timeout 600s;
-						proxy_send_timeout 600s;
-						send_timeout       600s;
-					'';
+					extraConfig = extra;
 					locations."/" = {
 						proxyPass = "http://127.0.0.1:2000/";
 					};
