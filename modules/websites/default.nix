@@ -3,10 +3,10 @@ let
   cfg = config.modules.websites;
 in
 {
-  options.modules.nginx =
+  options.modules.websites =
     {
       enable = lib.mkEnableOption "enable web hosting";
-      cert_mail = lib.mkOption {
+      certMail = lib.mkOption {
         type = lib.types.str;
         description = "the email address the certificate will be requested to";
       };
@@ -15,17 +15,20 @@ in
         type = with lib.types; attrsOf (submodule {
           options =
             let
-              proxyOption = lib.mkOption { type = int; description = "what url to proxy the requests to"; };
+              proxyOption = lib.mkOption { type = str; description = "what url to proxy the requests to"; };
             in
             {
               enable = lib.mkEnableOption "enable this website";
-              extra_sites = attrsOf
-                (submodule {
-                  options = {
-                    enable = lib.mkEnableOption "enable this website";
-                    proxy = proxyOption;
-                  };
-                });
+              extra_sites = lib.mkOption {
+                description = "extra sites that use this certificate";
+                type = attrsOf
+                  (submodule {
+                    options = {
+                      enable = lib.mkEnableOption "enable this website";
+                      proxy = proxyOption;
+                    };
+                  });
+              };
               proxy = proxyOption;
             };
         });
@@ -37,21 +40,19 @@ in
         lib.attrsets.mapAttrsToList
           (
             name: config:
-              lib.mkIf config.enable (
-                [ name ] ++ lib.attrsets.mapAttrsToList (n: c: lib.mkIf c.enable n) config.extra_sites
-              )
+              [ name ] ++ lib.attrsets.mapAttrsToList (n: c: lib.mkIf c.enable n) config.extra_sites
           )
           cfg.mainDomains
       );
-      certs = lib.attrsets.MapAttrs
+      certs = lib.attrsets.mapAttrs
         (
           name: config:
             lib.mkIf config.enable {
-              extraDomainNames = lib.attrsets.MapAttrsToList (n: c: lib.mkIf c.enable n) config.extra_sites;
+              extraDomainNames = lib.attrsets.mapAttrsToList (n: c: lib.mkIf c.enable n) config.extra_sites;
             }
         )
         cfg.mainDomains;
-      hosts = lib.attrsets.MapAtrrs
+      hosts = lib.attrsets.concatMapAttrs
         (
           name: config:
             let
@@ -81,19 +82,23 @@ in
               };
             in
             lib.mkIf config.enable (
-              lib.mkMerge (
+              lib.mkMerge [
                 {
-                  forceSSL = true;
-                  enableACME = true;
-                  extraConfig = extra;
-                  locations."/" = {
-                    proxyPass = config.proxy;
+                  ${name} = {
+                    forceSSL = true;
+                    enableACME = true;
+                    extraConfig = extra;
+                    locations."/" = {
+                      proxyPass = config.proxy;
+                    };
                   };
                 }
-                ++ (lib.attrsets.MapAttrsToList
-                  (n: c: lib.mkIf c.enable (proxy c.proxy))
+                (lib.attrsets.mapAttrs
+                  (n: c:
+                    proxy c.proxy
+                  )
                   config.extra_sites)
-              )
+              ]
             )
         )
         cfg.mainDomains;
@@ -105,7 +110,7 @@ in
       };
       security.acme = {
         acceptTerms = true;
-        defaults.email = cfg.cert_mail;
+        defaults.email = cfg.certMail;
         certs = certs;
       };
       services.nginx = {

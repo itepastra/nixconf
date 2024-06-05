@@ -163,7 +163,7 @@
 
   modules = {
     games.steam.enable = false;
-    modules.websites = {
+    websites = {
       enable = true;
       certMail = "acme@voorwaarts.nl";
       mainDomains = {
@@ -187,167 +187,168 @@
         };
       };
     };
+  };
 
-    users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.zsh;
 
-    security.rtkit.enable = true;
+  security.rtkit.enable = true;
 
-    services = {
-      pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        jack.enable = true;
-      };
-      fail2ban = {
-        enable = true;
-        maxretry = 5;
-        bantime = "1s";
-        bantime-increment = {
-          enable = true;
-          formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
-          maxtime = "1h";
-          overalljails = true;
-        };
-        jails = {
-          go-login.settings = {
-            enabled = true;
-            filter = "go-login";
-            action = ''iptables-multiport[name=HTTP, port="http,https,2000"]'';
-            logpath = "/home/noa/Documents/programming/SODS/login.log";
-            backend = "systemd";
-            findtime = 600;
-            bantime = 600;
-            maxretry = 5;
-          };
-        };
-      };
-      greetd = {
-        enable = true;
-        settings = rec {
-          initial_session = {
-            command = "${pkgs.hyprland}/bin/Hyprland";
-            user = "noa";
-          };
-          default_session = initial_session;
-        };
-      };
-      minecraft-servers = {
-        enable = false;
-        eula = true;
-        openFirewall = true;
-        servers = {
-          "no-flicker" = {
-            enable = true;
-            package = pkgs.minecraftServers.paper-1_20_4;
-          };
-        };
-      };
-      openssh = {
-        enable = true;
-        settings.PasswordAuthentication = false;
-        settings.KbdInteractiveAuthentication = false;
-      };
-      syncthing = {
-        enable = true;
-        user = "noa";
-        dataDir = "/home/noa/Sync";
-        configDir = "/home/noa/Sync/.config/syncthing";
-      };
-      xserver = {
-        enable = true;
-        xkb = {
-          layout = "us";
-          variant = "intl";
-        };
-        videoDrivers = [ "nvidia" ];
-      };
-      flatpak.enable = true;
-    };
-
-    systemd.timers."update-flake" = {
-      wantedBy = [ "timers.target" ];
-      timerConfig = {
-        OnCalendar = "daily";
-        Persistent = true;
-      };
-    };
-
-    systemd.services."update-flake" = {
-      path = with pkgs; [
-        git
-        openssh
-        nix
-        nixos-rebuild
-      ];
-      script = ''
-        [[ ! -d '/root/nixconf' ]] && cd /root && git clone git@github.com:itepastra/nixconf
-        cd /root/nixconf
-        git pull
-        nix flake update --commit-lock-file /root/nixconf
-        nixos-rebuild switch --flake .
-        git push
-      '';
-      serviceConfig = {
-        Type = "oneshot";
-        User = "root";
-      };
-      wants = [
-        "network-online.target"
-      ];
-      after = [
-        "network-online.target"
-      ];
-    };
-
-    environment.etc = {
-      "fail2ban/filter.d/go-login.local".text = pkgs.lib.mkDefault (pkgs.lib.mkAfter ''
-        [Definition]
-        failregex=^time= level=WARN msg=".*?" ip=<ADDR> status=4\d\d$
-      '');
-    };
-
-    virtualisation.docker = {
+  services = {
+    pipewire = {
       enable = true;
-      rootless = {
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+    fail2ban = {
+      enable = true;
+      maxretry = 5;
+      bantime = "1s";
+      bantime-increment = {
         enable = true;
-        setSocketVariable = true;
+        formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
+        maxtime = "1h";
+        overalljails = true;
+      };
+      jails = {
+        go-login.settings = {
+          enabled = true;
+          filter = "go-login";
+          action = ''iptables-multiport[name=HTTP, port="http,https,2000"]'';
+          logpath = "/home/noa/Documents/programming/SODS/login.log";
+          backend = "systemd";
+          findtime = 600;
+          bantime = 600;
+          maxretry = 5;
+        };
       };
     };
-
-    boot.kernelModules = [
-      "v4l2loopback"
-      "nct6775"
-      "k10temp"
-    ];
-
-    boot.extraModprobeConfig = ''
-      options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
-    '';
-    security = {
-      polkit.enable = true;
+    greetd = {
+      enable = true;
+      settings = rec {
+        initial_session = {
+          command = "${pkgs.hyprland}/bin/Hyprland";
+          user = "noa";
+        };
+        default_session = initial_session;
+      };
     };
+    minecraft-servers = {
+      enable = false;
+      eula = true;
+      openFirewall = true;
+      servers = {
+        "no-flicker" = {
+          enable = true;
+          package = pkgs.minecraftServers.paper-1_20_4;
+        };
+      };
+    };
+    openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+      settings.KbdInteractiveAuthentication = false;
+    };
+    syncthing = {
+      enable = true;
+      user = "noa";
+      dataDir = "/home/noa/Sync";
+      configDir = "/home/noa/Sync/.config/syncthing";
+    };
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "us";
+        variant = "intl";
+      };
+      videoDrivers = [ "nvidia" ];
+    };
+    flatpak.enable = true;
+  };
 
-    # Open ports in the firewall.
-    networking.firewall.allowedTCPPorts = [
-      80 # http
-      443 # https
-      53317 # Localsend
-    ];
-    networking.firewall.allowedUDPPorts = [
-      80
-      443
-      53317
-    ];
-    # Or disable the firewall altogether.
-    # networking.firewall.enable = false;
+  systemd.timers."update-flake" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "daily";
+      Persistent = true;
+    };
+  };
 
-    # This value determines the NixOS release from which the default
-    # settings for stateful data, like file locations and database versions
-    # on your system were taken. It‘s perfectly fine and recommended to leave
-    # this value at the release version of the first install of this system.
-    # Before changing this value read the documentation for this option
-    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-    system.stateVersion = "23.11"; # Did you read the comment?
-  }
+  systemd.services."update-flake" = {
+    path = with pkgs; [
+      git
+      openssh
+      nix
+      nixos-rebuild
+    ];
+    script = ''
+      [[ ! -d '/root/nixconf' ]] && cd /root && git clone git@github.com:itepastra/nixconf
+      cd /root/nixconf
+      git pull
+      nix flake update --commit-lock-file /root/nixconf
+      nixos-rebuild switch --flake .
+      git push
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+    };
+    wants = [
+      "network-online.target"
+    ];
+    after = [
+      "network-online.target"
+    ];
+  };
+
+  environment.etc = {
+    "fail2ban/filter.d/go-login.local".text = pkgs.lib.mkDefault (pkgs.lib.mkAfter ''
+      [Definition]
+      failregex=^time= level=WARN msg=".*?" ip=<ADDR> status=4\d\d$
+    '');
+  };
+
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+
+  boot.kernelModules = [
+    "v4l2loopback"
+    "nct6775"
+    "k10temp"
+  ];
+
+  boot.extraModprobeConfig = ''
+    options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+  '';
+  security = {
+    polkit.enable = true;
+  };
+
+  # Open ports in the firewall.
+  networking.firewall.allowedTCPPorts = [
+    80 # http
+    443 # https
+    53317 # Localsend
+  ];
+  networking.firewall.allowedUDPPorts = [
+    80
+    443
+    53317
+  ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "23.11"; # Did you read the comment?
+}
