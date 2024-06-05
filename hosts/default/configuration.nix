@@ -169,7 +169,7 @@
       mainDomains = {
         "noa.voorwaarts.nl" = {
           enable = true;
-          proxy = "http://127.0.0.1:3000/";
+          proxy = "http://127.0.0.1:7792/";
           extra_sites = {
             "images.noa.voorwaarts.nl" = {
               enable = true;
