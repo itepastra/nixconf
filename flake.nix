@@ -17,13 +17,13 @@
     };
 
     automapaper = {
-  url = "github:itepastra/automapaper";
-  inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:itepastra/automapaper";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-minecraft = {
-  url = "github:Infinidoge/nix-minecraft";
-  inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Infinidoge/nix-minecraft";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland = {
@@ -37,13 +37,13 @@
     };
 
     disko = {
-  url = "github:nix-community/disko";
-  inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lazy = {
-  url = "github:bobvanderlinden/nixos-config";
-  inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:bobvanderlinden/nixos-config";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
@@ -53,29 +53,29 @@
       nixosConfigurations = {
         lambdaOS = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs; 
+            inherit inputs;
             inherit nix-colors;
             inherit automapaper;
           };
-          modules = [ 
+          modules = [
             ./hosts/default/configuration.nix
             inputs.home-manager.nixosModules.default
           ];
         };
         NoasServer = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs; 
+            inherit inputs;
             inherit nix-colors;
           };
-          modules = [ 
+          modules = [
             disko.nixosModules.disko
             ./hosts/server/configuration.nix
             inputs.home-manager.nixosModules.default
           ];
         };
       };
-			nixosModules = {
-				automapaper = ./modules/automapaper;
-			};
+      nixosModules = {
+        automapaper = ./modules/automapaper;
+      };
     };
 }
