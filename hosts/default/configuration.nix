@@ -267,39 +267,43 @@
     flatpak.enable = true;
   };
 
-  systemd.timers."update-flake" = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "daily";
-      Persistent = true;
+  systemd = {
+    timers."update-flake" = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "daily";
+        Persistent = true;
+      };
     };
-  };
 
-  systemd.services."update-flake" = {
-    path = with pkgs; [
-      git
-      openssh
-      nix
-      nixos-rebuild
-    ];
-    script = ''
-      [[ ! -d '/root/nixconf' ]] && cd /root && git clone git@github.com:itepastra/nixconf
-      cd /root/nixconf
-      git pull
-      nix flake update --commit-lock-file /root/nixconf
-      nixos-rebuild switch --flake .
-      git push
-    '';
-    serviceConfig = {
-      Type = "oneshot";
-      User = "root";
+    services = {
+      "update-flake" = {
+        path = with pkgs; [
+          git
+          openssh
+          nix
+          nixos-rebuild
+        ];
+        script = ''
+          [[ ! -d '/root/nixconf' ]] && cd /root && git clone git@github.com:itepastra/nixconf
+          cd /root/nixconf
+          git pull
+          nix flake update --commit-lock-file /root/nixconf
+          nixos-rebuild switch --flake .
+          git push
+        '';
+        serviceConfig = {
+          Type = "oneshot";
+          User = "root";
+        };
+        wants = [
+          "network-online.target"
+        ];
+        after = [
+          "network-online.target"
+        ];
+      };
     };
-    wants = [
-      "network-online.target"
-    ];
-    after = [
-      "network-online.target"
-    ];
   };
 
   environment.etc = {
