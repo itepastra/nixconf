@@ -146,6 +146,9 @@
   # enable = true;
   # enableSSHSupport = true;
   # };
+
+  xdg.portal.enable = true;
+
   programs = {
     zsh.enable = true;
 

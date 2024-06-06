@@ -18,6 +18,10 @@ in
     wallpapers.automapaper = {
       enable = lib.mkEnableOption "enable automapaper";
     };
+    portalPackage = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.xdg-desktop-portal-hyprland;
+    };
   };
 
   imports = [
@@ -54,7 +58,10 @@ in
     ];
 
 
-    xdg.portal.configPackages = [ cfg.package ];
+    xdg.portal = {
+      extraPortals = [ cfg.portalPackage ];
+      config.common.default = "*";
+    };
 
     services.playerctld.enable = true;
     wayland.windowManager.hyprland = {

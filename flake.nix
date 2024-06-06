@@ -3,7 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    # nixpkgs.url = "github:nixos/nixpkgs/master";
+
+    # nixpkgs.url = "git+file:///home/noa/Documents/programming/nixpkgs?rev=0b0b7cefcce7f67bd56e2903be34db579b22528a";
 
     # nixpkgs.url = "github:NixOS/nixpkgs/d8e0944e6d2ce0f326040e654c07a410e2617d47";
 
