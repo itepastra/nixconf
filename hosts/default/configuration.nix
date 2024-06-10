@@ -342,6 +342,7 @@
     80 # http
     443 # https
     53317 # Localsend
+    7791 # Pixelflut
   ];
   networking.firewall.allowedUDPPorts = [
     80
