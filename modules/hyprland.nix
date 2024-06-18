@@ -40,7 +40,7 @@ in
       waybar = {
         modules = {
           left = [ "hyprland/workspaces" "tray" "hyprland/window" ];
-          center = [ "clock" ];
+          center = [ "clock" "custom/spotify" ];
           right = [ "custom/vpn" "wireplumber" "network" "cpu" "memory" "custom/poweroff" ];
         };
         enable = lib.mkDefault true;

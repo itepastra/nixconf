@@ -3,14 +3,16 @@ let
   name = "custom/poweroff";
 in
 {
-  options.modules.waybar.modules = import ./addname.nix lib name;
-  options.modules.waybar.${name} = {
-    enable = lib.mkEnableOption "enable ${name} waybar module";
+  options.modules.waybar = {
+    modules = import ./addname.nix lib name;
+    enabled.${name} = {
+      enable = lib.mkEnableOption "enable ${name} waybar module";
+    };
   };
   imports = [
     ../wofi.nix
   ];
-  config = lib.mkIf config.modules.waybar.${name}.enable {
+  config = lib.mkIf config.modules.waybar.enabled.${name}.enable {
     modules.wofi.enable = true;
     programs.waybar.settings.mainBar."${name}" = {
       format = "";

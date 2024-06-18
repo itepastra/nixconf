@@ -3,11 +3,13 @@ let
   name = "wireplumber";
 in
 {
-  options.modules.waybar.modules = import ./addname.nix lib name;
-  options.modules.waybar.${name} = {
-    enable = lib.mkEnableOption "enable ${name} waybar module";
+  options.modules.waybar = {
+    modules = import ./addname.nix lib name;
+    enabled.${name} = {
+      enable = lib.mkEnableOption "enable ${name} waybar module";
+    };
   };
-  config = lib.mkIf config.modules.waybar.${name}.enable {
+  config = lib.mkIf config.modules.waybar.enabled.${name}.enable {
     programs.waybar.settings.mainBar."${name}" = {
       format = "{volume}% {icon}";
       format-muted = "";
