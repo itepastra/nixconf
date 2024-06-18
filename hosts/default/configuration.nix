@@ -288,13 +288,6 @@
     };
   };
 
-  environment.etc = {
-    "fail2ban/filter.d/go-login.local".text = pkgs.lib.mkDefault (pkgs.lib.mkAfter ''
-      [Definition]
-      failregex=^time= level=WARN msg=".*?" ip=<ADDR> status=4\d\d$
-    '');
-  };
-
   virtualisation.docker = {
     enable = true;
     rootless = {
