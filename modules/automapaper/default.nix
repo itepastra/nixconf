@@ -149,8 +149,8 @@ in
               in highp vec2 texCoords;
               out vec4 stateColor;
 
-              const vec4 bgColor = ${nix-colors.lib.conversions.hexToGLSLVec "26052e"}; // #26052e
-              const vec4 fgColor = ${nix-colors.lib.conversions.hexToGLSLVec "950fad"}; // #950fad
+              const vec4 bgColor = ${nix-colors.lib.conversions.hexToGLSLVec config.colorScheme.palette.base00}; // #26052e
+              const vec4 fgColor = ${nix-colors.lib.conversions.hexToGLSLVec config.colorScheme.palette.base01}; // #950fad
 
               void main() {
               vec2 canvasSize = vec2(textureSize(tex2D, 0));

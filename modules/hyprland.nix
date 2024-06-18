@@ -91,8 +91,8 @@ in
           gaps_in = "2";
           gaps_out = "3";
           border_size = "3";
-          "col.active_border" = "0xff950fad";
-          "col.inactive_border" = "0xff26052e";
+          "col.active_border" = "0xff${config.colorScheme.palette.base01}";
+          "col.inactive_border" = "0xff${config.colorScheme.palette.base01}";
         };
         misc = {
           key_press_enables_dpms = true;

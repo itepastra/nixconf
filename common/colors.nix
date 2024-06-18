@@ -5,42 +5,35 @@
     nix-colors.homeManagerModules.default
   ];
 
-  # colorScheme = nix-colors.colorSchemes.catppuccin-macchiato;
-
   colorScheme = {
     slug = "test";
     name = "TestScheme";
     author = "Noa";
     palette = {
-      base00 = "#000000";
-      base01 = "#0000FF";
-      base02 = "#00FF00";
-      base03 = "#00FFFF";
-      base04 = "#FF0000";
-      base05 = "#FF00FF";
-      base06 = "#FFFF00";
-      base07 = "#FFFFFF";
-      base08 = "#777777";
-      base09 = "#7777FF";
-      base0A = "#77FF77";
-      base0B = "#77FFFF";
-      base0C = "#FF7777";
-      base0D = "#FF77FF";
-      base0E = "#FFFF77";
-      base0F = "#AAAAAA";
-      text = "#222222";
-      textInverted = "#DDDDDD";
-      textMuted = "#DDDDDD";
-      background = "#FFD2D2";
-      backgroundMuted = "#CCCCCC";
-      warn = "#FF0000";
-      highlight = "#FBAF44";
-      danger = "#F53C3C";
-      succes = "#5BBD63";
-      spotifyGreen = "#39A04A";
-      border = "#5F5F5F";
-      info = "#2CB6AF";
-      ok = "#38B148";
+      base00 = "#26052e"; # background222c"; # background
+      base01 = "#950fad"; # lighter background"#282a36"; # lighter background
+      base02 = "#3A3C4E"; # selection background
+      base03 = "#4D4F68"; # comments, invisibles, line highlighting
+      base04 = "#626483"; # dark foreground
+      base05 = "#E9E9F4"; # foreground
+      base06 = "#f8f8f2"; # light foreground
+      base07 = "#ffffff"; # lightest foreground
+      base08 = "#ff5555"; # red
+      base09 = "#f1fa8c"; # yellow
+      base0A = "#EBFF87"; # classes, markup, search text highlight
+      base0B = "#50fa7b"; # green
+      base0C = "#8be9fd"; # cyan
+      base0D = "#bd93f9"; # blue
+      base0E = "#ff79c6"; # purple
+      base0F = "#00F769"; # deprecated
+      base10 = "#1D1D26"; # darker background
+      base11 = "#1B1B23"; # darkest background
+      base12 = "#ff6e6e"; # bright red
+      base13 = "#ffffa5"; # bright yellow
+      base14 = "#69ff94"; # bright green
+      base15 = "#a4ffff"; # bright cyan
+      base16 = "#d6acff"; # bright blue
+      base17 = "#ff92df"; # bright purple
     };
   };
 

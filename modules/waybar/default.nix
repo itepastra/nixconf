@@ -37,6 +37,7 @@ in
     ./workspaces.nix
     ./temperature.nix
     ./wireplumber.nix
+    ../../common/colors.nix
   ];
 
   config = lib.mkIf cfg.enable {
@@ -74,7 +75,7 @@ in
         window#waybar {
           background-color: transparent;
           border-radius: 999px;
-          color: #${config.colorScheme.palette.text};
+          color: #${config.colorScheme.palette.base05};
           transition-property: background-color;
           transition-duration: .5s;
         }
@@ -111,22 +112,21 @@ in
           min-width: 15px;
           min-height: 15px;
           background-color: transparent;
-          color: #${config.colorScheme.palette.textMuted};
+          color: #${config.colorScheme.palette.base04};
           border-radius: 999px;
         }
 
         #workspaces button:hover {
-          background-color: #${config.colorScheme.palette.highlight};
+          background-color: #${config.colorScheme.palette.base17};
         }
 
         #workspaces button.active {
-          color: #${config.colorScheme.palette.text};
           font-weight: bold;
-          background-color: #${config.colorScheme.palette.highlight};
+          background-color: #${config.colorScheme.palette.base0E};
         }
 
         #workspaces button.urgent {
-          background-color: #${config.colorScheme.palette.danger};
+          background-color: #${config.colorScheme.palette.base08};
         }
 
         #clock,
@@ -148,12 +148,12 @@ in
         #custom-updates,
         #custom-poweroff,
         #mpd {
-          color: #${config.colorScheme.palette.textMuted};
+          color: #${config.colorScheme.palette.base04};
           margin: 0px 2px;
           padding: 0 15px;
           
           border-radius: 999px;
-          box-shadow: inset 0 0 0 1px #${config.colorScheme.palette.backgroundMuted};
+          box-shadow: inset 0 0 0 1px #${config.colorScheme.palette.base01};
         }
 
         .modules-right > widget:last-child > #battery {
@@ -163,19 +163,19 @@ in
         #tray {    
           padding: 4px 10px;        
           border-radius: 999px 999px 999px 999px;
-          box-shadow: inset 0px 0px 0 1px #${config.colorScheme.palette.backgroundMuted};
+          box-shadow: inset 0px 0px 0 1px #${config.colorScheme.palette.base01};
         }
 
         #window { 
           margin-left: 6px;
-          color: #${config.colorScheme.palette.textMuted};
+          color: #${config.colorScheme.palette.base04};
         }
 
         #workspaces {   
           margin: 0 4px;
           padding: 4px 4px;   
           border-radius: 999px;
-          box-shadow: inset 0px 0px 0 1px #${config.colorScheme.palette.backgroundMuted};
+          box-shadow: inset 0px 0px 0 1px #${config.colorScheme.palette.base01};
         }
 
         #cpu {
@@ -187,8 +187,8 @@ in
           border-radius: 0px;
           padding: 0 10px;
           margin: 0px;
-          box-shadow: inset 0px 2px 0 -1px #${config.colorScheme.palette.backgroundMuted},
-                inset 0px -2px 0 -1px #${config.colorScheme.palette.backgroundMuted};
+          box-shadow: inset 0px 2px 0 -1px #${config.colorScheme.palette.base01},
+                inset 0px -2px 0 -1px #${config.colorScheme.palette.base01};
         }
 
         #clock {    
@@ -199,13 +199,13 @@ in
         #battery {    
           min-width: 50px;
           border-radius: 999px;
-          box-shadow: inset 0 0 0 1px #${config.colorScheme.palette.backgroundMuted};
-          background-color: #${config.colorScheme.palette.backgroundMuted};
+          box-shadow: inset 0 0 0 1px #${config.colorScheme.palette.base01};
+          background-color: #${config.colorScheme.palette.base01};
           transition: all 0.3s;
         }
 
         #battery.charging, #battery.plugged {   
-          color: #${config.colorScheme.palette.succes}; 
+          color: #${config.colorScheme.palette.base0B}; 
           background-color: transparent;
           animation: batteryCharging 1.2s linear 0s infinite normal forwards,               
         }
@@ -213,7 +213,7 @@ in
           animation: batteryFull 7.0s linear 0s infinite normal forwards;    
         }
         #battery.critical:not(.charging) {    
-          background-color: #${config.colorScheme.palette.background};
+          background-color: #${config.colorScheme.palette.base00};
           animation: batteryCritical 1.2s linear 0s infinite normal forwards;        
         }
 
@@ -224,11 +224,11 @@ in
         #network.disconnected,
         #pulseaudio.muted {
           transition: all 0.2s;
-          color: #${config.colorScheme.palette.backgroundMuted};
+          color: #${config.colorScheme.palette.base01};
         }
 
         .custom-spotify {
-          color: #${config.colorScheme.palette.spotifyGreen};
+          color: #${config.colorScheme.palette.base14};
           margin-right: 10px;
         }
 
@@ -239,7 +239,7 @@ in
 
         #temperature.critical {
           background-color: transparent;
-          color: #${config.colorScheme.palette.danger};
+          color: #${config.colorScheme.palette.base08};
         }
 
         #tray {    
@@ -252,7 +252,7 @@ in
         }
 
         #tray > .needs-attention {
-          background-color: #${config.colorScheme.palette.danger};
+          background-color: #${config.colorScheme.palette.base08};
           border-radius: 999px;
         }
 
@@ -263,106 +263,15 @@ in
           background-color: transparent;
         }
 
-        #custom-updates {
-          box-shadow: inset 0 0 0 1px #${config.colorScheme.palette.backgroundMuted};
-          color: #${config.colorScheme.palette.textMuted};
-          transition: all 0.5s;
-        }
-
-        #custom-updates.pending {
-          box-shadow: inset 0 0 0 2px #${config.colorScheme.palette.highlight};
-          color: #${config.colorScheme.palette.highlight};
-          font-weight: bold;
-          transition: all 0.5s;
-        }
-
         tooltip {
-          background-color: #${config.colorScheme.palette.background};
+          background-color: #${config.colorScheme.palette.base00};
           border: 1px solid;
-          border-color: #${config.colorScheme.palette.border};    
+          border-color: #${config.colorScheme.palette.base04};
           border-radius: 10px;
-          color: #${config.colorScheme.palette.text};
+          color: #${config.colorScheme.palette.base05};
         }
         tooltip label {
           padding: 5px;
-        }
-
-        /* Keyframes ---------------------------------------------------------------- */
-
-        @keyframes batteryCritical {
-          0% {
-            box-shadow: inset 0px 20px 8px -16px #${config.colorScheme.palette.danger},
-                  inset 0px -20px 8px -16px #${config.colorScheme.palette.danger};
-            color: #${config.colorScheme.palette.danger};
-          }
-          50% {
-            box-shadow: inset 0px 12px 8px -16px #${config.colorScheme.palette.danger},
-                  inset 0px -12px 8px -16px #${config.colorScheme.palette.danger};
-            color: #${config.colorScheme.palette.textMuted};
-          } 
-          100% {
-            box-shadow: inset 0px 20px 8px -16px #${config.colorScheme.palette.danger},
-                  inset 0px -20px 8px -16px #${config.colorScheme.palette.danger};
-            color: #${config.colorScheme.palette.danger};
-          }
-        }
-
-        @keyframes batteryCharging {
-          0% {
-            box-shadow: inset 0px 0px 8px 0px #${config.colorScheme.palette.info},
-                  inset 0px 20px 8px -18px  #${config.colorScheme.palette.ok},
-                  inset 0px -20px 8px -18px  #${config.colorScheme.palette.ok};
-          }
-          25% {
-            box-shadow: inset 0px 0px 8px 0px #${config.colorScheme.palette.info},
-                  inset 14px 14px 8px -18px #${config.colorScheme.palette.ok},
-                  inset -14px -14px 8px -18px #${config.colorScheme.palette.ok};
-          }
-          50% {
-            box-shadow: inset 0px 0px 8px 0px #${config.colorScheme.palette.info},
-                  inset 20px 0px 8px -18px #${config.colorScheme.palette.ok},
-                  inset -20px 0px 8px -18px #${config.colorScheme.palette.ok};
-          }
-          75% {
-            box-shadow: inset 0px 0px 8px 0px #${config.colorScheme.palette.info},
-                  inset 14px -14px 8px -18px #${config.colorScheme.palette.ok},
-                  inset -14px 14px 8px -18px #${config.colorScheme.palette.ok};
-          }
-          100% {
-            box-shadow: inset 0px 0px 8px 0px #${config.colorScheme.palette.info},
-                  inset 0px -20px 8px -18px #${config.colorScheme.palette.ok},
-                  inset 0px 20px 8px -18px #${config.colorScheme.palette.ok};
-          }
-        }
-
-
-
-        @keyframes batteryFull {
-          0% {
-            box-shadow: inset 0px 20px 8px -16px #${config.colorScheme.palette.warn},
-                  inset 0px -20px 8px -16px #${config.colorScheme.palette.warn};
-            color: #${config.colorScheme.palette.warn};
-          }
-          25% {
-            box-shadow: inset 0px 19px 8px -16px #${config.colorScheme.palette.warn},
-                  inset 0px -19px 8px -16px #${config.colorScheme.palette.warn};
-            color: #${config.colorScheme.palette.warn};
-          }
-          50% {
-            box-shadow: inset 0px 15px 8px -16px #${config.colorScheme.palette.warn},
-                  inset 0px -15px 8px -16px #${config.colorScheme.palette.warn};
-            color: #${config.colorScheme.palette.warn};
-          } 
-          75% {
-            box-shadow: inset 0px 19px 8px -16px #${config.colorScheme.palette.warn},
-                  inset 0px -19px 8px -16px #${config.colorScheme.palette.warn};
-            color: #${config.colorScheme.palette.warn};
-          }
-          100% {
-            box-shadow: inset 0px 20px 8px -16px #${config.colorScheme.palette.warn},
-                  inset 0px -20px 8px -16px #${config.colorScheme.palette.warn};
-            color: #${config.colorScheme.palette.warn};
-          }
         }
       '';
     };
