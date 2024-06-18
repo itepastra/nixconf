@@ -15,15 +15,15 @@ in
             description = "the shader executed to get the state for the initialisation, and re-initialisation steps";
           };
           state = lib.mkOption {
-            type = str; # TODO: make filepath possible as well
+            type = str;
             description = "the shader executed to increment the state to the next generation";
           };
           display = lib.mkOption {
-            type = str; # TODO: make filepath possible as well
+            type = str;
             description = "the shader executed to display the state to the monitor";
           };
           horizontal = lib.mkOption {
-            type = int; # TODO: make filepath possible as well
+            type = int;
             description = "the amount of horizontal cells in the state";
           };
           vertical = lib.mkOption {

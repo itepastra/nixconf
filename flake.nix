@@ -6,7 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
 
     nix-colors = {
-      url = "github:misterio77/nix-colors";
+      url = "github:itepastra/nix-colors";
     };
 
     home-manager = {
