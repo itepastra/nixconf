@@ -119,6 +119,15 @@ in
 
         virtualHosts = hosts;
       };
+
+      networking.firewall.allowedTCPPorts = [
+        80 # http
+        443 # https
+      ];
+      networking.firewall.allowedUDPPorts = [
+        80 # http
+        443 # https
+      ];
     }
   );
 }
