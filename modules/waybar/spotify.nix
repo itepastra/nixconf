@@ -12,7 +12,7 @@ in
   config = lib.mkIf config.modules.waybar.enabled.${name}.enable {
     programs.waybar = {
       settings.mainBar.${name} = {
-        exec = ''${pkgs.playerctl}/bin/playerctl metadata --player=spotify -f "{{ status }}: {{ artist }} - {{ title }}"'';
+        exec = ''${pkgs.playerctl}/bin/playerctl metadata --player=spotify -F -f "{{ status }}: {{ artist }} - {{ title }}"'';
         format = "{}";
         interval = 1;
         on-click = "${pkgs.playerctl}/bin/playerctl --player=spotify play-pause";
