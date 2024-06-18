@@ -10,7 +10,6 @@
       ./hardware-configuration.nix
       ../../modules/games/steam.nix
       ../../modules/websites
-      inputs.nix-minecraft.nixosModules.minecraft-servers
     ];
 
   # Bootloader.
@@ -42,7 +41,7 @@
     allowUnfree = true;
     nvidia.acceptLicense = true;
   };
-  nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
+  nixpkgs.overlays = [ ];
 
   networking = {
     hostName = "lambdaOS"; # Define your hostname.
@@ -212,29 +211,6 @@
       pulse.enable = true;
       jack.enable = true;
     };
-    fail2ban = {
-      enable = true;
-      maxretry = 5;
-      bantime = "1s";
-      bantime-increment = {
-        enable = true;
-        formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
-        maxtime = "1h";
-        overalljails = true;
-      };
-      jails = {
-        go-login.settings = {
-          enabled = true;
-          filter = "go-login";
-          action = ''iptables-multiport[name=HTTP, port="http,https,2000"]'';
-          logpath = "/home/noa/Documents/programming/SODS/login.log";
-          backend = "systemd";
-          findtime = 600;
-          bantime = 600;
-          maxretry = 5;
-        };
-      };
-    };
     greetd = {
       enable = true;
       settings = rec {
@@ -243,17 +219,6 @@
           user = "noa";
         };
         default_session = initial_session;
-      };
-    };
-    minecraft-servers = {
-      enable = false;
-      eula = true;
-      openFirewall = true;
-      servers = {
-        "no-flicker" = {
-          enable = true;
-          package = pkgs.minecraftServers.paper-1_20_4;
-        };
       };
     };
     openssh = {
