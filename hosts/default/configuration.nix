@@ -292,7 +292,7 @@
           cd /root/nixconf
           git pull
           nix flake update --commit-lock-file /root/nixconf
-          nixos-rebuild switch --flake .
+          nixos-rebuild boot --flake .
           git push
         '';
         serviceConfig = {
