@@ -18,8 +18,8 @@
 
   boot.plymouth = {
     enable = true;
-    theme = "rings";
-    themePackages = [ (pkgs.adi1090x-plymouth-themes.override { selected_themes = [ "rings" ]; }) ];
+    theme = "breeze";
+    # themePackages = [ (pkgs.adi1090x-plymouth-themes.override { selected_themes = [ "rings" ]; }) ];
   };
 
   # LOVE me some blob
