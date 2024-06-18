@@ -16,11 +16,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.plymouth = {
-    enable = true;
-    theme = "breeze";
-    # themePackages = [ (pkgs.adi1090x-plymouth-themes.override { selected_themes = [ "rings" ]; }) ];
-  };
 
   # LOVE me some blob
   hardware.enableRedistributableFirmware = true;
