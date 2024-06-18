@@ -3,8 +3,7 @@
 
   inputs = {
     # nixpkgs.url = "github:nixos/nixpkgs/master";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    nixpkgs.url = "git+file:///home/noa/Documents/programming/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
 
     nix-colors = {
       url = "github:misterio77/nix-colors";
