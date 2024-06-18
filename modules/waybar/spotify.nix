@@ -14,7 +14,6 @@ in
       settings.mainBar.${name} = {
         exec = ''${pkgs.playerctl}/bin/playerctl metadata --player=spotify -F -f "{{ status }}: {{ artist }} - {{ title }}"'';
         format = "{}";
-        interval = 1;
         on-click = "${pkgs.playerctl}/bin/playerctl --player=spotify play-pause";
         on-scroll-up = "${pkgs.playerctl}/bin/playerctl --player=spotify volume 0.01+";
         on-scroll-down = "${pkgs.playerctl}/bin/playerctl --player=spotify volume 0.01-";
