@@ -489,7 +489,15 @@ require("lazy").setup({
 				pyright = {},
 				html = { filetypes = { "html", "twig", "hbs" } },
 				templ = { filetypes = { "templ" } },
-				nil_ls = {},
+				nil_ls = {
+					settings = {
+						["nil"] = {
+							formatting = {
+								command = { "nixpkgs-fmt" },
+							},
+						},
+					},
+				},
 				ocamllsp = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
