@@ -1,4 +1,4 @@
-{ lib, config, pkgs, inputs, ... }:
+{ lib, config, pkgs, inputs, nix-colors, ... }:
 let
   cfg = config.modules.automapaper;
 in
@@ -149,8 +149,8 @@ in
               in highp vec2 texCoords;
               out vec4 stateColor;
 
-              const vec4 bgColor = vec4(38.0/255.0, 5.0/255.0, 46.0/255.0, 1.0); // #26052e
-              const vec4 fgColor = vec4(148.0/255.0, 15.0/255.0, 173.0/255.0, 1.0); // #950fad
+              const vec4 bgColor = ${nix-colors.lib.conversions.hexToGLSLVec "26052e"}; // #26052e
+              const vec4 fgColor = ${nix-colors.lib.conversions.hexToGLSLVec "950fad"}; // #950fad
 
               void main() {
               vec2 canvasSize = vec2(textureSize(tex2D, 0));
