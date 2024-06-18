@@ -42,7 +42,7 @@ in
   ];
 
   config = lib.mkIf cfg.enable
-    rec {
+    {
       modules.waybar.enabled = (
         let
           mods = config.modules.waybar.modules;

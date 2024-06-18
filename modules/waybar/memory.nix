@@ -17,7 +17,7 @@ in
       };
       style = ''
         #memory {
-          border-radius: 0px;
+          border-radius: 0px 999px 999px 0px;
           padding: 0 10px;
           color: #${config.colorScheme.palette.base04};
           margin: 0px;
