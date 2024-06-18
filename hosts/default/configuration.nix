@@ -2,7 +2,7 @@
 # your system.Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, nix-colors, ... }:
+{ config, pkgs, inputs, nix-colors, lib, ... }:
 {
   imports =
     [
@@ -12,9 +12,31 @@
       ../../modules/websites
     ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    plymouth.enable = true;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "i915.fastboot=1"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+    ];
+
+    loader = {
+      timeout = lib.mkDefault 0;
+      efi.canTouchEfiVariables = true;
+      systemd-boot = {
+        enable = true;
+        editor = false;
+        configurationLimit = 100;
+      };
+    };
+  };
 
 
   # LOVE me some blob
