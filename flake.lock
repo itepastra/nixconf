@@ -605,18 +605,17 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1718676766,
-        "narHash": "sha256-0se0JqeNSZcNmqhsHMN9N4cVV/XkPhtSVJwhLs2RGUg=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "31e107dc564e53cf2843bedf6a8b85faa2f845e3",
-        "type": "github"
+        "lastModified": 1718711883,
+        "narHash": "sha256-A7pCPkH1Sqe4auvre6ePK4yaSVOoK3nsjnj3fPlmCQk=",
+        "ref": "refs/heads/master",
+        "rev": "1432cb1d743b331f6202ac051cd9f162502cb38c",
+        "revCount": 640841,
+        "type": "git",
+        "url": "file:///home/noa/Documents/programming/nixpkgs"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable-small",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/noa/Documents/programming/nixpkgs"
       }
     },
     "pre-commit-hooks-nix": {
