@@ -10,22 +10,21 @@ in
     };
   };
   config = lib.mkIf config.modules.waybar.enabled.${name}.enable {
-    programs.waybar.settings.mainBar.${name} = {
-      tooltip-format = "<big>{:%Y %B}</big>\n\n{calendar}";
-      interval = 1;
-      format = "{:%H:%M:%S}";
-      format-alt = "{:%Y-%m-%d %H:%M:%S}";
-      on-click-middle = "gnome-clocks";
-      calendar = {
-        weeks-pos = "left";
-        format = {
-          today = "<span color='#FF6666'><u>{}</u></span>"; # TODO: use nix-colors
-          weeks = "<span color='#707A8C'>{}</span>"; # TODO: use nix-colors
-        };
+    programs.waybar = {
+      settings.mainBar.${name} = {
+        exec = ''${pkgs.playerctl}/bin/playerctl metadata --player=spotify -f "{{ status }}: {{ artist }} - {{ title }}"'';
+        format = "{}";
+        interval = 1;
+        on-click = "${pkgs.playerctl}/bin/playerctl --player=spotify play-pause";
+        on-scroll-up = "${pkgs.playerctl}/bin/playerctl --player=spotify volume 0.01+";
+        on-scroll-down = "${pkgs.playerctl}/bin/playerctl --player=spotify volume 0.01-";
       };
-      home.packages = [
-        pkgs.gnome.gnome-clocks
-      ];
+      style = ''
+        #custom-spotify {
+          color: #${config.colorScheme.palette.base14};
+          margin-right: 10px;
+        }
+      '';
     };
   };
 }

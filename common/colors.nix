@@ -6,8 +6,8 @@
   ];
 
   colorScheme = {
-    slug = "test";
-    name = "TestScheme";
+    slug = "dracumod";
+    name = "ModifiedDracula";
     author = "Noa";
     palette = {
       base00 = "#26052e"; # background222c"; # background
