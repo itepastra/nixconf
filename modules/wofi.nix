@@ -19,7 +19,8 @@ in
         poweroff="Poweroff"
         reboot="Reboot"
         sleep="Suspend"
-        selected_option=$(echo -e "$lock\n$sleep\n$reboot\n$poweroff" | wofi --dmenu -i -p "Powermenu")
+        logout="Log out"
+        selected_option=$(echo -e "$lock\n$sleep\n$reboot\n$logout\n$poweroff" | wofi --dmenu -i -p "Powermenu")
 
         if [ "$selected_option" == "$lock" ]
         then
@@ -37,6 +38,10 @@ in
         then
         echo "sleep"
         suspend
+        elif [ "$selected_option" == "$logout" ]
+        then
+        echo "logout"
+        hyprctl dispatch exit
         else
         echo "No match"
         fi
