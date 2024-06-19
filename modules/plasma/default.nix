@@ -8,9 +8,12 @@ in
   };
 
   imports = [
+		../applications
   ];
 
+
   config = lib.mkIf cfg.enable {
+		modules.apps.enable = true;
 		services.desktopManager.plasma6.enable = true;
 
 		xdg.portal.config.common.default = "*";
