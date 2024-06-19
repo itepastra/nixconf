@@ -28,7 +28,6 @@
 
   modules = {
     hyprland.enable = false;
-		plasma.enable = true;
     games.enable = true;
     apps = {
       enable = true;

@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ../../modules/games/steam.nix
       ../../modules/websites
+			../../modules/plasma
     ];
 
   boot = {
@@ -195,6 +196,7 @@
 
   modules = {
     games.steam.enable = true;
+		plasma.enable = true;
     websites = {
       enable = true;
       certMail = "acme@voorwaarts.nl";
