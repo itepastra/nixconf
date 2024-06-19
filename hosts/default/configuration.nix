@@ -236,7 +236,7 @@
       jack.enable = true;
     };
     greetd = {
-      enable = true;
+      enable = false;
       settings = rec {
         initial_session = {
           command = "${pkgs.hyprland}/bin/Hyprland";
@@ -264,6 +264,10 @@
       };
       videoDrivers = [ "nvidia" ];
     };
+		displayManager.sddm = {
+			enable = true;
+			wayland.enable = true;
+		};
     flatpak.enable = true;
   };
 
