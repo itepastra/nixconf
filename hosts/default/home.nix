@@ -27,7 +27,7 @@
   nixpkgs.config.allowUnfree = true;
 
   modules = {
-    hyprland.enable = false;
+    hyprland.enable = true;
     games.enable = true;
     apps = {
       enable = true;
