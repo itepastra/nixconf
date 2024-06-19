@@ -194,7 +194,7 @@
   };
 
   modules = {
-    games.steam.enable = false;
+    games.steam.enable = true;
     websites = {
       enable = true;
       certMail = "acme@voorwaarts.nl";
