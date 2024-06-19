@@ -13,8 +13,11 @@
       ../../modules/plasma
     ];
 
-  boot = {
+  boot = rec {
     kernelPackages = pkgs.linuxPackages_6_8;
+		extraModulePackages = with kernelPackages; [
+			v4l2loopback
+		];
     consoleLogLevel = 0;
     initrd.verbose = false;
     plymouth = rec {
