@@ -3,7 +3,7 @@
 {
   imports =
     [
-      ../../modules/hyprland.nix
+			../../modules
       ../../modules/games
       ../../modules/applications
       ../../common/nvim/nvim.nix
@@ -27,7 +27,8 @@
   nixpkgs.config.allowUnfree = true;
 
   modules = {
-    hyprland.enable = true;
+    hyprland.enable = false;
+		plasma.enable = true;
     games.enable = true;
     apps = {
       enable = true;
