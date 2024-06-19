@@ -13,7 +13,7 @@
     ];
 
   boot = {
-		kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
     consoleLogLevel = 0;
     initrd.verbose = false;
     plymouth.enable = true;
@@ -52,7 +52,7 @@
     };
     open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
   hardware.opengl = {
     enable = true;
