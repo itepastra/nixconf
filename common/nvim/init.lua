@@ -589,7 +589,7 @@ require("lazy").setup({
 
 				go = { "gopls" },
 
-				nix = { "nixpkgs-fmt" },
+				nix = { "rnix", "nixpkgs-fmt" },
 				--
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.
