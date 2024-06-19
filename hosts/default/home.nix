@@ -85,8 +85,8 @@
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
-    #	 org.gradle.console=verbose
-    #	 org.gradle.daemon.idletimeout=3600000
+    #   org.gradle.console=verbose
+    #   org.gradle.daemon.idletimeout=3600000
     # '';
   };
 
@@ -95,15 +95,15 @@
   # Manager then you have to manually source 'hm-session-vars.sh' located at
   # either
   #
-  #	~/.nix-profile/etc/profile.d/hm-session-vars.sh
+  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
   #
   # or
   #
-  #	~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
+  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
   #
   # or
   #
-  #	/etc/profiles/per-user/noa/etc/profile.d/hm-session-vars.sh
+  #  /etc/profiles/per-user/noa/etc/profile.d/hm-session-vars.sh
   #
 
 
@@ -124,10 +124,6 @@
     userDirs = {
       enable = true;
       createDirectories = true;
-    };
-    portal = {
-      enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
     };
   };
 
@@ -163,12 +159,12 @@
         size = 32;
         package =
           pkgs.runCommand "moveUp" { } ''
-            					mkdir -p $out/share/icons
-            					ln -s ${pkgs.fetchzip {
-            						url = url;
-            						hash = hash;
-            					}} $out/share/icons/${name}
-            				'';
+                      mkdir -p $out/share/icons
+                      ln -s ${pkgs.fetchzip {
+                        url = url;
+                        hash = hash;
+                      }} $out/share/icons/${name}
+                    '';
       };
     in
     getFrom

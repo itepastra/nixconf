@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ../../modules/games/steam.nix
       ../../modules/websites
+      ../../modules/plasma
     ];
 
   boot = {
@@ -184,7 +185,6 @@
     hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
 
     nix-ld.enable = true;
@@ -195,6 +195,7 @@
 
   modules = {
     games.steam.enable = true;
+    plasma.enable = true;
     websites = {
       enable = true;
       certMail = "acme@voorwaarts.nl";
@@ -234,7 +235,7 @@
       jack.enable = true;
     };
     greetd = {
-      enable = true;
+      enable = false;
       settings = rec {
         initial_session = {
           command = "${pkgs.hyprland}/bin/Hyprland";
@@ -261,6 +262,10 @@
         variant = "intl";
       };
       videoDrivers = [ "nvidia" ];
+    };
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
     };
     flatpak.enable = true;
   };
