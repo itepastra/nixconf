@@ -16,10 +16,10 @@
     kernelPackages = pkgs.linuxPackages_6_8;
     consoleLogLevel = 0;
     initrd.verbose = false;
-    plymouth = {
+    plymouth = rec {
       enable = true;
-      theme = "rings";
-      themePackages = [(pkgs.adi1090x-plymouth-themes.override {selected_themes = ["rings"];})];
+      theme = "colorful";
+      themePackages = [(pkgs.adi1090x-plymouth-themes.override {selected_themes = [ theme ];})];
     };
     kernelParams = [
       "quiet"
