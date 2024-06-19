@@ -36,6 +36,16 @@
       "udev.log_priority=3"
     ];
 
+		kernelModules = [
+			"v4l2loopback"
+			"nct6775"
+			"k10temp"
+		];
+
+		extraModprobeConfig = ''
+			options v4l2loopback devices=1 video_nr=2 card_label="OBS Cam" exclusive_caps=1
+		'';
+
     loader = {
       timeout = lib.mkDefault 0;
       efi.canTouchEfiVariables = true;
@@ -319,16 +329,6 @@
       setSocketVariable = true;
     };
   };
-
-  boot.kernelModules = [
-    "v4l2loopback"
-    "nct6775"
-    "k10temp"
-  ];
-
-  boot.extraModprobeConfig = ''
-    options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
-  '';
   security = {
     polkit.enable = true;
   };
