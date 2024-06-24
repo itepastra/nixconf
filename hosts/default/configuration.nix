@@ -72,10 +72,10 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-  };
+	hardware.graphics = {
+		enable = true;
+		enable32Bit = true;
+	};
 
   # Allow unfree packages
   nixpkgs.config = {
