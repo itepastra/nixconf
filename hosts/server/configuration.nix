@@ -56,11 +56,7 @@
     };
     noa = {
       isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-      packages = with pkgs; [
-        firefox
-        tree
-      ];
+      extraGroups = [ "networkmanager" "wheel" "docker" ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWtje7dGqyrBY7PLq6DANvUR6yfungQNsXGkTO6PP6/ noa@NoasPCArch"
       ];
