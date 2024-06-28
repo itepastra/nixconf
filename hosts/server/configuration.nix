@@ -125,14 +125,18 @@
   networking.firewall.allowedTCPPorts = [ 
 	22 # ssh
 	25565 25575 # minecraft
+	25566 25576 # minecraft
 	38281 # archipelago
 	34197 27015 # factorio
+	34198 27016 # factorio
 	];
   networking.firewall.allowedUDPPorts = [
 	22 # ssh
 	25565 25575 # minecraft
+	25566 25576 # minecraft
 	38281 # archipelago
 	34197 27015 # factorio
+	34198 27016 # factorio
 	];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
