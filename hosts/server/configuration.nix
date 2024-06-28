@@ -14,12 +14,8 @@
       (modulesPath + "/installer/scan/not-detected.nix")
       (modulesPath + "/profiles/qemu-guest.nix")
 
-			../../common/locale.nix
+			../../common
     ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # LOVE me some blob
   hardware.enableRedistributableFirmware = true;

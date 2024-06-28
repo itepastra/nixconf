@@ -12,7 +12,7 @@
       ../../modules/websites
       ../../modules/plasma
 
-			../../common/locale.nix
+			../../common
     ];
 
   boot = rec {
