@@ -40,6 +40,7 @@
     # Programming langs
     go
     nodejs
+		factorio-headless
   ];
 
   modules = {
