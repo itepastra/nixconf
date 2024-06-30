@@ -28,7 +28,7 @@ in
       };
       style = ''
         #clock {
-          color: #${config.colorScheme.palette.base04};
+          color: #${config.colorScheme.palette.taskbarText};
           margin: 0px 2px;
           padding: 0 15px;
           

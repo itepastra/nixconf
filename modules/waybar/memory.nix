@@ -19,7 +19,7 @@ in
         #memory {
           border-radius: 0px 999px 999px 0px;
           padding: 0 10px;
-          color: #${config.colorScheme.palette.base04};
+          color: #${config.colorScheme.palette.taskbarText};
           margin: 0px;
           box-shadow: inset 0px 2px 0 -1px #${config.colorScheme.palette.base01},
                 inset 0px -2px 0 -1px #${config.colorScheme.palette.base01};

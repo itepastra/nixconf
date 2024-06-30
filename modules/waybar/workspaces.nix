@@ -24,7 +24,7 @@ in
           min-width: 15px;
           min-height: 15px;
           background-color: transparent;
-          color: #${config.colorScheme.palette.base04};
+          color: #${config.colorScheme.palette.taskbarText};
           border-radius: 999px;
         }
 

@@ -101,7 +101,7 @@ in
           tooltip {
             background-color: #${config.colorScheme.palette.base00};
             border: 1px solid;
-            border-color: #${config.colorScheme.palette.base04};
+            border-color: #${config.colorScheme.palette.taskbarText};
             border-radius: 10px;
             color: #${config.colorScheme.palette.base05};
           }

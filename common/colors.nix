@@ -9,9 +9,9 @@
     slug = "dracumod";
     name = "ModifiedDracula";
     author = "Noa";
-    palette = {
-      base00 = "#26052e"; # background222c"; # background
-      base01 = "#950fad"; # lighter background"#282a36"; # lighter background
+    palette = rec {
+      base00 = "#26052e"; # background222c"
+      base01 = "#950fad"; # lighter background"
       base02 = "#3A3C4E"; # selection background
       base03 = "#4D4F68"; # comments, invisibles, line highlighting
       base04 = "#626483"; # dark foreground
@@ -34,6 +34,7 @@
       base15 = "#a4ffff"; # bright cyan
       base16 = "#d6acff"; # bright blue
       base17 = "#ff92df"; # bright purple
+			taskbarText = base04;
     };
   };
 

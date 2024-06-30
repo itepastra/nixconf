@@ -37,7 +37,7 @@ in
 
         #window { 
           margin-left: 6px;
-          color: #${config.colorScheme.palette.base04};
+          color: #${config.colorScheme.palette.taskbarText};
         }
       '';
     };

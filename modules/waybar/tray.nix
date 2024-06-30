@@ -16,7 +16,7 @@ in
       };
       style = ''
         #tray {
-          color: #${config.colorScheme.palette.base04};
+          color: #${config.colorScheme.palette.taskbarText};
           margin: 0px 2px;
           padding: 4px 10px;
           border-radius: 999px 999px 999px 999px;
