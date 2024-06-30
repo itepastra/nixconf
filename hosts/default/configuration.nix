@@ -12,14 +12,14 @@
       ../../modules/websites
       ../../modules/plasma
 
-			../../common
+      ../../common
     ];
 
   boot = rec {
     kernelPackages = pkgs.linuxPackages_6_8;
-		extraModulePackages = with kernelPackages; [
-			v4l2loopback
-		];
+    extraModulePackages = with kernelPackages; [
+      v4l2loopback
+    ];
     consoleLogLevel = 0;
     initrd.verbose = false;
     plymouth = rec {
@@ -38,15 +38,15 @@
       "udev.log_priority=3"
     ];
 
-		kernelModules = [
-			"v4l2loopback"
-			"nct6775"
-			"k10temp"
-		];
+    kernelModules = [
+      "v4l2loopback"
+      "nct6775"
+      "k10temp"
+    ];
 
-		extraModprobeConfig = ''
-			options v4l2loopback devices=1 video_nr=2 card_label="OBS Cam" exclusive_caps=1
-		'';
+    extraModprobeConfig = ''
+      options v4l2loopback devices=1 video_nr=2 card_label="OBS Cam" exclusive_caps=1
+    '';
 
     loader = {
       timeout = lib.mkDefault 0;
@@ -74,10 +74,10 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
-	hardware.graphics = {
-		enable = true;
-		enable32Bit = true;
-	};
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   # Allow unfree packages
   nixpkgs.config = {
@@ -299,6 +299,7 @@
         serviceConfig = {
           Type = "oneshot";
           User = "root";
+          RemainAfterExit = true;
         };
         wants = [
           "network-online.target"
@@ -306,6 +307,7 @@
         after = [
           "network-online.target"
         ];
+        restartIfChanged = false;
       };
     };
   };
