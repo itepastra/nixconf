@@ -79,6 +79,13 @@
     enable32Bit = true;
   };
 
+	hardware = {
+		bluetooth = {
+			enable = true;
+			powerOnBoot = true;
+		};
+	};
+
   # Allow unfree packages
   nixpkgs.config = {
     allowUnfree = true;
@@ -269,6 +276,7 @@
       wayland.enable = true;
     };
     flatpak.enable = true;
+		blueman.enable = true;
   };
 
   systemd = {
