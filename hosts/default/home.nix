@@ -73,6 +73,7 @@
 
     localsend
 		blueberry
+		qbittorrent
   ];
 
 
