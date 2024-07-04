@@ -276,7 +276,6 @@
       wayland.enable = true;
     };
     flatpak.enable = true;
-		blueman.enable = true;
   };
 
   systemd = {
