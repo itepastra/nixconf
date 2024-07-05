@@ -83,9 +83,6 @@
 			nvidiaSettings = true;
 			package = config.boot.kernelPackages.nvidiaPackages.beta;
 		};
-		openrgb = {
-			enable = true;
-		};
 	};
 
   # Allow unfree packages
@@ -254,6 +251,11 @@
         default_session = initial_session;
       };
     };
+		hardware = {
+			openrgb = {
+				enable = true;
+			};
+		};
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
