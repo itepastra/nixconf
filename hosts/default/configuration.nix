@@ -60,29 +60,31 @@
   };
 
 
-  # LOVE me some blob
-  hardware.enableRedistributableFirmware = true;
-  hardware.enableAllFirmware = true;
 
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement = {
-      enable = true;
-      finegrained = false;
-    };
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
-  };
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
 
 	hardware = {
 		bluetooth = {
 			enable = true;
 			powerOnBoot = true;
+		};
+		enableRedistributableFirmware = true;
+		enableAllFirmware = true;
+		graphics = {
+			enable = true;
+			enable32Bit = true;
+		};
+		nvidia = {
+			modesetting.enable = true;
+			powerManagement = {
+				enable = true;
+				finegrained = false;
+			};
+			open = false;
+			nvidiaSettings = true;
+			package = config.boot.kernelPackages.nvidiaPackages.beta;
+		};
+		openrgb = {
+			enable = true;
 		};
 	};
 
