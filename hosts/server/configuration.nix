@@ -87,7 +87,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  services.openssh.settings.passwordAuthentication = false;
+  services.openssh.settings.PasswordAuthentication = false;
   services.openssh.settings.KbdInteractiveAuthentication = false;
   programs.zsh.enable = true;
 
