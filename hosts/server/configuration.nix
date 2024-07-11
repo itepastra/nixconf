@@ -52,6 +52,7 @@
     root = {
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWtje7dGqyrBY7PLq6DANvUR6yfungQNsXGkTO6PP6/ noa@NoasPCArch"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBFemc4Pzp7I0y8FHxgRO/c/ReBmXuqXR6CWqbhiQ+0t noa@Noas_flaptop"
       ];
     };
     noa = {
@@ -59,6 +60,7 @@
       extraGroups = [ "networkmanager" "wheel" "docker" ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWtje7dGqyrBY7PLq6DANvUR6yfungQNsXGkTO6PP6/ noa@NoasPCArch"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBFemc4Pzp7I0y8FHxgRO/c/ReBmXuqXR6CWqbhiQ+0t noa@Noas_flaptop"
       ];
       hashedPassword = "$6$rounds=512400$g/s4dcRttXi4ux6c$Z6pKnhJXcWxv0TBSMtvJu5.piETdUBSgBVN7oDPKiQV.lbTYz1r.0XQLwMYxzcvaaX0DL6Iw/SEUTiC2M50wC/";
     };
@@ -85,6 +87,8 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = false;
+  services.openssh.settings.KbdInteractiveAuthentication = false;
   programs.zsh.enable = true;
 
   home-manager = {
@@ -124,19 +128,11 @@
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 
 	22 # ssh
-	25565 25575 # minecraft
-	25566 25576 # minecraft
-	38281 # archipelago
-	34197 27015 # factorio
-	34198 27016 # factorio
+  7791 # pixelflut
+  7792 # flutties website
 	];
   networking.firewall.allowedUDPPorts = [
 	22 # ssh
-	25565 25575 # minecraft
-	25566 25576 # minecraft
-	38281 # archipelago
-	34197 27015 # factorio
-	34198 27016 # factorio
 	];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
