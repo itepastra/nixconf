@@ -62,28 +62,28 @@
 
 
 
-	hardware = {
-		bluetooth = {
-			enable = true;
-			powerOnBoot = true;
-		};
-		enableRedistributableFirmware = true;
-		enableAllFirmware = true;
-		graphics = {
-			enable = true;
-			enable32Bit = true;
-		};
-		nvidia = {
-			modesetting.enable = true;
-			powerManagement = {
-				enable = true;
-				finegrained = false;
-			};
-			open = false;
-			nvidiaSettings = true;
-			package = config.boot.kernelPackages.nvidiaPackages.beta;
-		};
-	};
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    enableRedistributableFirmware = true;
+    enableAllFirmware = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement = {
+        enable = true;
+        finegrained = false;
+      };
+      open = false;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+    };
+  };
 
   # Allow unfree packages
   nixpkgs.config = {
@@ -223,6 +223,10 @@
               enable = true;
               proxy = "http://127.0.0.1:2000/";
             };
+            "sods.voorwaarts.nl" = {
+              enable = true;
+              proxy = "http://127.0.0.1:2000/";
+            };
           };
         };
       };
@@ -251,11 +255,11 @@
         default_session = initial_session;
       };
     };
-		hardware = {
-			openrgb = {
-				enable = true;
-			};
-		};
+    hardware = {
+      openrgb = {
+        enable = true;
+      };
+    };
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
