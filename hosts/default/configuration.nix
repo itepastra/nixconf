@@ -220,10 +220,14 @@
               proxy = "http://127.0.0.1:8000/";
             };
             "sods.noa.voorwaarts.nl" = {
-              enable = true;
+              enable = false;
               proxy = "http://127.0.0.1:2000/";
             };
             "sods.voorwaarts.nl" = {
+              enable = true;
+              proxy = "http://127.0.0.1:2000/";
+            };
+            "quiz.slagomdeslotgracht.nl" = {
               enable = true;
               proxy = "http://127.0.0.1:2000/";
             };
