@@ -17,10 +17,13 @@
         nixpkgs-fmt
         lua51Packages.lua
         tree-sitter
+
         php83Packages.composer
         php83
-        temurin-jre-bin
+
         fd
+
+        jdk22
       ];
       defaultEditor = true;
       viAlias = true;
