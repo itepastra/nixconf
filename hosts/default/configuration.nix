@@ -25,7 +25,7 @@
     plymouth = rec {
       enable = true;
       theme = "colorful";
-      themePackages = [(pkgs.adi1090x-plymouth-themes.override {selected_themes = [ theme ];})];
+      themePackages = [ (pkgs.adi1090x-plymouth-themes.override { selected_themes = [ theme ]; }) ];
     };
     kernelParams = [
       "quiet"
