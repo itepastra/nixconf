@@ -19,8 +19,7 @@
         julia
         jdk22
         lua51Packages.lua
-        node
-        npm
+        nodejs
         php83Packages.composer
         php83
         (python3.withPackages (python-pkgs: [
