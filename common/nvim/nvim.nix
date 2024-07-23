@@ -14,7 +14,7 @@
         fd
 
         cargo
-        cc
+        gcc
         go
         julia
         jdk22
