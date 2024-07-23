@@ -7,23 +7,25 @@
         ripgrep
         luarocks
         gnumake
-        rustc
-        (python3.withPackages (python-pkgs: [
-          python-pkgs.pip
-        ]))
         wget
-        julia
-        gopls
         nixpkgs-fmt
-        lua51Packages.lua
         tree-sitter
-
-        php83Packages.composer
-        php83
 
         fd
 
+        cargo
+        cc
+        go
+        julia
         jdk22
+        lua51Packages.lua
+        node
+        npm
+        php83Packages.composer
+        php83
+        (python3.withPackages (python-pkgs: [
+          python-pkgs.pip
+        ]))
       ];
       defaultEditor = true;
       viAlias = true;

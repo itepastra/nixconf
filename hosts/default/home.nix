@@ -59,21 +59,9 @@
     pipewire
     lsd
 
-    lm_sensors
-
-    # Programming langs
-    go
-    nodejs
-    opam
-    stack
-    cargo
-    gcc
-
-    bend
-
     localsend
-		blueberry
-		qbittorrent
+    blueberry
+    qbittorrent
   ];
 
 
@@ -161,12 +149,12 @@
         size = 32;
         package =
           pkgs.runCommand "moveUp" { } ''
-                      mkdir -p $out/share/icons
-                      ln -s ${pkgs.fetchzip {
-                        url = url;
-                        hash = hash;
-                      }} $out/share/icons/${name}
-                    '';
+            mkdir -p $out/share/icons
+            ln -s ${pkgs.fetchzip {
+              url = url;
+              hash = hash;
+            }} $out/share/icons/${name}
+          '';
       };
     in
     getFrom
