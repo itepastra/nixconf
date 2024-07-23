@@ -713,6 +713,10 @@ require("lazy").setup({
 
 	{ "kenn7/vim-arsync", requires = { "prabirshrestha/async.vim" } },
 
+	{
+		"nvim-tree/nvim-web-devicons",
+	},
+
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
 		config = function()
