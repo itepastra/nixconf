@@ -16,7 +16,6 @@
         cargo
         gcc
         go
-        julia
         jdk22
         lua51Packages.lua
         nodejs
