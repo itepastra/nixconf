@@ -130,6 +130,15 @@
 
   gtk = {
     enable = true;
+    gtk2.extraConfig = ''
+      gtk-enable-animations=1
+      gtk-primary-button-warps-slider=1
+      gtk-toolbar-style=3
+      gtk-menu-images=1
+      gtk-button-images=1
+      gtk-sound-theme-name="ocean"
+      gtk-font-name="Noto Sans,  10"
+    '';
     theme = {
       name = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
@@ -144,15 +153,6 @@
     let
       getFrom = url: hash: name: {
         gtk.enable = true;
-        gtk2.extraConfig = ''
-          gtk-enable-animations=1
-          gtk-primary-button-warps-slider=1
-          gtk-toolbar-style=3
-          gtk-menu-images=1
-          gtk-button-images=1
-          gtk-sound-theme-name="ocean"
-          gtk-font-name="Noto Sans,  10"
-        '';
         x11.enable = true;
         name = name;
         size = 32;
