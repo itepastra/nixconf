@@ -57,7 +57,7 @@
     };
     noa = {
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "wheel" "docker" ];
+      extraGroups = [ "networkmanager" "wheel" "docker" "libvirt" ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWtje7dGqyrBY7PLq6DANvUR6yfungQNsXGkTO6PP6/ noa@NoasPCArch"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBFemc4Pzp7I0y8FHxgRO/c/ReBmXuqXR6CWqbhiQ+0t noa@Noas_flaptop"
