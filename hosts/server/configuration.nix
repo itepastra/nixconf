@@ -14,7 +14,7 @@
       (modulesPath + "/installer/scan/not-detected.nix")
       (modulesPath + "/profiles/qemu-guest.nix")
 
-			../../common
+      ../../common
     ];
 
   # LOVE me some blob
@@ -121,19 +121,38 @@
     };
   };
 
-  virtualisation.docker = {
-    enable = true;
+  virtualisation = {
+    docker = {
+      enable = true;
+    };
+    libvirtd = {
+      enable = true;
+      qemu = {
+        package = pkgs.qemu_kvm;
+        runAsRoot = true;
+        swtpm.enable = true;
+        ovmf = {
+          enable = true;
+          packages = [
+            (pkgs.OVMF.override {
+              secureBoot = true;
+              tpmSupport = true;
+            }).fd
+          ];
+        };
+      };
+    };
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 
-	22 # ssh
-  7791 # pixelflut
-  7792 # flutties website
-	];
+  networking.firewall.allowedTCPPorts = [
+    22 # ssh
+    7791 # pixelflut
+    7792 # flutties website
+  ];
   networking.firewall.allowedUDPPorts = [
-	22 # ssh
-	];
+    22 # ssh
+  ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
