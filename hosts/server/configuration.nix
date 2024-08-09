@@ -147,11 +147,13 @@
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     22 # ssh
-    7791 # pixelflut
-    7792 # flutties website
+    80 # http (opnsense)
+    443 # https (opnsense)
   ];
   networking.firewall.allowedUDPPorts = [
     22 # ssh
+    80 # http (opnsense)
+    443 # https (opnsense)
   ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
