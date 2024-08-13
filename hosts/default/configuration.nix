@@ -261,6 +261,10 @@
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
     };
+    monado = {
+      enable = true;
+      defaultRuntime = true;
+    };
     syncthing = {
       enable = false;
       user = "noa";
