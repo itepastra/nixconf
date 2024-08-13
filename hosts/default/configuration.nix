@@ -344,14 +344,10 @@
     53317 # Localsend
     7791 # Pixelflut
     38281 # Archipelago
-    9943
-    9944
   ];
   networking.firewall.allowedUDPPorts = [
     53317
     38281 # Archipelago
-    9943
-    9944
   ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

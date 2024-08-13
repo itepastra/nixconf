@@ -13,6 +13,11 @@
 
       };
 
+      alvr = {
+        enable = true;
+        openFirewall = true;
+      };
+
       gamemode.enable = true;
     };
   };
