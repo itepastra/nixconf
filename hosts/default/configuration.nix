@@ -49,7 +49,7 @@
     '';
 
     loader = {
-      timeout = lib.mkDefault 3;
+      timeout = 3;
       efi.canTouchEfiVariables = true;
       systemd-boot = {
         enable = true;
