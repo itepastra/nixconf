@@ -16,7 +16,7 @@
     ];
 
   boot = rec {
-    kernelPackages = pkgs.linuxPackages_6_8;
+    kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = with kernelPackages; [
       v4l2loopback
     ];
