@@ -16,7 +16,7 @@
     ];
 
   boot = rec {
-    kernelPackages = pkgs.linuxPackages_6_8;
+    kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = with kernelPackages; [
       v4l2loopback
     ];
@@ -49,7 +49,7 @@
     '';
 
     loader = {
-      timeout = lib.mkDefault 3;
+      timeout = 3;
       efi.canTouchEfiVariables = true;
       systemd-boot = {
         enable = true;
@@ -323,6 +323,19 @@
           "network-online.target"
         ];
         restartIfChanged = false;
+      };
+    };
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
       };
     };
   };
