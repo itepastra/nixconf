@@ -284,6 +284,7 @@
       wayland.enable = true;
     };
     flatpak.enable = true;
+    udev.packages = [ pkgs.yubikey-personalization ];
   };
 
   systemd = {
