@@ -11,11 +11,13 @@ in
     programs.firefox = {
       enable = true;
       # TODO: add some default firefox settings
-      nativeMessagingHosts = [
-        pkgs.passff-host
-      ];
-
+      package = (pkgs.firefox.override { extraNativeMessagingHosts = [ pkgs.passff-host ]; });
     };
+
+    home.packages = [
+      pkgs.pinentry-qt
+    ];
+
   };
 
 }
