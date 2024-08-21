@@ -62,6 +62,7 @@
     localsend
     blueberry
     qbittorrent
+    planify
   ];
 
 
