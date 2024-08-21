@@ -11,6 +11,10 @@ in
     programs.firefox = {
       enable = true;
       # TODO: add some default firefox settings
+      nativeMessagingHosts = [
+        pkgs.passff-host
+      ];
+
     };
   };
 
