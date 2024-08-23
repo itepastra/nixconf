@@ -15,6 +15,7 @@ in
       description = "the git user Name";
       type = lib.types.str;
     };
+    do_sign = lib.mkEnableOption "enable commit signing";
   };
 
 
@@ -27,6 +28,7 @@ in
         init = { defaultBranch = "main"; };
         safe.directory = "/etc/nixos";
         pull.rebase = false;
+        commit.gpgsign = cfg.do_sign;
       };
     };
   };

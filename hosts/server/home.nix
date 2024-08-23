@@ -40,14 +40,14 @@
     # Programming langs
     go
     nodejs
-		factorio-headless
+    factorio-headless
   ];
 
   modules = {
     apps.git = {
       enable = true;
       name = "Noa Aarts";
-      email = "itepastra@gmail.com";
+      email = "noa@voorwaarts.nl";
     };
     apps.zsh.enable = true;
   };

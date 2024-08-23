@@ -65,11 +65,13 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    sddm
-    git
-    zsh
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      sddm
+      git
+      zsh
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -80,9 +82,14 @@
   # };
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  services.openssh.settings.PasswordAuthentication = false;
-  services.openssh.settings.KbdInteractiveAuthentication = false;
+  services = {
+    openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+      settings.KbdInteractiveAuthentication = false;
+    };
+  };
+
   programs.zsh.enable = true;
 
   home-manager = {

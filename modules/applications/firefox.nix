@@ -11,7 +11,7 @@ in
     programs.firefox = {
       enable = true;
       # TODO: add some default firefox settings
-      package = (pkgs.firefox.override { extraNativeMessagingHosts = [ pkgs.passff-host ]; });
+      package = (pkgs.firefox.override { nativeMessagingHosts = [ pkgs.passff-host ]; });
     };
 
     home.packages = [

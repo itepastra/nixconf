@@ -33,7 +33,7 @@
       enable = true;
       git = {
         name = "Noa Aarts";
-        email = "itepastra@gmail.com";
+        email = "noa@voorwaarts.nl";
       };
     };
   };

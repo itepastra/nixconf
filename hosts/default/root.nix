@@ -39,8 +39,8 @@
     apps = {
       enable = true;
       git = {
-        name = "Noa Auto";
-        email = "itepastra@gmail.com";
+        name = "Noa Aarts";
+        email = "noa@voorwaarts.nl";
       };
     };
   };
