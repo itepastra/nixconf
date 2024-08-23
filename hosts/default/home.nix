@@ -63,6 +63,8 @@
     blueberry
     qbittorrent
     planify
+    keepassxc
+    yubikey-manager-qt
   ];
 
 
