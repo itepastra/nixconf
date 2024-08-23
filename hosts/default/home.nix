@@ -34,6 +34,7 @@
       git = {
         name = "Noa Aarts";
         email = "noa@voorwaarts.nl";
+        do_sign = true;
       };
     };
   };
