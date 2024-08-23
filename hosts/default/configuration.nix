@@ -234,6 +234,7 @@
   security.rtkit.enable = true;
 
   services = {
+    pcscd.enable = true; # for yubikey
     pipewire = {
       enable = true;
       alsa.enable = true;
