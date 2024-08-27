@@ -48,7 +48,12 @@ in
         (
           name: config:
             lib.mkIf config.enable {
-              extraDomainNames = lib.attrsets.mapAttrsToList (n: c: lib.mkIf c.enable n) config.extra_sites;
+              extraDomainNames = lib.attrsets.mapAttrsToList
+                (
+                  domain_name: domain_config: lib.mkIf domain_config.enable domain_name
+                )
+                config.extra_sites;
+              webroot = lib.traceVal "/var/lib/acme/acme-challenge/${name}";
             }
         )
         cfg.mainDomains;
@@ -74,7 +79,7 @@ in
                 };
               };
             in
-            lib.mkIf config.enable (
+            lib.trace name (lib.mkIf config.enable (
               lib.mkMerge [
                 {
                   ${name} = {
@@ -89,18 +94,18 @@ in
                 }
                 (lib.attrsets.mapAttrs
                   (n: c:
-                    proxy c.proxy
+                    lib.traceSeq c (proxy c.proxy)
                   )
                   config.extra_sites)
               ]
-            )
+            ))
         )
         cfg.mainDomains;
     in
     {
       networking.hosts = {
         # NOTE: this is needed because I don't have hairpin nat. :(
-        "127.0.0.1" = hostnames;
+        "::1" = hostnames;
       };
       security.acme = {
         acceptTerms = true;

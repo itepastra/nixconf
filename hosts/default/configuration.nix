@@ -9,55 +9,10 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/games/steam.nix
-      ../../modules/websites
       ../../modules/plasma
 
       ../../common
     ];
-
-  boot = rec {
-    kernelPackages = pkgs.linuxPackages_latest;
-    extraModulePackages = with kernelPackages; [
-      v4l2loopback
-    ];
-    consoleLogLevel = 0;
-    initrd.verbose = false;
-    plymouth = rec {
-      enable = true;
-      theme = "colorful";
-      themePackages = [ (pkgs.adi1090x-plymouth-themes.override { selected_themes = [ theme ]; }) ];
-    };
-    kernelParams = [
-      "quiet"
-      "splash"
-      "boot.shell_on_fail"
-      "i915.fastboot=1"
-      "loglevel=3"
-      "rd.systemd.show_status=false"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
-    ];
-
-    kernelModules = [
-      "v4l2loopback"
-      "nct6775"
-      "k10temp"
-    ];
-
-    extraModprobeConfig = ''
-      options v4l2loopback devices=1 video_nr=2 card_label="OBS Cam" exclusive_caps=1
-    '';
-
-    loader = {
-      timeout = 3;
-      efi.canTouchEfiVariables = true;
-      systemd-boot = {
-        enable = true;
-        editor = false;
-        configurationLimit = 100;
-      };
-    };
-  };
 
 
 
@@ -174,6 +129,7 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   xdg.portal.enable = true;
@@ -197,43 +153,57 @@
   modules = {
     games.steam.enable = true;
     plasma.enable = true;
-    websites = {
-      enable = true;
-      certMail = "acme@voorwaarts.nl";
-      mainDomains = {
-        "noa.voorwaarts.nl" = {
-          enable = true;
-          proxy = "http://127.0.0.1:5000/";
-          extra_sites = {
-            "images.noa.voorwaarts.nl" = {
-              enable = true;
-              proxy = "http://127.0.0.1:2283/";
-            };
-            "testing.noa.voorwaarts.nl" = {
-              enable = true;
-              proxy = "http://127.0.0.1:8000/";
-            };
-            "sods.noa.voorwaarts.nl" = {
-              enable = false;
-              proxy = "http://127.0.0.1:2000/";
-            };
-            "sods.voorwaarts.nl" = {
-              enable = true;
-              proxy = "http://127.0.0.1:2000/";
-            };
-            "quiz.slagomdeslotgracht.nl" = {
-              enable = true;
-              proxy = "http://127.0.0.1:2000/";
-            };
-          };
-        };
-      };
-    };
   };
 
   users.defaultUserShell = pkgs.zsh;
 
   security.rtkit.enable = true;
+  boot = rec {
+
+
+    kernelPackages = pkgs.linuxPackages_latest;
+    extraModulePackages = with kernelPackages; [
+      v4l2loopback
+    ];
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    plymouth = rec {
+      enable = true;
+      theme = "colorful";
+      themePackages = [ (pkgs.adi1090x-plymouth-themes.override { selected_themes = [ theme ]; }) ];
+    };
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "i915.fastboot=1"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+    ];
+
+    kernelModules = [
+      "v4l2loopback"
+      "nct6775"
+      "k10temp"
+    ];
+
+    extraModprobeConfig = ''
+      options v4l2loopback devices=1 video_nr=2 card_label="OBS Cam" exclusive_caps=1
+    '';
+
+    loader = {
+      timeout = 3;
+      efi.canTouchEfiVariables = true;
+      systemd-boot = {
+        enable = true;
+        editor = false;
+        configurationLimit = 100;
+      };
+    };
+
+  };
 
   services = {
     pcscd.enable = true; # for yubikey
@@ -244,6 +214,7 @@
       pulse.enable = true;
       jack.enable = true;
     };
+    fail2ban.enable = true;
     greetd = {
       enable = false;
       settings = rec {
@@ -361,6 +332,8 @@
     53317 # Localsend
     7791 # Pixelflut
     38281 # Archipelago
+    80
+    443
   ];
   networking.firewall.allowedUDPPorts = [
     53317
@@ -368,6 +341,93 @@
   ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+
+  services.nginx =
+    let
+
+      extra = ''
+        client_max_body_size 50000M;
+
+        proxy_redirect     off;
+
+        proxy_read_timeout 600s;
+        proxy_send_timeout 600s;
+        send_timeout       600s;'';
+      proxy = name: url: {
+        forceSSL = true;
+        useACMEHost = name;
+        extraConfig = extra;
+        locations."/" = {
+          proxyWebsockets = true;
+          proxyPass = url;
+        };
+      };
+    in
+    {
+      enable = true;
+
+
+      recommendedGzipSettings = true;
+      recommendedOptimisation = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
+
+      # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
+
+      virtualHosts = {
+        "noa.voorwaarts.nl" = {
+          forceSSL = true;
+          enableACME = true;
+          extraConfig = extra;
+          locations."/" = {
+            proxyWebsockets = true;
+            proxyPass = "http://[::1]:8000";
+          };
+        };
+
+        "images.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://[::1]:2283/";
+
+        "itepastra.nl" = {
+          forceSSL = true;
+          enableACME = true;
+          extraConfig = extra;
+          locations."/" = {
+            proxyWebsockets = true;
+            proxyPass = "http://[::1]:9001/";
+          };
+        };
+
+        "locked.itepastra.nl" = {
+          forceSSL = true;
+          useACMEHost = "itepastra.nl";
+          extraConfig = ''
+            ${extra}
+            ssl_client_certificate /etc/nginx/certificates/yubikey.crt;
+            ssl_verify_client on;
+            ssl_prefer_server_ciphers on;
+            ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;
+
+            keepalive_timeout 10;
+            ssl_session_timeout 5m;
+          '';
+
+          locations."/" = {
+            proxyWebsockets = true;
+            proxyPass = "http://[::1]:9000/";
+          };
+
+        };
+
+      };
+    };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "noa@voorwaarts.nl";
+    certs."noa.voorwaarts.nl".extraDomainNames = [ "images.noa.voorwaarts.nl" ];
+    certs."itepastra.nl".extraDomainNames = [ "locked.itepastra.nl" ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

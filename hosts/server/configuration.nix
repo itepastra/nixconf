@@ -73,6 +73,37 @@
     ];
   };
 
+  modules = {
+    websites = {
+      enable = true;
+      certMail = "acme@voorwaarts.nl";
+      mainDomains = {
+        "noa.voorwaarts.nl" = {
+          enable = true;
+          proxy = "http://127.0.0.1:5000/";
+          extra_sites = {
+            "images.noa.voorwaarts.nl" = {
+              enable = true;
+              proxy = "http://127.0.0.1:2283/";
+            };
+            "testing.noa.voorwaarts.nl" = {
+              enable = true;
+              proxy = "http://127.0.0.1:8000/";
+            };
+            "sods.noa.voorwaarts.nl" = {
+              enable = false;
+              proxy = "http://127.0.0.1:2000/";
+            };
+          };
+        };
+        "itepastra.nl" = {
+          enable = true;
+          proxy = "http://[::1]:8000/";
+          extra_sites = { };
+        };
+      };
+    };
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

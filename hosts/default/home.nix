@@ -66,6 +66,7 @@
     planify
     keepassxc
     yubikey-manager-qt
+    yubico-piv-tool
   ];
 
 
@@ -82,6 +83,7 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    "ykcs/ykcs11.so".source = "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
   };
 
   # Home Manager can also manage your environment variables through
