@@ -153,10 +153,7 @@
 
   # Let Home Manager install and manage itself.
   programs = {
-    home-manager = {
-      enable = true;
-      backupFileExtension = "backup";
-    };
+    home-manager.enable = true;
     zsh.shellAliases.bzzt = ''nix-shell -p mpv --command "mpv ~/Videos/BZZZM.mp4"'';
   };
 
