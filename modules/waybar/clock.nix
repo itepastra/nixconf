@@ -23,7 +23,7 @@ in
           };
         };
         home.packages = [
-          pkgs.gnome.gnome-clocks
+          pkgs.gnome-clocks
         ];
       };
       style = ''
