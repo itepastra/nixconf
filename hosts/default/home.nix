@@ -152,8 +152,13 @@
   };
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-  programs.zsh.shellAliases.bzzt = ''nix-shell -p mpv --command "mpv ~/Videos/BZZZM.mp4"'';
+  programs = {
+    home-manager = {
+      enable = true;
+      backupFileExtension = "backup";
+    };
+    zsh.shellAliases.bzzt = ''nix-shell -p mpv --command "mpv ~/Videos/BZZZM.mp4"'';
+  };
 
   home.pointerCursor =
     let
