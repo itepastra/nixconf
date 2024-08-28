@@ -260,6 +260,7 @@
     postfixadmin = {
       enable = true;
       hostName = "pfa.itepastra.nl";
+      setupPasswordFile = "$2y$10$ATAbJHeLiV/sqxqIFTe6ke/J.RSR4GyDgpo3L72Zq7URdywz39oNG";
     };
   };
 
