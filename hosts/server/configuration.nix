@@ -270,6 +270,7 @@
       enable = true;
       hostName = "pfa.itepastra.nl";
       setupPasswordFile = /etc/postfixadminpass;
+      adminEmail = "noa@itepastra.nl";
     };
   };
 
