@@ -387,6 +387,8 @@
         };
 
         "images.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://[::1]:2283/";
+        "maintenance.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://[::1]:5000/";
+        "api.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://[::1]:8000/";
 
         "itepastra.nl" = {
           forceSSL = true;
