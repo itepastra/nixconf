@@ -240,16 +240,7 @@
           "locked.itepastra.nl" = {
             forceSSL = true;
             useACMEHost = "itepastra.nl";
-            extraConfig = ''
-              ${extra}
-              ssl_client_certificate /etc/nginx/certificates/yubikey.crt;
-              ssl_verify_client on;
-              ssl_prefer_server_ciphers on;
-              ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;
-
-              keepalive_timeout 10;
-              ssl_session_timeout 5m;
-            '';
+            extraConfig = extra;
 
             locations."/" = {
               proxyWebsockets = true;
