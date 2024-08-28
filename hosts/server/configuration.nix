@@ -271,6 +271,11 @@
       hostName = "pfa.itepastra.nl";
       setupPasswordFile = /etc/postfixadminpass;
       adminEmail = "noa@itepastra.nl";
+      database = {
+        username = "postfix";
+        passwordFile = /etc/postfixdbpass;
+        dbname = "postfix";
+      };
     };
   };
 
