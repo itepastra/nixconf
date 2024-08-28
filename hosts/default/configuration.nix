@@ -332,8 +332,8 @@
     53317 # Localsend
     7791 # Pixelflut
     38281 # Archipelago
-    80
-    443
+
+    2283 # immich
   ];
   networking.firewall.allowedUDPPorts = [
     53317
