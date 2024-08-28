@@ -24,6 +24,21 @@
   networking = {
     hostName = "NoasServer"; # Define your hostname.
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
+    domains = {
+      enable = true;
+      baseDomains = {
+        "itepastra.nl" = {
+          a.data = "192.168.42.2";
+        };
+        "noa.voorwaarts.nl" = {
+          a.data = "192.168.42.2";
+        };
+      };
+      subDomains = {
+        "itepastra.nl" = { };
+        "noa.voorwaarts.nl" = { };
+      };
+    };
   };
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
