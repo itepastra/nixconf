@@ -427,8 +427,10 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "noa@voorwaarts.nl";
-    certs."noa.voorwaarts.nl".extraDomainNames = [ "images.noa.voorwaarts.nl" ];
-    certs."itepastra.nl".extraDomainNames = [ "locked.itepastra.nl" ];
+    certs = {
+      "noa.voorwaarts.nl".extraDomainNames = [ "images.noa.voorwaarts.nl" "maintenance.noa.voorwaarts.nl" "api.noa.voorwaarts.nl" ];
+      "itepastra.nl".extraDomainNames = [ "locked.itepastra.nl" ];
+    };
   };
 
   # This value determines the NixOS release from which the default
