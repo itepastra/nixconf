@@ -151,16 +151,145 @@
     };
   };
 
+  services = {
+    nginx =
+      let
+
+        extra = ''
+          client_max_body_size 50000M;
+
+          proxy_redirect     off;
+
+          proxy_read_timeout 600s;
+          proxy_send_timeout 600s;
+          send_timeout       600s;'';
+        proxy = name: url: {
+          forceSSL = true;
+          useACMEHost = name;
+          extraConfig = extra;
+          locations."/" = {
+            proxyWebsockets = true;
+            proxyPass = url;
+          };
+        };
+      in
+      {
+        enable = true;
+        package = pkgs.nginx.override {
+          modules = [ pkgs.nginxModules.brotli ];
+        };
+
+
+        recommendedOptimisation = true;
+        recommendedProxySettings = true;
+        recommendedTlsSettings = true;
+
+        commonHttpConfig = ''
+          brotli on;
+          brotli_static on;
+          brotli_types application/json application/javascript application/xml application/xml+rss image/svg+xml text/css text/html text/javascript text/plain text/xml;
+        '';
+        # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
+
+        virtualHosts = {
+          "noa.voorwaarts.nl" = {
+            forceSSL = true;
+            enableACME = true;
+            extraConfig = extra;
+            locations."/" = {
+              proxyWebsockets = true;
+              proxyPass = "http://lambdaos:8000";
+            };
+          };
+
+          "images.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://lambdaos:2283/";
+          "maintenance.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://lambdaos:5000/";
+
+          "itepastra.nl" = {
+            forceSSL = true;
+            enableACME = true;
+            extraConfig = extra;
+            locations."/" = {
+              proxyWebsockets = true;
+              proxyPass = "http://lambdaos:9001/";
+            };
+          };
+
+          "rc.itepastra.nl" = {
+            enableACME = false;
+            useACMEHost = "itepastra.nl";
+          };
+
+          "pfa.itepastra.nl" = {
+            enableACME = false;
+            useACMEHost = "itepastra.nl";
+          };
+
+          "locked.itepastra.nl" = {
+            forceSSL = true;
+            useACMEHost = "itepastra.nl";
+            extraConfig = ''
+              ${extra}
+              ssl_client_certificate /etc/nginx/certificates/yubikey.crt;
+              ssl_verify_client on;
+              ssl_prefer_server_ciphers on;
+              ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;
+
+              keepalive_timeout 10;
+              ssl_session_timeout 5m;
+            '';
+
+            locations."/" = {
+              proxyWebsockets = true;
+              proxyPass = "http://lambdaos:9000/";
+            };
+
+          };
+
+        };
+      };
+    roundcube = {
+      enable = true;
+      hostName = "rc.itepastra.nl";
+    };
+    postfix = {
+      enable = true;
+      hostname = "mail.itepastra.nl";
+      origin = "itepastra.nl";
+    };
+    postfixadmin = {
+      enable = true;
+      hostName = "pfa.itepastra.nl";
+    };
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "noa@voorwaarts.nl";
+    certs = {
+      "noa.voorwaarts.nl".extraDomainNames = [
+        "images.noa.voorwaarts.nl"
+        "maintenance.noa.voorwaarts.nl"
+      ];
+      "itepastra.nl".extraDomainNames = [ "locked.itepastra.nl" "rc.itepastra.nl" "mail.itepastra.nl" "pfa.itepastra.nl" ];
+    };
+  };
+
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     22 # ssh
-    80 # http (opnsense)
-    443 # https (opnsense)
+    80 # http
+    443 # https
+    25 # SMTP
+    143 # IMAP4
+    465 # ESMTP
+    587 # ESMTP
+    993 # IMAP4
   ];
   networking.firewall.allowedUDPPorts = [
     22 # ssh
-    80 # http (opnsense)
-    443 # https (opnsense)
+    80 # http
+    443 # https
   ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
