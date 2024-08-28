@@ -198,13 +198,8 @@
         recommendedOptimisation = true;
         recommendedProxySettings = true;
         recommendedTlsSettings = true;
-
-        commonHttpConfig = ''
-          brotli on;
-          brotli_static on;
-          brotli_types application/json application/javascript application/xml application/xml+rss image/svg+xml text/css text/html text/javascript text/plain text/xml;
-        '';
-        # sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
+        recommendedBrotliSettings = true;
+        sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
 
         virtualHosts = {
           "noa.voorwaarts.nl" = {
