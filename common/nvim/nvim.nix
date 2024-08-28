@@ -21,8 +21,10 @@
         nodejs
         php83Packages.composer
         php83
+        opam
         (python3.withPackages (python-pkgs: [
           python-pkgs.pip
+          python-pkgs.black
         ]))
       ];
       defaultEditor = true;
