@@ -289,7 +289,7 @@
         "images.noa.voorwaarts.nl"
         "maintenance.noa.voorwaarts.nl"
       ];
-      "itepastra.nl".extraDomainNames = [ "locked.itepastra.nl" "rc.itepastra.nl" "mail.itepastra.nl" "pfa.itepastra.nl" ];
+      "itepastra.nl".extraDomainNames = [ "locked.itepastra.nl" "rc.itepastra.nl" "pfa.itepastra.nl" ];
     };
   };
 
