@@ -231,6 +231,12 @@
             useACMEHost = "itepastra.nl";
           };
 
+          "mail.itepastra.nl" = {
+            forceSSL = true;
+            enableACME = false;
+            useACMEHost = "itepastra.nl";
+          };
+
           "pfa.itepastra.nl" = {
             forceSSL = true;
             enableACME = false;
@@ -275,7 +281,7 @@
         "images.noa.voorwaarts.nl"
         "maintenance.noa.voorwaarts.nl"
       ];
-      "itepastra.nl".extraDomainNames = [ "locked.itepastra.nl" "rc.itepastra.nl" "pfa.itepastra.nl" ];
+      "itepastra.nl".extraDomainNames = [ "locked.itepastra.nl" "rc.itepastra.nl" "mail.itepastra.nl" "pfa.itepastra.nl" ];
     };
   };
 
