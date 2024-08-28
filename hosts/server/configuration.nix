@@ -216,11 +216,13 @@
           };
 
           "rc.itepastra.nl" = {
+            forceSSL = true;
             enableACME = false;
             useACMEHost = "itepastra.nl";
           };
 
           "pfa.itepastra.nl" = {
+            forceSSL = true;
             enableACME = false;
             useACMEHost = "itepastra.nl";
           };
