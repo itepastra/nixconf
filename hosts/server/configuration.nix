@@ -200,6 +200,16 @@
           "images.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:2283/";
           "maintenance.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:5000/";
 
+          "fete.voorwaarts.nl" = {
+            forceSSL = true;
+            enableACME = true;
+            extraConfig = extra;
+            locations."/" = {
+              proxyWebsockets = true;
+              proxyPass = "http://[::1]:22000";
+            };
+          };
+
           "itepastra.nl" = {
             forceSSL = true;
             enableACME = true;
