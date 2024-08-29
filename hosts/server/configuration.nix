@@ -272,9 +272,9 @@
       setupPasswordFile = /etc/postfixadminpass;
       adminEmail = "noa@itepastra.nl";
       database = {
-        username = "postfix";
+        username = "postfixadmin";
         passwordFile = /etc/postfixdbpass;
-        dbname = "postfix";
+        dbname = "postfixadmin";
       };
     };
   };
