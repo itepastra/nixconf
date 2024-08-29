@@ -281,11 +281,6 @@
     22 # ssh
     80 # http
     443 # https
-    25 # SMTP
-    143 # IMAP4
-    465 # ESMTP
-    587 # ESMTP
-    993 # IMAP4
   ];
   networking.firewall.allowedUDPPorts = [
     22 # ssh
