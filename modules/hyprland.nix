@@ -85,6 +85,8 @@ in
           "${pkgs.dunst}/bin/dunst"
           "${cfg.package}/bin/hyprctl dispatcher focusmonitor 1"
           "${pkgs.hypridle}/bin/hypridle"
+          "${pkgs.keepassxc}/bin/keepassxc"
+          "${pkgs.planify}/bin/planify"
         ];
         general = {
           sensitivity = "1.2";
