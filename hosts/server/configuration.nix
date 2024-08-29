@@ -255,6 +255,7 @@
     domains = [ "itepastra.nl" ];
     debug = true;
     hierarchySeparator = "/";
+    startTls = true;
 
     loginAccounts = {
       "noa@itepastra.nl" = {
