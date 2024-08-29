@@ -257,6 +257,10 @@
         $config['smtp_pass'] = "%p";
       '';
     };
+    postfix = {
+      relayHost = "mail.voorwaarts.nl";
+      relayPort = 587;
+    };
   };
 
   mailserver = {
