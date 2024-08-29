@@ -250,7 +250,7 @@
   };
 
   mailserver = {
-    enable = false;
+    enable = true;
     fqdn = "mail.itepastra.nl";
     domains = [ "itepastra.nl" ];
 
