@@ -87,6 +87,7 @@ in
           "${pkgs.hypridle}/bin/hypridle"
           "${pkgs.keepassxc}/bin/keepassxc"
           "${pkgs.planify}/bin/planify"
+          "${pkgs.thunderbird}/bin/thunderbird"
         ];
         general = {
           sensitivity = "1.2";
