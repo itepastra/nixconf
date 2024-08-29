@@ -193,12 +193,12 @@
             extraConfig = extra;
             locations."/" = {
               proxyWebsockets = true;
-              proxyPass = "http://lambdaos:8000";
+              proxyPass = "http://192.168.42.5:8000";
             };
           };
 
-          "images.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://lambdaos:2283/";
-          "maintenance.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://lambdaos:5000/";
+          "images.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:2283/";
+          "maintenance.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:5000/";
 
           "itepastra.nl" = {
             forceSSL = true;
@@ -206,7 +206,7 @@
             extraConfig = extra;
             locations."/" = {
               proxyWebsockets = true;
-              proxyPass = "http://lambdaos:9001/";
+              proxyPass = "http://192.168.42.5:9001/";
             };
           };
 
@@ -229,7 +229,7 @@
 
             locations."/" = {
               proxyWebsockets = true;
-              proxyPass = "http://lambdaos:9000/";
+              proxyPass = "http://192.168.42.5:9000/";
             };
 
           };
