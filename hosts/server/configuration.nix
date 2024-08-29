@@ -253,6 +253,8 @@
     enable = true;
     fqdn = "mail.itepastra.nl";
     domains = [ "itepastra.nl" ];
+    debug = true;
+    hierarchySeparator = "/";
 
     loginAccounts = {
       "noa@itepastra.nl" = {
