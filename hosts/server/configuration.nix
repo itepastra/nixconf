@@ -249,13 +249,15 @@
     };
   };
 
+  services.postfix.enableSmtp = false;
+
   mailserver = {
     enable = true;
     fqdn = "mail.itepastra.nl";
     domains = [ "itepastra.nl" ];
     debug = true;
     hierarchySeparator = "/";
-    startTls = true;
+
 
     loginAccounts = {
       "noa@itepastra.nl" = {
