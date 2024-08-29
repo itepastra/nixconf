@@ -239,6 +239,13 @@
     roundcube = {
       enable = true;
       hostName = "rc.itepastra.nl";
+      extraConfig = ''
+        # starttls needed for authentication, so the fqdn required to match
+        # the certificate
+        $config['smtp_server'] = "tls://mail.itepastra.nl";
+        $config['smtp_user'] = "%u";
+        $config['smtp_pass'] = "%p";
+      '';
     };
   };
 
@@ -250,6 +257,7 @@
     loginAccounts = {
       "noa@itepastra.nl" = {
         hashedPasswordFile = "/etc/passwords/noa@itepastra.nl";
+        aliases = [ "@itepastra.nl" ];
       };
     };
 
