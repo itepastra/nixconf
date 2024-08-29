@@ -63,7 +63,21 @@ in
       config.common.default = "*";
     };
 
-    services.playerctld.enable = true;
+    services = {
+
+      hypridle = {
+        enable = true;
+        settings.listener = [
+
+          {
+            timeout = 330;
+            on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
+            on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
+          }
+        ];
+      };
+      playerctld.enable = true;
+    };
     wayland.windowManager.hyprland = {
       enable = true;
       package = cfg.package;
@@ -84,7 +98,6 @@ in
           "${pkgs.waybar}/bin/waybar"
           "${pkgs.dunst}/bin/dunst"
           "${cfg.package}/bin/hyprctl dispatcher focusmonitor 1"
-          "${pkgs.hypridle}/bin/hypridle"
           "${pkgs.keepassxc}/bin/keepassxc"
           "${pkgs.planify}/bin/planify"
           "${pkgs.thunderbird}/bin/thunderbird"
