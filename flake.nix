@@ -39,6 +39,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mailserver = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = { self, nixpkgs, nix-colors, automapaper, disko, hyprland, lazy, ... }@inputs:
@@ -62,6 +67,7 @@
           };
           modules = [
             disko.nixosModules.disko
+            inputs.mailserver.nixosModules.default
             ./hosts/server/configuration.nix
             inputs.home-manager.nixosModules.default
           ];

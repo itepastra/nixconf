@@ -216,12 +216,6 @@
             useACMEHost = "itepastra.nl";
           };
 
-          "mail.itepastra.nl" = {
-            forceSSL = true;
-            enableACME = false;
-            useACMEHost = "itepastra.nl";
-          };
-
           "pfa.itepastra.nl" = {
             forceSSL = true;
             enableACME = false;
@@ -246,22 +240,20 @@
       enable = true;
       hostName = "rc.itepastra.nl";
     };
-    postfix = {
-      enable = true;
-      hostname = "mail.itepastra.nl";
-      origin = "itepastra.nl";
-    };
-    postfixadmin = {
-      enable = true;
-      hostName = "pfa.itepastra.nl";
-      setupPasswordFile = /etc/postfixadminpass;
-      adminEmail = "noa@itepastra.nl";
-      database = {
-        username = "postfixadmin";
-        passwordFile = /etc/postfixdbpass;
-        dbname = "postfixadmin";
+  };
+
+  mailserver = {
+    enable = true;
+    fqdn = "mail.itepastra.nl";
+    domains = [ "itepastra.nl" ];
+
+    loginAccounts = {
+      "noa@itepastra.nl" = {
+        hashedPasswordFile = "/etc/passwords/noa@itepastra.nl";
       };
     };
+
+    certificateScheme = "acme-nginx";
   };
 
   security.acme = {
@@ -272,7 +264,7 @@
         "images.noa.voorwaarts.nl"
         "maintenance.noa.voorwaarts.nl"
       ];
-      "itepastra.nl".extraDomainNames = [ "locked.itepastra.nl" "rc.itepastra.nl" "mail.itepastra.nl" "pfa.itepastra.nl" ];
+      "itepastra.nl".extraDomainNames = [ "locked.itepastra.nl" "rc.itepastra.nl" "pfa.itepastra.nl" ];
     };
   };
 
