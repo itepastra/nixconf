@@ -249,8 +249,6 @@
     };
   };
 
-  services.postfix.enableSmtp = false;
-
   mailserver = {
     enable = true;
     fqdn = "mail.itepastra.nl";
