@@ -39,11 +39,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-dns = {
-      url = "github:Janik-Haag/nixos-dns";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 
   outputs = { self, nixpkgs, nix-colors, automapaper, disko, hyprland, lazy, ... }@inputs:
@@ -66,7 +61,6 @@
             inherit nix-colors;
           };
           modules = [
-            inputs.nixos-dns.nixosModules.dns
             disko.nixosModules.disko
             ./hosts/server/configuration.nix
             inputs.home-manager.nixosModules.default
