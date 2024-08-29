@@ -264,7 +264,8 @@
       };
     };
 
-    certificateScheme = "acme-nginx";
+    certificateScheme = "acme";
+    acmeCertificateName = "itepastra.nl";
   };
 
   security.acme = {
@@ -275,7 +276,12 @@
         "images.noa.voorwaarts.nl"
         "maintenance.noa.voorwaarts.nl"
       ];
-      "itepastra.nl".extraDomainNames = [ "locked.itepastra.nl" "rc.itepastra.nl" "pfa.itepastra.nl" ];
+      "itepastra.nl".extraDomainNames = [
+        "locked.itepastra.nl"
+        "rc.itepastra.nl"
+        "pfa.itepastra.nl"
+        "mail.itepastra.nl"
+      ];
     };
   };
 
