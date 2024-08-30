@@ -23,7 +23,7 @@ in
       default = pkgs.xdg-desktop-portal-hyprland;
     };
     displays = lib.mkOption {
-      type = lib.types.listOf lib.types.string;
+      type = lib.types.listOf lib.types.str;
       default = [
         "DP-3,2560x1440@360,2560x0,1"
         "DP-2,2560x1440@144,0x0,1"
