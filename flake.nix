@@ -85,7 +85,8 @@
           modules = [
             disko.nixosModules.disko
             inputs.home-manager.nixosModules.default
-            #inputs.hardware.nixosModules.framework-11th-gen-intel
+            inputs.hardware.nixosModules.framework-11th-gen-intel
+            ./hosts/muos/configuration.nix
           ];
         };
       };
