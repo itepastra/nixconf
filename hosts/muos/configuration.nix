@@ -29,16 +29,6 @@
       enable = true;
       enable32Bit = true;
     };
-    nvidia = {
-      modesetting.enable = true;
-      powerManagement = {
-        enable = true;
-        finegrained = false;
-      };
-      open = false;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
-    };
   };
 
   # Allow unfree packages
@@ -65,11 +55,13 @@
         "https://hyprland.cachix.org"
         "https://cache.iog.io"
         "https://cuda-maintainers.cachix.org"
+        "http://noasserver"
       ];
       trusted-public-keys = [
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
         "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+        "noasserver:l8yuYbtolNwsOrfQIXuXBAFpl18OYAl/vcmjkI7A5RM="
       ];
     };
     optimise.automatic = true;
