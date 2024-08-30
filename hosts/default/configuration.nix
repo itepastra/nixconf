@@ -216,6 +216,19 @@
       pulse.enable = true;
       jack.enable = true;
     };
+    nix-serve = {
+      enable = true;
+      secretKeyFile = "/var/cache-priv-key.pem";
+      bindAddress = "127.0.0.1";
+      port = 22332;
+    };
+    hydra = {
+      enable = true;
+      hydraURL = "http://localhost:3000";
+      notificationSender = "hydra@localhost";
+      buildMachinesFiles = [ ];
+      useSubstitutes = true;
+    };
     fail2ban.enable = true;
     greetd = {
       enable = false;
@@ -261,6 +274,28 @@
     };
     flatpak.enable = true;
     udev.packages = [ pkgs.yubikey-personalization ];
+    nginx =
+      {
+        enable = true;
+        package = pkgs.nginx.override {
+          modules = [ pkgs.nginxModules.brotli ];
+        };
+
+
+        recommendedOptimisation = true;
+        recommendedProxySettings = true;
+        recommendedTlsSettings = true;
+        recommendedBrotliSettings = true;
+        sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
+
+        virtualHosts = {
+
+          "noasserver" = {
+            locations."/".proxyPass = "http://127.0.0.1:22332";
+          };
+
+        };
+      };
   };
 
   systemd = {
