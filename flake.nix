@@ -44,6 +44,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = { self, nixpkgs, nix-colors, automapaper, disko, hyprland, lazy, ... }@inputs:
@@ -70,6 +75,18 @@
             inputs.mailserver.nixosModules.default
             ./hosts/server/configuration.nix
             inputs.home-manager.nixosModules.default
+          ];
+        };
+        muOS = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+            inherit nix-colors;
+            inherit automapaper;
+          };
+          modules = [
+            disko.nixosModules.disko
+            inputs.home-manager.nixosModules.default
+            inputs.hardware.nixosModules.framework-11th-gen-intel
           ];
         };
       };
