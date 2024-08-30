@@ -9,9 +9,9 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" ];
+  boot.initrd.availableKernelModules = [ "nvme" "thunderbolt" "xhci_pci" "ahci" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
