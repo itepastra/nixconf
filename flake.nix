@@ -93,5 +93,9 @@
       nixosModules = {
         automapaper = ./modules/automapaper;
       };
+      hydraJobs = {
+        inherit (self)
+          nixosConfigurations;
+      };
     };
 }

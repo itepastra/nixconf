@@ -81,19 +81,7 @@
   # };
 
   # Enable the OpenSSH daemon.
-  services = {
-    openssh = {
-      enable = true;
-      settings.PasswordAuthentication = false;
-      settings.KbdInteractiveAuthentication = false;
-    };
-    nix-serve = {
-      enable = true;
-      secretKeyFile = "/var/cache-priv-key.pem";
-      bindAddress = "127.0.0.1";
-      port = 22332;
-    };
-  };
+  services = { };
 
   programs.zsh.enable = true;
 
@@ -157,6 +145,23 @@
   };
 
   services = {
+    openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+      settings.KbdInteractiveAuthentication = false;
+    };
+    nix-serve = {
+      enable = true;
+      secretKeyFile = "/var/cache-priv-key.pem";
+      bindAddress = "127.0.0.1";
+      port = 22332;
+    };
+    hydra = {
+      enable = true;
+      hydraURL = "http://localhost:3000";
+      buildMachinesFiles = [ ];
+      useSubstitutes = true;
+    };
     nginx =
       let
 
