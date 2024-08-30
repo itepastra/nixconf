@@ -368,6 +368,7 @@
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
+    80 # nix-serve
     53317 # Localsend
     7791 # Pixelflut
     38281 # Archipelago
