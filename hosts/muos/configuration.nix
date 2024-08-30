@@ -10,6 +10,7 @@
       ../../modules/games/steam.nix
       ../../modules/plasma
       ./disk-config.nix
+      ./hardware-configuration.nix
 
       ../../common
     ];
