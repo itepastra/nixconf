@@ -88,6 +88,10 @@
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
     };
+    nix-serve = {
+      enable = true;
+      secretKeyFile = "/var/cache-priv-key.pem";
+    };
   };
 
   programs.zsh.enable = true;
