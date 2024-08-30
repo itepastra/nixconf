@@ -319,6 +319,7 @@
     22 # ssh
     80 # http
     443 # https
+    3000 # hydra
   ];
   networking.firewall.allowedUDPPorts = [
     22 # ssh
