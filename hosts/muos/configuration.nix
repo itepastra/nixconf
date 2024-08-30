@@ -8,7 +8,6 @@
     [
       # Include the results of the hardware scan.
       ../../modules/games/steam.nix
-      ../../modules/plasma
       ./disk-config.nix
       ./hardware-configuration.nix
 
@@ -145,7 +144,6 @@
 
   modules = {
     games.steam.enable = true;
-    plasma.enable = true;
   };
 
   users.defaultUserShell = pkgs.zsh;
