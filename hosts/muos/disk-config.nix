@@ -1,37 +1,28 @@
-# Example to create a bios compatible gpt partition
-{ lib, ... }:
 {
   disko.devices = {
-    disk.disk1 = {
-      device = lib.mkDefault "/dev/nvme0n1";
-      type = "disk";
-      content = {
-        type = "gpt";
-        partitions = {
-          boot = {
-            name = "boot";
-            size = "1M";
-            type = "EF02";
-          };
-          esp = {
-            name = "ESP";
-            size = "500M";
-            type = "EF00";
-            content = {
-              type = "filesystem";
-              format = "vfat";
-              mountpoint = "/boot";
+    disk = {
+      main = {
+        device = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNX0RB19202X";
+        type = "disk";
+        content = {
+          type = "gpt";
+          partitions = {
+            ESP = {
+              type = "EF00";
+              size = "500M";
+              content = {
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
+              };
             };
-          };
-          root = {
-            size = "100%";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
-              mountOptions = [
-                "defaults"
-              ];
+            root = {
+              size = "100%";
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
+              };
             };
           };
         };
@@ -39,3 +30,4 @@
     };
   };
 }
+
