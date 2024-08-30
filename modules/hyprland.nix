@@ -68,7 +68,6 @@ in
       hypridle = {
         enable = true;
         settings.listener = [
-
           {
             timeout = 330;
             on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
