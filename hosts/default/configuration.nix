@@ -72,6 +72,10 @@
         "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
         "noasserver:l8yuYbtolNwsOrfQIXuXBAFpl18OYAl/vcmjkI7A5RM="
       ];
+      allowed-uris = [
+        "github:"
+        "gitlab:"
+      ];
     };
     optimise.automatic = true;
     gc = {
