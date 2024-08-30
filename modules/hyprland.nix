@@ -116,6 +116,14 @@ in
           "col.active_border" = "0xff${config.colorScheme.palette.base01}";
           "col.inactive_border" = "0xff${config.colorScheme.palette.base00}";
         };
+        input = {
+          touchpad = {
+            clickfinger_behavior = 1;
+            disable_while_typing = 1;
+            natural_scroll = 1;
+            tap-to-click = 1;
+          };
+        };
         misc = {
           key_press_enables_dpms = true;
         };
