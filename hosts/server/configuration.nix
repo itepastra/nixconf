@@ -3,7 +3,6 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { modulesPath, pkgs, inputs, lib, nix-colors, ... }:
-
 {
   imports =
     [
@@ -91,6 +90,8 @@
     nix-serve = {
       enable = true;
       secretKeyFile = "/var/cache-priv-key.pem";
+      bindAddress = "127.0.0.1";
+      port = 22332;
     };
   };
 
@@ -246,6 +247,10 @@
               proxyPass = "http://192.168.42.5:9000/";
             };
 
+          };
+
+          "noasserver" = {
+            locations."/".proxyPass = "http://127.0.0.1:22332";
           };
 
         };
