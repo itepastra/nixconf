@@ -27,7 +27,10 @@
   nixpkgs.config.allowUnfree = true;
 
   modules = {
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      displays = [ "eDP-1, 2256x1504@60, 0x0, 1" ];
+    };
     games.enable = true;
     apps = {
       enable = true;

@@ -22,6 +22,15 @@ in
       type = lib.types.package;
       default = pkgs.xdg-desktop-portal-hyprland;
     };
+    displays = lib.mkOption {
+      type = lib.types.listOf lib.types.string;
+      default = [
+        "DP-3,2560x1440@360,2560x0,1"
+        "DP-2,2560x1440@144,0x0,1"
+        "Unknown-1,disable" # NOTE: still borked on 04-06-2024
+      ];
+      description = "the display layout to use";
+    };
   };
 
   imports = [
@@ -81,11 +90,7 @@ in
       enable = true;
       package = cfg.package;
       settings = {
-        monitor = [
-          "DP-3,2560x1440@360,2560x0,1"
-          "DP-2,2560x1440@144,0x0,1"
-          "Unknown-1,disable" # NOTE: still borked on 04-06-2024
-        ];
+        monitor = cfg.displays;
         windowrulev2 = [
           "opacity 1.0 0.6,class:^(kitty)$"
           "stayfocused,class:^(wofi)$"
@@ -101,8 +106,7 @@ in
           "${pkgs.dunst}/bin/dunst"
           "${cfg.package}/bin/hyprctl dispatcher focusmonitor 1"
           "${pkgs.keepassxc}/bin/keepassxc"
-          "${pkgs.planify}/bin/planify"
-          "${pkgs.thunderbird}/bin/thunderbird"
+          "${pkgs.planify}/bin/io.github.alainm23.planify"
         ];
         general = {
           sensitivity = "1.2";
@@ -120,10 +124,6 @@ in
           active_opacity = "1";
           inactive_opacity = "1";
         };
-        workspace = [
-          "DP-3,1"
-          "DP-2,2"
-        ];
         animations = {
           enabled = "1";
           animation = [
