@@ -12,6 +12,7 @@ in
     ./git.nix
     ./kitty.nix
     ./zsh.nix
+    ./thunderbird.nix
   ];
 
   config = lib.mkIf cfg.enable {

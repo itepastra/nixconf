@@ -39,6 +39,9 @@
         email = "noa@voorwaarts.nl";
         do_sign = true;
       };
+      thunderbird = {
+        enable = true;
+      };
     };
   };
 
@@ -70,7 +73,6 @@
     keepassxc
     yubikey-manager-qt
     yubico-piv-tool
-    thunderbird
   ];
 
 
