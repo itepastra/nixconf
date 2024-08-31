@@ -70,6 +70,7 @@
     keepassxc
     yubikey-manager-qt
     yubico-piv-tool
+    thunderbird
   ];
 
 
