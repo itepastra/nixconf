@@ -223,6 +223,7 @@
 
           "images.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:2283/";
           "maintenance.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:5000/";
+          "map.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://127.0.0.1:8123/";
 
           "fete.voorwaarts.nl" = {
             forceSSL = true;
@@ -319,6 +320,7 @@
       "noa.voorwaarts.nl".extraDomainNames = [
         "images.noa.voorwaarts.nl"
         "maintenance.noa.voorwaarts.nl"
+        "map.noa.voorwaarts.nl"
       ];
       "itepastra.nl".extraDomainNames = [
         "locked.itepastra.nl"
