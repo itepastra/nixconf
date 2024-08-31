@@ -162,6 +162,10 @@
     home-manager.enable = true;
   };
 
+  services.syncthing = {
+    enable = true;
+  };
+
   home.pointerCursor =
     let
       getFrom = url: hash: name: {

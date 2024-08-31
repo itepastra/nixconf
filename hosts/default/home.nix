@@ -160,6 +160,10 @@
     zsh.shellAliases.bzzt = ''nix-shell -p mpv --command "mpv ~/Videos/BZZZM.mp4"'';
   };
 
+  services.syncthing = {
+    enable = true;
+  };
+
   home.pointerCursor =
     let
       getFrom = url: hash: name: {

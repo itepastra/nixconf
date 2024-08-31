@@ -331,11 +331,16 @@
     80 # http
     443 # https
     3000 # hydra
+
+    22000 # syncthing
   ];
   networking.firewall.allowedUDPPorts = [
     22 # ssh
     80 # http
     443 # https
+
+    22000 # syncthing
+    21027 # syncthing
   ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

@@ -367,11 +367,16 @@
     7791 # Pixelflut
     38281 # Archipelago
 
+    22000 # syncthing
+
     2283 # immich
   ];
   networking.firewall.allowedUDPPorts = [
     53317
     38281 # Archipelago
+
+    22000 # syncthing
+    21027 # syncthing
   ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

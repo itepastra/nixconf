@@ -52,8 +52,9 @@
     apps.zsh.enable = true;
   };
 
-
-
+  services.syncthing = {
+    enable = true;
+  };
 
 
 
