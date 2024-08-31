@@ -287,12 +287,6 @@
       relayHost = "mail.voorwaarts.nl";
       relayPort = 587;
     };
-    nextcloud = {
-      enable = true;
-      package = pkgs.nextcloud29;
-      hostName = "nc.itepastra.nl";
-      config.adminpassFile = "/etc/nextcloud_admin_pass";
-    };
   };
 
   mailserver = {
