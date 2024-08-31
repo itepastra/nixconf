@@ -41,75 +41,77 @@ in
     ../../common/colors.nix
   ];
 
-  config = lib.mkIf cfg.enable
-    {
-      modules.waybar.enabled = (
-        let
-          mods = config.modules.waybar.modules;
-          allmodules = mods.left ++ mods.center ++ mods.right;
-          namedmodules = builtins.map
-            (n: { name = n; value = { enable = true; }; })
-            allmodules;
-          createmodules = builtins.listToAttrs namedmodules;
-        in
-        createmodules
-      );
+  config =
+    let
+      displays_raw = config.modules.hyprland.displays;
+      displays = map (display_raw: lib.builtins.head (lib.strings.splitString "," displays_raw)) displays_raw;
+    in
+    lib.mkIf cfg.enable
+      {
+        modules.waybar.enabled = (
+          let
+            mods = config.modules.waybar.modules;
+            allmodules = mods.left ++ mods.center ++ mods.right;
+            namedmodules = builtins.map
+              (n: { name = n; value = { enable = true; }; })
+              allmodules;
+            createmodules = builtins.listToAttrs namedmodules;
+          in
+          createmodules
+        );
 
-      home.packages = with pkgs;
-        [
-          font-awesome
-        ];
-      programs.waybar = {
-        enable = true;
-        package = cfg.package;
-        settings = {
-          mainBar = {
-            layer = "top";
-            position = "top";
-            height = 39;
-            margin-top = 8;
-            margin-left = 10;
-            margin-right = 10;
-            output = [
-              "DP-3"
-              "DP-2"
-            ];
-            modules-left = cfg.modules.left;
-            modules-center = cfg.modules.center;
-            modules-right = cfg.modules.right;
+        home.packages = with pkgs;
+          [
+            font-awesome
+          ];
+        programs.waybar = {
+          enable = true;
+          package = cfg.package;
+          settings = {
+            mainBar = {
+              layer = "top";
+              position = "top";
+              height = 39;
+              margin-top = 8;
+              margin-left = 10;
+              margin-right = 10;
+              output = displays;
+              modules-left = cfg.modules.left;
+              modules-center = cfg.modules.center;
+              modules-right = cfg.modules.right;
+            };
           };
+          style = ''
+            * {
+              font-family: "Maple Mono NF";
+              font-size: 14px;
+            }
+
+            button {
+              /* Use box-shadow instead of border so the text isn't offset */
+              box-shadow: inset 0 -1px transparent;
+              /* Avoid rounded borders under each button name */
+              border: none;
+              border-radius: 0;
+            }
+
+            button:hover {
+              background: inherit;
+              border-radius: 999px;
+            }
+
+            tooltip {
+              background-color: #${config.colorScheme.palette.base00};
+              border: 1px solid;
+              border-color: #${config.colorScheme.palette.taskbarText};
+              border-radius: 10px;
+              color: #${config.colorScheme.palette.base05};
+            }
+            tooltip label {
+              padding: 5px;
+            }
+          '';
         };
-        style = ''
-          * {
-            font-family: "Maple Mono NF";
-            font-size: 14px;
-          }
-
-          button {
-            /* Use box-shadow instead of border so the text isn't offset */
-            box-shadow: inset 0 -1px transparent;
-            /* Avoid rounded borders under each button name */
-            border: none;
-            border-radius: 0;
-          }
-
-          button:hover {
-            background: inherit;
-            border-radius: 999px;
-          }
-
-          tooltip {
-            background-color: #${config.colorScheme.palette.base00};
-            border: 1px solid;
-            border-color: #${config.colorScheme.palette.taskbarText};
-            border-radius: 10px;
-            color: #${config.colorScheme.palette.base05};
-          }
-          tooltip label {
-            padding: 5px;
-          }
-        '';
-      };
-    }
+      }
   ;
 }
