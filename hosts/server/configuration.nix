@@ -91,8 +91,6 @@
   #	 enableSSHSupport = true;
   # };
 
-  # Enable the OpenSSH daemon.
-  services = { };
 
   programs.zsh.enable = true;
 
@@ -167,12 +165,16 @@
       bindAddress = "127.0.0.1";
       port = 22332;
     };
-    hydra = {
-      enable = false;
-      hydraURL = "http://localhost:3000";
-      notificationSender = "hydra@localhost";
-      buildMachinesFiles = [ ];
-      useSubstitutes = true;
+    radicale = {
+      enable = true;
+      settings = {
+        server.hosts = [ "0.0.0.0:29341" "[::]:29341" ];
+        auth = {
+          type = "htpasswd";
+          htpasswd_filename = "/var/radicale_users";
+          htpasswd_encryption = "bcrypt";
+        };
+      };
     };
     nginx =
       let
@@ -333,6 +335,7 @@
     3000 # hydra
 
     22000 # syncthing
+    29341 # radicale
   ];
   networking.firewall.allowedUDPPorts = [
     22 # ssh
