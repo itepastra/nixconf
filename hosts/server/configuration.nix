@@ -168,7 +168,7 @@
     radicale = {
       enable = true;
       settings = {
-        server.hosts = [ "0.0.0.0:29341" "[::]:29341" ];
+        server.hosts = [ "[::1]:29341" ];
         auth = {
           type = "htpasswd";
           htpasswd_filename = "/var/radicale_users";
@@ -268,6 +268,8 @@
 
           };
 
+          "calendar.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:29341";
+
           "noasserver" = {
             locations."/".proxyPass = "http://127.0.0.1:22332";
           };
@@ -323,6 +325,7 @@
         "rc.itepastra.nl"
         "pfa.itepastra.nl"
         "mail.itepastra.nl"
+        "calendar.itepastra.nl"
       ];
     };
   };
@@ -335,7 +338,6 @@
     3000 # hydra
 
     22000 # syncthing
-    29341 # radicale
   ];
   networking.firewall.allowedUDPPorts = [
     22 # ssh
