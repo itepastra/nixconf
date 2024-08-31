@@ -44,7 +44,7 @@ in
   config =
     let
       displays_raw = config.modules.hyprland.displays;
-      displays = builtins.map (display_raw: builtins.head (lib.strings.splitString "," displays_raw)) displays_raw;
+      displays = builtins.map (display_raw: builtins.head (lib.strings.splitString "," display_raw)) displays_raw;
     in
     lib.mkIf cfg.enable
       {
