@@ -60,7 +60,7 @@
             inherit automapaper;
           };
           modules = [
-            ./hosts/default/configuration.nix
+            ./hosts/lambdaos/configuration.nix
             inputs.home-manager.nixosModules.default
           ];
         };
@@ -72,7 +72,7 @@
           modules = [
             disko.nixosModules.disko
             inputs.mailserver.nixosModules.default
-            ./hosts/server/configuration.nix
+            ./hosts/nuos/configuration.nix
             inputs.home-manager.nixosModules.default
           ];
         };
