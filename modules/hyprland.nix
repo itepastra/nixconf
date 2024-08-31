@@ -107,6 +107,7 @@ in
           "${cfg.package}/bin/hyprctl dispatcher focusmonitor 1"
           "${pkgs.keepassxc}/bin/keepassxc"
           "${pkgs.planify}/bin/io.github.alainm23.planify"
+          "${pkgs.spotify}/bin/spotify"
         ];
         general = {
           sensitivity = "1.2";
