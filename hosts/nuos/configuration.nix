@@ -338,6 +338,7 @@
     3000 # hydra
 
     25565 # minecraft
+    24454 # minecraft (voice)
 
     22000 # syncthing
   ];
