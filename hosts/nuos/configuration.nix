@@ -337,6 +337,8 @@
     443 # https
     3000 # hydra
 
+    25565 # minecraft
+
     22000 # syncthing
   ];
   networking.firewall.allowedUDPPorts = [
