@@ -256,12 +256,6 @@
       enable = true;
       defaultRuntime = true;
     };
-    syncthing = {
-      enable = false;
-      user = "noa";
-      dataDir = "/home/noa/Sync";
-      configDir = "/home/noa/Sync/.config/syncthing";
-    };
     xserver = {
       enable = true;
       xkb = {
