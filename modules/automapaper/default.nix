@@ -170,11 +170,18 @@ in
             cycles = 2500;
             frames_per_tick = 1;
           };
+
+          displays_raw = config.modules.hyprland.displays;
+          displays = builtins.map (display_raw: builtins.head (lib.strings.splitString "," display_raw)) displays_raw;
         in
-        {
-          "DP-3" = conf;
-          "DP-2" = conf;
-        };
+
+        builtins.listToAttrs
+          (builtins.map
+            (disp: {
+              name = disp;
+              value = conf;
+            })
+            displays);
       wayland.windowManager.hyprland.settings.exec-once = lib.mkIf cfg.hyprland (
         lib.mapAttrsToList
           (name: config:
