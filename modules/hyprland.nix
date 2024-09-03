@@ -96,7 +96,6 @@ in
           "stayfocused,class:^(wofi)$"
           "workspace 1 silent,class:^(vesktop)$"
           "workspace 3 silent,class:^(thunderbird)$"
-          "workspace 3 silent,class:^(org.keepassxc.KeePassXC)$"
         ];
         env = [
           "WLR_NO_HARDWARE_CURSORS,1"
