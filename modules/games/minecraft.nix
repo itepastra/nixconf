@@ -5,7 +5,7 @@ in
 {
   config = lib.mkIf cfg.enable {
     home.packages = [
-      (pkgs.prismlauncher.override { withWaylandGLFW = true; })
+      pkgs.prismlauncher
     ];
   };
 }
