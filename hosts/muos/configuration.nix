@@ -54,13 +54,13 @@
         "https://hyprland.cachix.org"
         "https://cache.iog.io"
         "https://cuda-maintainers.cachix.org"
-        "http://192.168.42.5"
+        # "http://192.168.42.5"
       ];
       trusted-public-keys = [
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
         "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-        "192.168.42.5:+zcyHtRvk2otQhHDrDRNMQhp+j+ziVHHhDToC0wqjHE="
+        # "192.168.42.5:+zcyHtRvk2otQhHDrDRNMQhp+j+ziVHHhDToC0wqjHE="
       ];
     };
     optimise.automatic = true;

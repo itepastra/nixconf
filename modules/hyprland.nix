@@ -96,7 +96,6 @@ in
           "stayfocused,class:^(wofi)$"
           "workspace 1 silent,class:^(vesktop)$"
           "workspace 3 silent,class:^(thunderbird)$"
-          "workspace 3 silent,class:^(org.keepassxc.KeePassXC)$"
         ];
         env = [
           "WLR_NO_HARDWARE_CURSORS,1"
@@ -123,6 +122,7 @@ in
             disable_while_typing = 1;
             natural_scroll = 1;
             tap-to-click = 1;
+            scroll_factor = 0.3;
           };
         };
         misc = {
