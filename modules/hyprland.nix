@@ -94,8 +94,6 @@ in
         windowrulev2 = [
           "opacity 1.0 0.6,class:^(kitty)$"
           "stayfocused,class:^(wofi)$"
-          "workspace 1 silent,class:^(vesktop)$"
-          "workspace 3 silent,class:^(thunderbird)$"
         ];
         env = [
           "WLR_NO_HARDWARE_CURSORS,1"
