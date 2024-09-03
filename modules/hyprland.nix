@@ -122,6 +122,7 @@ in
             disable_while_typing = 1;
             natural_scroll = 1;
             tap-to-click = 1;
+            scroll_factor = 0.3;
           };
         };
         misc = {
