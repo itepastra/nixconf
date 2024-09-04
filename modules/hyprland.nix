@@ -23,12 +23,48 @@ in
       default = pkgs.xdg-desktop-portal-hyprland;
     };
     displays = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [
-        "DP-3,2560x1440@360,2560x0,1"
-        "DP-2,2560x1440@144,0x0,1"
-        "Unknown-1,disable" # NOTE: still borked on 04-06-2024
-      ];
+      type = lib.types.listOf
+        (lib.types.submodule {
+          options = {
+            name = lib.mkOption
+              {
+                type = lib.types.str;
+                description = "the display identifier";
+                example = "DP-2";
+              };
+            horizontal = lib.mkOption {
+              type = lib.types.ints.positive;
+              description = "the horizontal resolution";
+              example = 1920;
+            };
+            vertical = lib.mkOption {
+              type = lib.types.ints.positive;
+              description = "the vertical resolution";
+              example = 1080;
+            };
+            horizontal-offset = lib.mkOption {
+              type = lib.types.ints.unsigned;
+              description = "the horizontal resolution";
+              example = 1920;
+            };
+            vertical-offset = lib.mkOption {
+              type = lib.types.ints.unsigned;
+              description = "the vertical resolution";
+              example = 0;
+            };
+            refresh-rate = lib.mkOption {
+              type = lib.types.ints.unsigned;
+              description = "the refresh rate of the monitor";
+              example = 60;
+            };
+            scale = lib.mkOption {
+              type = lib.types.str;
+              description = "the scale of the monitor";
+              default = "1";
+              example = "1.5";
+            };
+          };
+        });
       description = "the display layout to use";
     };
   };
@@ -89,105 +125,109 @@ in
     wayland.windowManager.hyprland = {
       enable = true;
       package = cfg.package;
-      settings = {
-        monitor = cfg.displays;
-        windowrulev2 = [
-          "opacity 1.0 0.6,class:^(kitty)$"
-          "stayfocused,class:^(wofi)$"
-        ];
-        env = [
-          "WLR_NO_HARDWARE_CURSORS,1"
-        ];
-        exec-once = [
-          "${pkgs.waybar}/bin/waybar"
-          "${pkgs.dunst}/bin/dunst"
-          "${cfg.package}/bin/hyprctl dispatcher focusmonitor 1"
-          "${pkgs.keepassxc}/bin/keepassxc"
-          "${pkgs.spotify}/bin/spotify"
-        ];
-        general = {
-          sensitivity = "1.2";
-          gaps_in = "2";
-          gaps_out = "3";
-          border_size = "3";
-          "col.active_border" = "0xff${config.colorScheme.palette.base01}";
-          "col.inactive_border" = "0xff${config.colorScheme.palette.base00}";
-        };
-        input = {
-          touchpad = {
-            clickfinger_behavior = 1;
-            disable_while_typing = 1;
-            natural_scroll = 1;
-            tap-to-click = 1;
-            scroll_factor = 0.3;
+      settings =
+        let
+          make-display-string = display: "${display.name}, ${builtins.toString display.horizontal}x${builtins.toString display.vertical}@${builtins.toString display.refresh-rate}, ${builtins.toString display.horizontal-offset}x${builtins.toString display.vertical-offset}, ${display.scale}";
+        in
+        {
+          monitor = builtins.map make-display-string cfg.displays;
+          windowrulev2 = [
+            "opacity 1.0 0.6,class:^(kitty)$"
+            "stayfocused,class:^(wofi)$"
+          ];
+          env = [
+            "WLR_NO_HARDWARE_CURSORS,1"
+          ];
+          exec-once = [
+            "${pkgs.waybar}/bin/waybar"
+            "${pkgs.dunst}/bin/dunst"
+            "${cfg.package}/bin/hyprctl dispatcher focusmonitor 1"
+            "${pkgs.keepassxc}/bin/keepassxc"
+            "${pkgs.spotify}/bin/spotify"
+          ];
+          general = {
+            sensitivity = "1.2";
+            gaps_in = "2";
+            gaps_out = "3";
+            border_size = "3";
+            "col.active_border" = "0xff${config.colorScheme.palette.base01}";
+            "col.inactive_border" = "0xff${config.colorScheme.palette.base00}";
           };
-        };
-        misc = {
-          key_press_enables_dpms = true;
-        };
-        decoration = {
-          rounding = "6";
-          active_opacity = "1";
-          inactive_opacity = "1";
-        };
-        animations = {
-          enabled = "1";
-          animation = [
-            "windows,1,2,default"
-            "border,1,10,default"
-            "fade,0,5,default"
-            "workspaces,1,4,default"
+          input = {
+            touchpad = {
+              clickfinger_behavior = 1;
+              disable_while_typing = 1;
+              natural_scroll = 1;
+              tap-to-click = 1;
+              scroll_factor = 0.3;
+            };
+          };
+          misc = {
+            key_press_enables_dpms = true;
+          };
+          decoration = {
+            rounding = "6";
+            active_opacity = "1";
+            inactive_opacity = "1";
+          };
+          animations = {
+            enabled = "1";
+            animation = [
+              "windows,1,2,default"
+              "border,1,10,default"
+              "fade,0,5,default"
+              "workspaces,1,4,default"
+            ];
+          };
+          "$mod" = "SUPER";
+          bind = [
+            "$mod,Return,exec,${cfg.terminal}/bin/${cfg.terminal.pname}"
+            "$mod,tab,cyclenext"
+            "SUPERSHIFT,Q,killactive"
+            "$mod,SPACE,exec,wofi-launch"
+            "$mod,P,exec,wofi-power"
+            "SUPERSHIFT,m,exit"
+            "$mod,H,movefocus,l"
+            "$mod,J,movefocus,u"
+            "$mod,K,movefocus,d"
+            "$mod,L,movefocus,r"
+            "SUPERSHIFT,H,movewindow,l"
+            "SUPERSHIFT,J,movewindow,u"
+            "SUPERSHIFT,K,movewindow,d"
+            "SUPERSHIFT,L,movewindow,r"
+            "$mod,F,togglefloating"
+            "$mod,X,togglespecialworkspace"
+            "SUPERSHIFT,X,movetoworkspace,special"
+            "SUPERSHIFT,S,exec,${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
+            "$mod,f11,fullscreen,0"
+            ",XF86AudioLowerVolume,exec,${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 1%-"
+            ",XF86AudioRaiseVolume,exec,${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 1%+"
+            ",XF86AudioMute,exec,${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SINK@ toggle"
+            ",XF86AudioPlay,exec,${pkgs.playerctl}/bin/playerctl play-pause"
+            ",XF86AudioPrev,exec,${pkgs.playerctl}/bin/playerctl previous"
+            ",XF86AudioNext,exec,${pkgs.playerctl}/bin/playerctl next"
+            "$mod,mouse_up,workspace,r-1"
+            "$mod,mouse_down,workspace,r+1"
+          ]
+          ++ (
+            builtins.concatLists (builtins.genList
+              (
+                x:
+                let
+                  ws = builtins.toString (x);
+                in
+                [
+                  "$mod,${ws},workspace,${ws}"
+                  "ALT,${ws},movetoworkspace,${ws}"
+                ]
+              )
+              10)
+          );
+          bindm = [
+            "$mod,mouse:272,movewindow"
+            "$mod,mouse:273,resizewindow"
           ];
         };
-        "$mod" = "SUPER";
-        bind = [
-          "$mod,Return,exec,${cfg.terminal}/bin/${cfg.terminal.pname}"
-          "$mod,tab,cyclenext"
-          "SUPERSHIFT,Q,killactive"
-          "$mod,SPACE,exec,wofi-launch"
-          "$mod,P,exec,wofi-power"
-          "SUPERSHIFT,m,exit"
-          "$mod,H,movefocus,l"
-          "$mod,J,movefocus,u"
-          "$mod,K,movefocus,d"
-          "$mod,L,movefocus,r"
-          "SUPERSHIFT,H,movewindow,l"
-          "SUPERSHIFT,J,movewindow,u"
-          "SUPERSHIFT,K,movewindow,d"
-          "SUPERSHIFT,L,movewindow,r"
-          "$mod,F,togglefloating"
-          "$mod,X,togglespecialworkspace"
-          "SUPERSHIFT,X,movetoworkspace,special"
-          "SUPERSHIFT,S,exec,${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
-          "$mod,f11,fullscreen,0"
-          ",XF86AudioLowerVolume,exec,${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 1%-"
-          ",XF86AudioRaiseVolume,exec,${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 1%+"
-          ",XF86AudioMute,exec,${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SINK@ toggle"
-          ",XF86AudioPlay,exec,${pkgs.playerctl}/bin/playerctl play-pause"
-          ",XF86AudioPrev,exec,${pkgs.playerctl}/bin/playerctl previous"
-          ",XF86AudioNext,exec,${pkgs.playerctl}/bin/playerctl next"
-          "$mod,mouse_up,workspace,r-1"
-          "$mod,mouse_down,workspace,r+1"
-        ]
-        ++ (
-          builtins.concatLists (builtins.genList
-            (
-              x:
-              let
-                ws = builtins.toString (x);
-              in
-              [
-                "$mod,${ws},workspace,${ws}"
-                "ALT,${ws},movetoworkspace,${ws}"
-              ]
-            )
-            10)
-        );
-        bindm = [
-          "$mod,mouse:272,movewindow"
-          "$mod,mouse:273,resizewindow"
-        ];
-      };
     };
   };
 }

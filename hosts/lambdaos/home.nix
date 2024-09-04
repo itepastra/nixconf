@@ -27,7 +27,29 @@
   nixpkgs.config.allowUnfree = true;
 
   modules = {
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      displays = [
+        {
+          name = "DP-3";
+          horizontal = 2560;
+          vertical = 1440;
+          horizontal-offset = 2560;
+          vertical-offset = 0;
+          refresh-rate = 360;
+          scale = "1";
+        }
+        {
+          name = "DP-2";
+          horizontal = 2560;
+          vertical = 1440;
+          horizontal-offset = 0;
+          vertical-offset = 0;
+          refresh-rate = 144;
+          scale = "1";
+        }
+      ];
+    };
     games.enable = true;
     apps = {
       enable = true;

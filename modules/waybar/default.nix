@@ -42,10 +42,6 @@ in
   ];
 
   config =
-    let
-      displays_raw = config.modules.hyprland.displays;
-      displays = builtins.map (display_raw: builtins.head (lib.strings.splitString "," display_raw)) displays_raw;
-    in
     lib.mkIf cfg.enable
       {
         modules.waybar.enabled = (
@@ -75,7 +71,7 @@ in
               margin-top = 8;
               margin-left = 10;
               margin-right = 10;
-              output = displays;
+              output = builtins.map (display: display.name) config.modules.hyprland.displays;
               modules-left = cfg.modules.left;
               modules-center = cfg.modules.center;
               modules-right = cfg.modules.right;

@@ -29,7 +29,17 @@
   modules = {
     hyprland = {
       enable = true;
-      displays = [ "eDP-1, 2256x1504@60, 0x0, 1" ];
+      displays = [
+        {
+          name = "eDP-1";
+          horizontal = 2256;
+          vertical = 1504;
+          horizontal-offset = 0;
+          vertical-offset = 0;
+          refresh-rate = 60;
+          scale = "1";
+        }
+      ];
     };
     games.enable = true;
     apps = {
