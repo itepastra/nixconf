@@ -48,6 +48,10 @@
       url = "github:NixOS/nixos-hardware/master";
     };
 
+    agenix = {
+      url = "github:ryantm/agenix";
+    };
+
   };
 
   outputs = { self, nixpkgs, nix-colors, automapaper, disko, hyprland, lazy, ... }@inputs:
@@ -62,6 +66,7 @@
           modules = [
             ./hosts/lambdaos/configuration.nix
             inputs.home-manager.nixosModules.default
+            inputs.agenix.nixosModules.default
           ];
         };
         NoasServer = nixpkgs.lib.nixosSystem {

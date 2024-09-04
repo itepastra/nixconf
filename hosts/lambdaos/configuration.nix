@@ -12,9 +12,12 @@
       ../../modules/plasma
 
       ../../common
+
+      ./restic.nix
     ];
 
 
+  age.identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
 
 
   hardware = {
@@ -115,6 +118,21 @@
       "noa" = import ./home.nix;
       "root" = import ./root.nix;
     };
+  };
+
+  environment.systemPackages = with pkgs; [
+    restic
+  ];
+  users.users.restic = {
+    isNormalUser = true;
+  };
+
+  security.wrappers.restic = {
+    source = "${pkgs.restic.out}/bin/restic";
+    owner = "restic";
+    group = "users";
+    permissions = "u=rwx,g=,o=";
+    capabilities = "cap_dac_read_search=+ep";
   };
 
   # TODO: find list of fonts to install
@@ -295,11 +313,13 @@
   };
 
   systemd = {
-    timers."update-flake" = {
-      wantedBy = [ "timers.target" ];
-      timerConfig = {
-        OnCalendar = "daily";
-        Persistent = true;
+    timers = {
+      "update-flake" = {
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          OnCalendar = "daily";
+          Persistent = true;
+        };
       };
     };
 

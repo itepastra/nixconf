@@ -66,7 +66,6 @@
     localsend
     blueberry
     qbittorrent
-    planify
     keepassxc
     yubikey-manager-qt
     yubico-piv-tool
