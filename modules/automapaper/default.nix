@@ -180,7 +180,7 @@ in
           builtins.map
             (
               conf:
-              "${inputs.automapaper.packages.${pkgs.system}.default}/bin/automapaper -c ${confFile conf}"
+              "${inputs.automapaper.packages.${pkgs.system}.default}/bin/automapaper -C ${confFile conf}"
             )
             config.modules.hyprland.displays
         );
