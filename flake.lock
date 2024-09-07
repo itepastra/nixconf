@@ -61,11 +61,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1725473769,
-        "narHash": "sha256-SG7KHfUDGtoT89mc+1ugH5xwztB3muF+AWLEoovjShk=",
+        "lastModified": 1725717362,
+        "narHash": "sha256-2len2SYHcf1zTlD1TQ33gZiygG38stbem86DopjSNuI=",
         "owner": "itepastra",
         "repo": "automapaper",
-        "rev": "9488cc9d6811dd09f4120cbb005374e2311fcec2",
+        "rev": "c4f673820fadfc7b2107ba48ce2a73a633be37b0",
         "type": "github"
       },
       "original": {
