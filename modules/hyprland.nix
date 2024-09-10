@@ -146,7 +146,6 @@ in
             "${pkgs.spotify}/bin/spotify"
           ];
           general = {
-            sensitivity = "1.2";
             gaps_in = "2";
             gaps_out = "3";
             border_size = "3";
