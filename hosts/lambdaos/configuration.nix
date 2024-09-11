@@ -218,6 +218,7 @@
   };
 
   services = {
+    desktopManager.cosmic.enable = true;
     pcscd.enable = true; # for yubikey
     pipewire = {
       enable = true;
