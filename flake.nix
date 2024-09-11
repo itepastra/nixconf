@@ -52,6 +52,11 @@
       url = "github:ryantm/agenix";
     };
 
+    cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = { self, nixpkgs, nix-colors, automapaper, disko, hyprland, lazy, ... }@inputs:
@@ -64,8 +69,15 @@
             inherit automapaper;
           };
           modules = [
+            {
+              nix.settings = {
+                substituters = [ "https://cosmic.cachix.org/" ];
+                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+              };
+            }
             ./hosts/lambdaos/configuration.nix
             inputs.home-manager.nixosModules.default
+            inputs.cosmic.nixosModules.default
             inputs.agenix.nixosModules.default
           ];
         };
