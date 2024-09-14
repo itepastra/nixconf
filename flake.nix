@@ -112,7 +112,6 @@
             inherit nix-colors;
           };
           modules = [
-            disko.nixosModules.disko
             inputs.mailserver.nixosModules.default
             ./hosts/ksios/configuration.nix
             inputs.home-manager.nixosModules.default
