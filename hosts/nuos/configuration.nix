@@ -294,25 +294,6 @@
     };
   };
 
-  mailserver = {
-    enable = true;
-    fqdn = "mail.itepastra.nl";
-    domains = [ "itepastra.nl" ];
-    debug = true;
-    hierarchySeparator = "/";
-
-
-    loginAccounts = {
-      "noa@itepastra.nl" = {
-        hashedPasswordFile = "/etc/passwords/noa@itepastra.nl";
-        aliases = [ "@itepastra.nl" ];
-      };
-    };
-
-    certificateScheme = "acme";
-    acmeCertificateName = "itepastra.nl";
-  };
-
   security.acme = {
     acceptTerms = true;
     defaults.email = "noa@voorwaarts.nl";
@@ -326,7 +307,6 @@
         "locked.itepastra.nl"
         "rc.itepastra.nl"
         "pfa.itepastra.nl"
-        "mail.itepastra.nl"
         "calendar.itepastra.nl"
       ];
     };
