@@ -20,7 +20,7 @@
   hardware.enableAllFirmware = true;
 
   networking = {
-    hostName = "ksios"; # Define your hostname.
+    hostName = "ksiOS"; # Define your hostname.
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
   };
 
