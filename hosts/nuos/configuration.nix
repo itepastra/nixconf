@@ -245,12 +245,6 @@
             };
           };
 
-          "rc.itepastra.nl" = {
-            forceSSL = true;
-            enableACME = false;
-            useACMEHost = "itepastra.nl";
-          };
-
           "pfa.itepastra.nl" = {
             forceSSL = true;
             enableACME = false;
@@ -288,10 +282,6 @@
         $config['smtp_pass'] = "%p";
       '';
     };
-    postfix = {
-      relayHost = "mail.voorwaarts.nl";
-      relayPort = 587;
-    };
   };
 
   security.acme = {
@@ -305,7 +295,6 @@
       ];
       "itepastra.nl".extraDomainNames = [
         "locked.itepastra.nl"
-        "rc.itepastra.nl"
         "pfa.itepastra.nl"
         "calendar.itepastra.nl"
       ];
