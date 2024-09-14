@@ -174,7 +174,7 @@
     };
 
     certificateScheme = "acme";
-    acmeCertificateName = "itepastra.nl";
+    acmeCertificateName = "mail.itepastra.nl";
   };
 
   security.acme = {
