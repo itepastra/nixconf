@@ -1,7 +1,7 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 {
   options.modules.apps.neovim = {
-    enablelanguages = lib.mkEnableOption "enable LSP languages";
+    enableLanguages = lib.mkEnableOption "enable LSP languages";
   };
 
   config = {
@@ -17,16 +17,16 @@
           tree-sitter
           fd
 
-          (lib.mkIf config.modules.neovim.enableLanguages cargo)
-          (lib.mkIf config.modules.neovim.enableLanguages gcc)
-          (lib.mkIf config.modules.neovim.enableLanguages go)
-          (lib.mkIf config.modules.neovim.enableLanguages jdk22)
-          (lib.mkIf config.modules.neovim.enableLanguages lua51Packages.lua)
-          (lib.mkIf config.modules.neovim.enableLanguages nodejs)
-          (lib.mkIf config.modules.neovim.enableLanguages php83Packages.composer)
-          (lib.mkIf config.modules.neovim.enableLanguages php83)
-          (lib.mkIf config.modules.neovim.enableLanguages opam)
-          (lib.mkIf config.modules.neovim.enableLanguages
+          (lib.mkIf config.modules.apps.neovim.enableLanguages cargo)
+          (lib.mkIf config.modules.apps.neovim.enableLanguages gcc)
+          (lib.mkIf config.modules.apps.neovim.enableLanguages go)
+          (lib.mkIf config.modules.apps.neovim.enableLanguages jdk22)
+          (lib.mkIf config.modules.apps.neovim.enableLanguages lua51Packages.lua)
+          (lib.mkIf config.modules.apps.neovim.enableLanguages nodejs)
+          (lib.mkIf config.modules.apps.neovim.enableLanguages php83Packages.composer)
+          (lib.mkIf config.modules.apps.neovim.enableLanguages php83)
+          (lib.mkIf config.modules.apps.neovim.enableLanguages opam)
+          (lib.mkIf config.modules.apps.neovim.enableLanguages
             (python3.withPackages (python-pkgs: [
               python-pkgs.pip
               python-pkgs.black

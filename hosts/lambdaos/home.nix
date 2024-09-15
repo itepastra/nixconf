@@ -61,7 +61,7 @@
       thunderbird = {
         enable = true;
       };
-      neovim.enablelanguages = true;
+      neovim.enableLanguages = true;
     };
   };
 
