@@ -1,36 +1,58 @@
 { pkgs, lib, ... }:
 {
-  programs.neovim =
-    {
-      enable = true;
-      extraPackages = with pkgs; [
-        ripgrep
-        luarocks
-        gnumake
-        wget
-        nixpkgs-fmt
-        tree-sitter
+  options.modules.apps.neovim = {
+    enablelanguages = lib.mkEnableOption "enable LSP languages";
+  };
 
-        fd
+  imports = [
+    ./cpu.nix
+    ./vpn.nix
+    ./tray.nix
+    ./clock.nix
+    ./power.nix
+    ./memory.nix
+    ./window.nix
+    ./network.nix
+    ./workspaces.nix
+    ./temperature.nix
+    ./wireplumber.nix
+    ./spotify.nix
+    ../../common/colors.nix
+  ];
 
-        cargo
-        gcc
-        go
-        jdk22
-        lua51Packages.lua
-        nodejs
-        php83Packages.composer
-        php83
-        opam
-        (python3.withPackages (python-pkgs: [
-          python-pkgs.pip
-          python-pkgs.black
-        ]))
-      ];
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
+  config = {
+    programs.neovim =
+      {
+        enable = true;
+        extraPackages = with pkgs; [
+          ripgrep
+          luarocks
+          gnumake
+          wget
+          nixpkgs-fmt
+          tree-sitter
+          fd
 
-      extraLuaConfig = lib.fileContents ./init.lua;
-    };
+          (lib.mkIf config.modules.neovim.enableLanguages cargo)
+          (lib.mkIf config.modules.neovim.enableLanguages gcc)
+          (lib.mkIf config.modules.neovim.enableLanguages go)
+          (lib.mkIf config.modules.neovim.enableLanguages jdk22)
+          (lib.mkIf config.modules.neovim.enableLanguages lua51Packages.lua)
+          (lib.mkIf config.modules.neovim.enableLanguages nodejs)
+          (lib.mkIf config.modules.neovim.enableLanguages php83Packages.composer)
+          (lib.mkIf config.modules.neovim.enableLanguages php83)
+          (lib.mkIf config.modules.neovim.enableLanguages opam)
+          (lib.mkIf config.modules.neovim.enableLanguages
+            (python3.withPackages (python-pkgs: [
+              python-pkgs.pip
+              python-pkgs.black
+            ])))
+        ];
+        defaultEditor = true;
+        viAlias = true;
+        vimAlias = true;
+
+        extraLuaConfig = lib.fileContents ./init.lua;
+      };
+  };
 }

@@ -50,6 +50,7 @@
       email = "noa@voorwaarts.nl";
     };
     apps.zsh.enable = true;
+    apps.neovim.enablelanguages = true;
   };
 
   services.syncthing = {
