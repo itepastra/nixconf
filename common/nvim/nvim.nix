@@ -4,22 +4,6 @@
     enablelanguages = lib.mkEnableOption "enable LSP languages";
   };
 
-  imports = [
-    ./cpu.nix
-    ./vpn.nix
-    ./tray.nix
-    ./clock.nix
-    ./power.nix
-    ./memory.nix
-    ./window.nix
-    ./network.nix
-    ./workspaces.nix
-    ./temperature.nix
-    ./wireplumber.nix
-    ./spotify.nix
-    ../../common/colors.nix
-  ];
-
   config = {
     programs.neovim =
       {
