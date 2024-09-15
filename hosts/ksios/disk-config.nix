@@ -2,8 +2,8 @@
 { lib, ... }:
 {
   disko.devices = {
-    disk.disk1 = {
-      device = lib.mkDefault "/dev/nvme0n1";
+    disk.nixos = {
+      device = lib.mkDefault "/dev/xvda";
       type = "disk";
       content = {
         type = "gpt";
