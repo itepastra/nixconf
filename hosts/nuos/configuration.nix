@@ -258,25 +258,52 @@
           };
 
           "calendar.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:29341";
+          "mail.itepastra.nl" = {
+            forceSSL = true;
+            enableACME = true;
+          };
         };
       };
-    roundcube = {
-      enable = true;
-      hostName = "rc.itepastra.nl";
-      extraConfig = ''
-        # starttls needed for authentication, so the fqdn required to match
-        # the certificate
-        $config['smtp_server'] = "tls://mail.itepastra.nl";
-        $config['smtp_user'] = "%u";
-        $config['smtp_pass'] = "%p";
-      '';
+  };
+  roundcube = {
+    enable = true;
+    hostName = "mail.itepastra.nl";
+    extraConfig = ''
+      # starttls needed for authentication, so the fqdn required to match
+      # the certificate
+      $config['smtp_server'] = "tls://mail.itepastra.nl";
+      $config['smtp_user'] = "%u";
+      $config['smtp_pass'] = "%p";
+    '';
+  };
+  postfix = {
+    relayHost = "mail.voorwaarts.nl";
+    relayPort = 125;
+  };
+
+  mailserver = {
+    enable = true;
+    fqdn = "mail.itepastra.nl";
+    domains = [ "itepastra.nl" ];
+    debug = true;
+    hierarchySeparator = "/";
+
+    loginAccounts = {
+      "noa@itepastra.nl" = {
+        hashedPasswordFile = "/etc/passwords/noa@itepastra.nl";
+        aliases = [ "@itepastra.nl" ];
+      };
     };
+
+    certificateScheme = "acme";
+    acmeCertificateName = "mail.itepastra.nl";
   };
 
   security.acme = {
     acceptTerms = true;
     defaults.email = "noa@voorwaarts.nl";
     certs = {
+      "mail.itepastra.nl".extraDomainNames = [ ];
       "noa.voorwaarts.nl".extraDomainNames = [
         "images.noa.voorwaarts.nl"
         "maintenance.noa.voorwaarts.nl"
@@ -301,6 +328,8 @@
     24454 # minecraft (voice)
 
     22000 # syncthing
+
+    125 # mail
   ];
   networking.firewall.allowedUDPPorts = [
     22 # ssh
