@@ -268,17 +268,17 @@
       relayHost = "mail.voorwaarts.nl";
       relayPort = 125;
     };
-  };
-  roundcube = {
-    enable = true;
-    hostName = "mail.itepastra.nl";
-    extraConfig = ''
-      # starttls needed for authentication, so the fqdn required to match
-      # the certificate
-      $config['smtp_server'] = "tls://mail.itepastra.nl";
-      $config['smtp_user'] = "%u";
-      $config['smtp_pass'] = "%p";
-    '';
+    roundcube = {
+      enable = true;
+      hostName = "mail.itepastra.nl";
+      extraConfig = ''
+        # starttls needed for authentication, so the fqdn required to match
+        # the certificate
+        $config['smtp_server'] = "tls://mail.itepastra.nl";
+        $config['smtp_user'] = "%u";
+        $config['smtp_pass'] = "%p";
+      '';
+    };
   };
 
   mailserver = {
