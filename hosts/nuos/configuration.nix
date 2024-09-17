@@ -264,6 +264,10 @@
           };
         };
       };
+    postfix = {
+      relayHost = "mail.voorwaarts.nl";
+      relayPort = 125;
+    };
   };
   roundcube = {
     enable = true;
@@ -275,10 +279,6 @@
       $config['smtp_user'] = "%u";
       $config['smtp_pass'] = "%p";
     '';
-  };
-  postfix = {
-    relayHost = "mail.voorwaarts.nl";
-    relayPort = 125;
   };
 
   mailserver = {
