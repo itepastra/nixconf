@@ -295,7 +295,7 @@
 
         virtualHosts = {
 
-          "noasserver" = {
+          "lambdaos" = {
             locations."/".proxyPass = "http://127.0.0.1:22332";
           };
 

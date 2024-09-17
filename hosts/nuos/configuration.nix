@@ -21,7 +21,7 @@
   hardware.enableAllFirmware = true;
 
   networking = {
-    hostName = "NoasServer"; # Define your hostname.
+    hostName = "nuOS"; # Define your hostname.
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
   };
   # Pick only one of the below networking options.
@@ -117,7 +117,7 @@
     path = with pkgs; [
       nixos-rebuild
     ];
-    script = ''nixos-rebuild switch --flake github:itepastra/nixconf'';
+    script = ''nixos-rebuild switch --flake github:itepastra/nixconf#nuOS'';
     serviceConfig = {
       Type = "oneshot";
       User = "root";
@@ -158,12 +158,6 @@
       enable = true;
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
-    };
-    nix-serve = {
-      enable = true;
-      secretKeyFile = "/var/cache-priv-key.pem";
-      bindAddress = "127.0.0.1";
-      port = 22332;
     };
     radicale = {
       enable = true;
@@ -264,11 +258,6 @@
           };
 
           "calendar.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:29341";
-
-          "noasserver" = {
-            locations."/".proxyPass = "http://127.0.0.1:22332";
-          };
-
         };
       };
     roundcube = {

@@ -81,7 +81,7 @@
             inputs.agenix.nixosModules.default
           ];
         };
-        NoasServer = nixpkgs.lib.nixosSystem {
+        nuOS = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
             inherit nix-colors;
