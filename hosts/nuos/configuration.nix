@@ -330,6 +330,8 @@
     22000 # syncthing
 
     125 # mail
+    993 # mail
+    465 # mail
   ];
   networking.firewall.allowedUDPPorts = [
     22 # ssh
