@@ -181,11 +181,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1726581763,
-        "narHash": "sha256-c/BN0hg0Hza1rj5I+FeNrz/L1zBHwG3BZlBCxsBTbXs=",
+        "lastModified": 1726590912,
+        "narHash": "sha256-5bxY85siOIqOcQ8TOMAWLkMUZvLUADS2i5TsZhzUIZY=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "88b015b9eb65edefc0b6501980a3d53cd1764637",
+        "rev": "d32d1504c77d7f6ba7e033357dcf638baceab9b7",
         "type": "github"
       },
       "original": {
@@ -877,17 +877,18 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1726431967,
-        "narHash": "sha256-jm/eIrENXC/i3g8nC+q5qm0DtyDLtPFwanZsuzD7wNY=",
-        "ref": "132400377c8b6bea76f649ee26aac2f35d703e40",
-        "rev": "132400377c8b6bea76f649ee26aac2f35d703e40",
-        "revCount": 681880,
-        "type": "git",
-        "url": "file:///home/noa/Documents/programming/nixpkgs"
+        "lastModified": 1726410565,
+        "narHash": "sha256-l/QXpfWIcTBZP11SbFzlqycxtHeCpsAbTsaplsyGFFs=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d6725bb4e318c25f5d6f909cad7ea3e7688ab238",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/noa/Documents/programming/nixpkgs"
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d6725bb4e318c25f5d6f909cad7ea3e7688ab238",
+        "type": "github"
       }
     },
     "pre-commit-hooks-nix": {
