@@ -297,6 +297,8 @@
 
     certificateScheme = "acme";
     acmeCertificateName = "mail.itepastra.nl";
+
+    openFirewall = true;
   };
 
   security.acme = {
@@ -330,8 +332,6 @@
     22000 # syncthing
 
     125 # mail
-    993 # mail
-    465 # mail
   ];
   networking.firewall.allowedUDPPorts = [
     22 # ssh
