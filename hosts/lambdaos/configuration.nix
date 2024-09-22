@@ -164,7 +164,7 @@
 
   modules = {
     games.steam.enable = true;
-    plasma.enable = true;
+    plasma.enable = false;
   };
 
   users.defaultUserShell = pkgs.zsh;
@@ -218,7 +218,7 @@
   };
 
   services = {
-    desktopManager.cosmic.enable = true;
+    desktopManager.cosmic.enable = false;
     pcscd.enable = true; # for yubikey
     pipewire = {
       enable = true;
