@@ -39,7 +39,7 @@
       };
       open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
   };
 
@@ -266,7 +266,7 @@
       defaultRuntime = true;
     };
     xserver = {
-      enable = true;
+      enable = false;
       xkb = {
         layout = "us";
         variant = "intl";
