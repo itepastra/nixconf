@@ -248,6 +248,7 @@
     services."update-from-flake" = {
       path = with pkgs; [
         nixos-rebuild
+        git
       ];
       script = ''nixos-rebuild switch --flake github:itepastra/nixconf'';
       serviceConfig = {
