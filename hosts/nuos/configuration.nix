@@ -269,7 +269,6 @@
       ];
       "itepastra.nl".extraDomainNames = [
         "locked.itepastra.nl"
-        "pfa.itepastra.nl"
         "calendar.itepastra.nl"
       ];
     };
