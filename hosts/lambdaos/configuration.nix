@@ -219,6 +219,10 @@
   };
 
   services = {
+    ollama = {
+      enable = true;
+      acceleration = "cuda";
+    };
     desktopManager.cosmic.enable = false;
     pcscd.enable = true; # for yubikey
     pipewire = {
