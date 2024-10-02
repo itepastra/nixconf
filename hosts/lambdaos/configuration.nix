@@ -235,7 +235,7 @@
       port = 22332;
     };
     hydra = {
-      enable = false;
+      enable = true;
       hydraURL = "http://localhost:3000";
       notificationSender = "hydra@localhost";
       buildMachinesFiles = [ ];
