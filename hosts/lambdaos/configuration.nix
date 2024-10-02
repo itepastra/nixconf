@@ -234,13 +234,6 @@
       bindAddress = "127.0.0.1";
       port = 22332;
     };
-    hydra = {
-      enable = true;
-      hydraURL = "http://localhost:3000";
-      notificationSender = "hydra@localhost";
-      buildMachinesFiles = [ ];
-      useSubstitutes = true;
-    };
     fail2ban.enable = true;
     greetd = {
       enable = false;
