@@ -165,7 +165,7 @@
 
   modules = {
     games.steam.enable = true;
-    plasma.enable = false;
+    plasma.enable = true;
   };
 
   users.defaultUserShell = pkgs.zsh;
