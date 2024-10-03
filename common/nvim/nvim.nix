@@ -31,7 +31,6 @@
               python-pkgs.pip
               python-pkgs.black
             ])))
-          (lib.mkIf config.modules.apps.neovim.enableLanguages haskell-language-server)
         ];
         defaultEditor = true;
         viAlias = true;
