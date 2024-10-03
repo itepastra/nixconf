@@ -31,6 +31,7 @@
               python-pkgs.pip
               python-pkgs.black
             ])))
+          (lib.mkIf config.modules.apps.neovim.enableLanguages hls)
         ];
         defaultEditor = true;
         viAlias = true;
