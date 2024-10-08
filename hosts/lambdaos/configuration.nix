@@ -46,6 +46,7 @@
   nixpkgs.config = {
     allowUnfree = true;
     nvidia.acceptLicense = true;
+    cudaSupport = true;
   };
   nixpkgs.overlays = [ ];
 
