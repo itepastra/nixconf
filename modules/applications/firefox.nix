@@ -18,6 +18,9 @@ in
       pkgs.pinentry-qt
     ];
 
+    home.file = {
+      "ykcs/ykcs11.so".source = "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
+    };
   };
 
 }
