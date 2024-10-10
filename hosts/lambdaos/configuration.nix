@@ -46,7 +46,7 @@
   nixpkgs.config = {
     allowUnfree = true;
     nvidia.acceptLicense = true;
-    # cudaSupport = true;
+    cudaSupport = true;
   };
   nixpkgs.overlays = [ ];
 
@@ -263,7 +263,7 @@
       settings.KbdInteractiveAuthentication = false;
     };
     monado = {
-      enable = true;
+      enable = false;
       defaultRuntime = true;
     };
     xserver = {
