@@ -34,7 +34,9 @@
       base15 = "#a4ffff"; # bright cyan
       base16 = "#d6acff"; # bright blue
       base17 = "#ff92df"; # bright purple
-			taskbarText = base04;
+      taskbarText = base04;
+      background_paper = "#000000";
+      foreground_paper = "#26052e";
     };
   };
 
