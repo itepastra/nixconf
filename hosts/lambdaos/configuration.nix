@@ -263,7 +263,7 @@
       settings.KbdInteractiveAuthentication = false;
     };
     monado = {
-      enable = false;
+      enable = true;
       defaultRuntime = true;
     };
     xserver = {
