@@ -52,9 +52,16 @@
       url = "github:ryantm/agenix";
     };
 
+    oxalica = {
+      url = "github:oxalica/rust-overlay";
+    };
+
     cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        rust-overlay.follows = "oxalica";
+      };
     };
 
   };
@@ -71,8 +78,8 @@
           modules = [
             {
               nix.settings = {
-                substituters = [ "https://cosmic.cachix.org/" ];
-                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+                substituters = [ " https://cosmic.cachix.org/ " ];
+                trusted-public-keys = [ " cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE= " ];
               };
             }
             ./hosts/lambdaos/configuration.nix
@@ -128,3 +135,4 @@
       };
     };
 }
+
