@@ -226,7 +226,7 @@
       enable = true;
       acceleration = "cuda";
     };
-    desktopManager.cosmic.enable = true;
+    desktopManager.cosmic.enable = false;
     pcscd.enable = true; # for yubikey
     pipewire = {
       enable = true;
