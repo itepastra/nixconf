@@ -326,6 +326,7 @@
         script = ''
           [[ ! -d '/root/nixconf' ]] && cd /root && git clone git@github.com:itepastra/nixconf
           cd /root/nixconf
+          git reset --hard origin/main
           git pull
           nix flake update --commit-lock-file /root/nixconf
           nixos-rebuild boot --flake .
