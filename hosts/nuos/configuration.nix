@@ -155,6 +155,14 @@
   };
 
   services = {
+    github-runners = {
+      flurry-runner = {
+        enable = true;
+        name = "flurry-runner";
+        tokenFile = "/secrets/token-flurry";
+        url = "https://github.com/itepastra/flurry";
+      };
+    };
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
