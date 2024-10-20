@@ -158,6 +158,10 @@
     github-runners = {
       flurry-runner = {
         enable = true;
+        extraPackages = with pkgs;[
+          nodejs
+          curl
+        ];
         name = "flurry-runner";
         tokenFile = "/secrets/token-flurry";
         url = "https://github.com/itepastra/flurry";
