@@ -330,7 +330,7 @@
           cd /root/nixconf
           git reset --hard origin/main
           git pull
-          nix flake update --commit-lock-file /root/nixconf
+          nix flake update --commit-lock-file
           nixos-rebuild boot --flake .
           git push
         '';
