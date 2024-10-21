@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ modulesPath, pkgs, inputs, lib, nix-colors, ... }:
+{ modulesPath, pkgs, inputs, lib, nix-colors, config, ... }:
 {
   imports =
     [
@@ -143,6 +143,11 @@
     };
   };
 
+  age.secrets = {
+    "secrets/token-flurry".file = ../../secrets/github/flurry.age;
+    "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
+  };
+
   services = {
     nix-serve = {
       enable = true;
@@ -158,7 +163,7 @@
           curl
         ];
         name = "flurry-runner";
-        tokenFile = "/secrets/token-flurry";
+        tokenFile = config.age.secrets."secrets/token-flurry".path;
         url = "https://github.com/itepastra/flurry";
       };
       nixconf-runner = {
@@ -167,7 +172,7 @@
           nixos-rebuild
         ];
         name = "nixconf-runner";
-        tokenFile = "/secrets/token-nixconf";
+        tokenFile = config.age.secrets."secrets/token-nixconf".path;
         url = "https://github.com/itepastra/nixconf";
       };
     };
