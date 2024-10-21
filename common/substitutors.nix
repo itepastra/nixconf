@@ -23,6 +23,7 @@
       allowed-uris = [
         "github:"
         "gitlab:"
+        "https://github.com/"
       ];
     };
     optimise.automatic = true;
