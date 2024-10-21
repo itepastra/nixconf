@@ -118,12 +118,6 @@
       nixosModules = {
         automapaper = ./modules/automapaper;
       };
-
-      hydraJobs = {
-        lambda.x86_64-linux = self.nixosConfigurations.lambdaOS.config.system.build.toplevel;
-        nu.x86_64-linux = self.nixosConfigurations.nuOS.config.system.build.toplevel;
-        mu.x86_64-linux = self.nixosConfigurations.muOS.config.system.build.toplevel;
-      };
     };
 }
 

@@ -43,16 +43,6 @@
       hashedPassword = "$6$rounds=512400$g/s4dcRttXi4ux6c$Z6pKnhJXcWxv0TBSMtvJu5.piETdUBSgBVN7oDPKiQV.lbTYz1r.0XQLwMYxzcvaaX0DL6Iw/SEUTiC2M50wC/";
       openssh.authorizedKeys.keys = import ../../common/ssh-keys.nix;
     };
-    remotebuilder = {
-      isNormalUser = true;
-      hashedPassword = "!";
-      description = "Remote nix builder";
-      openssh.authorizedKeys.keys =
-        [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILRZXNqs7FgVeTCt2ElOARt5f/bR1gjk5bS+zCJA6C1P root@nuOS"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII7X17VovmxkwhKxIg795yO1Sf7dwO50pybMRlUDLLcA hydra@nuOS"
-        ];
-    };
   };
 
   # Allow unfree packages
@@ -99,28 +89,8 @@
   };
 
   nix = {
-    buildMachines = [
-      {
-        hostName = "localhost";
-        protocol = null;
-        system = "x86_64-linux";
-        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
-        maxJobs = 4;
-        sshUser = "remotebuilder";
-      }
-      {
-        hostName = "lambdaos";
-        protocol = "ssh";
-        system = "x86_64-linux";
-        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
-        maxJobs = 8;
-        sshUser = "remotebuilder";
-      }
-    ];
-    distributedBuilds = false;
     settings = {
       builders-use-substitutes = true;
-      trusted-users = [ "root" "remotebuilder" "@wheel" ];
     };
   };
 
@@ -176,16 +146,6 @@
   };
 
   services = {
-    hydra = {
-      enable = true;
-      hydraURL = "https://hydra.itepastra.nl";
-      port = 9212;
-      notificationSender = "hydra@localhost";
-      useSubstitutes = true;
-      # listenHost = "localhost";
-      minimumDiskFree = 100;
-      minimumDiskFreeEvaluator = 100;
-    };
     nix-serve = {
       enable = true;
       package = pkgs.nix-serve-ng;
