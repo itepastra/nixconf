@@ -114,18 +114,6 @@
             ./hosts/muos/configuration.nix
           ];
         };
-        ksiOS = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-            inherit nix-colors;
-          };
-          modules = [
-            disko.nixosModules.disko
-            inputs.mailserver.nixosModules.default
-            inputs.home-manager.nixosModules.default
-            ./hosts/ksios/configuration.nix
-          ];
-        };
       };
       nixosModules = {
         automapaper = ./modules/automapaper;
