@@ -88,6 +88,20 @@
     };
   };
 
+  nix = {
+    buildMachines = [{
+      hostName = "lambdaOS";
+      system = "x86_64-linux";
+      protocol = "ssh-ng";
+      maxJobs = 4;
+      speedFactor = 3;
+      supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+      mandatoryFeatures = [ ];
+    }];
+    distributedBuilds = true;
+    settings.builders-use-substitutes = true;
+  };
+
   systemd.services."update-from-flake" = {
     path = with pkgs; [
       nixos-rebuild
