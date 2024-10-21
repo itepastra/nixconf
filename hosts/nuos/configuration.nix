@@ -90,10 +90,10 @@
 
   nix = {
     buildMachines = [{
-      hostName = "noa@lambdaOS";
+      hostName = "lambdaOS";
       system = "x86_64-linux";
       protocol = "ssh-ng";
-      maxJobs = 24;
+      maxJobs = 5;
       speedFactor = 3;
       supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
       mandatoryFeatures = [ ];
