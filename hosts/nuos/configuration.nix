@@ -155,10 +155,13 @@
   services = {
     hydra = {
       enable = true;
-      hydraURL = "http://0.0.0.0:9212";
+      hydraURL = "https://hydra.itepastra.nl";
       port = 9212;
       notificationSender = "hydra@localhost";
       useSubstitutes = true;
+      # listenHost = "localhost";
+      minimumDiskFree = 100;
+      minimumDiskFreeEvaluator = 100;
     };
     nix-serve = {
       enable = true;
