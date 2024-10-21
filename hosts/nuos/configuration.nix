@@ -93,7 +93,7 @@
       hostName = "noa@lambdaOS";
       system = "x86_64-linux";
       protocol = "ssh-ng";
-      maxJobs = 4;
+      maxJobs = 24;
       speedFactor = 3;
       supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
       mandatoryFeatures = [ ];
