@@ -153,6 +153,12 @@
   };
 
   services = {
+    hydra = {
+      enable = true;
+      hydraURL = "http://localhost:9212";
+      notificationSender = "hydra@localhost";
+      useSubstitutes = true;
+    };
     nix-serve = {
       enable = true;
       package = pkgs.nix-serve-ng;
@@ -285,7 +291,7 @@
     22 # ssh
     80 # http
     443 # https
-    3000 # hydra
+    9212 # hydra
 
     25565 # minecraft
     24454 # minecraft (voice)
