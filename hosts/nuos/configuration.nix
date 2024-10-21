@@ -170,15 +170,6 @@
         tokenFile = config.age.secrets."secrets/token-flurry".path;
         url = "https://github.com/itepastra/flurry";
       };
-      nixconf-runner = {
-        enable = true;
-        extraPackages = with pkgs; [
-          nixos-rebuild
-        ];
-        name = "nixconf-runner";
-        tokenFile = config.age.secrets."secrets/token-nixconf".path;
-        url = "https://github.com/itepastra/nixconf";
-      };
     };
     openssh = {
       enable = true;
