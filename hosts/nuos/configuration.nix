@@ -156,6 +156,7 @@
     hydra = {
       enable = true;
       hydraURL = "http://0.0.0.0:9212";
+      port = 9212;
       notificationSender = "hydra@localhost";
       useSubstitutes = true;
     };
