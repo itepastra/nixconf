@@ -77,15 +77,6 @@
     users = {
       "noa" = import ./home.nix;
       "root" = import ./root.nix;
-      "hydra" = { ... }: {
-        home.stateVersion = "24.11"; # Please read the comment before changing.
-        home.file = {
-          ".ssh/config".text = ''
-            Host 192.168.42.5
-              User nix-ssh
-          '';
-        };
-      };
     };
   };
 
@@ -98,9 +89,6 @@
   };
 
   nix = {
-    settings = {
-      trusted-users = [ "hydra-queue-runner" ];
-    };
     buildMachines = [ ];
     distributedBuilds = false;
     settings.builders-use-substitutes = true;
