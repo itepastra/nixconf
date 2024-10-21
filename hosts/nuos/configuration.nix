@@ -98,6 +98,7 @@
   };
 
   nix = {
+    settings.trusted-substituters = [ "ssh://nix-ssh@192.168.42.5" ];
     buildMachines = [{
       hostName = "192.168.42.5";
       system = "x86_64-linux";
