@@ -117,7 +117,7 @@
         sshUser = "remotebuilder";
       }
     ];
-    distributedBuilds = true;
+    distributedBuilds = false;
     settings = {
       builders-use-substitutes = true;
       trusted-users = [ "root" "remotebuilder" "@wheel" ];
