@@ -98,6 +98,7 @@
             inputs.mailserver.nixosModules.default
             ./hosts/nuos/configuration.nix
             inputs.home-manager.nixosModules.default
+            inputs.agenix.nixosModules.default
           ];
         };
         muOS = nixpkgs.lib.nixosSystem {
