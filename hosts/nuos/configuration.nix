@@ -234,7 +234,7 @@
           };
 
           "calendar.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:29341";
-          "cache.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:22332";
+          "cache.itepastra.nl" = proxy "itepastra.nl" "http://127.0.0.1:22332";
         };
       };
   };
