@@ -6,6 +6,7 @@
       experimental-features = [ "nix-command" "flakes" ];
       substituters = [
         (lib.mkIf (config.networking.hostName != "nuOS") "https://cache.itepastra.nl")
+        (lib.mkIf (config.networking.hostName == "nuOS") "http://192.168.42.5:38281")
         "https://hyprland.cachix.org"
         "https://cache.iog.io"
         "https://cuda-maintainers.cachix.org"
