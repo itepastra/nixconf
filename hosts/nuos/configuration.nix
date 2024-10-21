@@ -99,16 +99,8 @@
 
   nix = {
     settings.trusted-substituters = [ "ssh://nix-ssh@192.168.42.5" ];
-    buildMachines = [{
-      hostName = "localhost";
-      system = "x86_64-linux";
-      protocol = null;
-      maxJobs = 5;
-      speedFactor = 1;
-      supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-      mandatoryFeatures = [ ];
-    }];
-    distributedBuilds = true;
+    buildMachines = [ ];
+    distributedBuilds = false;
     settings.builders-use-substitutes = true;
   };
 
