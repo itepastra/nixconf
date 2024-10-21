@@ -77,7 +77,7 @@
       hashedPassword = "$6$rounds=512400$Zip3xoK2zcoR4qEL$N13YTHO5tpWfx2nKb1sye.ZPwfoRtMQ5f3YrMZqKzzoFoSSHHJ.l5ulCEa9HygFxZmBtPnwlseFEtl8ERnwF50";
       openssh.authorizedKeys.keys =
         (import ../../common/ssh-keys.nix) ++
-        [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIImRqLuSVWHE3G6ZqtD3EiRxQ+proxVZ+iTJ8EaFbb4f root@nuOS" ];
+        [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILRZXNqs7FgVeTCt2ElOARt5f/bR1gjk5bS+zCJA6C1P root@nuOS" ];
     };
   };
 
