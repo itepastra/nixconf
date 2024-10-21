@@ -21,7 +21,7 @@
 
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs"; # broken until libseat fix
     };
 
     hyprpicker = {
