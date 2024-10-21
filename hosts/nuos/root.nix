@@ -49,7 +49,7 @@
     #	 org.gradle.daemon.idletimeout=3600000
     # '';
     ".ssh/config".text = ''
-      Host lambdaOS
+      Host 192.168.42.5
         User noa
     '';
   };
