@@ -98,7 +98,9 @@
   };
 
   nix = {
-    settings.trusted-substituters = [ "ssh://nix-ssh@192.168.42.5" ];
+    settings = {
+      trusted-users = [ "hydra-queue-runner" ];
+    };
     buildMachines = [ ];
     distributedBuilds = false;
     settings.builders-use-substitutes = true;
