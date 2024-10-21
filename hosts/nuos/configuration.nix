@@ -100,11 +100,11 @@
   nix = {
     settings.trusted-substituters = [ "ssh://nix-ssh@192.168.42.5" ];
     buildMachines = [{
-      hostName = "192.168.42.5";
+      hostName = "localhost";
       system = "x86_64-linux";
-      protocol = "ssh";
+      protocol = null;
       maxJobs = 5;
-      speedFactor = 3;
+      speedFactor = 1;
       supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
       mandatoryFeatures = [ ];
     }];
