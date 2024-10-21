@@ -90,7 +90,7 @@
 
   nix = {
     buildMachines = [{
-      hostName = "lambdaOS";
+      hostName = "noa@lambdaOS";
       system = "x86_64-linux";
       protocol = "ssh-ng";
       maxJobs = 4;
