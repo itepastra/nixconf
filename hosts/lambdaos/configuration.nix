@@ -43,6 +43,15 @@
     };
   };
 
+  nix.sshServe = {
+    enable = true;
+    keys =
+      [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILRZXNqs7FgVeTCt2ElOARt5f/bR1gjk5bS+zCJA6C1P root@nuOS"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII7X17VovmxkwhKxIg795yO1Sf7dwO50pybMRlUDLLcA hydra@nuOS"
+      ];
+  };
+
   # Allow unfree packages
   nixpkgs.config = {
     allowUnfree = true;
@@ -75,12 +84,7 @@
       description = "Noa Aarts";
       extraGroups = [ "networkmanager" "wheel" "docker" "wireshark" "dialout" ];
       hashedPassword = "$6$rounds=512400$Zip3xoK2zcoR4qEL$N13YTHO5tpWfx2nKb1sye.ZPwfoRtMQ5f3YrMZqKzzoFoSSHHJ.l5ulCEa9HygFxZmBtPnwlseFEtl8ERnwF50";
-      openssh.authorizedKeys.keys =
-        (import ../../common/ssh-keys.nix) ++
-        [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILRZXNqs7FgVeTCt2ElOARt5f/bR1gjk5bS+zCJA6C1P root@nuOS"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII7X17VovmxkwhKxIg795yO1Sf7dwO50pybMRlUDLLcA hydra@nuOS"
-        ];
+      openssh.authorizedKeys.keys = (import ../../common/ssh-keys.nix);
     };
   };
 
