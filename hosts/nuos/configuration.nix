@@ -155,7 +155,7 @@
   services = {
     hydra = {
       enable = true;
-      hydraURL = "http://localhost:9212";
+      hydraURL = "http://0.0.0.0:9212";
       notificationSender = "hydra@localhost";
       useSubstitutes = true;
     };
