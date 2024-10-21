@@ -148,6 +148,7 @@
     secrets = {
       "secrets/token-flurry".file = ../../secrets/github/flurry.age;
       "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
+      "secrets/nix-store-key".file = ../../secrets/nix-serve/private.age;
     };
   };
 
@@ -155,7 +156,7 @@
     nix-serve = {
       enable = true;
       package = pkgs.nix-serve-ng;
-      secretKeyFile = "/secrets/nix-store-key.pem";
+      secretKeyFile = config.age.secrets."secrets/nix-store-key".path;
       port = 22332;
     };
     github-runners = {

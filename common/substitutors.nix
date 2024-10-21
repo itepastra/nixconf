@@ -13,7 +13,7 @@
         "https://cache.iog.io"
       ];
       trusted-public-keys = [
-        "cache.itepastra.nl:zCB+g5uXlDuFXbs9pI10UmidFQt17kFTaPywv+J33FQ="
+        "cache.itepastra.nl:ogbo80MrUQqtOyGACPjMf1SBdCOL+IQ3LEvRf/6gy1k="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
         "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
