@@ -75,9 +75,7 @@
       description = "Noa Aarts";
       extraGroups = [ "networkmanager" "wheel" "docker" "wireshark" "dialout" ];
       hashedPassword = "$6$rounds=512400$Zip3xoK2zcoR4qEL$N13YTHO5tpWfx2nKb1sye.ZPwfoRtMQ5f3YrMZqKzzoFoSSHHJ.l5ulCEa9HygFxZmBtPnwlseFEtl8ERnwF50";
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBFemc4Pzp7I0y8FHxgRO/c/ReBmXuqXR6CWqbhiQ+0t noa@Noas_flaptop"
-      ];
+      openssh.authorizedKeys.keys = import ../../common/ssh-keys.nix;
     };
   };
 
@@ -205,12 +203,6 @@
       pulse.enable = true;
       jack.enable = true;
     };
-    nix-serve = {
-      enable = true;
-      secretKeyFile = "/var/cache-priv-key.pem";
-      bindAddress = "127.0.0.1";
-      port = 22332;
-    };
     fail2ban.enable = true;
     greetd = {
       enable = false;
@@ -250,28 +242,6 @@
     };
     flatpak.enable = true;
     udev.packages = [ pkgs.yubikey-personalization ];
-    nginx =
-      {
-        enable = true;
-        package = pkgs.nginx.override {
-          modules = [ pkgs.nginxModules.brotli ];
-        };
-
-
-        recommendedOptimisation = true;
-        recommendedProxySettings = true;
-        recommendedTlsSettings = true;
-        recommendedBrotliSettings = true;
-        sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
-
-        virtualHosts = {
-
-          "lambdaos" = {
-            locations."/".proxyPass = "http://127.0.0.1:22332";
-          };
-
-        };
-      };
   };
 
   systemd = {
@@ -345,7 +315,6 @@
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
-    80 # nix-serve
     53317 # Localsend
     7791 # Pixelflut
     38281 # Archipelago
