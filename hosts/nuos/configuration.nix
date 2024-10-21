@@ -45,11 +45,6 @@
     };
   };
 
-  nix.sshServe = {
-    enable = true;
-    keys = import ../../common/ssh-keys.nix;
-  };
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -135,6 +130,12 @@
   };
 
   services = {
+    nix-serve = {
+      enable = true;
+      package = pkgs.nix-serve-ng;
+      secretKeyFile = "/secrets/nix-store-key.pem";
+      port = 22332;
+    };
     github-runners = {
       flurry-runner = {
         enable = true;
@@ -233,6 +234,7 @@
           };
 
           "calendar.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:29341";
+          "cache.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:22332";
         };
       };
   };
@@ -250,6 +252,7 @@
       "itepastra.nl".extraDomainNames = [
         "locked.itepastra.nl"
         "calendar.itepastra.nl"
+        "cache.itepastra.nl"
       ];
     };
   };
