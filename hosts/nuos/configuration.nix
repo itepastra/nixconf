@@ -143,9 +143,12 @@
     };
   };
 
-  age.secrets = {
-    "secrets/token-flurry".file = ../../secrets/github/flurry.age;
-    "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
+  age = {
+    identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
+    secrets = {
+      "secrets/token-flurry".file = ../../secrets/github/flurry.age;
+      "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
+    };
   };
 
   services = {
