@@ -48,10 +48,6 @@
     #	 org.gradle.console=verbose
     #	 org.gradle.daemon.idletimeout=3600000
     # '';
-    ".ssh/config".text = ''
-      Host 192.168.42.5
-        User nix-ssh
-    '';
   };
 
   # Home Manager can also manage your environment variables through
