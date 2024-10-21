@@ -48,7 +48,7 @@
     #	 org.gradle.console=verbose
     #	 org.gradle.daemon.idletimeout=3600000
     # '';
-    ".ssh/config".source = ''
+    ".ssh/config".text = ''
       Host lambdaOS
         User noa
     '';
