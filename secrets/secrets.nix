@@ -6,8 +6,9 @@ in
   "restic/env.age".publicKeys = [ noa ];
   "restic/repo.age".publicKeys = [ noa ];
   "restic/password.age".publicKeys = [ noa ];
-  "github/flurry.age".publicKeys = [ nuOS ];
-  "github/nixconf.age".publicKeys = [ nuOS ];
-  "nix-serve/private.age".publicKeys = [ nuOS ];
+  "github/flurry.age".publicKeys = [ noa nuOS ];
+  "github/nixconf.age".publicKeys = [ noa nuOS ];
+  "nix-serve/private.age".publicKeys = [ noa nuOS ];
+  "radicale/htpasswd.age".publicKeys = [ noa nuOS ];
 }
 
