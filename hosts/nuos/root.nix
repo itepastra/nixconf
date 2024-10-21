@@ -50,7 +50,7 @@
     # '';
     ".ssh/config".text = ''
       Host 192.168.42.5
-        User noa
+        User nix-ssh
     '';
   };
 

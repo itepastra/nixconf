@@ -25,7 +25,7 @@
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
   };
   # Pick only one of the below networking options.
-  # networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -62,8 +62,8 @@
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
-  #	 enable = true;
-  #	 enableSSHSupport = true;
+  #   enable = true;
+  #   enableSSHSupport = true;
   # };
 
 
@@ -82,7 +82,7 @@
         home.file = {
           ".ssh/config".text = ''
             Host 192.168.42.5
-              User noa
+              User nix-ssh
           '';
         };
       };
