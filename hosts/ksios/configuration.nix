@@ -25,22 +25,6 @@
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
   };
 
-  nix = {
-    settings = {
-      # auto optimise every so often
-      auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
-      substituters = [ ];
-      trusted-public-keys = [ ];
-
-      allowed-uris = [
-        "github:"
-        "gitlab:"
-      ];
-    };
-    gc.automatic = false;
-  };
-
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 

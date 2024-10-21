@@ -1,7 +1,8 @@
-{...}:
+{ ... }:
 {
-	imports = [
-		./locale.nix
-		./boot.nix
-	];
+  imports = [
+    ./locale.nix
+    ./boot.nix
+    ./substitutors.nix
+  ];
 }

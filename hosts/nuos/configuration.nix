@@ -27,28 +27,6 @@
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
 
-  nix = {
-    settings = {
-      # auto optimise every so often
-      auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
-      substituters = [
-        "https://hyprland.cachix.org"
-        "http://192.168.42.5"
-      ];
-      trusted-public-keys = [
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-        "192.168.42.5:+zcyHtRvk2otQhHDrDRNMQhp+j+ziVHHhDToC0wqjHE="
-      ];
-
-      allowed-uris = [
-        "github:"
-        "gitlab:"
-      ];
-    };
-    gc.automatic = false;
-  };
-
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
