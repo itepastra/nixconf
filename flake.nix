@@ -24,11 +24,6 @@
       #inputs.nixpkgs.follows = "nixpkgs"; # broken until libseat fix
     };
 
-    hydra = {
-      url = "github:nixos/hydra";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
       inputs.nixpkgs.follows = "nixpkgs";

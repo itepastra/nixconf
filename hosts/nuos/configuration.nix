@@ -158,16 +158,16 @@
   };
 
   services = {
-    hydra = {
-      enable = true;
-      hydraURL = "https://hydra.itepastra.nl";
-      port = 9212;
-      notificationSender = "hydra@localhost";
-      useSubstitutes = true;
-      # listenHost = "localhost";
-      minimumDiskFree = 100;
-      minimumDiskFreeEvaluator = 100;
-    };
+    # hydra = {
+    #   enable = true;
+    #   hydraURL = "https://hydra.itepastra.nl";
+    #   port = 9212;
+    #   notificationSender = "hydra@localhost";
+    #   useSubstitutes = true;
+    #   # listenHost = "localhost";
+    #   minimumDiskFree = 100;
+    #   minimumDiskFreeEvaluator = 100;
+    # };
     nix-serve = {
       enable = true;
       package = pkgs.nix-serve-ng;
