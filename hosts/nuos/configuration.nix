@@ -92,7 +92,7 @@
     buildMachines = [{
       hostName = "lambdaOS";
       system = "x86_64-linux";
-      protocol = "ssh-ng";
+      protocol = "ssh";
       maxJobs = 5;
       speedFactor = 3;
       supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
