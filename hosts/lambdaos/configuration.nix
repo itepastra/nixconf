@@ -275,7 +275,7 @@
           nixos-rebuild
         ];
         script = ''
-          [[ ! -d '/root/nixconf' ]] && cd /root && git clone git@github.com:itepastra/nixconf
+          [[ ! -d '/root/nixconf' ]] && git clone git@github.com:itepastra/nixconf /root/nixconf
           cd /root/nixconf
           git reset --hard origin/main
           git pull
