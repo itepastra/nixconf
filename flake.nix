@@ -54,6 +54,17 @@
 
     oxalica = {
       url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    tsunami = {
+      url = "github:itepastra/tsunami";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    flurry = {
+      url = "github:itepastra/flurry";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     cosmic = {

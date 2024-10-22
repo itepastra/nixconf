@@ -92,6 +92,9 @@
     keepassxc
     yubikey-manager-qt
     yubico-piv-tool
+
+    inputs.flurry
+    inputs.tsunami
   ];
 
 
