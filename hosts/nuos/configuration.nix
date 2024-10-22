@@ -141,7 +141,7 @@
       "secrets/token-flurry".file = ../../secrets/github/flurry.age;
       "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
       "secrets/nix-store-key".file = ../../secrets/nix-serve/private.age;
-      "secrets/radicale" = {
+      "rsecrets/radicale" = {
         file = ../../secrets/radicale/htpasswd.age;
         owner = "radicale";
         group = "radicale";
@@ -179,7 +179,7 @@
         server.hosts = [ "[::1]:29341" ];
         auth = {
           type = "htpasswd";
-          htpasswd_filename = config.age.secrets."secrets/radicale".path;
+          htpasswd_filename = config.age.secrets."rsecrets/radicale".path;
           htpasswd_encryption = "bcrypt";
         };
       };
