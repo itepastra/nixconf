@@ -150,12 +150,6 @@
   };
 
   services = {
-    nix-serve = {
-      enable = true;
-      package = pkgs.nix-serve-ng;
-      secretKeyFile = config.age.secrets."secrets/nix-store-key".path;
-      port = 22332;
-    };
     github-runners = {
       flurry-runner = {
         enable = true;
@@ -255,7 +249,6 @@
           };
 
           "calendar.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:29341";
-          "cache.itepastra.nl" = proxy "itepastra.nl" "http://127.0.0.1:22332";
         };
       };
   };
@@ -273,7 +266,6 @@
       "itepastra.nl".extraDomainNames = [
         "locked.itepastra.nl"
         "calendar.itepastra.nl"
-        "cache.itepastra.nl"
       ];
     };
   };
@@ -283,7 +275,6 @@
     22 # ssh
     80 # http
     443 # https
-    9212 # hydra
 
     25565 # minecraft
     24454 # minecraft (voice)
