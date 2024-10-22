@@ -164,6 +164,7 @@
           curl
         ];
         name = "flurry-runner";
+        replace = true;
         tokenFile = config.age.secrets."secrets/token-flurry".path;
         url = "https://github.com/itepastra/flurry";
       };
