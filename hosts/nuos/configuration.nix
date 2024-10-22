@@ -138,10 +138,14 @@
   age = {
     identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
     secrets = {
-      "secrets/token-flurry".file = ../../secrets/github/flurry.age;
-      "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
-      "secrets/nix-store-key".file = ../../secrets/nix-serve/private.age;
-      "secrets/radicale".file = ../../secrets/radicale/htpasswd.age;
+      "token-flurry".file = ../../secrets/github/flurry.age;
+      "token-nixconf".file = ../../secrets/github/nixconf.age;
+      "nix-store-key".file = ../../secrets/nix-serve/private.age;
+      "radicale" = {
+        file = ../../secrets/radicale/htpasswd.age;
+        owner = "radicale";
+        group = "radicale";
+      };
     };
   };
 
@@ -149,7 +153,7 @@
     nix-serve = {
       enable = true;
       package = pkgs.nix-serve-ng;
-      secretKeyFile = config.age.secrets."secrets/nix-store-key".path;
+      secretKeyFile = config.age.secrets."nix-store-key".path;
       port = 22332;
     };
     github-runners = {
@@ -160,7 +164,7 @@
           curl
         ];
         name = "flurry-runner";
-        tokenFile = config.age.secrets."secrets/token-flurry".path;
+        tokenFile = config.age.secrets."token-flurry".path;
         url = "https://github.com/itepastra/flurry";
       };
     };
@@ -175,7 +179,7 @@
         server.hosts = [ "[::1]:29341" ];
         auth = {
           type = "htpasswd";
-          htpasswd_filename = config.age.secrets."secrets/radicale".path;
+          htpasswd_filename = config.age.secrets."radicale".path;
           htpasswd_encryption = "bcrypt";
         };
       };
