@@ -48,7 +48,7 @@
     sandbox = true;
     show-trace = true;
 
-    system-features = [ "big-parallel" "kvm" "recursive-nix" ];
+    system-features = [ "nixos-test" "recursive-nix" ];
     sandbox-paths = [ "/bin/sh=${pkgs.busybox-sandbox-shell.out}/bin/busybox" ];
   };
 
