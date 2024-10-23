@@ -43,16 +43,14 @@
     };
   };
 
-  nix.sshServe = {
-    enable = true;
-    keys =
-      [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILRZXNqs7FgVeTCt2ElOARt5f/bR1gjk5bS+zCJA6C1P root@nuOS"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII7X17VovmxkwhKxIg795yO1Sf7dwO50pybMRlUDLLcA hydra@nuOS"
-      ];
-    write = true;
-  };
+  nix.settings = {
+    trusted-users = [ "noa" ];
+    sandbox = true;
+    show-trace = true;
 
+    system-features = [ "big-parallel" "kvm" "recursive-nix" ];
+    sandbox-paths = [ "/bin/sh=${pkgs.busybox-sandbox-shell.out}/bin/busybox" ];
+  };
 
   # Allow unfree packages
   nixpkgs.config = {
