@@ -12,7 +12,6 @@
       ./hardware-configuration.nix
 
       ../../common
-      ../../common/ccid-overlay.nix
     ];
 
 

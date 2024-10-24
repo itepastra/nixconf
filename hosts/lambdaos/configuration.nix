@@ -12,7 +12,6 @@
       ../../modules/plasma
 
       ../../common
-      ../../common/ccid-overlay.nix
 
       ./restic.nix
     ];
