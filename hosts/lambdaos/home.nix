@@ -93,6 +93,8 @@
     yubikey-manager-qt
     yubico-piv-tool
 
+		libreoffice-qt6
+
     inputs.flurry.packages.${system}.flurry
     inputs.tsunami.packages.${system}.tsunami
   ];
