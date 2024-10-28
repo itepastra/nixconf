@@ -435,11 +435,28 @@ require("lazy").setup({
 
       require("lazy-lsp").setup({
         configs = {
+          nixd = {
+            settings = {
+              nixd = {
+                options = {
+                  nixos = {
+                    expr = "(builtins.getFlake \"/home/noa/nixos/\").nixosConfigurations.lambdaOS.options",
+                  },
+                  home_manager = {
+                    expr = "(builtins.getFlake \"/home/noa/nixos/\").homeConfigurations.\"noa@lambdaOS\".options",
+                  },
+                },
+                formatting = {
+                  command = { "nixfmt" }
+                },
+              },
+            },
+          },
           nil_ls = {
             settings = {
               ['nil'] = {
                 formatting = {
-                  command = { "nixfmt" },
+                  command = { "nixfmt" }
                 },
               },
             },

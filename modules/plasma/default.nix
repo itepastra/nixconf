@@ -9,7 +9,10 @@ in
 
 
   config = lib.mkIf cfg.enable {
-		services.desktopManager.plasma6.enable = true;
+		services = {
+			desktopManager.plasma6.enable = true;
+			displayManager.defaultSession = "hyprland";
+		};
 
 		xdg.portal.config.common.default = "*";
 	};
