@@ -2,23 +2,27 @@
 # your system.Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, nix-colors, lib, ... }:
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../modules/games/steam.nix
-      ../../modules/plasma
+  config,
+  pkgs,
+  inputs,
+  nix-colors,
+  lib,
+  ...
+}:
+{
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/games/steam.nix
+    ../../modules/plasma
 
-      ../../common
+    ../../common
 
-      ./restic.nix
-    ];
-
+    ./restic.nix
+  ];
 
   age.identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
-
 
   hardware = {
     bluetooth = {
@@ -47,7 +51,10 @@
     sandbox = true;
     show-trace = true;
 
-    system-features = [ "nixos-test" "recursive-nix" ];
+    system-features = [
+      "nixos-test"
+      "recursive-nix"
+    ];
     sandbox-paths = [ "/bin/sh=${pkgs.busybox-sandbox-shell.out}/bin/busybox" ];
   };
 
@@ -69,7 +76,6 @@
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
-
   # Configure console keymap
   console.keyMap = "us-acentos";
 
@@ -81,7 +87,13 @@
     noa = {
       isNormalUser = true;
       description = "Noa Aarts";
-      extraGroups = [ "networkmanager" "wheel" "docker" "wireshark" "dialout" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "docker"
+        "wireshark"
+        "dialout"
+      ];
       hashedPassword = "$6$rounds=512400$Zip3xoK2zcoR4qEL$N13YTHO5tpWfx2nKb1sye.ZPwfoRtMQ5f3YrMZqKzzoFoSSHHJ.l5ulCEa9HygFxZmBtPnwlseFEtl8ERnwF50";
       openssh.authorizedKeys.keys = (import ../../common/ssh-keys.nix);
     };
@@ -101,7 +113,6 @@
   environment.systemPackages = with pkgs; [
     restic
   ];
-
 
   # TODO: find list of fonts to install
   fonts.packages = with pkgs; [
@@ -149,7 +160,6 @@
 
   security.rtkit.enable = true;
   boot = rec {
-
 
     kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = with kernelPackages; [
@@ -340,7 +350,6 @@
   ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

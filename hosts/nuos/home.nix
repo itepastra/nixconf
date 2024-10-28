@@ -1,11 +1,16 @@
-{ config, pkgs, mineflake, inputs, ... }:
+{
+  config,
+  pkgs,
+  mineflake,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [
-      ../../modules/applications
-      ../../common/nvim/nvim.nix
-    ];
+  imports = [
+    ../../modules/applications
+    ../../common/nvim/nvim.nix
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "noa";
@@ -55,8 +60,6 @@
   services.syncthing = {
     enable = true;
   };
-
-
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

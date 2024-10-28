@@ -2,19 +2,26 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ modulesPath, pkgs, inputs, lib, nix-colors, config, ... }:
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-      ./disk-config.nix
-      (modulesPath + "/installer/scan/not-detected.nix")
-      (modulesPath + "/profiles/qemu-guest.nix")
+  modulesPath,
+  pkgs,
+  inputs,
+  lib,
+  nix-colors,
+  config,
+  ...
+}:
+{
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+    ./disk-config.nix
+    (modulesPath + "/installer/scan/not-detected.nix")
+    (modulesPath + "/profiles/qemu-guest.nix")
 
-      ../../common
-    ];
+    ../../common
+  ];
 
   # LOVE me some blob
   hardware.enableRedistributableFirmware = true;
@@ -39,7 +46,12 @@
   users.users = {
     noa = {
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "wheel" "docker" "libvirt" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "docker"
+        "libvirt"
+      ];
       hashedPassword = "$6$rounds=512400$g/s4dcRttXi4ux6c$Z6pKnhJXcWxv0TBSMtvJu5.piETdUBSgBVN7oDPKiQV.lbTYz1r.0XQLwMYxzcvaaX0DL6Iw/SEUTiC2M50wC/";
       openssh.authorizedKeys.keys = import ../../common/ssh-keys.nix;
     };
@@ -65,7 +77,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
 
   programs.zsh.enable = true;
 
@@ -153,7 +164,7 @@
     github-runners = {
       flurry-runner = {
         enable = true;
-        extraPackages = with pkgs;[
+        extraPackages = with pkgs; [
           nodejs
           curl
         ];
@@ -206,7 +217,6 @@
           modules = [ pkgs.nginxModules.brotli ];
         };
 
-
         recommendedOptimisation = true;
         recommendedProxySettings = true;
         recommendedTlsSettings = true;
@@ -252,7 +262,6 @@
         };
       };
   };
-
 
   security.acme = {
     acceptTerms = true;

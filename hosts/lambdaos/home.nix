@@ -1,15 +1,20 @@
-{ config, pkgs, inputs, lib, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 {
-  imports =
-    [
-      ../../modules/hyprland.nix
-      ../../modules/games
-      ../../modules/applications
-      ../../common/nvim/nvim.nix
-      ../../common/discord/discord.nix
-      ../../common/spotify.nix
-    ];
+  imports = [
+    ../../modules/hyprland.nix
+    ../../modules/games
+    ../../modules/applications
+    ../../common/nvim/nvim.nix
+    ../../common/discord/discord.nix
+    ../../common/spotify.nix
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "noa";
@@ -93,12 +98,11 @@
     yubikey-manager-qt
     yubico-piv-tool
 
-		libreoffice-qt6
+    libreoffice-qt6
 
     inputs.flurry.packages.${system}.flurry
     inputs.tsunami.packages.${system}.tsunami
   ];
-
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -132,7 +136,6 @@
   #  /etc/profiles/per-user/noa/etc/profile.d/hm-session-vars.sh
   #
 
-
   home.sessionVariables = {
     EDITOR = "nvim";
     TERM = "kitty";
@@ -152,8 +155,6 @@
       createDirectories = true;
     };
   };
-
-
 
   dconf = {
     enable = true;
@@ -198,14 +199,15 @@
         x11.enable = true;
         name = name;
         size = 32;
-        package =
-          pkgs.runCommand "moveUp" { } ''
-            mkdir -p $out/share/icons
-            ln -s ${pkgs.fetchzip {
+        package = pkgs.runCommand "moveUp" { } ''
+          mkdir -p $out/share/icons
+          ln -s ${
+            pkgs.fetchzip {
               url = url;
               hash = hash;
-            }} $out/share/icons/${name}
-          '';
+            }
+          } $out/share/icons/${name}
+        '';
       };
     in
     getFrom

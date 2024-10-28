@@ -2,20 +2,23 @@
 # your system.Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, nix-colors, lib, ... }:
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ../../modules/games/steam.nix
-      ./disk-config.nix
-      ./hardware-configuration.nix
+  config,
+  pkgs,
+  inputs,
+  nix-colors,
+  lib,
+  ...
+}:
+{
+  imports = [
+    # Include the results of the hardware scan.
+    ../../modules/games/steam.nix
+    ./disk-config.nix
+    ./hardware-configuration.nix
 
-      ../../common
-    ];
-
-
-
+    ../../common
+  ];
 
   hardware = {
     bluetooth = {
@@ -48,7 +51,6 @@
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
-
   # Configure console keymap
   console.keyMap = "us-acentos";
 
@@ -60,7 +62,12 @@
     noa = {
       isNormalUser = true;
       description = "Noa Aarts";
-      extraGroups = [ "networkmanager" "wheel" "docker" "wireshark" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "docker"
+        "wireshark"
+      ];
       hashedPassword = "$6$rounds=512400$Zip3xoK2zcoR4qEL$N13YTHO5tpWfx2nKb1sye.ZPwfoRtMQ5f3YrMZqKzzoFoSSHHJ.l5ulCEa9HygFxZmBtPnwlseFEtl8ERnwF50";
       openssh.authorizedKeys.keys = import ../../common/ssh-keys.nix;
     };
@@ -122,7 +129,6 @@
 
   security.rtkit.enable = true;
   boot = rec {
-
 
     kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = with kernelPackages; [
@@ -275,8 +281,6 @@
   ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

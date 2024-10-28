@@ -1,5 +1,9 @@
-{ config, pkgs, inputs, ... }:
-
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   services.spotifyd.enable = true;
   home.packages = with pkgs; [

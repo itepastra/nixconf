@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   # configure agenix secrets
   age.secrets = {
     "restic/env".file = ../../secrets/restic/env.age;
@@ -31,4 +32,3 @@
     };
   };
 }
-

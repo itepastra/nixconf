@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   cfg = config.modules.hyprland;
 in
@@ -23,15 +29,14 @@ in
       default = pkgs.xdg-desktop-portal-hyprland;
     };
     displays = lib.mkOption {
-      type = lib.types.listOf
-        (lib.types.submodule {
+      type = lib.types.listOf (
+        lib.types.submodule {
           options = {
-            name = lib.mkOption
-              {
-                type = lib.types.str;
-                description = "the display identifier";
-                example = "DP-2";
-              };
+            name = lib.mkOption {
+              type = lib.types.str;
+              description = "the display identifier";
+              example = "DP-2";
+            };
             horizontal = lib.mkOption {
               type = lib.types.ints.positive;
               description = "the horizontal resolution";
@@ -64,7 +69,8 @@ in
               example = "1.5";
             };
           };
-        });
+        }
+      );
       description = "the display layout to use";
     };
   };
@@ -84,9 +90,23 @@ in
       };
       waybar = {
         modules = {
-          left = [ "hyprland/workspaces" "tray" "hyprland/window" ];
-          center = [ "clock" "custom/spotify" ];
-          right = [ "custom/vpn" "wireplumber" "network" "cpu" "memory" "custom/poweroff" ];
+          left = [
+            "hyprland/workspaces"
+            "tray"
+            "hyprland/window"
+          ];
+          center = [
+            "clock"
+            "custom/spotify"
+          ];
+          right = [
+            "custom/vpn"
+            "wireplumber"
+            "network"
+            "cpu"
+            "memory"
+            "custom/poweroff"
+          ];
         };
         enable = lib.mkDefault true;
       };
@@ -101,7 +121,6 @@ in
 
       playerctl
     ];
-
 
     xdg.portal = {
       extraPortals = [ cfg.portalPackage ];
@@ -127,7 +146,9 @@ in
       package = cfg.package;
       settings =
         let
-          make-display-string = display: "${display.name}, ${builtins.toString display.horizontal}x${builtins.toString display.vertical}@${builtins.toString display.refresh-rate}, ${builtins.toString display.horizontal-offset}x${builtins.toString display.vertical-offset}, ${display.scale}";
+          make-display-string =
+            display:
+            "${display.name}, ${builtins.toString display.horizontal}x${builtins.toString display.vertical}@${builtins.toString display.refresh-rate}, ${builtins.toString display.horizontal-offset}x${builtins.toString display.vertical-offset}, ${display.scale}";
         in
         {
           monitor = builtins.map make-display-string cfg.displays;
@@ -179,38 +200,38 @@ in
             ];
           };
           "$mod" = "SUPER";
-          bind = [
-            "$mod,Return,exec,${cfg.terminal}/bin/${cfg.terminal.pname}"
-            "$mod,tab,cyclenext"
-            "SUPERSHIFT,Q,killactive"
-            "$mod,SPACE,exec,wofi-launch"
-            "$mod,P,exec,wofi-power"
-            "SUPERSHIFT,m,exit"
-            "$mod,H,movefocus,l"
-            "$mod,J,movefocus,u"
-            "$mod,K,movefocus,d"
-            "$mod,L,movefocus,r"
-            "SUPERSHIFT,H,movewindow,l"
-            "SUPERSHIFT,J,movewindow,u"
-            "SUPERSHIFT,K,movewindow,d"
-            "SUPERSHIFT,L,movewindow,r"
-            "$mod,F,togglefloating"
-            "$mod,X,togglespecialworkspace"
-            "SUPERSHIFT,X,movetoworkspace,special"
-            "SUPERSHIFT,S,exec,${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
-            "$mod,f11,fullscreen,0"
-            ",XF86AudioLowerVolume,exec,${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 1%-"
-            ",XF86AudioRaiseVolume,exec,${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 1%+"
-            ",XF86AudioMute,exec,${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SINK@ toggle"
-            ",XF86AudioPlay,exec,${pkgs.playerctl}/bin/playerctl play-pause"
-            ",XF86AudioPrev,exec,${pkgs.playerctl}/bin/playerctl previous"
-            ",XF86AudioNext,exec,${pkgs.playerctl}/bin/playerctl next"
-            "$mod,mouse_up,workspace,r-1"
-            "$mod,mouse_down,workspace,r+1"
-          ]
-          ++ (
-            builtins.concatLists (builtins.genList
-              (
+          bind =
+            [
+              "$mod,Return,exec,${cfg.terminal}/bin/${cfg.terminal.pname}"
+              "$mod,tab,cyclenext"
+              "SUPERSHIFT,Q,killactive"
+              "$mod,SPACE,exec,wofi-launch"
+              "$mod,P,exec,wofi-power"
+              "SUPERSHIFT,m,exit"
+              "$mod,H,movefocus,l"
+              "$mod,J,movefocus,u"
+              "$mod,K,movefocus,d"
+              "$mod,L,movefocus,r"
+              "SUPERSHIFT,H,movewindow,l"
+              "SUPERSHIFT,J,movewindow,u"
+              "SUPERSHIFT,K,movewindow,d"
+              "SUPERSHIFT,L,movewindow,r"
+              "$mod,F,togglefloating"
+              "$mod,X,togglespecialworkspace"
+              "SUPERSHIFT,X,movetoworkspace,special"
+              "SUPERSHIFT,S,exec,${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
+              "$mod,f11,fullscreen,0"
+              ",XF86AudioLowerVolume,exec,${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 1%-"
+              ",XF86AudioRaiseVolume,exec,${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 1%+"
+              ",XF86AudioMute,exec,${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SINK@ toggle"
+              ",XF86AudioPlay,exec,${pkgs.playerctl}/bin/playerctl play-pause"
+              ",XF86AudioPrev,exec,${pkgs.playerctl}/bin/playerctl previous"
+              ",XF86AudioNext,exec,${pkgs.playerctl}/bin/playerctl next"
+              "$mod,mouse_up,workspace,r-1"
+              "$mod,mouse_down,workspace,r+1"
+            ]
+            ++ (builtins.concatLists (
+              builtins.genList (
                 x:
                 let
                   ws = builtins.toString (x);
@@ -219,9 +240,8 @@ in
                   "$mod,${ws},workspace,${ws}"
                   "ALT,${ws},movetoworkspace,${ws}"
                 ]
-              )
-              10)
-          );
+              ) 10
+            ));
           bindm = [
             "$mod,mouse:272,movewindow"
             "$mod,mouse:273,resizewindow"
