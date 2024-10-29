@@ -152,6 +152,11 @@
       "secrets/token-flurry".file = ../../secrets/github/flurry.age;
       "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
       "secrets/nix-store-key".file = ../../secrets/nix-serve/private.age;
+      "secrets/nifi-password" = {
+        file = ../../secrets/nifi/password.age;
+        owner = "nifi";
+        group = "nifi";
+      };
       "rsecrets/radicale" = {
         file = ../../secrets/radicale/htpasswd.age;
         owner = "radicale";
@@ -161,6 +166,12 @@
   };
 
   services = {
+    nifi = {
+      enable = true;
+      enableHTTPS = true;
+      initUser = "itepastra";
+      initPasswordFile = config.age.secrets."secrets/nifi-password".path;
+    };
     github-runners = {
       flurry-runner = {
         enable = true;
@@ -284,6 +295,8 @@
     22 # ssh
     80 # http
     443 # https
+
+    8443 # nifi
 
     25565 # minecraft
     24454 # minecraft (voice)
