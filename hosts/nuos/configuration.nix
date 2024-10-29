@@ -167,7 +167,8 @@
 
   services = {
     nifi = {
-      enable = true;
+      # idk how this works, so I disable for now
+      enable = false;
       enableHTTPS = true;
       initUser = "itepastra";
       initPasswordFile = config.age.secrets."secrets/nifi-password".path;
