@@ -287,7 +287,7 @@
           git reset --hard origin/main
           git pull
           nix flake update --commit-lock-file
-          nixos-rebuild boot --flake .
+          nixos-rebuild boot -L --flake .
           git push
         '';
         serviceConfig = {
