@@ -25,6 +25,7 @@
   age.identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
 
   hardware = {
+    opengl.enable = true;
     bluetooth = {
       enable = true;
       powerOnBoot = true;
@@ -187,6 +188,7 @@
       "v4l2loopback"
       "nct6775"
       "k10temp"
+      "nvidia_uvm"
     ];
 
     extraModprobeConfig = ''
@@ -247,7 +249,6 @@
       defaultRuntime = true;
     };
     xserver = {
-      enable = false;
       xkb = {
         layout = "us";
         variant = "intl";
