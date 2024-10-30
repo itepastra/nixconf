@@ -25,7 +25,6 @@
   age.identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
 
   hardware = {
-    opengl.enable = true;
     bluetooth = {
       enable = true;
       powerOnBoot = true;
