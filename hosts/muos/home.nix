@@ -44,6 +44,15 @@
           refresh-rate = 60;
           scale = "1";
         }
+        {
+          name = "DP-1";
+          horizontal = 1920;
+          vertical = 1080;
+          horizontal-offset = 2256;
+          vertical-offset = 0;
+          refresh-rate = 60;
+          scale = "1";
+        }
       ];
     };
     games.enable = true;
