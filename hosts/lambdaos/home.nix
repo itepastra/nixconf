@@ -81,7 +81,6 @@
     mtr
 
     obs-studio
-    wayvnc
 
     signal-desktop
 
@@ -95,7 +94,6 @@
     blueberry
     qbittorrent
     keepassxc
-    yubikey-manager-qt
     yubico-piv-tool
 
     libreoffice-qt6
