@@ -115,6 +115,9 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".gnupg/scdaemon.conf".text = ''
+      disable-ccid
+    '';
     "programming".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/programming/";
   };
 
