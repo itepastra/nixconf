@@ -491,6 +491,7 @@ require("lazy").setup({
 
         go = { "gofmt" },
 
+        haskell = { "fourmolu" },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
