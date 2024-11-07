@@ -243,10 +243,6 @@
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
     };
-    monado = {
-      enable = true;
-      defaultRuntime = true;
-    };
     xserver = {
       enable = false;
       xkb = {
