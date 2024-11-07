@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   cfg = config.modules.apps.thunderbird;
 in
@@ -7,10 +12,10 @@ in
     enable = lib.mkEnableOption "enable thunderbird";
   };
 
-
   config = lib.mkIf cfg.enable {
     accounts.email.accounts =
-      let gpg_key = "A16CDCBF1472541F";
+      let
+        gpg_key = "A16CDCBF1472541F";
       in
       {
         "noa-voorwaarts" = {

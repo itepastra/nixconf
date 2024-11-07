@@ -77,7 +77,17 @@
 
   };
 
-  outputs = { self, nixpkgs, nix-colors, automapaper, disko, hyprland, lazy, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-colors,
+      automapaper,
+      disko,
+      hyprland,
+      lazy,
+      ...
+    }@inputs:
     {
       nixosConfigurations = {
         lambdaOS = nixpkgs.lib.nixosSystem {
@@ -125,4 +135,3 @@
       };
     };
 }
-

@@ -1,5 +1,4 @@
-lib: name:
-{
+lib: name: {
   left = lib.mkOption {
     type = with lib.types; listOf (enum [ name ]);
   };

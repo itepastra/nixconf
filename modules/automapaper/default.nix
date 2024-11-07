@@ -1,4 +1,11 @@
-{ lib, config, pkgs, inputs, nix-colors, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  nix-colors,
+  ...
+}:
 let
   cfg = config.modules.automapaper;
 in
@@ -7,34 +14,33 @@ in
     enable = lib.mkEnableOption "enable automapaper";
     hyprland = lib.mkEnableOption "enable hyprland exec-once integration";
     default-configuration = {
-      init = lib.mkOption
-        {
-          type = lib.types.str;
-          description = "the shader executed to get the state for the initialisation, and re-initialisation steps";
-          default = ''
-            #version 310 es
-            precision highp float;
+      init = lib.mkOption {
+        type = lib.types.str;
+        description = "the shader executed to get the state for the initialisation, and re-initialisation steps";
+        default = ''
+          #version 310 es
+          precision highp float;
 
-            uniform float time;
-            uniform vec2 resolution;
+          uniform float time;
+          uniform vec2 resolution;
 
-            out vec4 stateColor;
+          out vec4 stateColor;
 
-            float PHI = 1.61803398874989484820459;  // Φ = Golden Ratio   
+          float PHI = 1.61803398874989484820459;  // Φ = Golden Ratio   
 
-            float gold_noise(in vec2 xy, in float seed){
-             return fract(tan(distance(xy*PHI, xy)*seed)*xy.x);
-            }
+          float gold_noise(in vec2 xy, in float seed){
+           return fract(tan(distance(xy*PHI, xy)*seed)*xy.x);
+          }
 
-            void main( void ) {
+          void main( void ) {
 
-            vec2 position = gl_FragCoord.xy;
-            float color = gold_noise(position.xy, fract(time));
+          vec2 position = gl_FragCoord.xy;
+          float color = gold_noise(position.xy, fract(time));
 
 
-            stateColor = vec4(step(0.3, color), 0,0,step(0.3, color));
-            }'';
-        };
+          stateColor = vec4(step(0.3, color), 0,0,step(0.3, color));
+          }'';
+      };
       state = lib.mkOption {
         type = lib.types.str;
         description = "the shader executed to increment the state to the next generation";
@@ -136,52 +142,49 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable
-    {
-      wayland.windowManager.hyprland.settings.exec-once =
-        let
-          mkDisplayConfig = conf:
-            let
-              init = builtins.toFile "init.frag" conf.init;
-              state = builtins.toFile "state.frag" conf.state;
-              display = builtins.toFile "display.frag" conf.display;
-            in
-            ''
-              [display]
-              name="${conf.name}"
-              horizontal=${builtins.toString conf.horizontal}
-              vertical=${builtins.toString conf.vertical}
-              tps=${builtins.toString conf.tps}
-              state_frag="${state}"
-              init_frag="${init}"
-              display_frag="${display}"
-              cycles=${builtins.toString conf.cycles}
-              frames_per_tick=${builtins.toString conf.frames_per_tick}
-            '';
-          confFile =
-            let
-              def = config.modules.automapaper.default-configuration;
-            in
-            conf: builtins.toFile "${conf.name}.toml" (mkDisplayConfig {
-              name = conf.name;
-              horizontal = builtins.div conf.horizontal def.horizontal;
-              vertical = builtins.div conf.vertical def.vertical;
-              tps = def.tps;
-              state = def.state;
-              init = def.init;
-              display = def.display;
-              cycles = def.cycles;
-              frames_per_tick = def.frames_per_tick;
-            });
-        in
-        lib.mkIf cfg.hyprland (
-          builtins.map
-            (
-              conf:
-              "${inputs.automapaper.packages.${pkgs.system}.default}/bin/automapaper -C ${confFile conf}"
-            )
-            config.modules.hyprland.displays
-        );
-    };
+  config = lib.mkIf cfg.enable {
+    wayland.windowManager.hyprland.settings.exec-once =
+      let
+        mkDisplayConfig =
+          conf:
+          let
+            init = builtins.toFile "init.frag" conf.init;
+            state = builtins.toFile "state.frag" conf.state;
+            display = builtins.toFile "display.frag" conf.display;
+          in
+          ''
+            [display]
+            name="${conf.name}"
+            horizontal=${builtins.toString conf.horizontal}
+            vertical=${builtins.toString conf.vertical}
+            tps=${builtins.toString conf.tps}
+            state_frag="${state}"
+            init_frag="${init}"
+            display_frag="${display}"
+            cycles=${builtins.toString conf.cycles}
+            frames_per_tick=${builtins.toString conf.frames_per_tick}
+          '';
+        confFile =
+          let
+            def = config.modules.automapaper.default-configuration;
+          in
+          conf:
+          builtins.toFile "${conf.name}.toml" (mkDisplayConfig {
+            name = conf.name;
+            horizontal = builtins.div conf.horizontal def.horizontal;
+            vertical = builtins.div conf.vertical def.vertical;
+            tps = def.tps;
+            state = def.state;
+            init = def.init;
+            display = def.display;
+            cycles = def.cycles;
+            frames_per_tick = def.frames_per_tick;
+          });
+      in
+      lib.mkIf cfg.hyprland (
+        builtins.map (
+          conf: "${inputs.automapaper.packages.${pkgs.system}.default}/bin/automapaper -C ${confFile conf}"
+        ) config.modules.hyprland.displays
+      );
+  };
 }
-

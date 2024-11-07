@@ -15,7 +15,11 @@ in
       hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
       critical-threshold = 80;
       format = "{temperatureC}°C {icon}";
-      format-icons = [ "" "" "" ];
+      format-icons = [
+        ""
+        ""
+        ""
+      ];
     };
   };
 }

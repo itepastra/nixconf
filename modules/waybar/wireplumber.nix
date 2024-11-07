@@ -15,7 +15,11 @@ in
         format = "{volume}% {icon}";
         format-muted = "";
         on-click = "helvum";
-        format-icons = [ "" "" "" ];
+        format-icons = [
+          ""
+          ""
+          ""
+        ];
       };
       style = ''
         #wireplumber {

@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   cfg = config.modules.apps.git;
 in
@@ -18,14 +23,15 @@ in
     do_sign = lib.mkEnableOption "enable commit signing";
   };
 
-
   config = lib.mkIf cfg.enable {
     programs.git = {
       enable = true;
       userName = cfg.name;
       userEmail = cfg.email;
       extraConfig = {
-        init = { defaultBranch = "main"; };
+        init = {
+          defaultBranch = "main";
+        };
         safe.directory = "/etc/nixos";
         pull.rebase = false;
         commit.gpgsign = cfg.do_sign;
