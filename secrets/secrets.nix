@@ -26,4 +26,8 @@ in
     noa
     nuOS
   ];
+  "home-assistant/ns.age".publicKeys = [
+    noa
+    nuOS
+  ];
 }

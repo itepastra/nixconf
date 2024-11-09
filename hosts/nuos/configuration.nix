@@ -20,6 +20,8 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
 
+    ./home-assistant.nix
+
     ../../common
   ];
 
@@ -110,7 +112,10 @@
       nixos-rebuild
       git
     ];
-    script = ''nixos-rebuild switch --flake github:itepastra/nixconf#nuOS'';
+    script = ''
+      nixos-rebuild boot --flake github:itepastra/nixconf#nuOS
+      shutdown -r +5 "System will reboot in 5 minutes"
+    '';
     serviceConfig = {
       Type = "oneshot";
       User = "root";
@@ -121,6 +126,7 @@
     after = [
       "network-online.target"
     ];
+    restartIfChanged = false;
   };
 
   virtualisation = {
@@ -259,6 +265,9 @@
           };
 
           "calendar.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:29341";
+
+          # home-assistant proxy
+          "home.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:8123";
         };
       };
   };
@@ -275,6 +284,7 @@
       "itepastra.nl".extraDomainNames = [
         "locked.itepastra.nl"
         "calendar.itepastra.nl"
+        "home.itepastra.nl"
       ];
     };
   };
