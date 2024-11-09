@@ -461,6 +461,17 @@ require("lazy").setup({
               },
             },
           },
+          rust_analyzer = {
+            settings = {
+              ['rust-analyzer'] = {
+                diagnostics = {
+                  styleLints = {
+                    enable = true,
+                  },
+                },
+              },
+            },
+          },
           lua_ls = {
             settings = {
               Lua = {
