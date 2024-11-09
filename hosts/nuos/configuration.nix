@@ -152,11 +152,6 @@
       "secrets/token-flurry".file = ../../secrets/github/flurry.age;
       "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
       "secrets/nix-store-key".file = ../../secrets/nix-serve/private.age;
-      "secrets/nifi-password" = {
-        file = ../../secrets/nifi/password.age;
-        owner = "nifi";
-        group = "nifi";
-      };
       "rsecrets/radicale" = {
         file = ../../secrets/radicale/htpasswd.age;
         owner = "radicale";
@@ -166,13 +161,6 @@
   };
 
   services = {
-    nifi = {
-      # idk how this works, so I disable for now
-      enable = false;
-      enableHTTPS = true;
-      initUser = "itepastra";
-      initPasswordFile = config.age.secrets."secrets/nifi-password".path;
-    };
     github-runners = {
       flurry-runner = {
         enable = true;
