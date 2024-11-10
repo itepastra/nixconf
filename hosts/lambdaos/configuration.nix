@@ -124,9 +124,12 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    restic
-  ];
+  environment = {
+    pathsToLink = [ "/share/zsh" ];
+    systemPackages = with pkgs; [
+      restic
+    ];
+  };
 
   # TODO: find list of fonts to install
   fonts.packages = with pkgs; [
