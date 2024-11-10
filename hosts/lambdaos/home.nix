@@ -70,6 +70,7 @@ in
         ln -s ${cursor_src} $out/share/icons/${cursor_name}
       '';
     };
+    preferXdgDirectories = true;
     sessionVariables = {
       EDITOR = "nvim";
       TERM = "kitty";
