@@ -21,7 +21,7 @@
       passwordFile = config.age.secrets."restic/password".path;
 
       paths = [
-        "${config.users.users.noa.home}/Pictures/library/library/"
+        "${config.users.users.noa.home}/Pictures/library/"
       ];
 
       pruneOpts = [
