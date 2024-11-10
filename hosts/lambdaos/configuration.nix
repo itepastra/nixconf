@@ -68,6 +68,23 @@
   networking = {
     hostName = "lambdaOS"; # Define your hostname.
     networkmanager.enable = true;
+    # Open ports in the firewall.
+    firewall.allowedTCPPorts = [
+      53317 # Localsend
+      7791 # Pixelflut
+      38281 # Archipelago
+
+      22000 # syncthing
+
+      2283 # immich
+    ];
+    firewall.allowedUDPPorts = [
+      53317
+      38281 # Archipelago
+
+      22000 # syncthing
+      21027 # syncthing
+    ];
   };
 
   # Set your time zone.
@@ -324,23 +341,6 @@
     polkit.enable = true;
   };
 
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [
-    53317 # Localsend
-    7791 # Pixelflut
-    38281 # Archipelago
-
-    22000 # syncthing
-
-    2283 # immich
-  ];
-  networking.firewall.allowedUDPPorts = [
-    53317
-    38281 # Archipelago
-
-    22000 # syncthing
-    21027 # syncthing
-  ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 

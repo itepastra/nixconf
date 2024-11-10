@@ -80,15 +80,12 @@
     dig
     mtr
 
-    obs-studio
-
     signal-desktop
 
     btop
 
     dconf
     pipewire
-    lsd
 
     localsend
     blueberry
@@ -187,6 +184,16 @@
   programs = {
     home-manager.enable = true;
     zsh.shellAliases.bzzt = ''nix-shell -p mpv --command "mpv ~/Videos/BZZZM.mp4"'';
+    lsd = {
+      enable = true;
+      enableAliases = true;
+    };
+    man.enable = true;
+    obs-studio.enable = true;
+    ssh = {
+      enable = true;
+      compression = true;
+    };
   };
 
   services.syncthing = {
