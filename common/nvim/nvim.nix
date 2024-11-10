@@ -20,6 +20,7 @@
         tree-sitter
         fd
         nixfmt-rfc-style
+        gcc
       ];
       defaultEditor = true;
       viAlias = true;
