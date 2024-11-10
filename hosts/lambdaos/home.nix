@@ -196,7 +196,34 @@ in
     ssh = {
       enable = true;
       compression = true;
-      # TODO: add host configurations for ssh
+      matchBlocks = {
+        "aur" = {
+          host = "aur.archlinux.org";
+          hostname = "aur.archlinux.org";
+          addressFamily = "any";
+          identityFile = "~/.ssh/aur";
+          identitiesOnly = true;
+          port = 22;
+          user = "aur";
+        };
+        "nuos" = {
+          host = "nuos";
+          hostname = "nuos";
+          addressFamily = "inet";
+          identityFile = "~/.ssh/id_rsa_yubikey.pub";
+          identitiesOnly = true;
+          port = 22;
+          user = "noa";
+        };
+        "github" = {
+          host = "github.com";
+          hostname = "github.com";
+          identityFile = "~/.ssh/id_rsa_yubikey.pub";
+          identitiesOnly = true;
+          port = 22;
+          user = "git";
+        };
+      };
     };
   };
 
