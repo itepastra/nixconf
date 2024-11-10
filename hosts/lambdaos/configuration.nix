@@ -294,6 +294,7 @@
         script = ''
           [[ ! -d '/root/nixconf' ]] && git clone git@github.com:itepastra/nixconf /root/nixconf
           cd /root/nixconf
+          git fetch
           git reset --hard origin/main
           git pull
           nix flake update --commit-lock-file
