@@ -45,8 +45,6 @@ in
 
       signal-desktop
 
-      btop
-
       dconf
       pipewire
 
@@ -162,6 +160,18 @@ in
   };
 
   programs = {
+    btop = {
+      enable = true;
+      settings = {
+        color_theme = "ayu";
+        theme_background = false;
+        truecolor = true;
+        vim_keys = true;
+        rounded_corners = true;
+        update_ms = 500;
+        proc_mem_bytes = true;
+      };
+    };
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
     # add `play funny video` as alias because why not
