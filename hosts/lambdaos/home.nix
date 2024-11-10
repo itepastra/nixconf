@@ -65,7 +65,7 @@ in
       gtk.enable = true;
       name = cursor_name;
       size = 32;
-      package = pkgs.runCommandNoCC "moveUp" { } ''
+      package = pkgs.runCommandNoCC "${cursor_name}" { } ''
         mkdir -p $out/share/icons
         ln -s ${cursor_src} $out/share/icons/${cursor_name}
       '';
