@@ -5,7 +5,20 @@
   lib,
   ...
 }:
+let
+  me = {
+    nickname = "noa";
+    fullName = "Noa Aarts";
+    email = "noa@voorwaarts.nl";
+  };
 
+  cursor_name = "Bibata-Rainbow-Modern";
+  cursor_src = pkgs.fetchzip {
+    name = cursor_name;
+    url = "https://github.com/ful1e5/Bibata_Cursor_Rainbow/releases/download/v1.1.2/Bibata-Rainbow-Modern.tar.gz";
+    hash = "sha256-Ps+IKPwQoRwO9Mqxwc/1nHhdBT2R25IoeHLKe48uHB8=";
+  };
+in
 {
   imports = [
     ../../modules/hyprland.nix
@@ -15,19 +28,62 @@
     ../../common/discord/discord.nix
     ../../common/spotify.nix
   ];
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "noa";
-  home.homeDirectory = "/home/noa";
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
+  home = {
+    file = {
+      ".gnupg/scdaemon.conf".text = "disable-ccid";
+      "programming".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/programming/";
+    };
+    homeDirectory = "/home/${me.nickname}";
+    packages = with pkgs; [
+      file
+      unzip
+      zip
+
+      dig
+      mtr
+
+      signal-desktop
+
+      btop
+
+      dconf
+      pipewire
+
+      localsend
+      blueberry
+      qbittorrent
+      keepassxc
+      yubico-piv-tool
+
+      libreoffice-qt6
+
+      inputs.flurry.packages.${system}.flurry
+      inputs.tsunami.packages.${system}.tsunami
+    ];
+    pointerCursor = {
+      gtk.enable = true;
+      name = cursor_name;
+      size = 32;
+      package = pkgs.runCommandNoCC "moveUp" { } ''
+        mkdir -p $out/share/icons
+        ln -s ${cursor_src} $out/share/icons/${cursor_name}
+      '';
+    };
+    sessionVariables = {
+      EDITOR = "nvim";
+      TERM = "kitty";
+      GDK_BACKEND = "wayland,x11";
+      QT_QPA_PLATFORM = "wayland;xcb";
+      CLUTTER_BACKEND = "wayland";
+      XDG_CURRENT_DESKTOP = "Hyprland";
+      XDG_SESSION_TYPE = "wayland";
+      XDG_SESSION_DESKTOP = "Hyprland";
+      WLR_NO_HARDWARE_CURSORS = "1";
+    };
+    stateVersion = "23.11"; # Do not change :3
+    username = me.nickname;
+  };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -59,8 +115,8 @@
     apps = {
       enable = true;
       git = {
-        name = "Noa Aarts";
-        email = "noa@voorwaarts.nl";
+        name = me.fullName;
+        email = me.email;
         do_sign = true;
       };
       thunderbird = {
@@ -68,82 +124,6 @@
       };
       neovim.enableLanguages = true;
     };
-  };
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = with pkgs; [
-    file
-    unzip
-    zip
-
-    dig
-    mtr
-
-    signal-desktop
-
-    btop
-
-    dconf
-    pipewire
-
-    localsend
-    blueberry
-    qbittorrent
-    keepassxc
-    yubico-piv-tool
-
-    libreoffice-qt6
-
-    inputs.flurry.packages.${system}.flurry
-    inputs.tsunami.packages.${system}.tsunami
-  ];
-
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-    ".gnupg/scdaemon.conf".text = ''
-      disable-ccid
-    '';
-    "programming".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/programming/";
-  };
-
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. If you don't want to manage your shell through Home
-  # Manager then you have to manually source 'hm-session-vars.sh' located at
-  # either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/noa/etc/profile.d/hm-session-vars.sh
-  #
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    TERM = "kitty";
-    GDK_BACKEND = "wayland,x11";
-    QT_QPA_PLATFORM = "wayland;xcb";
-    CLUTTER_BACKEND = "wayland";
-    XDG_CURRENT_DESKTOP = "Hyprland";
-    XDG_SESSION_TYPE = "wayland";
-    XDG_SESSION_DESKTOP = "Hyprland";
-    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   xdg = {
@@ -180,19 +160,23 @@
     };
   };
 
-  # Let Home Manager install and manage itself.
   programs = {
+    # Let Home Manager install and manage itself.
     home-manager.enable = true;
+    # add `play funny video` as alias because why not
     zsh.shellAliases.bzzt = ''nix-shell -p mpv --command "mpv ~/Videos/BZZZM.mp4"'';
+    # lsd makes files look better
     lsd = {
       enable = true;
       enableAliases = true;
     };
+    # manpages can be quite useful
     man.enable = true;
     obs-studio.enable = true;
     ssh = {
       enable = true;
       compression = true;
+      # TODO: add host configurations for ssh
     };
   };
 
@@ -200,26 +184,4 @@
     enable = true;
   };
 
-  home.pointerCursor =
-    let
-      getFrom = url: hash: name: {
-        gtk.enable = true;
-        x11.enable = true;
-        name = name;
-        size = 32;
-        package = pkgs.runCommand "moveUp" { } ''
-          mkdir -p $out/share/icons
-          ln -s ${
-            pkgs.fetchzip {
-              url = url;
-              hash = hash;
-            }
-          } $out/share/icons/${name}
-        '';
-      };
-    in
-    getFrom
-      "https://github.com/ful1e5/Bibata_Cursor_Rainbow/releases/download/v1.1.2/Bibata-Rainbow-Modern.tar.gz"
-      "sha256-Ps+IKPwQoRwO9Mqxwc/1nHhdBT2R25IoeHLKe48uHB8="
-      "Bibata-Rainbow-Modern";
 }
