@@ -172,6 +172,11 @@ in
         proc_mem_bytes = true;
       };
     };
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
     # add `play funny video` as alias because why not
