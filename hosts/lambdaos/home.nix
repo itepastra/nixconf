@@ -177,6 +177,10 @@ in
       enableZshIntegration = true;
       nix-direnv.enable = true;
     };
+    # FIX: gpg should be declarative, but is more work than I have time for rn
+    gpg = {
+      enable = false;
+    };
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
     # add `play funny video` as alias because why not
