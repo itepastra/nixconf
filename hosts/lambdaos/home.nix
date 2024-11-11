@@ -31,6 +31,7 @@ in
 
   home = {
     file = {
+      ".gnupg/scdaemon.conf".text = "disable-ccid";
       "programming".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/programming/";
     };
     homeDirectory = "/home/${me.nickname}";
@@ -241,7 +242,6 @@ in
       enable = true;
       enableZshIntegration = true;
       enableSshSupport = true;
-      enableScDaemon = true;
       pinentryPackage = pkgs.pinentry-qt;
     };
   };
