@@ -10,13 +10,12 @@ in
 {
   options.modules.apps.zsh = {
     enable = lib.mkEnableOption "enable zsh with oh-my-zsh";
-    enableAliases = lib.mkEnableOption "whether to enable shellAliases";
   };
 
   config = lib.mkIf cfg.enable {
     programs.zsh = {
       enable = true;
-      shellAliases = lib.mkIf cfg.enableAliases {
+      shellAliases = {
         update = "nix flake update --commit-lock-file $HOME/nixos && sudo nixos-rebuild switch --flake $HOME/nixos";
         nb = "nix build -L";
         ns = "nix shell -L";

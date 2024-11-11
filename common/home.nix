@@ -1,4 +1,10 @@
 {
+  enableGraphical ? false,
+  enableFlut ? false,
+  enableGames ? false,
+  displays ? [ ],
+}:
+{
   config,
   pkgs,
   inputs,
@@ -21,12 +27,12 @@ let
 in
 {
   imports = [
-    ../../modules/hyprland.nix
-    ../../modules/games
-    ../../modules/applications
-    ../../common/nvim/nvim.nix
-    ../../common/discord/discord.nix
-    ../../common/spotify.nix
+    ../modules/hyprland.nix
+    ../modules/games
+    ../modules/applications
+    ./nvim/nvim.nix
+    ./discord/discord.nix
+    ./spotify.nix
   ];
 
   home = {
@@ -35,31 +41,35 @@ in
       "programming".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/programming/";
     };
     homeDirectory = "/home/${me.nickname}";
-    packages = with pkgs; [
-      file
-      unzip
-      zip
+    packages =
+      with pkgs;
+      [
+        file
+        unzip
+        zip
 
-      dig
-      mtr
+        dig
+        mtr
+      ]
+      ++ lib.optionals enableFlut [
+        inputs.flurry.packages.${system}.flurry
+        inputs.tsunami.packages.${system}.tsunami
+      ]
+      ++ lib.optionals enableGraphical [
+        signal-desktop
 
-      signal-desktop
+        dconf
+        pipewire
 
-      dconf
-      pipewire
+        localsend
+        blueberry
+        qbittorrent
+        keepassxc
+        yubico-piv-tool
 
-      localsend
-      blueberry
-      qbittorrent
-      keepassxc
-      yubico-piv-tool
-
-      libreoffice-qt6
-
-      inputs.flurry.packages.${system}.flurry
-      inputs.tsunami.packages.${system}.tsunami
-    ];
-    pointerCursor = {
+        libreoffice-qt6
+      ];
+    pointerCursor = lib.mkIf enableGraphical {
       gtk.enable = true;
       name = cursor_name;
       size = 32;
@@ -69,17 +79,20 @@ in
       '';
     };
     preferXdgDirectories = true;
-    sessionVariables = {
-      EDITOR = "nvim";
-      TERM = "kitty";
-      GDK_BACKEND = "wayland,x11";
-      QT_QPA_PLATFORM = "wayland;xcb";
-      CLUTTER_BACKEND = "wayland";
-      XDG_CURRENT_DESKTOP = "Hyprland";
-      XDG_SESSION_TYPE = "wayland";
-      XDG_SESSION_DESKTOP = "Hyprland";
-      WLR_NO_HARDWARE_CURSORS = "1";
-    };
+    sessionVariables =
+      {
+        EDITOR = "nvim";
+        TERM = "kitty";
+      }
+      // lib.mkIf enableGraphical {
+        GDK_BACKEND = "wayland,x11";
+        QT_QPA_PLATFORM = "wayland;xcb";
+        CLUTTER_BACKEND = "wayland";
+        XDG_CURRENT_DESKTOP = "Hyprland";
+        XDG_SESSION_TYPE = "wayland";
+        XDG_SESSION_DESKTOP = "Hyprland";
+        WLR_NO_HARDWARE_CURSORS = "1";
+      };
     stateVersion = "23.11"; # Do not change :3
     username = me.nickname;
   };
@@ -88,7 +101,7 @@ in
 
   modules = {
     hyprland = {
-      enable = true;
+      enable = enableGraphical;
       displays = [
         {
           name = "DP-3";
@@ -110,17 +123,17 @@ in
         }
       ];
     };
-    games.enable = true;
+    games.enable = enableGraphical && enableGames;
     apps = {
-      enable = true;
+      firefox.enable = enableGraphical;
+      kitty.enable = enableGraphical;
       git = {
+        enable = true;
         name = me.fullName;
         email = me.email;
         do_sign = true;
       };
-      thunderbird = {
-        enable = true;
-      };
+      thunderbird.enable = enableGraphical;
       neovim.enableLanguages = true;
     };
   };
@@ -134,7 +147,7 @@ in
   };
 
   dconf = {
-    enable = true;
+    enable = enableGraphical;
     settings = {
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
@@ -143,7 +156,7 @@ in
   };
 
   gtk = {
-    enable = true;
+    enable = enableGraphical;
     gtk2.extraConfig = ''
       gtk-enable-animations=1
       gtk-primary-button-warps-slider=1
@@ -184,7 +197,7 @@ in
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
     # add `play funny video` as alias because why not
-    zsh.shellAliases.bzzt = ''nix-shell -p mpv --command "mpv ~/Videos/BZZZM.mp4"'';
+    zsh.shellAliases.bzzt = lib.mkIf enableGraphical ''nix-shell -p mpv --command "mpv ~/Videos/BZZZM.mp4"'';
     # lsd makes files look better
     lsd = {
       enable = true;
@@ -192,7 +205,7 @@ in
     };
     # manpages can be quite useful
     man.enable = true;
-    obs-studio.enable = true;
+    obs-studio.enable = enableGraphical;
     ssh = {
       enable = true;
       compression = true;
@@ -228,7 +241,7 @@ in
   };
 
   qt = {
-    enable = true;
+    enable = enableGraphical;
     platformTheme.name = "adwaita";
     style.name = "adwaita-dark";
   };
@@ -236,13 +249,12 @@ in
   services = {
     syncthing = {
       enable = true;
-      tray.enable = true;
     };
     gpg-agent = {
       enable = true;
       enableZshIntegration = true;
       enableSshSupport = true;
-      pinentryPackage = pkgs.pinentry-qt;
+      pinentryPackage = lib.mkIf enableGraphical pkgs.pinentry-qt;
     };
   };
 

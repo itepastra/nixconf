@@ -41,9 +41,9 @@
 
   modules = {
     apps = {
-      enable = true;
       git = {
-        name = "Noa Aarts";
+        enable = true;
+        name = "Noa Aarts (bot)";
         email = "noa@voorwaarts.nl";
       };
     };

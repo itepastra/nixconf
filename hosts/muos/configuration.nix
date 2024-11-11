@@ -79,7 +79,22 @@
       inherit nix-colors;
     };
     users = {
-      "noa" = import ./home.nix;
+      "noa" = (import ../../common/home.nix) {
+        enableGraphical = true;
+        enableFlut = false;
+        enableGames = true;
+        displays = [
+          {
+            name = "eDP-1";
+            horizontal = 2256;
+            vertical = 1504;
+            horizontal-offset = 0;
+            vertical-offset = 0;
+            refresh-rate = 60;
+            scale = "1";
+          }
+        ];
+      };
       "root" = import ./root.nix;
     };
   };

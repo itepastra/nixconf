@@ -41,8 +41,8 @@
 
   modules = {
     apps = {
-      enable = true;
       git = {
+        enable = true;
         name = "Noa Aarts";
         email = "noa@voorwaarts.nl";
       };
