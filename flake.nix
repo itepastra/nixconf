@@ -2,7 +2,7 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/9b83f4c";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
     # nixpkgs.url = "/home/noa/programming/nixpkgs";
 
     nix-colors = {
