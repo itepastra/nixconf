@@ -143,6 +143,13 @@
             scale = "1";
           }
         ];
+        extraConfig = {
+          programs.btop.package = pkgs.btop.overrideAttrs (oldAttrs: rec {
+            cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
+              "-DBTOP_GPU=ON"
+            ];
+          });
+        };
       };
       "root" = import ./root.nix;
     };

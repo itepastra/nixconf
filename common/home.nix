@@ -3,6 +3,7 @@
   enableFlut ? false,
   enableGames ? false,
   displays ? [ ],
+  extraConfig ? { },
 }:
 {
   config,
@@ -32,6 +33,7 @@ in
       ../modules/games
       ../modules/hyprland.nix
       ./nvim/nvim.nix
+      extraConfig
     ]
     ++ lib.optionals enableGraphical [
       ./discord/discord.nix
@@ -242,5 +244,4 @@ in
       pinentryPackage = lib.mkIf enableGraphical pkgs.pinentry-qt;
     };
   };
-
 }
