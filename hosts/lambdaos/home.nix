@@ -235,6 +235,7 @@ in
   services = {
     syncthing = {
       enable = true;
+      tray.enable = true;
     };
     gpg-agent = {
       enable = true;
