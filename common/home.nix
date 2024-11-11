@@ -26,14 +26,17 @@ let
   };
 in
 {
-  imports = [
-    ../modules/hyprland.nix
-    ../modules/games
-    ../modules/applications
-    ./nvim/nvim.nix
-    ./discord/discord.nix
-    ./spotify.nix
-  ];
+  imports =
+    [
+      ../modules/applications
+      ../modules/games
+      ../modules/hyprland.nix
+      ./nvim/nvim.nix
+    ]
+    ++ lib.optionals enableGraphical [
+      ./discord/discord.nix
+      ./spotify.nix
+    ];
 
   home = {
     file = {
