@@ -8,7 +8,6 @@ let
   cfg = config.modules.apps;
 in
 {
-
   imports = [
     ./firefox.nix
     ./git.nix
@@ -16,5 +15,4 @@ in
     ./zsh.nix
     ./thunderbird.nix
   ];
-
 }
