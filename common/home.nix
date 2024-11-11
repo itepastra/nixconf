@@ -128,6 +128,7 @@ in
     };
     games.enable = enableGraphical && enableGames;
     apps = {
+      zsh.enable = true;
       firefox.enable = enableGraphical;
       kitty.enable = enableGraphical;
       git = {
