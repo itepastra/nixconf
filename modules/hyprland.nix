@@ -201,12 +201,48 @@ in
           };
           "$mod" = "SUPER";
           bind =
+            let
+              wofi-power = (
+                pkgs.writeShellScriptBin "wofi-power" ''
+                  lock="Lock"
+                  poweroff="Poweroff"
+                  reboot="Reboot"
+                  sleep="Suspend"
+                  logout="Log out"
+                  selected_option=$(echo -e "$lock\n$sleep\n$reboot\n$logout\n$poweroff" | ${pkgs.wofi}/bin/wofi --dmenu -i -p "Powermenu")
+
+                  if [ "$selected_option" == "$lock" ]
+                  then
+                  echo "lock"
+                  swaylock
+                  elif [ "$selected_option" == "$poweroff" ]
+                  then
+                  echo "poweroff"
+                  poweroff
+                  elif [ "$selected_option" == "$reboot" ]
+                  then
+                  echo "reboot"
+                  reboot
+                  elif [ "$selected_option" == "$sleep" ]
+                  then
+                  echo "sleep"
+                  suspend
+                  elif [ "$selected_option" == "$logout" ]
+                  then
+                  echo "logout"
+                  hyprctl dispatch exit
+                  else
+                  echo "No match"
+                  fi
+                ''
+              );
+            in
             [
               "$mod,Return,exec,${cfg.terminal}/bin/${cfg.terminal.pname}"
               "$mod,tab,cyclenext"
               "SUPERSHIFT,Q,killactive"
-              "$mod,SPACE,exec,wofi-launch"
-              "$mod,P,exec,wofi-power"
+              "$mod,SPACE,exec,${pkgs.wofi}/bin/wofi --show drun"
+              "$mod,P,exec,${wofi-power}/wofi-power"
               "SUPERSHIFT,m,exit"
               "$mod,H,movefocus,l"
               "$mod,J,movefocus,u"
