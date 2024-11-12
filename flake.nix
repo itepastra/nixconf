@@ -133,5 +133,6 @@
       nixosModules = {
         automapaper = ./modules/automapaper;
       };
+      packages = import ./packages { inherit nixpkgs; };
     };
 }
