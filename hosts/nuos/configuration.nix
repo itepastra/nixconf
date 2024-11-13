@@ -158,6 +158,7 @@
     identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
     secrets = {
       "secrets/token-flurry".file = ../../secrets/github/flurry.age;
+      "secrets/token-anstml".file = ../../secrets/github/anstml.age;
       "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
       "secrets/nix-store-key".file = ../../secrets/nix-serve/private.age;
       "rsecrets/radicale" = {
@@ -180,6 +181,17 @@
         replace = true;
         tokenFile = config.age.secrets."secrets/token-flurry".path;
         url = "https://github.com/itepastra/flurry";
+      };
+      anstml-runner = {
+        enable = true;
+        extraPackages = with pkgs; [
+          nodejs
+          curl
+        ];
+        name = "anstml-runner";
+        replace = true;
+        tokenFile = config.age.secrets."secrets/token-anstml".path;
+        url = "https://github.com/itepastra/anstml";
       };
     };
     openssh = {

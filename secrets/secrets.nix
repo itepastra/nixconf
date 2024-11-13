@@ -10,6 +10,10 @@ in
     noa
     nuOS
   ];
+  "github/anstml.age".publicKeys = [
+    noa
+    nuOS
+  ];
   "github/nixconf.age".publicKeys = [
     noa
     nuOS
