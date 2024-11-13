@@ -29,6 +29,7 @@
       system-features = [
         "kvm"
         "big-parallel"
+        "nixos-test"
       ];
       allowed-uris = [
         "github:"
