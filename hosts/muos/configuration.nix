@@ -99,6 +99,18 @@
     };
   };
 
+  environment = {
+    plasma6.excludePackages = with pkgs.kdePackages; [
+      plasma-browser-integration
+      konsole
+      xwaylandvideobridge
+      kate
+      khelpcenter
+      okular
+      elisa
+    ];
+  };
+
   # TODO: find list of fonts to install
   fonts.packages = with pkgs; [
     font-awesome
@@ -190,7 +202,18 @@
   };
 
   services = {
+    displayManager = {
+      defaultSession = "hyprland";
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+    };
+    fprintd.enable = true;
     pcscd.enable = true; # for yubikey
+    desktopManager.plasma6 = {
+      enable = true;
+    };
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -220,12 +243,9 @@
         variant = "intl";
       };
     };
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-    };
     flatpak.enable = true;
     udev.packages = [ pkgs.yubikey-personalization ];
+    upower.enable = true;
   };
 
   systemd = {
