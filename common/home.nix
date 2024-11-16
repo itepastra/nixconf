@@ -170,6 +170,7 @@ in
         rounded_corners = true;
         update_ms = 500;
         proc_mem_bytes = true;
+        proc_per_core = true;
       };
     };
     direnv = {
