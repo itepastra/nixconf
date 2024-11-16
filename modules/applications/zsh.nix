@@ -18,6 +18,7 @@ in
       shellAliases = {
         update = "nix flake update --commit-lock-file $HOME/nixos && sudo nixos-rebuild switch --flake $HOME/nixos";
         nb = "nix build -L";
+        nbi = "nix build -L -f .";
         ns = "nix shell -L";
       };
       initExtra = ''
