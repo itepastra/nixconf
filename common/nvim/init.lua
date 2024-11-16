@@ -485,6 +485,12 @@ require("lazy").setup({
       })
     end,
   },
+  {
+    'chomosuke/typst-preview.nvim',
+    ft = 'typst',
+    version = '1.*',
+    build = function() require 'typst-preview'.update() end,
+  },
 
   { "folke/neodev.nvim",     opts = {} },
   { -- Autoformat

@@ -21,6 +21,7 @@
         fd
         nixfmt-rfc-style
         gcc
+        typst
       ];
       defaultEditor = true;
       viAlias = true;
