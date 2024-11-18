@@ -93,9 +93,21 @@
           }
         ];
         extraConfig = {
-          xdg.configFile = {
-            "niri/config.kdl".source = ../../extra/niri.kdl;
-          };
+          xdg.configFile =
+            let
+              wpkgs = inputs.self.packages.${pkgs.system};
+            in
+            {
+              "niri/config.kdl".source = pkgs.substituteAll {
+                src = ../../extra/niri.kdl;
+                env = {
+                  kitty = "${pkgs.kitty}/bin/kitty";
+                  wofilaunch = "${wpkgs.wofi-launch}/bin/wofi-launch";
+                  wofipower = "${wpkgs.wofi-power}/bin/wofi-power";
+                  swaylock = "${pkgs.swaylock}/bin/swaylock";
+                };
+              };
+            };
         };
       };
       "root" = import ./root.nix;
