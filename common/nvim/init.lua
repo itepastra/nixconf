@@ -440,10 +440,11 @@ require("lazy").setup({
               nixd = {
                 options = {
                   nixos = {
-                    expr = "(builtins.getFlake \"/home/noa/nixos/\").nixosConfigurations.lambdaOS.options",
+                    expr = "(builtins.getFlake \"/home/noa/programming/nixconf/\").nixosConfigurations.lambdaOS.options",
                   },
                   home_manager = {
-                    expr = "(builtins.getFlake \"/home/noa/nixos/\").homeConfigurations.\"noa@lambdaOS\".options",
+                    expr =
+                    "(builtins.getFlake \"/home/noa/programming/nixconf/\").homeConfigurations.\"noa@lambdaOS\".options",
                   },
                 },
                 formatting = {
