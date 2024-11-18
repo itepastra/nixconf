@@ -437,6 +437,7 @@ require("lazy").setup({
         excluded_servers = {
           "nixd", -- is being a buggy cpu hog or something
         },
+        prefer_local = true,
         configs = {
           nixd = {
             settings = {
