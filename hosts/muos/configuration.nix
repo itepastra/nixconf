@@ -92,6 +92,11 @@
             scale = "1";
           }
         ];
+        extraConfig = {
+          xdg.configFile = {
+            "niri/config.kdl".source = ../../extra/niri.kdl;
+          };
+        };
       };
       "root" = import ./root.nix;
     };
