@@ -136,6 +136,7 @@
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
 
+    niri.enable = true;
     nix-ld.enable = true;
     nix-ld.libraries = with pkgs; [
       wayland
