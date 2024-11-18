@@ -165,7 +165,7 @@ window-rule {
 window-rule {
   match app-id=r#"^kitty$"#
   draw-border-with-background false
-  opacity 0.5
+  opacity 0.7
 }
 
 // Example: block out two password managers from screen capture.
