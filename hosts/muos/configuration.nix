@@ -46,8 +46,6 @@
 
   networking.networkmanager.enable = true;
 
-  programs.nm-applet.enable = true;
-
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
@@ -124,16 +122,14 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-curses;
-  };
-
-  xdg.portal.enable = true;
+  programs.xdg.portal.enable = true;
 
   programs = {
-    zsh.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      pinentryPackage = pkgs.pinentry-curses;
+    };
 
     hyprland = {
       enable = true;
@@ -144,8 +140,10 @@
     nix-ld.libraries = with pkgs; [
       wayland
     ];
+    nm-applet.enable = true;
 
     wireshark.enable = true;
+    zsh.enable = true;
   };
 
   modules = {
@@ -198,7 +196,6 @@
         configurationLimit = 100;
       };
     };
-
   };
 
   services = {
