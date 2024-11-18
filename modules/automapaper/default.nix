@@ -13,6 +13,9 @@ in
   options.modules.automapaper = {
     enable = lib.mkEnableOption "enable automapaper";
     hyprland = lib.mkEnableOption "enable hyprland exec-once integration";
+    startStrings = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+    };
     default-configuration = {
       init = lib.mkOption {
         type = lib.types.str;
@@ -142,49 +145,49 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    wayland.windowManager.hyprland.settings.exec-once =
-      let
-        mkDisplayConfig =
-          conf:
-          let
-            init = builtins.toFile "init.frag" conf.init;
-            state = builtins.toFile "state.frag" conf.state;
-            display = builtins.toFile "display.frag" conf.display;
-          in
-          ''
-            [display]
-            name="${conf.name}"
-            horizontal=${builtins.toString conf.horizontal}
-            vertical=${builtins.toString conf.vertical}
-            tps=${builtins.toString conf.tps}
-            state_frag="${state}"
-            init_frag="${init}"
-            display_frag="${display}"
-            cycles=${builtins.toString conf.cycles}
-            frames_per_tick=${builtins.toString conf.frames_per_tick}
-          '';
-        confFile =
-          let
-            def = config.modules.automapaper.default-configuration;
-          in
-          conf:
-          builtins.toFile "${conf.name}.toml" (mkDisplayConfig {
-            name = conf.name;
-            horizontal = builtins.div conf.horizontal def.horizontal;
-            vertical = builtins.div conf.vertical def.vertical;
-            tps = def.tps;
-            state = def.state;
-            init = def.init;
-            display = def.display;
-            cycles = def.cycles;
-            frames_per_tick = def.frames_per_tick;
-          });
-      in
-      lib.mkIf cfg.hyprland (
-        builtins.map (
-          conf: "${inputs.automapaper.packages.${pkgs.system}.default}/bin/automapaper -C ${confFile conf}"
-        ) config.modules.hyprland.displays
-      );
-  };
+  config =
+    let
+      mkDisplayConfig =
+        conf:
+        let
+          init = builtins.toFile "init.frag" conf.init;
+          state = builtins.toFile "state.frag" conf.state;
+          display = builtins.toFile "display.frag" conf.display;
+        in
+        ''
+          [display]
+          name="${conf.name}"
+          horizontal=${builtins.toString conf.horizontal}
+          vertical=${builtins.toString conf.vertical}
+          tps=${builtins.toString conf.tps}
+          state_frag="${state}"
+          init_frag="${init}"
+          display_frag="${display}"
+          cycles=${builtins.toString conf.cycles}
+          frames_per_tick=${builtins.toString conf.frames_per_tick}
+        '';
+      confFile =
+        let
+          def = config.modules.automapaper.default-configuration;
+        in
+        conf:
+        builtins.toFile "${conf.name}.toml" (mkDisplayConfig {
+          name = conf.name;
+          horizontal = builtins.div conf.horizontal def.horizontal;
+          vertical = builtins.div conf.vertical def.vertical;
+          tps = def.tps;
+          state = def.state;
+          init = def.init;
+          display = def.display;
+          cycles = def.cycles;
+          frames_per_tick = def.frames_per_tick;
+        });
+    in
+    lib.mkIf cfg.enable rec {
+      modules.automapaper.startStrings = builtins.map (
+        conf: "${inputs.automapaper.packages.${pkgs.system}.default}/bin/automapaper -C ${confFile conf}"
+      ) config.modules.hyprland.displays;
+
+      wayland.windowManager.hyprland.settings.exec-once = lib.mkIf cfg.hyprland modules.automapaper.startStrings;
+    };
 }

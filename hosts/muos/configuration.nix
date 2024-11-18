@@ -92,23 +92,33 @@
             scale = "1";
           }
         ];
-        extraConfig = {
-          xdg.configFile =
-            let
-              wpkgs = inputs.self.packages.${pkgs.system};
-            in
-            {
-              "niri/config.kdl".source = pkgs.substituteAll {
-                src = ../../extra/niri.kdl;
-                env = {
-                  kitty = "${pkgs.kitty}/bin/kitty";
-                  wofilaunch = "${wpkgs.wofi-launch}/bin/wofi-launch";
-                  wofipower = "${wpkgs.wofi-power}/bin/wofi-power";
-                  swaylock = "${pkgs.swaylock}/bin/swaylock";
+        extraConfig =
+          let
+            hconfig = config.home-manager.users.noa;
+          in
+          {
+            xdg.configFile =
+              let
+                wpkgs = inputs.self.packages.${pkgs.system};
+              in
+              {
+                "niri/config.kdl".source = pkgs.substituteAll {
+                  src = ../../extra/niri.kdl;
+                  env = {
+                    kitty = "${pkgs.kitty}/bin/kitty";
+                    wofilaunch = "${wpkgs.wofi-launch}/bin/wofi-launch";
+                    wofipower = "${wpkgs.wofi-power}/bin/wofi-power";
+                    swaylock = "${pkgs.swaylock}/bin/swaylock";
+                    automapaper = lib.strings.concatMapStringsSep "\n" (
+                      command:
+                      (
+                        ''spawn-at-startup "${(lib.strings.concatStringsSep ''" "'' (lib.strings.splitString " " command))}"''
+                      )
+                    ) hconfig.modules.automapaper.startStrings;
+                  };
                 };
               };
-            };
-        };
+          };
       };
       "root" = import ./root.nix;
     };
