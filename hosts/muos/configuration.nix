@@ -119,10 +119,7 @@
     maple-mono-NF
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  programs.xdg.portal.enable = true;
+  xdg.portal.enable = true;
 
   programs = {
     gnupg.agent = {
