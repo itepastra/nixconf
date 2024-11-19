@@ -165,7 +165,6 @@ window-rule {
 
 window-rule {
     match app-id=r#"^thunderbird$"#
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
 
     open-on-workspace "utils"
 }
@@ -198,6 +197,12 @@ window-rule {
 
     // Use this instead if you want them visible on third-party screenshot tools.
     // block-out-from "screencast"
+}
+
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    block-out-from "screen-capture"
+    open-on-workspace "utils"
 }
 
 // Example: enable rounded corners for all windows.
