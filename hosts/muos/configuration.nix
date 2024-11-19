@@ -92,39 +92,87 @@
             scale = "1";
           }
         ];
-        extraConfig =
-          let
-            hconfig = config.home-manager.users.noa;
-          in
-          {
-            xdg.configFile =
-              let
-                spkgs = inputs.self.packages.${pkgs.system};
-              in
-              {
-                # "autostart/spotify.desktop".source = config.lib.file.mkOutOfStoreSymlink "";
-                "niri/config.kdl".source = pkgs.substituteAll {
-                  src = ../../extra/niri.kdl;
-                  env = {
-                    kitty = "${pkgs.kitty}/bin/kitty";
-                    launcher = "${spkgs.fuzzel-launch}/bin/fuzzel-launch";
-                    powermenu = "${spkgs.fuzzel-power}/bin/fuzzel-power";
-                    swaylock = "${pkgs.swaylock}/bin/swaylock";
-                    automapaper = lib.strings.concatMapStringsSep "\n" (
-                      command:
-                      (
-                        ''spawn-at-startup "${(lib.strings.concatStringsSep ''" "'' (lib.strings.splitString " " command))}"''
-                      )
-                    ) hconfig.modules.automapaper.startStrings;
-                    spotify = "spotify";
-                    keepass = "keepassxc";
-                    thunderbird = "thunderbird";
-                    appbar = "${pkgs.waybar}/bin/waybar";
-                    extra = lib.strings.concatStringsSep "\nspawn-at-startup \"" [ "${pkgs.dunst}/bin/dunst\"" ];
+        extraConfig = {
+          modules.waybar = {
+            modules = {
+              left = [
+                "niri/workspaces"
+                "tray"
+                "niri/window"
+              ];
+              center = [
+                "clock"
+                "custom/spotify"
+              ];
+              right = [
+                "custom/vpn"
+                "wireplumber"
+                "network"
+                "cpu"
+                "memory"
+                "custom/poweroff"
+              ];
+            };
+            enable = lib.mkDefault true;
+          };
+          home.packages = with pkgs; [
+            wl-clipboard
+            libnotify
+            playerctl
+          ];
+          xdg.configFile =
+            let
+              spkgs = inputs.self.packages.${pkgs.system};
+              automapaper-configs = builtins.map (
+                display:
+                let
+                  display-shader = pkgs.substituteAll {
+                    src = ../../modules/automapaper/display-with_vars.glsl;
+                    background = nix-colors.lib.conversions.hexToGLSLVec "101012";
+                    foreground = nix-colors.lib.conversions.hexToGLSLVec "192291";
                   };
+                  state-shader = ../../modules/automapaper/state-game_of_life.glsl;
+                  init-shader = ../../modules/automapaper/init.glsl;
+                in
+                (import ../../modules/automapaper/config.nix {
+                  inherit (pkgs) writeTextFile;
+                  inherit
+                    init-shader
+                    state-shader
+                    display-shader
+                    display
+                    ;
+                  horizontal = 225;
+                  vertical = 150;
+                  cycles = 2000;
+                })
+              ) [ "eDP-1" ];
+              automapaper = lib.strings.concatMapStringsSep "\n" (
+                file:
+                ''spawn-at-startup "${
+                  inputs.automapaper.packages.${pkgs.system}.automapaper
+                }/bin/automapaper" "-C" "${file}/config.toml"''
+              ) automapaper-configs;
+            in
+            {
+              # "autostart/spotify.desktop".source = config.lib.file.mkOutOfStoreSymlink "";
+              "niri/config.kdl".source = pkgs.substituteAll {
+                src = ../../extra/niri.kdl;
+                env = {
+                  kitty = "${pkgs.kitty}/bin/kitty";
+                  launcher = "${spkgs.fuzzel-launch}/bin/fuzzel-launch";
+                  powermenu = "${spkgs.fuzzel-power}/bin/fuzzel-power";
+                  swaylock = "${pkgs.swaylock}/bin/swaylock";
+                  automapaper = automapaper;
+                  spotify = "spotify";
+                  keepass = "keepassxc";
+                  thunderbird = "thunderbird";
+                  appbar = "${pkgs.waybar}/bin/waybar";
+                  extra = lib.strings.concatStringsSep "\nspawn-at-startup \"" [ "${pkgs.dunst}/bin/dunst\"" ];
                 };
               };
-          };
+            };
+        };
       };
       "root" = import ./root.nix;
     };
@@ -159,11 +207,6 @@
       enable = true;
       enableSSHSupport = true;
       pinentryPackage = pkgs.pinentry-curses;
-    };
-
-    hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
 
     niri = {
@@ -234,7 +277,7 @@
 
   services = {
     displayManager = {
-      defaultSession = "hyprland";
+      defaultSession = "niri";
       sddm = {
         enable = true;
         wayland.enable = true;
@@ -251,16 +294,6 @@
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
-    };
-    greetd = {
-      enable = false;
-      settings = rec {
-        initial_session = {
-          command = "${pkgs.hyprland}/bin/Hyprland";
-          user = "noa";
-        };
-        default_session = initial_session;
-      };
     };
     openssh = {
       enable = true;

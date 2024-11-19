@@ -26,7 +26,7 @@ pkgs.writeShellScriptBin "fuzzel-power" ''
   elif [ "$selected_option" == "$logout" ]
   then
   echo "logout"
-  hyprctl dispatch exit
+  niri msg quit --skip-confirmation
   else
   echo "No match"
   fi

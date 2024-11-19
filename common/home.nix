@@ -29,9 +29,7 @@ in
 {
   imports =
     [
-      ../modules/applications
-      ../modules/games
-      ../modules/hyprland.nix
+      ../modules
       ./nvim/nvim.nix
       extraConfig
     ]
@@ -93,9 +91,9 @@ in
         GDK_BACKEND = "wayland,x11";
         QT_QPA_PLATFORM = "wayland;xcb";
         CLUTTER_BACKEND = "wayland";
-        XDG_CURRENT_DESKTOP = "Hyprland";
+        XDG_CURRENT_DESKTOP = "niri";
         XDG_SESSION_TYPE = "wayland";
-        XDG_SESSION_DESKTOP = "Hyprland";
+        XDG_SESSION_DESKTOP = "niri";
         WLR_NO_HARDWARE_CURSORS = "1";
       };
     stateVersion = "23.11"; # Do not change :3
@@ -105,10 +103,6 @@ in
   nixpkgs.config.allowUnfree = true;
 
   modules = {
-    hyprland = {
-      enable = enableGraphical;
-      displays = displays;
-    };
     games.enable = enableGraphical && enableGames;
     apps = {
       zsh.enable = true;

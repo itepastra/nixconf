@@ -76,7 +76,8 @@ in
           margin-top = 8;
           margin-left = 10;
           margin-right = 10;
-          output = builtins.map (display: display.name) config.modules.hyprland.displays;
+          # TODO: find a new way to do outputs nicely
+          # output = builtins.map (display: display.name) config.modules.hyprland.displays;
           modules-left = cfg.modules.left;
           modules-center = cfg.modules.center;
           modules-right = cfg.modules.right;

@@ -16,7 +16,7 @@ in
   config = lib.mkIf cfg.enable {
     services = {
       desktopManager.plasma6.enable = true;
-      displayManager.defaultSession = "hyprland";
+      displayManager.defaultSession = "niri";
     };
 
     xdg.portal.config.common.default = "*";
