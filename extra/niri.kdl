@@ -121,9 +121,9 @@ layout {
 // See the binds section below for more spawn examples.
 // spawn-at-startup "alacritty" "-e" "fish"
 @automapaper@
-spawn-at-startup @spotify@
-spawn-at-startup @keepass@
-spawn-at-startup @thunderbird@
+spawn-at-startup "@spotify@"
+spawn-at-startup "@keepass@"
+spawn-at-startup "@thunderbird@"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -151,13 +151,21 @@ animations {
     // slowdown 3.0
 }
 
-workspace "media" {
+workspace "media"
+
+workspace "utils"
+
+window-rule {
     match app-id=r#"^spotify$"#
+
+    open-on-workspace "media"
 }
 
-workspace "utils" {
+window-rule {
     match app-id=r#"^thunderbird$"#
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+
+    open-on-workspace "utils"
 }
 
 // Window rules let you adjust behavior for individual windows.
