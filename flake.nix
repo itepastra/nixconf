@@ -75,6 +75,11 @@
       };
     };
 
+    niri = {
+      url = "github:YaLTeR/niri";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
