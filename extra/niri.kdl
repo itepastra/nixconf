@@ -163,12 +163,6 @@ window-rule {
     open-on-workspace "media"
 }
 
-window-rule {
-    match app-id=r#"^thunderbird$"#
-
-    open-on-workspace "utils"
-}
-
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
@@ -201,6 +195,7 @@ window-rule {
 
 window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^thunderbird$"#
     block-out-from "screen-capture"
     open-on-workspace "utils"
 }
