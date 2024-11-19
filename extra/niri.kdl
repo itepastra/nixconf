@@ -151,9 +151,11 @@ animations {
     // slowdown 3.0
 }
 
-workspace "media"
+workspace "main"
 
 workspace "utils"
+
+workspace "media"
 
 window-rule {
     match app-id=r#"^spotify$"#
