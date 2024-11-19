@@ -121,6 +121,9 @@ layout {
 // See the binds section below for more spawn examples.
 // spawn-at-startup "alacritty" "-e" "fish"
 @automapaper@
+spawn-at-startup @spotify@
+spawn-at-startup @keepass@
+spawn-at-startup @thunderbird@
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -148,6 +151,15 @@ animations {
     // slowdown 3.0
 }
 
+workspace "media" {
+    match app-id=r#"^spotify$"#
+}
+
+workspace "utils" {
+    match app-id=r#"^thunderbird$"#
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+}
+
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
@@ -170,7 +182,7 @@ window-rule {
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnupg\.pinentry-qt$"#
 
     block-out-from "screen-capture"
 
@@ -202,8 +214,8 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return { spawn "@kitty@"; }
-    Mod+Space { spawn "@wofilaunch@"; }
-    Mod+P { spawn "@wofipower@"; }
+    Mod+Space { spawn "@launcher@"; }
+    Mod+P { spawn "@powermenu@"; }
     Super+Alt+L { spawn "@swaylock@"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.

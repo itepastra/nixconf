@@ -106,8 +106,8 @@
                   src = ../../extra/niri.kdl;
                   env = {
                     kitty = "${pkgs.kitty}/bin/kitty";
-                    wofilaunch = "${wpkgs.wofi-launch}/bin/wofi-launch";
-                    wofipower = "${wpkgs.wofi-power}/bin/wofi-power";
+                    launcher = "${wpkgs.wofi-launch}/bin/wofi-launch";
+                    powermenu = "${wpkgs.wofi-power}/bin/wofi-power";
                     swaylock = "${pkgs.swaylock}/bin/swaylock";
                     automapaper = lib.strings.concatMapStringsSep "\n" (
                       command:
@@ -115,6 +115,11 @@
                         ''spawn-at-startup "${(lib.strings.concatStringsSep ''" "'' (lib.strings.splitString " " command))}"''
                       )
                     ) hconfig.modules.automapaper.startStrings;
+                    spotify = "spotify";
+                    keepass = "keepassxc";
+                    thunderbird = "thunderbird";
+                    appbar = "${pkgs.waybar}/bin/waybar";
+                    extra = lib.strings.concatStringsSep "\nspawn-at-startup \"" [ "${pkgs.dunst}/bin/dunst\"" ];
                   };
                 };
               };
@@ -160,7 +165,10 @@
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
 
-    niri.enable = true;
+    niri = {
+      enable = true;
+      package = inputs.niri.packages.${pkgs.system}.niri;
+    };
     nix-ld.enable = true;
     nix-ld.libraries = with pkgs; [
       wayland
