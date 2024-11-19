@@ -24,5 +24,7 @@ forAllSystems (
   {
     wofi-launch = call ./wofi-launch.nix;
     wofi-power = call ./wofi-power.nix;
+    fuzzel-launch = call ./fuzzel-launch.nix;
+    fuzzel-power = call ./fuzzel-power.nix;
   }
 )

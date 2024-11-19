@@ -99,15 +99,16 @@
           {
             xdg.configFile =
               let
-                wpkgs = inputs.self.packages.${pkgs.system};
+                spkgs = inputs.self.packages.${pkgs.system};
               in
               {
+                # "autostart/spotify.desktop".source = config.lib.file.mkOutOfStoreSymlink "";
                 "niri/config.kdl".source = pkgs.substituteAll {
                   src = ../../extra/niri.kdl;
                   env = {
                     kitty = "${pkgs.kitty}/bin/kitty";
-                    launcher = "${wpkgs.wofi-launch}/bin/wofi-launch";
-                    powermenu = "${wpkgs.wofi-power}/bin/wofi-power";
+                    launcher = "${spkgs.fuzzel-launch}/bin/fuzzel-launch";
+                    powermenu = "${spkgs.fuzzel-power}/bin/fuzzel-power";
                     swaylock = "${pkgs.swaylock}/bin/swaylock";
                     automapaper = lib.strings.concatMapStringsSep "\n" (
                       command:

@@ -163,8 +163,6 @@ in
             "${pkgs.waybar}/bin/waybar"
             "${pkgs.dunst}/bin/dunst"
             "${cfg.package}/bin/hyprctl dispatcher focusmonitor 1"
-            "${pkgs.keepassxc}/bin/keepassxc"
-            "${pkgs.spotify}/bin/spotify"
           ];
           general = {
             gaps_in = "2";
