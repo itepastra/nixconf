@@ -155,26 +155,19 @@
               ) automapaper-configs;
             in
             {
-              # "autostart/spotify.desktop".source = config.lib.file.mkOutOfStoreSymlink "";
-              "niri/config.kdl".source = pkgs.substituteAll {
-                src = ../../extra/niri.kdl;
-                env = {
-                  kitty = "${pkgs.kitty}/bin/kitty";
-                  launcher = "${spkgs.fuzzel-launch}/bin/fuzzel-launch";
-                  powermenu = "${spkgs.fuzzel-power}/bin/fuzzel-power";
-                  swaylock = "${pkgs.swaylock}/bin/swaylock";
-                  automapaper = automapaper;
-                  spotify = "spotify";
-                  keepass = "keepassxc";
-                  thunderbird = "thunderbird";
-                  appbar = "${pkgs.waybar}/bin/waybar";
-                  extra =
-                    "spawn-at-startup \""
-                    + lib.strings.concatStringsSep "\nspawn-at-startup \"" [
-                      "${pkgs.dunst}/bin/dunst\""
-                      "${pkgs.xwayland-satellite}/bin/xwayland-satellite\""
-                    ];
-                };
+              "niri/config.kdl".source = import ../../packages/niri-config/default.nix {
+                pkgs = pkgs;
+                self-pkgs = spkgs;
+                inputs = inputs;
+                displays = [
+                  {
+                    name = "eDP-1";
+                    horizontal-resolution = 2256;
+                    horizontal-position = 0;
+                    vertical-resolution = 1504;
+                    framerate = "59.999";
+                  }
+                ];
               };
             };
         };
