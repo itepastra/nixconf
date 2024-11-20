@@ -26,7 +26,7 @@ pkgs.writeShellScriptBin "fuzzel-power" ''
   elif [ "$selected_option" == "$logout" ]
   then
   echo "logout"
-  niri msg quit --skip-confirmation
+  ${pkgs.niri}/bin/niri msg action quit --skip-confirmation
   else
   echo "No match"
   fi

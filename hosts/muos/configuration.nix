@@ -168,7 +168,9 @@
                   keepass = "keepassxc";
                   thunderbird = "thunderbird";
                   appbar = "${pkgs.waybar}/bin/waybar";
-                  extra = lib.strings.concatStringsSep "\nspawn-at-startup \"" [ "${pkgs.dunst}/bin/dunst\"" ];
+                  extra =
+                    "spawn-at-startup \""
+                    + lib.strings.concatStringsSep "\nspawn-at-startup \"" [ "${pkgs.dunst}/bin/dunst\"" ];
                 };
               };
             };
