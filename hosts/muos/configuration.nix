@@ -93,38 +93,10 @@
           }
         ];
         extraConfig = {
-          modules.waybar = {
-            modules = {
-              left = [
-                "niri/workspaces"
-                "tray"
-                "niri/window"
-              ];
-              center = [
-                "clock"
-                "custom/spotify"
-              ];
-              right = [
-                "custom/vpn"
-                "wireplumber"
-                "network"
-                "cpu"
-                "memory"
-                "custom/poweroff"
-              ];
-            };
-            enable = lib.mkDefault true;
-          };
-          home.packages = with pkgs; [
-            wl-clipboard
-            libnotify
-            playerctl
-          ];
           xdg.configFile = {
             "niri/config.kdl".source = import ../../packages/niri-config/default.nix {
-              pkgs = pkgs;
+              inherit pkgs inputs;
               self-pkgs = inputs.self.packages.${pkgs.system};
-              inputs = inputs;
               displays = [
                 {
                   name = "eDP-1";

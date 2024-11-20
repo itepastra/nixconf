@@ -71,6 +71,11 @@ in
         yubico-piv-tool
 
         libreoffice-qt6
+
+        # for niri
+        wl-clipboard
+        libnotify
+        playerctl
       ];
     pointerCursor = lib.mkIf enableGraphical {
       gtk.enable = true;
@@ -104,6 +109,28 @@ in
   nixpkgs.config.allowUnfree = true;
 
   modules = {
+    waybar = {
+      modules = {
+        left = [
+          "niri/workspaces"
+          "tray"
+          "niri/window"
+        ];
+        center = [
+          "clock"
+          "custom/spotify"
+        ];
+        right = [
+          "custom/vpn"
+          "wireplumber"
+          "network"
+          "cpu"
+          "memory"
+          "custom/poweroff"
+        ];
+      };
+      enable = lib.mkDefault enableGraphical;
+    };
     games.enable = enableGraphical && enableGames;
     apps = {
       zsh.enable = true;
