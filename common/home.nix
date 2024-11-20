@@ -106,6 +106,13 @@ in
     username = me.nickname;
   };
 
+  xdg.configFile = lib.mkIf enableGraphical {
+    "niri/config.kdl".source = import ../../packages/niri-config/default.nix {
+      inherit pkgs inputs displays;
+      self-pkgs = inputs.self.packages.${pkgs.system};
+    };
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   modules = {

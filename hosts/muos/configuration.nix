@@ -92,23 +92,6 @@
             scale = "1";
           }
         ];
-        extraConfig = {
-          xdg.configFile = {
-            "niri/config.kdl".source = import ../../packages/niri-config/default.nix {
-              inherit pkgs inputs;
-              self-pkgs = inputs.self.packages.${pkgs.system};
-              displays = [
-                {
-                  name = "eDP-1";
-                  horizontal-resolution = 2256;
-                  horizontal-position = 0;
-                  vertical-resolution = 1504;
-                  framerate = "59.999";
-                }
-              ];
-            };
-          };
-        };
       };
       "root" = import ./root.nix;
     };
