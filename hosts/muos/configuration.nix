@@ -170,7 +170,10 @@
                   appbar = "${pkgs.waybar}/bin/waybar";
                   extra =
                     "spawn-at-startup \""
-                    + lib.strings.concatStringsSep "\nspawn-at-startup \"" [ "${pkgs.dunst}/bin/dunst\"" ];
+                    + lib.strings.concatStringsSep "\nspawn-at-startup \"" [
+                      "${pkgs.dunst}/bin/dunst\""
+                      "${pkgs.xwayland-satellite}/bin/xwayland-satellite\""
+                    ];
                 };
               };
             };

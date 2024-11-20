@@ -82,12 +82,15 @@ in
       '';
     };
     preferXdgDirectories = true;
-    sessionVariables =
+    sessionVariables = lib.mkMerge [
       {
         EDITOR = "nvim";
         TERM = "kitty";
       }
-      // lib.mkIf enableGraphical {
+      lib.mkIf
+      enableGraphical
+      {
+        DISPLAY = ":0";
         GDK_BACKEND = "wayland,x11";
         QT_QPA_PLATFORM = "wayland;xcb";
         CLUTTER_BACKEND = "wayland";
@@ -95,7 +98,8 @@ in
         XDG_SESSION_TYPE = "wayland";
         XDG_SESSION_DESKTOP = "niri";
         WLR_NO_HARDWARE_CURSORS = "1";
-      };
+      }
+    ];
     stateVersion = "23.11"; # Do not change :3
     username = me.nickname;
   };
