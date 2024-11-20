@@ -16,6 +16,7 @@ let
           name,
           horizontal-resolution,
           vertical-resolution,
+          ...
         }:
         let
           display-shader = pkgs.substituteAll {
@@ -38,10 +39,10 @@ let
             init-shader
             state-shader
             display-shader
-            name
             tps
             cycles
             ;
+          display = name;
           horizontal = builtins.div horizontal-resolution horizontal-dot-size;
           vertical = builtins.div vertical-resolution vertical-dot-size;
         })
