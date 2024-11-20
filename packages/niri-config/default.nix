@@ -70,12 +70,12 @@ let
       name,
       horizontal-resolution,
       vertical-resolution,
-      framerate,
+      refresh-rate,
       horizontal-position,
     }:
     ''
       output "${name}" {
-        mode "${builtins.toString horizontal-resolution}x${builtins.toString vertical-resolution}@${framerate}"
+        mode "${builtins.toString horizontal-resolution}x${builtins.toString vertical-resolution}@${refresh-rate}"
         scale 1
         transform "normal"
         position x=${builtins.toString horizontal-position} y=0
