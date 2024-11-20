@@ -120,56 +120,22 @@
             libnotify
             playerctl
           ];
-          xdg.configFile =
-            let
-              spkgs = inputs.self.packages.${pkgs.system};
-              automapaper-configs = builtins.map (
-                display:
-                let
-                  display-shader = pkgs.substituteAll {
-                    src = ../../modules/automapaper/display-with_vars.glsl;
-                    background = nix-colors.lib.conversions.hexToGLSLVec "101012";
-                    foreground = nix-colors.lib.conversions.hexToGLSLVec "192291";
-                  };
-                  state-shader = ../../modules/automapaper/state-game_of_life.glsl;
-                  init-shader = ../../modules/automapaper/init.glsl;
-                in
-                (import ../../modules/automapaper/config.nix {
-                  inherit (pkgs) writeTextFile;
-                  inherit
-                    init-shader
-                    state-shader
-                    display-shader
-                    display
-                    ;
-                  horizontal = 225;
-                  vertical = 150;
-                  cycles = 2000;
-                })
-              ) [ "eDP-1" ];
-              automapaper = lib.strings.concatMapStringsSep "\n" (
-                file:
-                ''spawn-at-startup "${
-                  inputs.automapaper.packages.${pkgs.system}.automapaper
-                }/bin/automapaper" "-C" "${file}/config.toml"''
-              ) automapaper-configs;
-            in
-            {
-              "niri/config.kdl".source = import ../../packages/niri-config/default.nix {
-                pkgs = pkgs;
-                self-pkgs = spkgs;
-                inputs = inputs;
-                displays = [
-                  {
-                    name = "eDP-1";
-                    horizontal-resolution = 2256;
-                    horizontal-position = 0;
-                    vertical-resolution = 1504;
-                    framerate = "59.999";
-                  }
-                ];
-              };
+          xdg.configFile = {
+            "niri/config.kdl".source = import ../../packages/niri-config/default.nix {
+              pkgs = pkgs;
+              self-pkgs = inputs.self.packages.${pkgs.system};
+              inputs = inputs;
+              displays = [
+                {
+                  name = "eDP-1";
+                  horizontal-resolution = 2256;
+                  horizontal-position = 0;
+                  vertical-resolution = 1504;
+                  framerate = "59.999";
+                }
+              ];
             };
+          };
         };
       };
       "root" = import ./root.nix;
