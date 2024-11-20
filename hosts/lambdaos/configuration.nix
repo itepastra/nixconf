@@ -209,7 +209,7 @@
   security.rtkit.enable = true;
   boot = rec {
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_6_11;
     extraModulePackages = with kernelPackages; [
       v4l2loopback
     ];
