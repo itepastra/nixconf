@@ -77,7 +77,7 @@ let
     }:
     ''
       output "${name}" {
-        mode "${builtins.toString horizontal}x${builtins.toString vertical}@${refresh-rate}"
+        mode "${builtins.toString horizontal}x${builtins.toString vertical}@${builtins.toString refresh-rate}"
         scale ${scale}
         transform "normal"
         position x=${builtins.toString horizontal-offset} y=0
