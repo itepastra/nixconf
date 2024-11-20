@@ -19,16 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1";
-      #inputs.nixpkgs.follows = "nixpkgs"; # broken until libseat fix
-    };
-
-    hyprpicker = {
-      url = "github:hyprwm/hyprpicker";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -89,7 +79,6 @@
       nix-colors,
       automapaper,
       disko,
-      hyprland,
       lazy,
       ...
     }@inputs:

@@ -1,6 +1,9 @@
 { ... }:
 {
   imports = [
-    ./hyprland.nix
+    ./waybar
+    ./applications
+    ./games
+    ./dunst.nix
   ];
 }

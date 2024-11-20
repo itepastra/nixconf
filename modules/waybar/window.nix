@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  name = "hyprland/window";
+  name = "niri/window";
 in
 {
   options.modules.waybar = {

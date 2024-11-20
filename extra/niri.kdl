@@ -124,6 +124,9 @@ layout {
 spawn-at-startup "@spotify@"
 spawn-at-startup "@keepass@"
 spawn-at-startup "@thunderbird@"
+spawn-at-startup "@appbar@"
+
+@extra@
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -163,12 +166,6 @@ window-rule {
     open-on-workspace "media"
 }
 
-window-rule {
-    match app-id=r#"^thunderbird$"#
-
-    open-on-workspace "utils"
-}
-
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
@@ -201,6 +198,7 @@ window-rule {
 
 window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^thunderbird$"#
     block-out-from "screen-capture"
     open-on-workspace "utils"
 }
