@@ -14,8 +14,8 @@ let
       automapaper-configs = builtins.map (
         {
           name,
-          horizontal-resolution,
-          vertical-resolution,
+          horizontal,
+          vertical,
           ...
         }:
         let
@@ -43,8 +43,8 @@ let
             cycles
             ;
           display = name;
-          horizontal = builtins.div horizontal-resolution horizontal-dot-size;
-          vertical = builtins.div vertical-resolution vertical-dot-size;
+          horizontal = builtins.div horizontal horizontal-dot-size;
+          vertical = builtins.div vertical vertical-dot-size;
         })
       ) displays;
     in
@@ -68,17 +68,19 @@ let
   displays-string = pkgs.lib.strings.concatMapStringsSep "\n" (
     {
       name,
-      horizontal-resolution,
-      vertical-resolution,
+      horizontal,
+      vertical,
       refresh-rate,
-      horizontal-position,
+      horizontal-offset,
+      scale,
+      ...
     }:
     ''
       output "${name}" {
-        mode "${builtins.toString horizontal-resolution}x${builtins.toString vertical-resolution}@${refresh-rate}"
-        scale 1
+        mode "${builtins.toString horizontal}x${builtins.toString vertical}@${refresh-rate}"
+        scale ${scale}
         transform "normal"
-        position x=${builtins.toString horizontal-position} y=0
+        position x=${builtins.toString horizontal-offset} y=0
       }
     ''
   ) displays;
