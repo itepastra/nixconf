@@ -88,6 +88,7 @@ in
           #     ];
           #   }
           # ];
+          "api" = { };
           "automation manual" = [
             (windowOpenAutomation "7d597f356438d1d3cd0c2a7d751cc27b" "binary_sensor.kamer_van_noa_window"
               "climate.kamer_van_noa"
