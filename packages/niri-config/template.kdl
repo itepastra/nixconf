@@ -23,6 +23,10 @@ input {
     focus-follows-mouse max-scroll-amount="40%"
 }
 
+environment {
+	DISPLAY ":0"
+}
+
 @displays@
 
 layout {
