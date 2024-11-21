@@ -185,6 +185,10 @@
       pinentryPackage = pkgs.pinentry-curses;
     };
 
+    niri = {
+      enable = true;
+      package = inputs.niri.packages.${pkgs.system}.niri;
+    };
     nix-ld.enable = true;
 
     nix-ld.libraries = with pkgs; [
