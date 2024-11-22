@@ -1,4 +1,10 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   name = "custom/poweroff";
 in
@@ -9,16 +15,12 @@ in
       enable = lib.mkEnableOption "enable ${name} waybar module";
     };
   };
-  imports = [
-    ../wofi.nix
-  ];
   config = lib.mkIf config.modules.waybar.enabled.${name}.enable {
-    modules.wofi.enable = true;
     programs.waybar = {
       settings.mainBar."${name}" = {
         format = "";
-        on-click = "wofi-power";
-        on-click-right = "swaylock"; # TODO: change to whatever lock screen i want
+        on-click = "${inputs.self.packages.${pkgs.system}.fuzzel-launch}";
+        on-click-right = "${pkgs.swaylock}/bin/swaylock"; # TODO: change to whatever lock screen i want
       };
       style = ''
         #custom-poweroff {

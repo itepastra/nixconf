@@ -1,11 +1,11 @@
 { pkgs, ... }:
-pkgs.writeShellScriptBin "wofi-power" ''
+pkgs.writeShellScriptBin "fuzzel-power" ''
   lock="Lock"
   poweroff="Poweroff"
   reboot="Reboot"
   sleep="Suspend"
   logout="Log out"
-  selected_option=$(echo -e "$lock\n$sleep\n$reboot\n$logout\n$poweroff" | ${pkgs.wofi}/bin/wofi --dmenu -i -p "Powermenu")
+  selected_option=$(echo -e "$lock\n$sleep\n$reboot\n$logout\n$poweroff" | ${pkgs.fuzzel}/bin/fuzzel --dmenu -i -p "Powermenu")
 
   if [ "$selected_option" == "$lock" ]
   then
@@ -26,7 +26,7 @@ pkgs.writeShellScriptBin "wofi-power" ''
   elif [ "$selected_option" == "$logout" ]
   then
   echo "logout"
-  hyprctl dispatch exit
+  ${pkgs.niri}/bin/niri msg action quit --skip-confirmation
   else
   echo "No match"
   fi

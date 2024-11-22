@@ -29,9 +29,7 @@ in
 {
   imports =
     [
-      ../modules/applications
-      ../modules/games
-      ../modules/hyprland.nix
+      ../modules
       ./nvim/nvim.nix
       extraConfig
     ]
@@ -73,6 +71,11 @@ in
         yubico-piv-tool
 
         libreoffice-qt6
+
+        # for niri
+        wl-clipboard
+        libnotify
+        playerctl
       ];
     pointerCursor = lib.mkIf enableGraphical {
       gtk.enable = true;
@@ -90,24 +93,50 @@ in
         TERM = "kitty";
       }
       // lib.mkIf enableGraphical {
+        DISPLAY = ":0";
         GDK_BACKEND = "wayland,x11";
         QT_QPA_PLATFORM = "wayland;xcb";
         CLUTTER_BACKEND = "wayland";
-        XDG_CURRENT_DESKTOP = "Hyprland";
+        XDG_CURRENT_DESKTOP = "niri";
         XDG_SESSION_TYPE = "wayland";
-        XDG_SESSION_DESKTOP = "Hyprland";
+        XDG_SESSION_DESKTOP = "niri";
         WLR_NO_HARDWARE_CURSORS = "1";
       };
     stateVersion = "23.11"; # Do not change :3
     username = me.nickname;
   };
 
+  xdg.configFile = lib.mkIf enableGraphical {
+    "niri/config.kdl".source = import ../packages/niri-config/default.nix {
+      inherit pkgs inputs displays;
+      self-pkgs = inputs.self.packages.${pkgs.system};
+    };
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   modules = {
-    hyprland = {
-      enable = enableGraphical;
-      displays = displays;
+    waybar = {
+      modules = {
+        left = [
+          "niri/workspaces"
+          "tray"
+          "niri/window"
+        ];
+        center = [
+          "clock"
+          "custom/spotify"
+        ];
+        right = [
+          "custom/vpn"
+          "wireplumber"
+          "network"
+          "cpu"
+          "memory"
+          "custom/poweroff"
+        ];
+      };
+      enable = lib.mkDefault enableGraphical;
     };
     games.enable = enableGraphical && enableGames;
     apps = {

@@ -185,11 +185,10 @@
       pinentryPackage = pkgs.pinentry-curses;
     };
 
-    hyprland = {
+    niri = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      package = inputs.niri.packages.${pkgs.system}.niri;
     };
-
     nix-ld.enable = true;
 
     nix-ld.libraries = with pkgs; [
@@ -271,16 +270,6 @@
       jack.enable = true;
     };
     fail2ban.enable = true;
-    greetd = {
-      enable = false;
-      settings = rec {
-        initial_session = {
-          command = "${pkgs.hyprland}/bin/Hyprland";
-          user = "noa";
-        };
-        default_session = initial_session;
-      };
-    };
     hardware = {
       openrgb = {
         enable = true;

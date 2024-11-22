@@ -23,12 +23,11 @@ input {
     focus-follows-mouse max-scroll-amount="40%"
 }
 
-output "eDP-1" {
-    mode "2256x1504@59.999"
-    scale 1
-    transform "normal"
-    position x=0 y=0
+environment {
+	DISPLAY ":0"
 }
+
+@displays@
 
 layout {
     // Set gaps around windows in logical pixels.
@@ -120,10 +119,9 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 // spawn-at-startup "alacritty" "-e" "fish"
-@automapaper@
-spawn-at-startup "@spotify@"
-spawn-at-startup "@keepass@"
-spawn-at-startup "@thunderbird@"
+@wallpapers@
+
+@autostart@
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -163,12 +161,6 @@ window-rule {
     open-on-workspace "media"
 }
 
-window-rule {
-    match app-id=r#"^thunderbird$"#
-
-    open-on-workspace "utils"
-}
-
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
@@ -201,6 +193,7 @@ window-rule {
 
 window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^thunderbird$"#
     block-out-from "screen-capture"
     open-on-workspace "utils"
 }
@@ -228,10 +221,10 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Return { spawn "@kitty@"; }
+    Mod+Return { spawn "@terminal@"; }
     Mod+Space { spawn "@launcher@"; }
-    Mod+P { spawn "@powermenu@"; }
-    Super+Alt+L { spawn "@swaylock@"; }
+    Mod+P { spawn "@power_menu@"; }
+    Super+Alt+L { spawn "@lockscreen@"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.

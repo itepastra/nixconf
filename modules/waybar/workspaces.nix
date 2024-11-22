@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  name = "hyprland/workspaces";
+  name = "niri/workspaces";
 in
 {
   options.modules.waybar = {
