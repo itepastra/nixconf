@@ -154,6 +154,70 @@ in
     };
   };
 
+  systemd.user = {
+    enable = enableGraphical;
+
+    services = builtins.listToAttrs (
+      builtins.map (
+        {
+          name,
+          horizontal,
+          vertical,
+          ...
+        }:
+        let
+          display_config =
+            let
+              display-shader = pkgs.substituteAll {
+                src = ../modules/automapaper/display-with_vars.glsl;
+                background = inputs.nix-colors.lib.conversions.hexToGLSLVec "0a000a";
+                foreground = inputs.nix-colors.lib.conversions.hexToGLSLVec "192291";
+              };
+              state-shader = ../modules/automapaper/state-game_of_life.glsl;
+              init-shader = ../modules/automapaper/init.glsl;
+              # General configurations
+              cycles = 2000;
+              tps = 30;
+              horizontal-dot-size = 10;
+              vertical-dot-size = 10;
+            in
+            (import ../modules/automapaper/config.nix {
+              inherit (pkgs) writeTextFile;
+              inherit
+                init-shader
+                state-shader
+                display-shader
+                tps
+                cycles
+                ;
+              display = name;
+              horizontal = builtins.div horizontal horizontal-dot-size;
+              vertical = builtins.div vertical vertical-dot-size;
+            });
+
+        in
+        lib.attrsets.nameValuePair "automapaper-${name}" ({
+          Install = {
+            WantedBy = [ "niri.service" ];
+          };
+          Unit = {
+            Description = "Automapaper for display ${name}";
+            PartOf = "graphical-session.target";
+            After = "graphical-session.target";
+            Requisite = "graphical-session.target";
+          };
+
+          Service = {
+            ExecStart = "${
+              inputs.automapaper.packages.${pkgs.system}.automapaper
+            }/bin/automapaper -C ${display_config}/config.toml";
+            Restart = "on-failure";
+          };
+        })
+      ) displays
+    );
+  };
+
   xdg = {
     enable = true;
     userDirs = {

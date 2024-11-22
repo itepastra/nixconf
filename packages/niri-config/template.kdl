@@ -119,7 +119,6 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 // spawn-at-startup "alacritty" "-e" "fish"
-@wallpapers@
 
 @autostart@
 
