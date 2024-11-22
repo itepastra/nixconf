@@ -1,8 +1,14 @@
+# I make a function that takes some settings and then returns a home module....
 {
+  # if I have a monitor and want niri + graphical apps
   enableGraphical ? false,
+  # should add flurry and tsunami?? (yes :3)
   enableFlut ? false,
+  # GAMESS, like for things like steam and minecraft
   enableGames ? false,
+  # what displays are connected? automapaper and niri will be configured using this
   displays ? [ ],
+  # is there any extra specific config necessary (like nvidia on lambdaOS)
   extraConfig ? { },
 }:
 {
@@ -13,12 +19,14 @@
   ...
 }:
 let
+  # woah, it's stuff about me, pls no doxxing thnx
   me = {
     nickname = "noa";
     fullName = "Noa Aarts";
     email = "noa@voorwaarts.nl";
   };
 
+  # I like my animated rainbow cursor, so I get it here
   cursor_name = "Bibata-Rainbow-Modern";
   cursor_src = pkgs.fetchzip {
     name = cursor_name;
@@ -29,10 +37,14 @@ in
 {
   imports =
     [
+      # I made some cursed modules (waybar is the worst)
       ../../modules
+      # Was too lazy to do fully declarative nvim, so the lua is hidden there as well
       ../nvim/nvim.nix
+      # we import extraConfig, it's funny that this has the correct effect
       extraConfig
     ]
+    # these have no use if there isn't any display....
     ++ lib.optionals enableGraphical [
       ../discord/discord.nix
       ../spotify.nix
@@ -40,43 +52,53 @@ in
 
   home = {
     file = {
+      # makes yubikey stuff work
       ".gnupg/scdaemon.conf".text = "disable-ccid";
+      # I don't want the directory directly in home, even though I only go to it via the symlink
       "programming".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/programming/";
     };
+    # haha, now I can set my home folder like this
     homeDirectory = "/home/${me.nickname}";
+    # most actual packages are added via either programs or services...
     packages =
       with pkgs;
       [
+        # file things
         file
         unzip
         zip
 
+        #network things
         dig
         mtr
       ]
+      # FLURRY AND TSUNAMI :3 (I made these)
       ++ lib.optionals enableFlut [
         inputs.flurry.packages.${system}.flurry
         inputs.tsunami.packages.${system}.tsunami
       ]
+      # and ofc the things that are only logical with graphics
       ++ lib.optionals enableGraphical [
+        #comminucation things
         signal-desktop
 
+        # service things
         dconf
         pipewire
+        wl-clipboard
+        libnotify
+        playerctl
 
+        # apps 
         localsend
         blueberry
         qbittorrent
         keepassxc
         yubico-piv-tool
-
         libreoffice-qt6
-
-        # for niri
-        wl-clipboard
-        libnotify
-        playerctl
       ];
+
+    # I set my cursor here, the one I fetched above
     pointerCursor = lib.mkIf enableGraphical {
       gtk.enable = true;
       name = cursor_name;
@@ -86,7 +108,10 @@ in
         ln -s ${cursor_src} $out/share/icons/${cursor_name}
       '';
     };
+    # make stuff use .config etc (ask nicely at least)
     preferXdgDirectories = true;
+
+    # I'm unsure if these work, which is annoying, but eh. who cares
     sessionVariables =
       {
         EDITOR = "nvim";
@@ -102,10 +127,15 @@ in
         XDG_SESSION_DESKTOP = "niri";
         WLR_NO_HARDWARE_CURSORS = "1";
       };
-    stateVersion = "23.11"; # Do not change :3
+
+    # the default config told me not to change this
+    stateVersion = "23.11"; # WARN: Do not change :3
+
+    # I can also use me here, wowa
     username = me.nickname;
   };
 
+  # If I have a monitor I want niri with my config, but niri wants it at that spot
   xdg.configFile = lib.mkIf enableGraphical {
     "niri/config.kdl".source = import ../../packages/niri-config/default.nix {
       inherit pkgs inputs displays;
@@ -113,30 +143,58 @@ in
     };
   };
 
+  # Needed for like spotify or something
   nixpkgs.config.allowUnfree = true;
 
   modules = {
+    # imagine steam but like without a monitor
     games.enable = enableGraphical && enableGames;
+
+    # other things I like to use
     apps = {
+      #my terminal language of choice
       zsh.enable = true;
+      # some browser if I have a screen
       firefox.enable = enableGraphical;
+      # terminal emulator...
       kitty.enable = enableGraphical;
+      # git settings
+      # TODO: add the one that sets upstream branches on it's own
       git = {
         enable = true;
         name = me.fullName;
         email = me.email;
         do_sign = true;
       };
+      # mail stuffs
       thunderbird.enable = enableGraphical;
+      # this just makes neovim function, or does it not matter anymore??
+      # TODO: check if this is needed
       neovim.enableLanguages = true;
     };
   };
 
   systemd.user = {
+    # since all these services are for programs in niri so far, I just enable all of them if I have screen.
     enable = enableGraphical;
+    # makes them restart with smart or something?
     startServices = "sd-switch";
 
     services = lib.mkMerge [
+      {
+        spotify = {
+          Unit = {
+            PartOf = "graphical-session.target";
+            After = "graphical-session.target";
+            Requisite = "graphical-session.target";
+          };
+
+          Service = {
+            ExecStart = "spotify";
+          };
+        };
+      }
+      # makes an automapaper service and config for every monitor.
       (builtins.listToAttrs (
         builtins.map (
           {
@@ -199,6 +257,7 @@ in
     ];
   };
 
+  # bae xdg makes some standards etc.
   xdg = {
     enable = true;
     userDirs = {
@@ -207,6 +266,7 @@ in
     };
   };
 
+  #attempt at styling...., mostly just trying to not get flashbanged
   dconf = {
     enable = enableGraphical;
     settings = {
@@ -216,6 +276,7 @@ in
     };
   };
 
+  # same here
   gtk = {
     enable = enableGraphical;
     gtk2.extraConfig = ''
@@ -234,6 +295,7 @@ in
   };
 
   programs = {
+    # wowa, I can set btop settings from here???
     btop = {
       enable = true;
       settings = {
@@ -247,6 +309,7 @@ in
         proc_per_core = true;
       };
     };
+    # does devshells using flakes. Very nice since it just works
     direnv = {
       enable = true;
       enableZshIntegration = true;
@@ -267,7 +330,9 @@ in
     };
     # manpages can be quite useful
     man.enable = true;
+    # even though I don't really record, I still want to be able to quickly
     obs-studio.enable = enableGraphical;
+    # ssh, my big friend. WHY do you do difficult sometimes
     ssh = {
       enable = true;
       compression = true;
@@ -302,6 +367,7 @@ in
     };
   };
 
+  # and MORE styling options and settings
   qt = {
     enable = enableGraphical;
     platformTheme.name = "adwaita";
@@ -309,9 +375,11 @@ in
   };
 
   services = {
+    # sync my password store and homework
     syncthing = {
       enable = true;
     };
+    # to make my yubikey and git signing do things correctly
     gpg-agent = {
       enable = true;
       enableZshIntegration = true;
