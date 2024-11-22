@@ -205,21 +205,28 @@ in
 
     services = lib.mkMerge [
       {
-        spotify = {
-          Install = {
-            WantedBy = [ "niri.service" ];
-          };
+        spotify =
+          let
+            spotify = (
+              pkgs.writeShellScriptBin "spotify" ''${pkgs.spotify}/bin/spotify --enable-features=UseOzonePlatform --ozone-platform=wayland''
+            );
+          in
+          {
+            Install = {
+              WantedBy = [ "niri.service" ];
+            };
 
-          Unit = {
-            PartOf = "graphical-session.target";
-            After = "graphical-session.target";
-            Requisite = "graphical-session.target";
-          };
+            Unit = {
+              PartOf = "graphical-session.target";
+              After = "graphical-session.target";
+              Requisite = "graphical-session.target";
+            };
 
-          Service = {
-            ExecStart = "spotify";
+            Service = {
+              ExecStart = "${spotify}/bin/spotify";
+              Type = "exec";
+            };
           };
-        };
 
         mako = {
           Install = {
@@ -234,6 +241,26 @@ in
 
           Service = {
             ExecStart = "${pkgs.mako}/bin/mako";
+            Type = "exec";
+            Restart = "on-failure";
+          };
+        };
+
+        xwayland = {
+          Install = {
+            WantedBy = [ "niri.service" ];
+          };
+
+          Unit = {
+            PartOf = "graphical-session.target";
+            After = "graphical-session.target";
+            Requisite = "graphical-session.target";
+          };
+
+          Service = {
+            ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+            Type = "exec";
+            Restart = "on-failure";
           };
         };
       }
@@ -431,7 +458,7 @@ in
       backgroundColor = "#000000AA";
       # make notifications time out after 30 sec by default
       defaultTimeout = 30000;
-      borderColor = config.colorScheme.palette.base00;
+      borderColor = "#${config.colorScheme.palette.base00}FF";
     };
     playerctld.enable = true;
     # sync my password store and homework
