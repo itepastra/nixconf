@@ -172,6 +172,29 @@ in
       # TODO: check if this is needed
       neovim.enableLanguages = true;
     };
+    # my very cursed module for waybar is activated here
+    waybar = {
+      modules = {
+        left = [
+          "niri/workspaces"
+          "tray"
+          "niri/window"
+        ];
+        center = [
+          "clock"
+          "custom/spotify"
+        ];
+        right = [
+          "custom/vpn"
+          "wireplumber"
+          "network"
+          "cpu"
+          "memory"
+          "custom/poweroff"
+        ];
+      };
+      enable = lib.mkDefault enableGraphical;
+    };
   };
 
   systemd.user = {
