@@ -4,6 +4,5 @@
     ./waybar
     ./applications
     ./games
-    ./dunst.nix
   ];
 }

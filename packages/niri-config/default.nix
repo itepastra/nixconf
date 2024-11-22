@@ -12,8 +12,6 @@ let
   autostart-string =
     "spawn-at-startup \""
     + pkgs.lib.strings.concatStringsSep "\nspawn-at-startup \"" [
-      "${pkgs.dunst}/bin/dunst\""
-      "spotify\""
       "keepassxc\""
       "thunderbird\""
     ];

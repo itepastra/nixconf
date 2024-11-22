@@ -206,6 +206,10 @@ in
     services = lib.mkMerge [
       {
         spotify = {
+          Install = {
+            WantedBy = [ "niri.service" ];
+          };
+
           Unit = {
             PartOf = "graphical-session.target";
             After = "graphical-session.target";
@@ -214,6 +218,22 @@ in
 
           Service = {
             ExecStart = "spotify";
+          };
+        };
+
+        mako = {
+          Install = {
+            WantedBy = [ "niri.service" ];
+          };
+
+          Unit = {
+            PartOf = "graphical-session.target";
+            After = "graphical-session.target";
+            Requisite = "graphical-session.target";
+          };
+
+          Service = {
+            ExecStart = "${pkgs.mako}/bin/mako";
           };
         };
       }
@@ -398,16 +418,25 @@ in
   };
 
   services = {
-    # sync my password store and homework
-    syncthing = {
-      enable = true;
-    };
     # to make my yubikey and git signing do things correctly
     gpg-agent = {
       enable = true;
       enableZshIntegration = true;
       enableSshSupport = true;
       pinentryPackage = lib.mkIf enableGraphical pkgs.pinentry-qt;
+    };
+    # notification daemon, I think it looks better than dunst
+    mako = {
+      enable = true;
+      backgroundColor = "#000000AA";
+      # make notifications time out after 30 sec by default
+      defaultTimeout = 30000;
+      borderColor = config.colorScheme.palette.base00;
+    };
+    playerctld.enable = true;
+    # sync my password store and homework
+    syncthing = {
+      enable = true;
     };
   };
 }
