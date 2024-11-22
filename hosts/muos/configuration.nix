@@ -36,7 +36,6 @@
   # Allow unfree packages
   nixpkgs.config = {
     allowUnfree = true;
-    nvidia.acceptLicense = true;
   };
   nixpkgs.overlays = [ ];
 
