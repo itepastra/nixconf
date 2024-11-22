@@ -16,7 +16,6 @@ let
       "spotify\""
       "keepassxc\""
       "thunderbird\""
-      "${pkgs.waybar}/bin/waybar\""
     ];
 
   displays-string = pkgs.lib.strings.concatMapStringsSep "\n" (

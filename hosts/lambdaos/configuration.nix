@@ -119,7 +119,7 @@
       inherit nix-colors;
     };
     users = {
-      "noa" = (import ../../common/home.nix) {
+      "noa" = (import ../../common/home) {
         enableGraphical = true;
         enableFlut = true;
         enableGames = true;

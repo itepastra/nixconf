@@ -68,6 +68,10 @@ in
     programs.waybar = {
       enable = true;
       package = cfg.package;
+      systemd = {
+        enable = true;
+        target = "niri.service";
+      };
       settings = {
         mainBar = {
           layer = "top";

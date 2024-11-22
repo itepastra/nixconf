@@ -88,7 +88,7 @@
       inherit nix-colors;
     };
     users = {
-      "noa" = (import ../../common/home.nix) {
+      "noa" = (import ../../common/home) {
         enableFlut = true;
       };
       "root" = import ./root.nix;

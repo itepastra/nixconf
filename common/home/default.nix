@@ -29,13 +29,13 @@ in
 {
   imports =
     [
-      ../modules
-      ./nvim/nvim.nix
+      ../../modules
+      ../nvim/nvim.nix
       extraConfig
     ]
     ++ lib.optionals enableGraphical [
-      ./discord/discord.nix
-      ./spotify.nix
+      ../discord/discord.nix
+      ../spotify.nix
     ];
 
   home = {
@@ -107,7 +107,7 @@ in
   };
 
   xdg.configFile = lib.mkIf enableGraphical {
-    "niri/config.kdl".source = import ../packages/niri-config/default.nix {
+    "niri/config.kdl".source = import ../../packages/niri-config/default.nix {
       inherit pkgs inputs displays;
       self-pkgs = inputs.self.packages.${pkgs.system};
     };
@@ -116,28 +116,6 @@ in
   nixpkgs.config.allowUnfree = true;
 
   modules = {
-    waybar = {
-      modules = {
-        left = [
-          "niri/workspaces"
-          "tray"
-          "niri/window"
-        ];
-        center = [
-          "clock"
-          "custom/spotify"
-        ];
-        right = [
-          "custom/vpn"
-          "wireplumber"
-          "network"
-          "cpu"
-          "memory"
-          "custom/poweroff"
-        ];
-      };
-      enable = lib.mkDefault enableGraphical;
-    };
     games.enable = enableGraphical && enableGames;
     apps = {
       zsh.enable = true;
@@ -159,7 +137,6 @@ in
     startServices = "sd-switch";
 
     services = lib.mkMerge [
-
       (builtins.listToAttrs (
         builtins.map (
           {
@@ -172,19 +149,19 @@ in
             display_config =
               let
                 display-shader = pkgs.substituteAll {
-                  src = ../modules/automapaper/display-with_vars.glsl;
+                  src = ../../modules/automapaper/display-with_vars.glsl;
                   background = inputs.nix-colors.lib.conversions.hexToGLSLVec "0a000a";
                   foreground = inputs.nix-colors.lib.conversions.hexToGLSLVec "192291";
                 };
-                state-shader = ../modules/automapaper/state-game_of_life.glsl;
-                init-shader = ../modules/automapaper/init.glsl;
+                state-shader = ../../modules/automapaper/state-game_of_life.glsl;
+                init-shader = ../../modules/automapaper/init.glsl;
                 # General configurations
                 cycles = 2000;
                 tps = 30;
                 horizontal-dot-size = 10;
                 vertical-dot-size = 10;
               in
-              (import ../modules/automapaper/config.nix {
+              (import ../../modules/automapaper/config.nix {
                 inherit (pkgs) writeTextFile;
                 inherit
                   init-shader
