@@ -70,7 +70,6 @@ in
       package = cfg.package;
       systemd = {
         enable = true;
-        target = "niri.service";
       };
       settings = {
         mainBar = {

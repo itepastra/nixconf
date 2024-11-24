@@ -225,6 +225,7 @@ in
             Service = {
               ExecStart = "${spotify}/bin/spotify";
               Type = "exec";
+              RestartSec = 15;
             };
           };
 
@@ -243,6 +244,7 @@ in
             ExecStart = "${pkgs.mako}/bin/mako";
             Type = "exec";
             Restart = "on-failure";
+            RestartSec = 15;
           };
         };
 
@@ -261,6 +263,7 @@ in
             ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
             Type = "exec";
             Restart = "on-failure";
+            RestartSec = 15;
           };
         };
       }
@@ -320,6 +323,7 @@ in
                 inputs.automapaper.packages.${pkgs.system}.automapaper
               }/bin/automapaper -C ${display_config}/config.toml";
               Restart = "on-failure";
+              RestartSec = 15;
             };
           })
         ) displays
