@@ -5,7 +5,7 @@ pkgs.writeShellScriptBin "fuzzel-power" ''
   reboot="Reboot"
   sleep="Suspend"
   logout="Log out"
-  selected_option=$(echo -e "$lock\n$sleep\n$reboot\n$logout\n$poweroff" | ${pkgs.fuzzel}/bin/fuzzel --dmenu -i -p "Powermenu")
+  selected_option=$(echo -e "$poweroff\n$reboot\n$logout\n$sleep\n$lock" | ${pkgs.fuzzel}/bin/fuzzel --dmenu -i -p "Powermenu")
 
   if [ "$selected_option" == "$lock" ]
   then
