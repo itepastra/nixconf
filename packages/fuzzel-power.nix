@@ -10,7 +10,7 @@ pkgs.writeShellScriptBin "fuzzel-power" ''
   if [ "$selected_option" == "$lock" ]
   then
   echo "lock"
-  swaylock
+  ${pkgs.swaylock}/bin/swaylock
   elif [ "$selected_option" == "$poweroff" ]
   then
   echo "poweroff"
