@@ -388,6 +388,11 @@ in
       enable = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
+      config.global = {
+        load_dotenv = true;
+        log_format = "-";
+        hide_env_diff = true;
+      };
     };
     # FIX: gpg should be declarative, but is more work than I have time for rn
     gpg = {
