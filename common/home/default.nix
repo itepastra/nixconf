@@ -465,6 +465,16 @@ in
       borderColor = "#${config.colorScheme.palette.base00}FF";
     };
     playerctld.enable = true;
+    swayidle = {
+      enable = true;
+      timeouts = [
+        {
+          timeout = 300;
+          command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+          resumeCommand = "${pkgs.niri}/bin/niri msg action power-on-monitors";
+        }
+      ];
+    };
     # sync my password store and homework
     syncthing = {
       enable = true;
