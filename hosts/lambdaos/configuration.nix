@@ -19,6 +19,7 @@
 
     ../../common
 
+    ./rescue.nix
     ./restic.nix
   ];
 
@@ -173,10 +174,11 @@
   ];
 
   xdg = {
-		portal = {enable = true;
-		extraPortals = [pkgs.xdg-desktop-portal-gnome];
-		};
-	};
+    portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+    };
+  };
 
   programs = {
     nm-applet.enable = true;
