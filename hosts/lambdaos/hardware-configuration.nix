@@ -36,6 +36,16 @@
     fsType = "vfat";
   };
 
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/b64dfc95-05c7-40bb-879b-9820c84779dc";
+    fsType = "btrfs";
+    options = [
+      "compress=zstd"
+      "noatime"
+      "subvol=nix"
+    ];
+  };
+
   fileSystems."/home/noa/Pictures/library" = {
     device = "/dev/disk/by-uuid/93a74173-8719-4be2-86b3-dc80588b9cf8";
     fsType = "ext4";
