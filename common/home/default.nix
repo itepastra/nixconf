@@ -135,11 +135,18 @@ in
     username = me.nickname;
   };
 
-  # If I have a monitor I want niri with my config, but niri wants it at that spot
-  xdg.configFile = lib.mkIf enableGraphical {
-    "niri/config.kdl".source = import ../../packages/niri-config/default.nix {
-      inherit pkgs inputs displays;
-      self-pkgs = inputs.self.packages.${pkgs.system};
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+      configPackages = [ pkgs.niri ];
+    };
+    # If I have a monitor I want niri with my config, but niri wants it at that spot
+    configFile = lib.mkIf enableGraphical {
+      "niri/config.kdl".source = import ../../packages/niri-config/default.nix {
+        inherit pkgs inputs displays;
+        self-pkgs = inputs.self.packages.${pkgs.system};
+      };
     };
   };
 
