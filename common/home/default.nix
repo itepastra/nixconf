@@ -266,6 +266,10 @@ in
             RestartSec = 15;
           };
         };
+
+        waybar = {
+          Service.RestartSec = 5;
+        };
       }
       # makes an automapaper service and config for every monitor.
       (builtins.listToAttrs (
