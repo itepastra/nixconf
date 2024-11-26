@@ -258,6 +258,16 @@
   };
 
   services = {
+    postgresql = {
+      enable = true;
+      ensureDatabases = [ "noa" ];
+      ensureUsers = [
+        {
+          name = "noa";
+          ensureDBOwnership = true;
+        }
+      ];
+    };
     ollama = {
       enable = true;
       acceleration = "cuda";
