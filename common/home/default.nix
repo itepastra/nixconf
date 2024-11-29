@@ -95,7 +95,7 @@ in
         qbittorrent
         keepassxc
         yubico-piv-tool
-        libreoffice-qt6
+        libreoffice
       ];
 
     # I set my cursor here, the one I fetched above
