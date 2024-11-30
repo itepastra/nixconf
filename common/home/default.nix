@@ -89,7 +89,7 @@ in
         libnotify
         playerctl
 
-        # apps 
+        # apps
         localsend
         blueberry
         qbittorrent
@@ -275,6 +275,10 @@ in
         };
 
         waybar = {
+          Service.RestartSec = 5;
+        };
+
+        swayidle = {
           Service.RestartSec = 5;
         };
       }
