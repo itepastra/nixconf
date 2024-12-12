@@ -134,7 +134,6 @@
 
     "flurry" = {
       description = "Pixelflut server";
-      confinement.enable = true;
       serviceConfig = {
         ExecStart = "${
           inputs.flurry.packages.${pkgs.system}.default.overrideAttrs (
