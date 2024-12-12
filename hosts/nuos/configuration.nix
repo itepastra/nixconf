@@ -136,7 +136,19 @@
       description = "Pixelflut server";
       confinement.enable = true;
       serviceConfig = {
-        ExecStart = "${inputs.flurry.packages.${pkgs.system}.default}/bin/flurry";
+        ExecStart = "${
+          inputs.flurry.packages.${pkgs.system}.default.overrideAttrs (
+            finalAttrs: previousAttrs: {
+              patches = [
+                (pkgs.fetchpatch2 {
+                  name = "flurry-server-config.patch";
+                  url = "https://github.com/itepastra/flurry/commit/db6019fd1a9b363b090f2fc093d0267a37c0d6ff.patch";
+                  hash = "sha256-EoIjx2kN8hDrN7vLc4FyWp7JqOHIgYFR1V3NVdoDtsw=";
+                })
+              ] ++ previousAttrs.patches;
+            }
+          )
+        }/bin/flurry";
         ExecStop = "pkill flurry";
         Restart = "on-failure";
       };
