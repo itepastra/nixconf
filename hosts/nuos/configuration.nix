@@ -109,26 +109,45 @@
     };
   };
 
-  systemd.services."update-from-flake" = {
-    path = with pkgs; [
-      nixos-rebuild
-      git
-    ];
-    script = ''
-      nixos-rebuild boot --flake github:itepastra/nixconf#nuOS
-      shutdown -r +5 "System will reboot in 5 minutes"
-    '';
-    serviceConfig = {
-      Type = "oneshot";
-      User = "root";
+  systemd.services = {
+    "update-from-flake" = {
+      path = with pkgs; [
+        nixos-rebuild
+        git
+      ];
+      script = ''
+        nixos-rebuild boot --flake github:itepastra/nixconf#nuOS
+        shutdown -r +5 "System will reboot in 5 minutes"
+      '';
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+      };
+      wants = [
+        "network-online.target"
+      ];
+      after = [
+        "network-online.target"
+      ];
+      restartIfChanged = false;
     };
-    wants = [
-      "network-online.target"
-    ];
-    after = [
-      "network-online.target"
-    ];
-    restartIfChanged = false;
+
+    "flurry" = {
+      description = "Pixelflut server";
+      confinement.enable = true;
+      serviceConfig = {
+        ExecStart = "${inputs.flurry.packages.${pkgs.system}.default}/bin/flurry";
+        ExecStop = "pkill flurry";
+        Restart = "on-failure";
+      };
+      wants = [
+        "network-online.target"
+      ];
+      after = [
+        "network-online.target"
+      ];
+      wantedBy = [ "default.target" ];
+    };
   };
 
   virtualisation = {
@@ -279,6 +298,7 @@
           };
 
           "calendar.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:29341";
+          "flurry.itepastra.nl" = proxy "itepastra.nl" "http://127.0.0.1:3000";
 
           # home-assistant proxy
           "home.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:8123";
@@ -310,6 +330,8 @@
     443 # https
 
     8443 # nifi
+
+    7791 # flurry
 
     25565 # minecraft
     24454 # minecraft (voice)
