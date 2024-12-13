@@ -330,6 +330,7 @@
         "locked.itepastra.nl"
         "calendar.itepastra.nl"
         "home.itepastra.nl"
+        "flurry.itepastra.nl"
       ];
     };
   };
