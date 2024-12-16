@@ -218,6 +218,7 @@
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
     };
+    tlp.enable = true;
     xserver = {
       enable = true;
       xkb = {
