@@ -225,7 +225,6 @@
         variant = "intl";
       };
     };
-    flatpak.enable = true;
     udev.packages = [ pkgs.yubikey-personalization ];
     upower.enable = true;
   };
