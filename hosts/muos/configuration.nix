@@ -220,6 +220,7 @@
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
     };
+    thermald.enable = true;
     tlp.enable = true;
     xserver = {
       enable = true;
