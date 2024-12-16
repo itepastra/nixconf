@@ -222,6 +222,7 @@
     };
     thermald.enable = true;
     tlp.enable = true;
+    power-profiles-daemon.enable = false;
     xserver = {
       enable = true;
       xkb = {
