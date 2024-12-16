@@ -20,6 +20,8 @@
     ../../common
   ];
 
+  powerManagement.enable = true;
+
   hardware = {
     bluetooth = {
       enable = true;
