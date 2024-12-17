@@ -12,7 +12,12 @@ in
     enable = lib.mkEnableOption "enable waybar";
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.waybar;
+      default = pkgs.waybar.override {
+        cavaSupport = false;
+        hyprlandSupport = false;
+        pulseSupport = false;
+        swaySupport = false;
+      };
     };
     modules = {
       left = lib.mkOption {
