@@ -55,7 +55,8 @@ in
       # makes yubikey stuff work
       ".gnupg/scdaemon.conf".text = "disable-ccid";
       # I don't want the directory directly in home, even though I only go to it via the symlink
-      "programming".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/programming/";
+      "programming".source =
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/programming/";
     };
     # haha, now I can set my home folder like this
     homeDirectory = "/home/${me.nickname}";
@@ -74,8 +75,8 @@ in
       ]
       # FLURRY AND TSUNAMI :3 (I made these)
       ++ lib.optionals enableFlut [
-        inputs.flurry.packages.${system}.flurry
-        inputs.tsunami.packages.${system}.tsunami
+        inputs.flurry.packages.${system}.default
+        inputs.tsunami.packages.${system}.default
       ]
       # and ofc the things that are only logical with graphics
       ++ lib.optionals enableGraphical [
