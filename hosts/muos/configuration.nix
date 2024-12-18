@@ -118,6 +118,7 @@
     fira-code-symbols
     liberation_ttf
     maple-mono-NF
+    newcomputermodern
   ];
 
   xdg.portal.enable = true;
