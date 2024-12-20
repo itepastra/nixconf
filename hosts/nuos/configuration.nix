@@ -144,7 +144,7 @@
                   url = "https://github.com/itepastra/flurry/commit/db6019fd1a9b363b090f2fc093d0267a37c0d6ff.patch";
                   hash = "sha256-EoIjx2kN8hDrN7vLc4FyWp7JqOHIgYFR1V3NVdoDtsw=";
                 })
-              ] ++ previousAttrs.patches;
+              ];
             }
           )
         }/bin/flurry";
@@ -204,6 +204,11 @@
     factorio = {
       enable = true;
       openFirewall = true;
+      public = true;
+      nonBlockingSaving = true;
+      game-name = "Solrunners - Space Age";
+      description = "Running from the sun into space";
+      admins = [ "itepastra" ];
       extraSettingsFile = config.age.secrets."factorio/solrunners".path;
     };
     github-runners = {
