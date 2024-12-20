@@ -98,7 +98,7 @@
   systemd.timers."update-from-flake" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnCalendar = "daily";
+      OnCalendar = "*-*-* 05:00:00";
       Persistent = true;
     };
   };
