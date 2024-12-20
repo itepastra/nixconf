@@ -3,6 +3,10 @@ let
   nuOS = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM79/rtDi2KIN75Rr6ae+A8lPTSCQfCkhbx1tGmQ3Qed";
 in
 {
+  "factorio/solrunners.age".publicKeys = [
+    noa
+    nuOS
+  ];
   "restic/env.age".publicKeys = [ noa ];
   "restic/repo.age".publicKeys = [ noa ];
   "restic/password.age".publicKeys = [ noa ];

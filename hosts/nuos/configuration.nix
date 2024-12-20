@@ -191,6 +191,7 @@
       "secrets/token-anstml".file = ../../secrets/github/anstml.age;
       "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
       "secrets/nix-store-key".file = ../../secrets/nix-serve/private.age;
+      "factorio/solrunners".file = ../../secrets/factorio/solrunners.age;
       "rsecrets/radicale" = {
         file = ../../secrets/radicale/htpasswd.age;
         owner = "radicale";
@@ -200,6 +201,11 @@
   };
 
   services = {
+    factorio = {
+      enable = true;
+      openFirewall = true;
+      extraSettingsFile = config.age.secrets."factorio/solrunners".path;
+    };
     github-runners = {
       flurry-runner = {
         enable = true;
