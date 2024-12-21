@@ -203,6 +203,9 @@
   services = {
     factorio = {
       enable = true;
+      package = pkgs.factorio-headless.override {
+        versionsJson = ./versions.json;
+      };
       openFirewall = true;
       public = true;
       nonBlockingSaving = true;
