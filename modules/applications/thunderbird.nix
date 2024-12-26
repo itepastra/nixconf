@@ -39,23 +39,23 @@ in
           thunderbird.enable = true;
           userName = "noa";
         };
-        "noa-itepastra" = {
-          address = "noa@itepastra.nl";
-          gpg = {
-            signByDefault = true;
-            key = gpg_key;
-          };
-          imap = {
-            host = "mail.itepastra.nl";
-            port = 993;
-          };
-          realName = "Noa Aarts";
-          smtp = {
-            host = "mail.itepastra.nl";
-          };
-          thunderbird.enable = true;
-          userName = "noa@itepastra.nl";
-        };
+        # "noa-itepastra" = {
+        #   address = "noa@itepastra.nl";
+        #   gpg = {
+        #     signByDefault = true;
+        #     key = gpg_key;
+        #   };
+        #   imap = {
+        #     host = "mail.itepastra.nl";
+        #     port = 993;
+        #   };
+        #   realName = "Noa Aarts";
+        #   smtp = {
+        #     host = "mail.itepastra.nl";
+        #   };
+        #   thunderbird.enable = true;
+        #   userName = "noa@itepastra.nl";
+        # };
         "itepastra-gmail" = {
           address = "itepastra@gmail.com";
           flavor = "gmail.com";
