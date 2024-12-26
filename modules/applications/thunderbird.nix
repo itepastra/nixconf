@@ -25,18 +25,19 @@ in
             key = gpg_key;
           };
           imap = {
-            host = "mail.voorwaarts.nl";
+            host = "smtp.voorwaarts.nl";
             port = 993;
+            tls.enable = true;
           };
           primary = true;
           realName = "Noa Aarts";
           smtp = {
-            host = "mail.voorwaarts.nl";
-            port = 587;
-            tls.useStartTls = true;
+            host = "smtp.voorwaarts.nl";
+            port = 465;
+            tls.enable = true;
           };
           thunderbird.enable = true;
-          userName = "noa@voorwaarts.nl";
+          userName = "noa";
         };
         "noa-itepastra" = {
           address = "noa@itepastra.nl";
