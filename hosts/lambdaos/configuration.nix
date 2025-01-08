@@ -327,7 +327,7 @@
           git
           openssh
           nix
-          nixos-rebuild-ng
+          nixos-rebuild
         ];
         script = ''
           [[ ! -d '/root/nixconf' ]] && git clone git@github.com:itepastra/nixconf /root/nixconf
