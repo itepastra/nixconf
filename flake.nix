@@ -61,7 +61,6 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        rust-overlay.follows = "oxalica";
       };
     };
 
