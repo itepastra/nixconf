@@ -204,7 +204,7 @@
   };
 
   modules = {
-    games.steam.enable = false;
+    games.steam.enable = true;
     plasma.enable = true;
   };
 
