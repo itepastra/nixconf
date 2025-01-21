@@ -36,7 +36,7 @@ in
         "spotify"
         "github"
         "nederlandse_spoorwegen"
-        "caldav"
+        # "caldav"
         "discord"
       ];
 
