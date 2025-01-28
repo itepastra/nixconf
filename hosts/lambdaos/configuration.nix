@@ -272,6 +272,7 @@
     ollama = {
       enable = true;
       acceleration = "cuda";
+      openFirewall = true;
     };
     desktopManager.cosmic.enable = true;
     pcscd = {
