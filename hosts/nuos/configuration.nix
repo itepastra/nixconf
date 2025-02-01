@@ -204,7 +204,7 @@
     factorio = {
       enable = true;
       package = pkgs.factorio-headless.override {
-        versionsJson = ./versions.json;
+				#versionsJson = ./versions.json;
       };
       openFirewall = true;
       public = true;
