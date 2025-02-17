@@ -69,6 +69,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -94,6 +98,7 @@
             inputs.home-manager.nixosModules.default
             inputs.cosmic.nixosModules.default
             inputs.agenix.nixosModules.default
+            inputs.lix-module.nixosModules.default
           ];
         };
         nuOS = nixpkgs.lib.nixosSystem {
