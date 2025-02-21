@@ -435,7 +435,8 @@ require("lazy").setup({
 
       require("lazy-lsp").setup({
         excluded_servers = {
-          "nixd", -- is being a buggy cpu hog or something
+          "nixd",    -- is being a buggy cpu hog or something
+          "pylyzer", -- no, you don't get my ram
         },
         configs = {
           nixd = {
