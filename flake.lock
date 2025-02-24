@@ -130,11 +130,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1740267801,
-        "narHash": "sha256-ckbjP4UON7juVdSsYDpu9vFGRtdS2JvUDRHKq0SQwuA=",
+        "lastModified": 1740308987,
+        "narHash": "sha256-/D6L1nqcf+GOO0Kr0tppkYVfRiU3Iy9auBQNhuBBkrA=",
         "owner": "lilyinstarlight",
         "repo": "nixos-cosmic",
-        "rev": "80952def5b97be37f69a9774163911b47980623a",
+        "rev": "42f72583bc88c8409894f52516adf29139d0d171",
         "type": "github"
       },
       "original": {
@@ -544,11 +544,11 @@
     },
     "hardware": {
       "locked": {
-        "lastModified": 1740089251,
-        "narHash": "sha256-Y78mDBWoO8CLLTjQfPfII+KXFb6lAmF9GrLbyVBsIMM=",
+        "lastModified": 1740387674,
+        "narHash": "sha256-pGk/aA0EBvI6o4DeuZsr05Ig/r4uMlSaf5EWUZEWM10=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "18e9f9753e9ae261bcc7d3abe15745686991fd30",
+        "rev": "d58f642ddb23320965b27beb0beba7236e9117b5",
         "type": "github"
       },
       "original": {
@@ -586,11 +586,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740283128,
-        "narHash": "sha256-R61wtNknWWejnl+K0l4sxu/wnLNFbNe44tNM2zbj5yE=",
+        "lastModified": 1740347597,
+        "narHash": "sha256-st5q9egkPGz8TUcVVlIQX7y6G3AzHob+6M963bwVq74=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "ed030a787938cae01d693ebaad52bbb672a4a69d",
+        "rev": "12e26a74e5eb1a31e13daaa08858689e25ebd449",
         "type": "github"
       },
       "original": {
@@ -696,7 +696,7 @@
         "narHash": "sha256-YMLrcBpf0TR5r/eaqm8lxzFPap2TxCor0ZGcK3a7+b8=",
         "rev": "b90bf629bbd835e61f1317b99e12f8c831017006",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/nixos-module/archive/b90bf629bbd835e61f1317b99e12f8c831017006.tar.gz?rev=b90bf629bbd835e61f1317b99e12f8c831017006"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/nixos-module/archive/b90bf629bbd835e61f1317b99e12f8c831017006.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -735,11 +735,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1740251548,
-        "narHash": "sha256-53kgDwNYEPIZadX5SEk7+OoTXycHm1QUF7x2XCoo9+U=",
+        "lastModified": 1740393191,
+        "narHash": "sha256-lR2KNuEQJY0rvj1gmRQ6aCZWBT6fL0P9DuiXPwDL80M=",
         "owner": "YaLTeR",
         "repo": "niri",
-        "rev": "bca65452882e1e616045e21a0a9a4a0b7024239b",
+        "rev": "bac22dfe9f9073486848cfba5692863ed318e225",
         "type": "github"
       },
       "original": {
@@ -848,11 +848,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1739923778,
-        "narHash": "sha256-BqUY8tz0AQ4to2Z4+uaKczh81zsGZSYxjgvtw+fvIfM=",
+        "lastModified": 1740162160,
+        "narHash": "sha256-SSYxFhqCOb3aiPb6MmN68yEzBIltfom8IgRz7phHscM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "36864ed72f234b9540da4cf7a0c49e351d30d3f1",
+        "rev": "11415c7ae8539d6292f2928317ee7a8410b28bb9",
         "type": "github"
       },
       "original": {
@@ -944,11 +944,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1740298586,
-        "narHash": "sha256-LWdWXic/OkRun2L3npvPLTEOw4+PsL7wmEgqwvnSKL8=",
+        "lastModified": 1740394320,
+        "narHash": "sha256-9Phu6307nv2QT8hHv95LQZ9oXhqry1uC+cChFV7HRe0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7fd9c4069ca77f69847f2487b2d0483133252a21",
+        "rev": "8663637b53219717b05ad5946a35c092a846d431",
         "type": "github"
       },
       "original": {
@@ -965,11 +965,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740277845,
-        "narHash": "sha256-NNU0CdiaSbAeZ8tpDG4aFi9qtcdlItRvk8Xns9oBrVU=",
+        "lastModified": 1740364262,
+        "narHash": "sha256-X5EtT29uEtXN2E4bDiDU2HGBdmFHjHf1KbP6iKP0cmg=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "f933070c29f9c1c5457447a51903f27f76ebb519",
+        "rev": "7c5892ad87b90d72668964975eebd4e174ff6204",
         "type": "github"
       },
       "original": {
