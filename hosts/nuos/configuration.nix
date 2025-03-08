@@ -11,6 +11,9 @@
   config,
   ...
 }:
+let
+  enableFlurry = false;
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -132,7 +135,7 @@
     };
 
     "flurry" = {
-      enable = false;
+      enable = enableFlurry;
       description = "Pixelflut server";
       serviceConfig = {
         ExecStart = "${
@@ -287,37 +290,42 @@
         recommendedBrotliSettings = true;
         sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
 
-        virtualHosts = {
-          "noa.voorwaarts.nl" = {
-            forceSSL = true;
-            enableACME = true;
-            extraConfig = extra;
-            locations."/" = {
-              proxyWebsockets = true;
-              proxyPass = "http://192.168.42.5:8000";
+        virtualHosts = lib.mkMerge [
+          ({
+            "noa.voorwaarts.nl" = {
+              forceSSL = true;
+              enableACME = true;
+              extraConfig = extra;
+              locations."/" = {
+                proxyWebsockets = true;
+                proxyPass = "http://192.168.42.5:8000";
+              };
             };
-          };
 
-          "images.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:2283/";
-          "maintenance.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:5000/";
-          "map.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://127.0.0.1:8123/";
+            "images.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:2283/";
+            "maintenance.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:5000/";
+            "map.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://127.0.0.1:8123/";
 
-          "itepastra.nl" = {
-            forceSSL = true;
-            enableACME = true;
-            extraConfig = extra;
-            locations."/" = {
-              proxyWebsockets = true;
-              proxyPass = "http://192.168.42.5:9001/";
+            "itepastra.nl" = {
+              forceSSL = true;
+              enableACME = true;
+              extraConfig = extra;
+              locations."/" = {
+                proxyWebsockets = true;
+                proxyPass = "http://192.168.42.5:9001/";
+              };
             };
-          };
 
-          "calendar.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:29341";
-          "flurry.itepastra.nl" = proxy "itepastra.nl" "http://127.0.0.1:3000";
+            "calendar.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:29341";
 
-          # home-assistant proxy
-          "home.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:8123";
-        };
+            # home-assistant proxy
+            "home.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:8123";
+          })
+
+          (lib.mkIf enableFlurry {
+            "flurry.itepastra.nl" = proxy "itepastra.nl" "http://127.0.0.1:3000";
+          })
+        ];
       };
   };
 
@@ -330,12 +338,15 @@
         "maintenance.noa.voorwaarts.nl"
         "map.noa.voorwaarts.nl"
       ];
-      "itepastra.nl".extraDomainNames = [
-        "locked.itepastra.nl"
-        "calendar.itepastra.nl"
-        "home.itepastra.nl"
-        "flurry.itepastra.nl"
-      ];
+      "itepastra.nl".extraDomainNames =
+        [
+          "locked.itepastra.nl"
+          "calendar.itepastra.nl"
+          "home.itepastra.nl"
+        ]
+        ++ [
+          (lib.mkIf enableFlurry "flurry.itepastra.nl")
+        ];
     };
   };
 
