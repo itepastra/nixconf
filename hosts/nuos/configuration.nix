@@ -66,7 +66,6 @@
   # $ nix search wget
   environment = {
     systemPackages = with pkgs; [
-      sddm
       git
       zsh
     ];
