@@ -19,7 +19,7 @@ in
     programs.waybar = {
       settings.mainBar."${name}" = {
         format = "";
-        on-click = "${inputs.self.packages.${pkgs.system}.fuzzel-launch}";
+        on-click = "${inputs.self.packages.${pkgs.system}.fuzzel-power}/bin/fuzzel-power";
         on-click-right = "${pkgs.swaylock}/bin/swaylock"; # TODO: change to whatever lock screen i want
       };
       style = ''
