@@ -274,7 +274,7 @@
       acceleration = "cuda";
       openFirewall = true;
     };
-    desktopManager.cosmic.enable = true;
+    desktopManager.cosmic.enable = false;
     pcscd = {
       enable = true; # for yubikey
     };
