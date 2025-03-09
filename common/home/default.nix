@@ -225,7 +225,6 @@ in
             };
 
             Unit = {
-              PartOf = "graphical-session.target";
               After = "graphical-session.target";
               Requisite = "graphical-session.target";
             };
@@ -243,7 +242,6 @@ in
           };
 
           Unit = {
-            PartOf = "graphical-session.target";
             After = "graphical-session.target";
             Requisite = "graphical-session.target";
           };
@@ -262,7 +260,6 @@ in
           };
 
           Unit = {
-            PartOf = "graphical-session.target";
             After = "graphical-session.target";
             Requisite = "graphical-session.target";
           };
