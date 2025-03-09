@@ -326,7 +326,6 @@ in
             };
             Unit = {
               Description = "Automapaper for display ${name}";
-              PartOf = "graphical-session.target";
               After = "graphical-session.target";
               Requisite = "graphical-session.target";
             };
