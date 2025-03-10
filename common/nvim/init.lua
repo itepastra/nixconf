@@ -493,7 +493,7 @@ require("lazy").setup({
   {
     'chomosuke/typst-preview.nvim',
     ft = 'typst',
-    version = '1.*',
+    branch = "master",
     build = function() require 'typst-preview'.update() end,
   },
 
