@@ -202,12 +202,8 @@
   users.defaultUserShell = pkgs.zsh;
 
   security.rtkit.enable = true;
-  boot = rec {
-
+  boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    extraModulePackages = with kernelPackages; [
-      # v4l2loopback
-    ];
     consoleLogLevel = 0;
     initrd.verbose = false;
     plymouth = rec {
@@ -227,15 +223,10 @@
     ];
 
     kernelModules = [
-      # "v4l2loopback"
       "nct6775"
       "k10temp"
       "nvidia_uvm"
     ];
-
-    # extraModprobeConfig = ''
-    #   options v4l2loopback devices=1 video_nr=2 card_label="OBS Cam" exclusive_caps=1
-    # '';
 
     loader = {
       timeout = 3;
