@@ -136,7 +136,7 @@
           }
         ];
         extraConfig = {
-          programs.btop.package = pkgs.btop.overrideAttrs (oldAttrs: rec {
+          programs.btop.package = pkgs.btop.overrideAttrs (oldAttrs: {
             cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
               "-DBTOP_GPU=ON"
             ];
