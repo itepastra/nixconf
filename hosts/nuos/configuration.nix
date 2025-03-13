@@ -48,7 +48,12 @@ in
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.defaultUserShell = pkgs.zsh;
+  users.groups.disqalculate = { };
   users.users = {
+    disqalculate = {
+      isSystemUser = true;
+      group = "disqalculate";
+    };
     noa = {
       isNormalUser = true;
       extraGroups = [
@@ -162,6 +167,35 @@ in
       ];
       wantedBy = [ "default.target" ];
     };
+
+    "disqalculate" = {
+      wants = [
+        "network-online.target"
+      ];
+      after = [
+        "network-online.target"
+      ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${inputs.disqalculate.packages.${pkgs.system}.default}/bin/disqalculate";
+        ExecStop = "${pkgs.busybox}/bin/pkill disqalculate";
+        RuntimeDirectory = "disqalculate";
+        RootDirectory = "/run/disqalculate";
+        User = "disqalculate";
+        NoNewPrivileges = true;
+        ProtectHome = true;
+        EnvironmentFile = config.age.secrets."discord/disqalculate".path;
+        BindReadOnlyPaths = [
+          "/nix/store"
+          "/etc/ssl"
+          "/etc/static/ssl"
+          "/etc/resolv.conf"
+        ];
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
   };
 
   virtualisation = {
@@ -194,6 +228,7 @@ in
       "secrets/token-anstml".file = ../../secrets/github/anstml.age;
       "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
       "secrets/nix-store-key".file = ../../secrets/nix-serve/private.age;
+      "discord/disqalculate".file = ../../secrets/discord/disqalculate.age;
       "factorio/solrunners".file = ../../secrets/factorio/solrunners.age;
       "rsecrets/radicale" = {
         file = ../../secrets/radicale/htpasswd.age;

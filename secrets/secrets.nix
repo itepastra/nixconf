@@ -38,4 +38,8 @@ in
     noa
     nuOS
   ];
+  "discord/disqalculate.age".publicKeys = [
+    noa
+    nuOS
+  ];
 }

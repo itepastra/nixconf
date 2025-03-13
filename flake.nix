@@ -77,6 +77,9 @@
     nixcord = {
       url = "github:kaylorben/nixcord";
     };
+    disqalculate = {
+      url = "github:itepastra/disqalculate";
+    };
   };
 
   outputs =
