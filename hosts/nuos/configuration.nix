@@ -175,6 +175,7 @@ in
       after = [
         "network-online.target"
       ];
+      restartTriggers = [ inputs.disqalculate.packages.${pkgs.system}.default ];
       serviceConfig = {
         Type = "simple";
         ExecStart = "${inputs.disqalculate.packages.${pkgs.system}.default}/bin/disqalculate";
