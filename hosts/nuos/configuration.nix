@@ -184,6 +184,16 @@ in
         User = "disqalculate";
         NoNewPrivileges = true;
         ProtectHome = true;
+        ProtectProc = true;
+        ProtectClock = true;
+        ProtectKernelLogs = true;
+        ProtectSystem = true;
+        PrivateTmp = true;
+        PrivateDevices = true;
+        ProtectKernelTunables = true;
+        CapabylityBoundingSet = true;
+        RestrictNamspaces = "";
+        CapabilityBoundingSet = "";
         EnvironmentFile = config.age.secrets."discord/disqalculate".path;
         BindReadOnlyPaths = [
           "/nix/store"
