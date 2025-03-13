@@ -190,6 +190,7 @@ in
           "/etc/ssl"
           "/etc/static/ssl"
           "/etc/resolv.conf"
+          "/bin/sh"
         ];
         Restart = "on-failure";
         RestartSec = 1;
