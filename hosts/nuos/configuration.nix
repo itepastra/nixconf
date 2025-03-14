@@ -189,11 +189,12 @@ in
         ProcSubset = "pid";
         ProtectClock = true;
         ProtectKernelLogs = true;
-        ProtectSystem = true;
+        ProtectSystem = "strict";
+        ProtectHostname = true;
         PrivateTmp = true;
         PrivateDevices = true;
         ProtectKernelTunables = true;
-        RestrictNamespaces = "";
+        RestrictNamespaces = true;
         CapabilityBoundingSet = "";
         EnvironmentFile = config.age.secrets."discord/disqalculate".path;
         BindReadOnlyPaths = [
