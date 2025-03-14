@@ -285,11 +285,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1741946304,
-        "narHash": "sha256-xNVPvhW6yGDIQ3GIlwasgXNg6abld5cafTdkrGZYxBc=",
+        "lastModified": 1741946851,
+        "narHash": "sha256-Dd43Ucq31DJ9rtPsFhimEQMARIBAX5HXhyyRA82GxaQ=",
         "owner": "itepastra",
         "repo": "disqalculate",
-        "rev": "6948d880cc3c4ecf5ed92758b57d2aec83e238a5",
+        "rev": "cad6829e62398255dbc2dfd4c91e7346cd1fc81d",
         "type": "github"
       },
       "original": {
