@@ -193,6 +193,8 @@ in
         ProtectHostname = true;
         PrivateTmp = true;
         PrivateDevices = true;
+        PrivateUsers = true;
+        RestrictAddressFamilies = "AF_INET";
         ProtectKernelTunables = true;
         RestrictNamespaces = true;
         CapabilityBoundingSet = "";
