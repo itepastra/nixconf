@@ -66,7 +66,6 @@
 
     niri = {
       url = "github:YaLTeR/niri";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lix-module = {

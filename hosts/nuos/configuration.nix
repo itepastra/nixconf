@@ -207,8 +207,12 @@ in
           "/bin/sh"
         ];
         Restart = "on-failure";
-        RestartSec = 1;
+        RestartSec = 10;
         TimeoutStopSec = 10;
+      };
+      unitConfig = {
+        StartLimitInterval = 400;
+        StartLimitBurst = 30;
       };
     };
   };
