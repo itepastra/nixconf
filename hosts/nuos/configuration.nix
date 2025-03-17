@@ -169,6 +169,7 @@ in
     };
 
     "disqalculate" = {
+      enable = true;
       wants = [
         "network-online.target"
       ];
@@ -206,7 +207,7 @@ in
           "/etc/resolv.conf"
           "/bin/sh"
         ];
-        Restart = "on-failure";
+        Restart = "always";
         RestartSec = 10;
         TimeoutStopSec = 10;
       };
