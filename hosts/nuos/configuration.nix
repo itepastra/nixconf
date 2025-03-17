@@ -176,6 +176,7 @@ in
       after = [
         "network-online.target"
       ];
+      wantedBy = [ "default.target" ];
       restartTriggers = [ inputs.disqalculate.packages.${pkgs.system}.default ];
       serviceConfig = {
         Type = "simple";
