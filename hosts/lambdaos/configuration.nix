@@ -151,6 +151,8 @@
     pathsToLink = [ "/share/zsh" ];
     systemPackages = with pkgs; [
       restic
+      cudatoolkit
+      cuda_nvrtc
     ];
   };
 
