@@ -97,6 +97,7 @@ in
         keepassxc
         yubico-piv-tool
         libreoffice
+        tmux
       ];
 
     # I set my cursor here, the one I fetched above
