@@ -152,7 +152,6 @@
     systemPackages = with pkgs; [
       restic
       cudatoolkit
-      cuda_nvrtc
     ];
   };
 
