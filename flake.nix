@@ -95,9 +95,11 @@
       nixosConfigurations = {
         lambdaOS = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs;
-            inherit nix-colors;
-            inherit automapaper;
+            inherit
+              inputs
+              nix-colors
+              automapaper
+              ;
           };
           modules = [
             ./hosts/lambdaos/configuration.nix
@@ -109,8 +111,10 @@
         };
         nuOS = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs;
-            inherit nix-colors;
+            inherit
+              inputs
+              nix-colors
+              ;
           };
           modules = [
             disko.nixosModules.disko
@@ -122,9 +126,11 @@
         };
         muOS = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs;
-            inherit nix-colors;
-            inherit automapaper;
+            inherit
+              inputs
+              nix-colors
+              automapaper
+              ;
           };
           modules = [
             disko.nixosModules.disko

@@ -35,6 +35,7 @@ in
         safe.directory = "/etc/nixos";
         pull.rebase = false;
         commit.gpgsign = cfg.do_sign;
+        push.autoSetupRemote = true;
       };
     };
   };

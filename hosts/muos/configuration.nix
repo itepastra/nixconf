@@ -43,9 +43,8 @@
 
   networking = {
     hostName = "muOS"; # Define your hostname.
+    networkmanager.enable = true;
   };
-
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -55,9 +54,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
-    root = {
-      hashedPassword = "!";
-    };
+    root.hashedPassword = "!";
     noa = {
       isNormalUser = true;
       description = "Noa Aarts";
@@ -134,7 +131,7 @@
       enable = true;
       package = inputs.niri.packages.${pkgs.system}.niri;
     };
-    nix-ld.enable = true;
+    nix-ld.enable = false;
     nix-ld.libraries = with pkgs; [
       wayland
     ];
@@ -151,20 +148,20 @@
   users.defaultUserShell = pkgs.zsh;
 
   security.rtkit.enable = true;
-  boot = rec {
-
+  boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    extraModulePackages = with kernelPackages; [
-      v4l2loopback
-    ];
+
     consoleLogLevel = 0;
+
     initrd.verbose = false;
     plymouth = rec {
       enable = true;
       theme = "colorful";
       themePackages = [ (pkgs.adi1090x-plymouth-themes.override { selected_themes = [ theme ]; }) ];
     };
+
     kernelParams = [
+      "plymouth.use-simpledrm"
       "quiet"
       "splash"
       "boot.shell_on_fail"
@@ -176,14 +173,9 @@
     ];
 
     kernelModules = [
-      "v4l2loopback"
       "nct6775"
       "k10temp"
     ];
-
-    extraModprobeConfig = ''
-      options v4l2loopback devices=1 video_nr=2 card_label="OBS Cam" exclusive_caps=1
-    '';
 
     loader = {
       timeout = 3;
@@ -225,14 +217,13 @@
     tlp.enable = true;
     power-profiles-daemon.enable = false;
     xserver = {
-      enable = true;
+      enable = false;
       xkb = {
         layout = "us";
-        variant = "intl";
+        variant = "altgr intl";
       };
     };
     udev.packages = [ pkgs.yubikey-personalization ];
-    upower.enable = true;
   };
 
   systemd = {
@@ -287,6 +278,7 @@
   };
   security = {
     polkit.enable = true;
+    sudo.execWheelOnly = true;
   };
 
   # Open ports in the firewall.
