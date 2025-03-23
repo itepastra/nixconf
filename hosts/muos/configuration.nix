@@ -13,11 +13,12 @@
 {
   imports = [
     # Include the results of the hardware scan.
-    ../../modules/games/steam.nix
-    ./disk-config.nix
     ./hardware-configuration.nix
+    ../../modules/games/steam.nix
 
     ../../common
+
+    ./disk-config.nix
   ];
 
   powerManagement.enable = true;
@@ -39,11 +40,31 @@
   nixpkgs.config = {
     allowUnfree = true;
   };
-  nixpkgs.overlays = [ ];
+
+  nix.settings = {
+    trusted-users = [ "noa" ];
+    sandbox = true;
+    show-trace = true;
+    system-features = [
+      "nixos-test"
+      "recursive-nix"
+    ];
+
+    sandbox-paths = [ "/bin/sh=${pkgs.busybox-sandbox-shell.out}/bin/busybox" ];
+  };
 
   networking = {
     hostName = "muOS"; # Define your hostname.
     networkmanager.enable = true;
+    firewall.allowedTCPPorts = [
+      53317 # Localsend
+      22000 # syncthing
+    ];
+    firewall.allowedUDPPorts = [
+      53317
+      22000 # syncthing
+      21027 # syncthing
+    ];
   };
 
   # Set your time zone.
@@ -114,11 +135,13 @@
     fira-code
     fira-code-symbols
     liberation_ttf
-    maple-mono-NF
+    maple-mono.NF
     newcomputermodern
   ];
 
-  xdg.portal.enable = true;
+  xdg.portal = {
+    enable = true;
+  };
 
   programs = {
     gnupg.agent = {
@@ -131,10 +154,6 @@
       enable = true;
       package = inputs.niri.packages.${pkgs.system}.niri;
     };
-    nix-ld.enable = false;
-    nix-ld.libraries = with pkgs; [
-      wayland
-    ];
     nm-applet.enable = true;
 
     wireshark.enable = true;
@@ -280,21 +299,6 @@
     polkit.enable = true;
     sudo.execWheelOnly = true;
   };
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [
-    53317 # Localsend
-
-    22000 # syncthing
-  ];
-  networking.firewall.allowedUDPPorts = [
-    53317
-
-    22000 # syncthing
-    21027 # syncthing
-  ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

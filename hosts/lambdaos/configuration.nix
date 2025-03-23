@@ -46,6 +46,13 @@
     };
   };
 
+  # Allow unfree packages
+  nixpkgs.config = {
+    allowUnfree = true;
+    nvidia.acceptLicense = true;
+    cudaSupport = true;
+  };
+
   nix.settings = {
     trusted-users = [ "noa" ];
     sandbox = true;
@@ -56,13 +63,6 @@
       "recursive-nix"
     ];
     sandbox-paths = [ "/bin/sh=${pkgs.busybox-sandbox-shell.out}/bin/busybox" ];
-  };
-
-  # Allow unfree packages
-  nixpkgs.config = {
-    allowUnfree = true;
-    nvidia.acceptLicense = true;
-    cudaSupport = true;
   };
 
   networking = {
@@ -147,10 +147,18 @@
   };
 
   environment = {
-    pathsToLink = [ "/share/zsh" ];
     systemPackages = with pkgs; [
       restic
       cudatoolkit
+    ];
+    plasma6.excludePackages = with pkgs.kdePackages; [
+      plasma-browser-integration
+      konsole
+      xwaylandvideobridge
+      kate
+      khelpcenter
+      okular
+      elisa
     ];
   };
 
@@ -161,19 +169,14 @@
     fira-code
     fira-code-symbols
     liberation_ttf
-    maple-mono-NF
+    maple-mono.NF
   ];
 
   xdg.portal = {
     enable = true;
-    configPackages = [ pkgs.niri ];
   };
 
   programs = {
-    nm-applet.enable = true;
-
-    zsh.enable = true;
-
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -184,18 +187,15 @@
       enable = true;
       package = inputs.niri.packages.${pkgs.system}.niri;
     };
-    nix-ld.enable = true;
+    nm-applet.enable = true;
 
-    nix-ld.libraries = with pkgs; [
-      wayland
-    ];
-
+    zsh.enable = true;
     wireshark.enable = true;
   };
 
   modules = {
     games.steam.enable = true;
-    plasma.enable = true;
+    plasma.enable = false;
   };
 
   users.defaultUserShell = pkgs.zsh;
@@ -203,13 +203,16 @@
   security.rtkit.enable = true;
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+
     consoleLogLevel = 0;
+
     initrd.verbose = false;
     plymouth = rec {
       enable = true;
       theme = "colorful";
       themePackages = [ (pkgs.adi1090x-plymouth-themes.override { selected_themes = [ theme ]; }) ];
     };
+
     kernelParams = [
       "quiet"
       "splash"
@@ -240,6 +243,13 @@
   };
 
   services = {
+    displayManager = {
+      defaultSession = "niri";
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+    };
     postgresql = {
       enable = true;
       ensureDatabases = [ "noa" ];
@@ -277,17 +287,14 @@
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
     };
+    thermald.enable = true;
     xserver = {
       enable = false;
       xkb = {
         layout = "us";
-        variant = "intl";
+        variant = "altgr intl";
       };
       videoDrivers = [ "nvidia" ];
-    };
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
     };
     udev.packages = [ pkgs.yubikey-personalization ];
   };
@@ -360,6 +367,7 @@
   };
   security = {
     polkit.enable = true;
+    sudo.execWheelOnly = true;
   };
 
   # Or disable the firewall altogether.

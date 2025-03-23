@@ -69,8 +69,9 @@
     };
 
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+      url = "git+https://git.lix.systems/lix-project/nixos-module.git";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.lix.url = "git+https://git.lix.systems/lix-project/lix.git";
     };
 
     nixcord = {
