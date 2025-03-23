@@ -31,6 +31,7 @@ in
           padding: 0 8px;
           background-color: #${config.colorScheme.palette.taskbarBackground};
           border-radius: 0 999px 999px 0;
+          transition: all 1s;
         }
       '';
     };
