@@ -17,6 +17,7 @@
     ../../modules/plasma
 
     ../../common
+    ../../common/configuration.nix
 
     ./rescue.nix
     ./restic.nix
@@ -24,100 +25,34 @@
 
   age.identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
 
-  hardware = {
-    bluetooth = {
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement = {
       enable = true;
-      powerOnBoot = true;
     };
-    enableRedistributableFirmware = true;
-    enableAllFirmware = true;
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
-    nvidia = {
-      modesetting.enable = true;
-      powerManagement = {
-        enable = true;
-      };
-      open = true;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
-    };
+    open = true;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
-  # Allow unfree packages
   nixpkgs.config = {
-    allowUnfree = true;
     nvidia.acceptLicense = true;
     cudaSupport = true;
   };
 
-  nix.settings = {
-    trusted-users = [ "noa" ];
-    sandbox = true;
-    show-trace = true;
-
-    system-features = [
-      "nixos-test"
-      "recursive-nix"
-    ];
-    sandbox-paths = [ "/bin/sh=${pkgs.busybox-sandbox-shell.out}/bin/busybox" ];
-  };
-
   networking = {
     hostName = "lambdaOS"; # Define your hostname.
-    networkmanager.enable = true;
-    # Open ports in the firewall.
     firewall.allowedTCPPorts = [
-      53317 # Localsend
       7791 # Pixelflut
       38281 # Archipelago
-
-      22000 # syncthing
-
       2283 # immich
     ];
     firewall.allowedUDPPorts = [
-      53317
       38281 # Archipelago
-
-      22000 # syncthing
-      21027 # syncthing
     ];
   };
 
-  # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
-
-  # Configure console keymap
-  console.keyMap = "us-acentos";
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users = {
-    root = {
-      hashedPassword = "!";
-    };
-    noa = {
-      isNormalUser = true;
-      description = "Noa Aarts";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "docker"
-        "wireshark"
-        "dialout"
-      ];
-      hashedPassword = "$6$rounds=512400$Zip3xoK2zcoR4qEL$N13YTHO5tpWfx2nKb1sye.ZPwfoRtMQ5f3YrMZqKzzoFoSSHHJ.l5ulCEa9HygFxZmBtPnwlseFEtl8ERnwF50";
-      openssh.authorizedKeys.keys = (import ../../common/ssh-keys.nix);
-    };
-  };
-
   home-manager = {
-    extraSpecialArgs = {
-      inherit inputs;
-      inherit nix-colors;
-    };
     users = {
       "noa" = (import ../../common/home) {
         enableGraphical = true;
@@ -146,110 +81,15 @@
     };
   };
 
-  environment = {
-    systemPackages = with pkgs; [
-      restic
-      cudatoolkit
-    ];
-    plasma6.excludePackages = with pkgs.kdePackages; [
-      plasma-browser-integration
-      konsole
-      xwaylandvideobridge
-      kate
-      khelpcenter
-      okular
-      elisa
-    ];
-  };
-
-  # TODO: find list of fonts to install
-  fonts.packages = with pkgs; [
-    font-awesome
-    noto-fonts
-    fira-code
-    fira-code-symbols
-    liberation_ttf
-    maple-mono.NF
-  ];
-
-  xdg.portal = {
-    enable = true;
-  };
-
-  programs = {
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-curses;
-    };
-
-    niri = {
-      enable = true;
-      package = inputs.niri.packages.${pkgs.system}.niri;
-    };
-    nm-applet.enable = true;
-
-    zsh.enable = true;
-    wireshark.enable = true;
-  };
-
   modules = {
-    games.steam.enable = true;
     plasma.enable = false;
   };
 
-  users.defaultUserShell = pkgs.zsh;
-
-  security.rtkit.enable = true;
-  boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
-
-    consoleLogLevel = 0;
-
-    initrd.verbose = false;
-    plymouth = rec {
-      enable = true;
-      theme = "colorful";
-      themePackages = [ (pkgs.adi1090x-plymouth-themes.override { selected_themes = [ theme ]; }) ];
-    };
-
-    kernelParams = [
-      "quiet"
-      "splash"
-      "boot.shell_on_fail"
-      "i915.fastboot=1"
-      "loglevel=3"
-      "rd.systemd.show_status=false"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
-    ];
-
-    kernelModules = [
-      "nct6775"
-      "k10temp"
-      "nvidia_uvm"
-    ];
-
-    loader = {
-      timeout = 3;
-      efi.canTouchEfiVariables = true;
-      systemd-boot = {
-        enable = true;
-        editor = false;
-        configurationLimit = 100;
-      };
-    };
-
-  };
+  boot.kernelModules = [
+    "nvidia_uvm"
+  ];
 
   services = {
-    displayManager = {
-      defaultSession = "niri";
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
-    };
     postgresql = {
       enable = true;
       ensureDatabases = [ "noa" ];
@@ -266,37 +106,12 @@
       openFirewall = true;
     };
     desktopManager.cosmic.enable = false;
-    pcscd = {
-      enable = true; # for yubikey
-    };
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-    };
     fail2ban.enable = true;
     hardware = {
       openrgb = {
         enable = true;
       };
     };
-    openssh = {
-      enable = true;
-      settings.PasswordAuthentication = false;
-      settings.KbdInteractiveAuthentication = false;
-    };
-    thermald.enable = true;
-    xserver = {
-      enable = false;
-      xkb = {
-        layout = "us";
-        variant = "altgr intl";
-      };
-      videoDrivers = [ "nvidia" ];
-    };
-    udev.packages = [ pkgs.yubikey-personalization ];
   };
 
   systemd = {
@@ -357,19 +172,6 @@
     };
   };
 
-  virtualisation.docker = {
-    enable = true;
-    package = pkgs.docker_27;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
-  security = {
-    polkit.enable = true;
-    sudo.execWheelOnly = true;
-  };
-
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
@@ -379,13 +181,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system = {
-    switch = {
-      enableNg = true;
-    };
-    rebuild = {
-      enableNg = true;
-    };
-    stateVersion = "23.11"; # Did you read the comment?
-  };
+  system.stateVersion = "23.11"; # Did you read the comment?
 }
