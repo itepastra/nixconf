@@ -71,7 +71,12 @@
     lix-module = {
       url = "git+https://git.lix.systems/lix-project/nixos-module.git";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.lix.url = "git+https://git.lix.systems/lix-project/lix.git";
+      inputs.lix.follows = "lix";
+    };
+
+    lix = {
+      url = "git+https://git.lix.systems/lix-project/lix.git";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixcord = {
