@@ -194,12 +194,13 @@ in
           "custom/spotify"
         ];
         right = [
-          "custom/vpn"
-          "wireplumber"
+          "custom/bluetooth"
+          "battery"
           "network"
+          "wireplumber"
           "cpu"
           "memory"
-          "custom/poweroff"
+          "temperature"
         ];
       };
       enable = lib.mkDefault enableGraphical;

@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   name = "wireplumber";
 in
@@ -12,22 +17,21 @@ in
   config = lib.mkIf config.modules.waybar.enabled.${name}.enable {
     programs.waybar = {
       settings.mainBar."${name}" = {
-        format = "{volume}% {icon}";
-        format-muted = "";
-        on-click = "helvum";
+        format = "{icon} {volume}%";
+        format-muted = "󰝟";
         format-icons = [
           ""
           ""
           ""
         ];
+        on-click = lib.meta.getExe' pkgs.helvum "helvum";
       };
       style = ''
         #wireplumber {
           color: #${config.colorScheme.palette.taskbarText};
-          margin: 0px 2px;
-          padding: 0 15px;
-          border-radius: 999px;
-          box-shadow: inset 0 0 0 1px #${config.colorScheme.palette.base01};
+          margin: 5px 0px;
+          padding: 0 8px;
+          background-color: #${config.colorScheme.palette.taskbarBackground};
         }
       '';
     };

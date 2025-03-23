@@ -48,6 +48,8 @@ in
     ./temperature.nix
     ./wireplumber.nix
     ./spotify.nix
+    ./battery.nix
+    ./bluetooth.nix
     ../../common/colors.nix
   ];
 
@@ -94,7 +96,25 @@ in
       style = ''
         * {
           font-family: "Maple Mono NF";
-          font-size: 14px;
+          font-size: 12px;
+        }
+
+        window#waybar {
+          background-color: transparent;
+          color: #${config.colorScheme.palette.taskbarText};
+          transition-property: background-color;
+          transition-duration: 0.5s;
+        }
+        window#waybar.hidden {
+          opacity: 0.2;
+        }
+
+        window#waybar.termite {
+          background-color: transparent;
+        }
+
+        window#waybar.chromium {
+          background-color: transparent;
         }
 
         button {

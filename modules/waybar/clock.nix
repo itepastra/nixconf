@@ -19,25 +19,23 @@ in
         interval = 1;
         format = "{:%H:%M:%S}";
         format-alt = "{:%Y-%m-%d %H:%M:%S}";
-        on-click-middle = "gnome-clocks";
+        on-click-middle = lib.meta.getExe' pkgs.gnome-clocks "gnome-clocks";
         calendar = {
           weeks-pos = "left";
           format = {
-            today = "<span color='#FF6666'><u>{}</u></span>"; # TODO: use nix-colors
-            weeks = "<span color='#707A8C'>{}</span>"; # TODO: use nix-colors
+            today = "<span color='#${config.colorScheme.palette.base17}'><u>{}</u></span>"; # TODO: use nix-colors
+            weeks = "<span color='#${config.colorScheme.palette.base17}'>{}</span>"; # TODO: use nix-colors
           };
         };
-        home.packages = [
-          pkgs.gnome-clocks
-        ];
       };
       style = ''
         #clock {
           color: #${config.colorScheme.palette.taskbarText};
-          margin: 0px 2px;
-          padding: 0 15px;
-          
-          border-radius: 999px;
+          background-color: #${config.colorScheme.palette.taskbarBackground};
+          margin: 5px 0px;
+          margin-right: 2px;
+          padding: 0 12px;
+          border-radius: 999px 0 0 999px;
           box-shadow: none;
         }
       '';

@@ -17,9 +17,9 @@ in
         sort-by = "id";
       };
       style = ''
-        #workspaces button {    
+        #workspaces button {
           transition: all 0.2s;
-          padding: 3px 3px 3px 5px;
+          padding: 4px 4px 4px 5px;
           margin: 3px;
           min-width: 15px;
           min-height: 15px;
@@ -41,11 +41,9 @@ in
           background-color: #${config.colorScheme.palette.base08};
         }
 
-        #workspaces {   
-          margin: 0 4px;
-          padding: 4px 4px;   
+        #workspaces {
+          padding: 4px 4px;
           border-radius: 999px;
-          box-shadow: inset 0px 0px 0 1px #${config.colorScheme.palette.base01};
         }
       '';
     };

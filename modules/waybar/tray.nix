@@ -17,16 +17,15 @@ in
       style = ''
         #tray {
           color: #${config.colorScheme.palette.taskbarText};
-          margin: 0px 2px;
+          margin: 5px 0px;
           padding: 4px 10px;
-          border-radius: 999px 999px 999px 999px;
-          box-shadow: inset 0px 0px 0 1px #${config.colorScheme.palette.base01};
+          border-radius: 999px;
+          background-color: #${config.colorScheme.palette.taskbarBackground};
         }
 
-        #tray {
-          background-color: transparent;
+        #tray > * {
+          padding: 0 20px;
         }
-
 
         #tray > .passive {
           -gtk-icon-effect: dim;

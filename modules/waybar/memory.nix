@@ -12,17 +12,15 @@ in
   config = lib.mkIf config.modules.waybar.enabled.${name}.enable {
     programs.waybar = {
       settings.mainBar."${name}" = {
-        format = "mem: {}%";
+        format = " {}%";
         tooltip = false;
       };
       style = ''
         #memory {
-          border-radius: 0px 999px 999px 0px;
-          padding: 0 10px;
           color: #${config.colorScheme.palette.taskbarText};
-          margin: 0px;
-          box-shadow: inset 0px 2px 0 -1px #${config.colorScheme.palette.base01},
-                inset 0px -2px 0 -1px #${config.colorScheme.palette.base01};
+          margin: 5px 0px;
+          padding: 0 8px;
+          background-color: #${config.colorScheme.palette.taskbarBackground};
         }
       '';
     };

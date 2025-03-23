@@ -10,16 +10,31 @@ in
     };
   };
   config = lib.mkIf config.modules.waybar.enabled.${name}.enable {
-    programs.waybar.settings.mainBar."${name}" = {
-      thermal-zone = 2;
-      hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
-      critical-threshold = 80;
-      format = "{temperatureC}°C {icon}";
-      format-icons = [
-        ""
-        ""
-        ""
-      ];
+    programs.waybar = {
+      settings.mainBar."${name}" = {
+        thermal-zone = 2;
+        hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
+        critical-threshold = 80;
+        format = "{icon} {temperatureC}°C";
+        format-icons = [
+          ""
+          ""
+          ""
+        ];
+      };
+      style = ''
+        #temperature {
+          color: #${config.colorScheme.palette.taskbarText};
+          margin: 5px 0px;
+          padding: 0 8px;
+          background-color: #${config.colorScheme.palette.taskbarBackground};
+          border-radius: 0 999px 999px 0;
+        }
+
+        #temperature.critcal {
+          color: #${config.colorScheme.palette.base08};
+        }
+      '';
     };
   };
 }

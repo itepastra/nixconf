@@ -12,23 +12,25 @@ in
   config = lib.mkIf config.modules.waybar.enabled.${name}.enable {
     programs.waybar = {
       settings.mainBar."${name}" = {
-        format-wifi = "{essid} ({signalStrength}%) 󰖩";
-        format-ethernet = "{ipaddr}/{cidr} 󰛳";
-        tooltip-format = "{ifname} via {gwaddr} 󰛳";
-        format-linked = "{ifname} (No IP) 󰛳";
-        format-disconnected = "Disconnected ";
-        format-alt = "{ifname}: {ipaddr}/{cidr}";
+        format-wifi = "󰖩";
+        format-ethernet = "󰲝";
+        tooltip-format = "ssid : {essid}\naddr : {ipaddr}/{cidr}\ngate : {gwaddr}\ndev  : {ifname}";
+        format-linked = "󰲝";
+        format-disconnected = "";
+        format-alt = "{ipaddr}/{cidr}";
       };
       style = ''
         #network {
             color: #${config.colorScheme.palette.taskbarText};
-            margin: 0px 2px;
-            padding: 0 15px;
-            border-radius: 999px;
-            box-shadow: inset 0 0 0 1px #${config.colorScheme.palette.base01};
+            margin: 5px 0px;
+            padding: 0 8px;
+            background-color: #${config.colorScheme.palette.taskbarBackground};
         }
 
-        #network.disconnected,
+        #network.disconnected {
+          transition: all 0.2s;
+          color: #${config.colorScheme.palette.base02};
+        }
       '';
     };
   };
