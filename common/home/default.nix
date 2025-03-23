@@ -408,6 +408,27 @@ in
         hide_env_diff = true;
       };
     };
+    fuzzel = {
+      enable = true;
+      settings = {
+        main = {
+          line-height = 25;
+          fields = "name,generic,comment,categories,filename,keywords";
+          terminal = "kitty";
+          prompt = "' ➜  '";
+          layer = "top";
+          lines = 10;
+          width = 35;
+          horizontal-pad = 25;
+          inner-pad = 5;
+        };
+        border = {
+          radius = 15;
+          width = 3;
+        };
+        colors.background = "${config.colorScheme.palette.base00}80";
+      };
+    };
     # FIX: gpg should be declarative, but is more work than I have time for rn
     gpg = {
       enable = false;
