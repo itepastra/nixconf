@@ -33,7 +33,6 @@ in
           color: #${config.colorScheme.palette.taskbarText};
           background-color: #${config.colorScheme.palette.taskbarBackground};
           margin: 5px 0px;
-          margin-right: 2px;
           padding: 0 12px;
           border-radius: 999px 0 0 999px;
           box-shadow: none;
