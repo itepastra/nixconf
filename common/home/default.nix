@@ -426,7 +426,10 @@ in
           radius = 15;
           width = 3;
         };
-        colors.background = "${config.colorScheme.palette.base00}80";
+        colors = {
+          background = "${config.colorScheme.palette.base00}80";
+          selection = "${config.colorScheme.palette.base01}80";
+        };
       };
     };
     # FIX: gpg should be declarative, but is more work than I have time for rn
