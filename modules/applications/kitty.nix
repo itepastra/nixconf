@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 let
@@ -22,6 +23,10 @@ in
       shellIntegration = {
         enableZshIntegration = true;
         enableBashIntegration = true;
+      };
+      font = {
+        name = "Maple Mono NF";
+        package = pkgs.maple-mono.NF;
       };
     };
   };
