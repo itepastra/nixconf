@@ -96,7 +96,7 @@ in
       style = ''
         * {
           font-family: "Maple Mono NF";
-          font-size: 12px;
+          font-size: 14px;
         }
 
         window#waybar {
