@@ -194,8 +194,8 @@ in
           "custom/spotify"
         ];
         right = [
-          "custom/bluetooth"
           "battery"
+          "custom/bluetooth"
           "network"
           "wireplumber"
           "cpu"
