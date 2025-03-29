@@ -38,7 +38,7 @@
     };
     users = {
       "noa" = (
-        import ./common/home {
+        import ../../common/home {
           enableGraphical = true;
           enableFlut = false;
           enableGames = false;
