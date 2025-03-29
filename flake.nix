@@ -149,40 +149,35 @@
       nixosModules = {
         automapaper = ./modules/automapaper;
       };
-      homeConfigurations = {
+      homeManagerModules = {
         "noa@zelden" =
           let
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
           in
-          inputs.home-manager.lib.homeManagerConfiguration {
-            pkgs = pkgs;
-            extraSpecialArgs = { inherit inputs nix-colors; };
-            modules = [
-              (import ./common/home {
-                enableGraphical = true;
-                enableFlut = false;
-                enableGames = false;
-                displays = [
-                  {
-                    name = "DP-6";
-                    horizontal = 3840;
-                    vertical = 1200;
-                    horizontal-offset = 0;
-                    vertical-offset = 0;
-                    refresh-rate = 100;
-                    scale = "1";
-                  }
-                ];
-                extraConfig = {
-                  programs.btop.package = pkgs.btop.overrideAttrs (oldAttrs: {
-                    cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
-                      "-DBTOP_GPU=ON"
-                    ];
-                  });
-                };
-              })
+
+          (import ./common/home {
+            enableGraphical = true;
+            enableFlut = false;
+            enableGames = false;
+            displays = [
+              {
+                name = "DP-6";
+                horizontal = 3840;
+                vertical = 1200;
+                horizontal-offset = 0;
+                vertical-offset = 0;
+                refresh-rate = 100;
+                scale = "1";
+              }
             ];
-          };
+            extraConfig = {
+              programs.btop.package = pkgs.btop.overrideAttrs (oldAttrs: {
+                cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
+                  "-DBTOP_GPU=ON"
+                ];
+              });
+            };
+          });
       };
       packages = import ./packages { inherit nixpkgs; };
     };
