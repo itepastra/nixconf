@@ -154,7 +154,6 @@
           let
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
           in
-
           (import ./common/home {
             enableGraphical = true;
             enableFlut = false;
@@ -170,6 +169,7 @@
                 scale = "1";
               }
             ];
+            local_inputs = inputs;
             extraConfig = {
               programs.btop.package = pkgs.btop.overrideAttrs (oldAttrs: {
                 cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
