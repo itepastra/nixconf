@@ -148,6 +148,7 @@
       };
       nixosModules = {
         automapaper = ./modules/automapaper;
+        chome = ./common/home;
       };
       packages = import ./packages { inherit nixpkgs; };
     };

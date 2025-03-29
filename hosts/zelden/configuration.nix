@@ -48,11 +48,54 @@
     ];
   };
 
+  users = {
+    defaultUserShell = pkgs.zsh;
+    users = {
+      wim = {
+        isNormalUser = true;
+        description = "Wim";
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "docker"
+          "wireshark"
+          "dialout"
+        ];
+        hashedPassword = "$6$rounds=512400$Zip3xoK2zcoR4qEL$N13YTHO5tpWfx2nKb1sye.ZPwfoRtMQ5f3YrMZqKzzoFoSSHHJ.l5ulCEa9HygFxZmBtPnwlseFEtl8ERnwF50";
+        openssh.authorizedKeys.keys = [ ];
+      };
+    };
+  };
+
   home-manager = {
     users = {
+      "wim" = (import ../../common/home) {
+        enableGraphical = true;
+        enableFlut = false;
+        enableGames = true;
+        displays = [
+          {
+            # TODO: find display name and resolution
+            name = "DP-3";
+            horizontal = 2560;
+            vertical = 1440;
+            horizontal-offset = 2560;
+            vertical-offset = 0;
+            refresh-rate = 360;
+            scale = "1";
+          }
+        ];
+        extraConfig = {
+          programs.btop.package = pkgs.btop.overrideAttrs (oldAttrs: {
+            cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
+              "-DBTOP_GPU=ON"
+            ];
+          });
+        };
+      };
       "noa" = (import ../../common/home) {
         enableGraphical = true;
-        enableFlut = true;
+        enableFlut = false;
         enableGames = true;
         displays = [
           {
