@@ -53,7 +53,6 @@
               scale = "1";
             }
           ];
-          local_inputs = inputs;
           extraConfig = {
             programs.btop.package = pkgs.btop.overrideAttrs (oldAttrs: {
               cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
