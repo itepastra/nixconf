@@ -16,7 +16,6 @@
       "ahci"
       "usb_storage"
       "usbhid"
-      "sd_mon"
     ];
     initrd.kernelModules = [ ];
     kernelModules = [ "kvm-amd" ];
