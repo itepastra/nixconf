@@ -10,12 +10,11 @@
   displays ? [ ],
   # is there any extra specific config necessary (like nvidia on lambdaOS)
   extraConfig ? { },
-  # inputs of this flake
-  local_inputs,
 }:
 {
   config,
   pkgs,
+  inputs,
   lib,
   ...
 }:
@@ -76,8 +75,8 @@ in
       ]
       # FLURRY AND TSUNAMI :3 (I made these)
       ++ lib.optionals enableFlut [
-        local_inputs.flurry.packages.${system}.default
-        local_inputs.tsunami.packages.${system}.default
+        inputs.flurry.packages.${system}.default
+        inputs.tsunami.packages.${system}.default
       ]
       # and ofc the things that are only logical with graphics
       ++ lib.optionals enableGraphical [
@@ -148,8 +147,8 @@ in
     configFile = lib.mkIf enableGraphical {
       "niri/config.kdl".source = import ../../packages/niri-config/default.nix {
         inherit pkgs displays;
-        inputs = local_inputs;
-        self-pkgs = local_inputs.self.packages.${pkgs.system};
+        inputs = inputs;
+        self-pkgs = inputs.self.packages.${pkgs.system};
       };
     };
   };
@@ -298,8 +297,8 @@ in
               let
                 display-shader = pkgs.substituteAll {
                   src = ../../modules/automapaper/display-with_vars.glsl;
-                  background = local_inputs.nix-colors.lib.conversions.hexToGLSLVec "0a000a";
-                  foreground = local_inputs.nix-colors.lib.conversions.hexToGLSLVec "192291";
+                  background = inputs.nix-colors.lib.conversions.hexToGLSLVec "0a000a";
+                  foreground = inputs.nix-colors.lib.conversions.hexToGLSLVec "192291";
                 };
                 state-shader = ../../modules/automapaper/state-game_of_life.glsl;
                 init-shader = ../../modules/automapaper/init.glsl;
@@ -336,7 +335,7 @@ in
 
             Service = {
               ExecStart = "${
-                local_inputs.automapaper.packages.${pkgs.system}.automapaper
+                inputs.automapaper.packages.${pkgs.system}.automapaper
               }/bin/automapaper -C ${display_config}/config.toml";
               Restart = "on-failure";
               RestartSec = 15;

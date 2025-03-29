@@ -131,39 +131,18 @@
             ./hosts/muos/configuration.nix
           ];
         };
+        zelden = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            inputs.home-manager.nixosModules.default
+            ./hosts/zelden/configuration.nix
+          ];
+        };
       };
       nixosModules = {
         automapaper = ./modules/automapaper;
-      };
-      homeManagerModules = {
-        "noa@zelden" =
-          let
-            pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          in
-          (import ./common/home {
-            enableGraphical = true;
-            enableFlut = false;
-            enableGames = false;
-            displays = [
-              {
-                name = "DP-6";
-                horizontal = 3840;
-                vertical = 1200;
-                horizontal-offset = 0;
-                vertical-offset = 0;
-                refresh-rate = 100;
-                scale = "1";
-              }
-            ];
-            local_inputs = inputs;
-            extraConfig = {
-              programs.btop.package = pkgs.btop.overrideAttrs (oldAttrs: {
-                cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
-                  "-DBTOP_GPU=ON"
-                ];
-              });
-            };
-          });
       };
       packages = import ./packages { inherit nixpkgs; };
     };
