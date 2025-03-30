@@ -57,6 +57,7 @@ in
       # I don't want the directory directly in home, even though I only go to it via the symlink
       "programming".source =
         config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/programming/";
+      ".gtkrc-2.0".force = true;
     };
     # haha, now I can set my home folder like this
     homeDirectory = "/home/${me.nickname}";
