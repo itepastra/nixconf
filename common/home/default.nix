@@ -115,21 +115,10 @@ in
     preferXdgDirectories = true;
 
     # I'm unsure if these work, which is annoying, but eh. who cares
-    sessionVariables =
-      {
-        EDITOR = "nvim";
-        TERM = "kitty";
-      }
-      // lib.mkIf enableGraphical {
-        DISPLAY = ":0";
-        GDK_BACKEND = "wayland,x11";
-        QT_QPA_PLATFORM = "wayland;xcb";
-        CLUTTER_BACKEND = "wayland";
-        XDG_CURRENT_DESKTOP = "niri";
-        XDG_SESSION_TYPE = "wayland";
-        XDG_SESSION_DESKTOP = "niri";
-        WLR_NO_HARDWARE_CURSORS = "1";
-      };
+    sessionVariables = {
+      EDITOR = "nvim";
+      TERM = "kitty";
+    };
 
     # the default config told me not to change this
     stateVersion = "23.11"; # WARN: Do not change :3
