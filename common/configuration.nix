@@ -88,18 +88,6 @@
     };
   };
 
-  environment = {
-    plasma6.excludePackages = with pkgs.kdePackages; [
-      plasma-browser-integration
-      konsole
-      xwaylandvideobridge
-      kate
-      khelpcenter
-      okular
-      elisa
-    ];
-  };
-
   # TODO: find list of fonts to install
   fonts.packages = with pkgs; [
     font-awesome
