@@ -51,14 +51,17 @@ in
     ];
 
   home = {
-    file = {
-      # makes yubikey stuff work
-      ".gnupg/scdaemon.conf".text = "disable-ccid";
-      # I don't want the directory directly in home, even though I only go to it via the symlink
-      "programming".source =
-        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/programming/";
-      ".gtkrc-2.0".force = true;
-    };
+    file =
+      {
+        # makes yubikey stuff work
+        ".gnupg/scdaemon.conf".text = "disable-ccid";
+        # I don't want the directory directly in home, even though I only go to it via the symlink
+        "programming".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/programming/";
+      }
+      // lib.mkDefault {
+        ".gtkrc-2.0".force = true;
+      };
     # haha, now I can set my home folder like this
     homeDirectory = "/home/${me.nickname}";
     # most actual packages are added via either programs or services...
@@ -358,15 +361,18 @@ in
   # same here
   gtk = {
     enable = enableGraphical;
-    gtk2.extraConfig = ''
-      gtk-enable-animations=1
-      gtk-primary-button-warps-slider=1
-      gtk-toolbar-style=3
-      gtk-menu-images=1
-      gtk-button-images=1
-      gtk-sound-theme-name="ocean"
-      gtk-font-name="Noto Sans,  10"
-    '';
+    gtk2 = {
+      extraConfig = ''
+        gtk-enable-animations=1
+        gtk-primary-button-warps-slider=1
+        gtk-toolbar-style=3
+        gtk-menu-images=1
+        gtk-button-images=1
+        gtk-sound-theme-name="ocean"
+        gtk-font-name="Noto Sans, 10"
+      '';
+      configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    };
     theme = {
       name = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
