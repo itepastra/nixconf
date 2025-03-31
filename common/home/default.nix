@@ -100,16 +100,16 @@ in
         tmux
       ];
 
-    # I set my cursor here, the one I fetched above
-    pointerCursor = lib.mkIf enableGraphical {
-      gtk.enable = true;
-      name = cursor_name;
-      size = 32;
-      package = pkgs.runCommandNoCC "${cursor_name}" { } ''
-        mkdir -p $out/share/icons
-        ln -s ${cursor_src} $out/share/icons/${cursor_name}
-      '';
-    };
+    # # I set my cursor here, the one I fetched above
+    # pointerCursor = lib.mkIf enableGraphical {
+    #   gtk.enable = true;
+    #   name = cursor_name;
+    #   size = 32;
+    #   package = pkgs.runCommandNoCC "${cursor_name}" { } ''
+    #     mkdir -p $out/share/icons
+    #     ln -s ${cursor_src} $out/share/icons/${cursor_name}
+    #   '';
+    # };
     # make stuff use .config etc (ask nicely at least)
     preferXdgDirectories = true;
 
@@ -286,8 +286,8 @@ in
               let
                 display-shader = pkgs.substituteAll {
                   src = ../../modules/automapaper/display-with_vars.glsl;
-                  background = inputs.nix-colors.lib.conversions.hexToGLSLVec "0a000a";
-                  foreground = inputs.nix-colors.lib.conversions.hexToGLSLVec "192291";
+                  background = inputs.nix-colors.lib.conversions.hexToGLSLVec config.lib.stylix.colors.base00;
+                  foreground = inputs.nix-colors.lib.conversions.hexToGLSLVec config.lib.stylix.colors.base01;
                 };
                 state-shader = ../../modules/automapaper/state-game_of_life.glsl;
                 init-shader = ../../modules/automapaper/init.glsl;
@@ -345,14 +345,7 @@ in
   };
 
   #attempt at styling...., mostly just trying to not get flashbanged
-  dconf = {
-    enable = enableGraphical;
-    settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
-    };
-  };
+  dconf.enable = enableGraphical;
 
   # same here
   gtk = {
@@ -369,10 +362,6 @@ in
       '';
       configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
     };
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
-    };
   };
 
   programs = {
@@ -380,7 +369,6 @@ in
     btop = {
       enable = true;
       settings = {
-        color_theme = "ayu";
         theme_background = false;
         truecolor = true;
         vim_keys = true;
@@ -418,10 +406,6 @@ in
         border = {
           radius = 15;
           width = 3;
-        };
-        colors = {
-          background = "${config.colorScheme.palette.base00}80";
-          selection = "${config.colorScheme.palette.base01}80";
         };
       };
     };
@@ -477,13 +461,6 @@ in
     };
   };
 
-  # and MORE styling options and settings
-  qt = {
-    enable = enableGraphical;
-    platformTheme.name = "adwaita";
-    style.name = "adwaita-dark";
-  };
-
   services = {
     # to make my yubikey and git signing do things correctly
     gpg-agent = {
@@ -495,10 +472,8 @@ in
     # notification daemon, I think it looks better than dunst
     mako = {
       enable = true;
-      backgroundColor = "#000000AA";
       # make notifications time out after 30 sec by default
       defaultTimeout = 30000;
-      borderColor = "#${config.colorScheme.palette.base00}FF";
     };
     playerctld.enable = true;
     swayidle = {
@@ -514,6 +489,44 @@ in
     # sync my password store and homework
     syncthing = {
       enable = true;
+    };
+  };
+
+  stylix = {
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    cursor = {
+      name = cursor_name;
+      package = cursor_src;
+      size = 32;
+    };
+    enable = true;
+    fonts = {
+      emoji = config.stylix.fonts.monospace;
+      monospace = {
+        name = "Maple Mono NF";
+        package = pkgs.maple-mono.NF;
+      };
+      sansSerif = config.stylix.fonts.monospace;
+      serif = config.stylix.fonts.monospace;
+    };
+    opacity = {
+      terminal = 0.2;
+      popups = 0.66;
+    };
+    override = {
+      # I liked my background colors from before, make it in more spots
+      base00 = "0a000a";
+      base01 = "192291";
+    };
+    targets = {
+      neovim.enable = false;
+      waybar.enable = false;
+      swaylock.enable = true;
+      firefox.profileNames = [ "profile_0" ];
+      qt = {
+        enable = true;
+        platform = "qtct";
+      };
     };
   };
 }

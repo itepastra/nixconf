@@ -18,15 +18,10 @@ in
       settings = {
         confirm_os_window_close = 0;
         scrollback_lines = 5000;
-        background_opacity = 0.2;
       };
       shellIntegration = {
         enableZshIntegration = true;
         enableBashIntegration = true;
-      };
-      font = {
-        name = "Maple Mono NF";
-        package = pkgs.maple-mono.NF;
       };
     };
   };

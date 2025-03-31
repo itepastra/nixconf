@@ -78,6 +78,10 @@
     disqalculate = {
       url = "github:itepastra/disqalculate";
     };
+
+    stylix = {
+      url = "github:danth/stylix";
+    };
   };
 
   outputs =
@@ -95,6 +99,7 @@
           };
           modules = [
             ./hosts/lambdaos/configuration.nix
+            inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.default
             inputs.agenix.nixosModules.default
             inputs.lix-module.nixosModules.default
@@ -118,6 +123,7 @@
           };
           modules = [
             disko.nixosModules.disko
+            inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.default
             inputs.hardware.nixosModules.framework-11th-gen-intel
             ./hosts/muos/configuration.nix
@@ -129,6 +135,7 @@
           };
           modules = [
             inputs.home-manager.nixosModules.default
+            inputs.stylix.nixosModules.stylix
             ./hosts/zelden/configuration.nix
           ];
         };

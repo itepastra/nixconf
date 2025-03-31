@@ -17,6 +17,16 @@ in
       enable = true;
       # TODO: add some default firefox settings
       package = (pkgs.firefox.override { nativeMessagingHosts = [ pkgs.passff-host ]; });
+      profiles = {
+        profile_0 = {
+          id = 0;
+          name = "profile_0";
+          isDefault = true;
+          settings = {
+            # TODO: add firefox settings of choice
+          };
+        };
+      };
     };
 
     home.packages = [
