@@ -287,7 +287,7 @@ in
                 display-shader = pkgs.substituteAll {
                   src = ../../modules/automapaper/display-with_vars.glsl;
                   background = inputs.nix-colors.lib.conversions.hexToGLSLVec config.lib.stylix.colors.base00;
-                  foreground = inputs.nix-colors.lib.conversions.hexToGLSLVec config.lib.stylix.colors.base01;
+                  foreground = inputs.nix-colors.lib.conversions.hexToGLSLVec config.lib.stylix.colors.base0E;
                 };
                 state-shader = ../../modules/automapaper/state-game_of_life.glsl;
                 init-shader = ../../modules/automapaper/init.glsl;
@@ -465,7 +465,6 @@ in
   qt = {
     enable = enableGraphical;
     platformTheme.name = "adwaita";
-    style.name = "adwaita-dark";
   };
 
   services = {
@@ -523,7 +522,6 @@ in
     override = {
       # I liked my background colors from before, make it in more spots
       base00 = "0a000a";
-      base01 = "192291";
     };
     targets = {
       neovim.enable = false;
@@ -532,7 +530,7 @@ in
       firefox.profileNames = [ "profile_0" ];
       qt = {
         enable = true;
-        platform = "qtct";
+        platform = "adwaita";
       };
     };
   };
