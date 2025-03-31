@@ -461,6 +461,13 @@ in
     };
   };
 
+  # NOTE: remove when stylix is fixed
+  qt = {
+    enable = enableGraphical;
+    platformTheme.name = "adwaita";
+    style.name = "adwaita-dark";
+  };
+
   services = {
     # to make my yubikey and git signing do things correctly
     gpg-agent = {
