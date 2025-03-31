@@ -57,13 +57,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
     niri = {
       url = "github:YaLTeR/niri";
     };
@@ -103,7 +96,6 @@
           modules = [
             ./hosts/lambdaos/configuration.nix
             inputs.home-manager.nixosModules.default
-            inputs.cosmic.nixosModules.default
             inputs.agenix.nixosModules.default
             inputs.lix-module.nixosModules.default
           ];

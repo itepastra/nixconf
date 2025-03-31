@@ -105,7 +105,6 @@
       acceleration = "cuda";
       openFirewall = true;
     };
-    desktopManager.cosmic.enable = false;
     fail2ban.enable = true;
     hardware = {
       openrgb = {
