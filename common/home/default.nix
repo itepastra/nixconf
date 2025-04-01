@@ -28,11 +28,16 @@ let
 
   # I like my animated rainbow cursor, so I get it here
   cursor_name = "Bibata-Rainbow-Modern";
-  cursor_src = pkgs.fetchzip {
-    name = cursor_name;
-    url = "https://github.com/ful1e5/Bibata_Cursor_Rainbow/releases/download/v1.1.2/Bibata-Rainbow-Modern.tar.gz";
-    hash = "sha256-Ps+IKPwQoRwO9Mqxwc/1nHhdBT2R25IoeHLKe48uHB8=";
-  };
+  cursor_src = pkgs.runCommandNoCC cursor_name { } ''
+    mkdir -p $out/share/icons
+    ln -s ${
+      pkgs.fetchzip {
+        name = cursor_name;
+        url = "https://github.com/ful1e5/Bibata_Cursor_Rainbow/releases/download/v1.1.2/${cursor_name}.tar.gz";
+        hash = "sha256-Ps+IKPwQoRwO9Mqxwc/1nHhdBT2R25IoeHLKe48uHB8=";
+      }
+    } $out/share/icons/${cursor_name}
+  '';
 in
 {
   imports =
