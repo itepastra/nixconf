@@ -349,7 +349,7 @@ in
 
   # same here
   gtk = {
-    enable = enableGraphical;
+    enable = lib.mkForce enableGraphical;
     gtk2 = {
       extraConfig = ''
         gtk-enable-animations=1
@@ -462,8 +462,8 @@ in
   };
 
   # NOTE: remove when stylix is fixed
-  qt = lib.mkIf enableGraphical {
-    enable = true;
+  qt = {
+    enable = lib.mkForce true;
     platformTheme.name = "adwaita";
   };
 
