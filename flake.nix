@@ -112,6 +112,8 @@
           modules = [
             disko.nixosModules.disko
             inputs.mailserver.nixosModules.default
+            # TODO: find out how I can remove this
+            inputs.stylix.nixosModules.stylix
             ./hosts/nuos/configuration.nix
             inputs.home-manager.nixosModules.default
             inputs.agenix.nixosModules.default
