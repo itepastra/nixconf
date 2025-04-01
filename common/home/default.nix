@@ -462,8 +462,8 @@ in
   };
 
   # NOTE: remove when stylix is fixed
-  qt = {
-    enable = enableGraphical;
+  qt = lib.mkIf enableGraphical {
+    enable = true;
     platformTheme.name = "adwaita";
   };
 
