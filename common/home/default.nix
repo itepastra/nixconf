@@ -517,8 +517,11 @@ in
         name = "Maple Mono NF";
         package = pkgs.maple-mono.NF;
       };
-      sansSerif = config.stylix.fonts.monospace;
-      serif = config.stylix.fonts.monospace;
+      sansSerif = {
+        name = "Lexend";
+        package = pkgs.lexend;
+      };
+      serif = config.stylix.fonts.sansSerif;
     };
     opacity = {
       terminal = 0.2;
