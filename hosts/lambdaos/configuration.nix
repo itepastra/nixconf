@@ -25,6 +25,8 @@
 
   age.identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
 
+  hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement = {
