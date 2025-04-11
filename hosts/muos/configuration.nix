@@ -48,6 +48,15 @@
     fprintd.enable = true;
     tlp.enable = true;
     power-profiles-daemon.enable = false;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+    printing = {
+      enable = true;
+      browsing = true;
+    };
   };
 
   systemd = {
