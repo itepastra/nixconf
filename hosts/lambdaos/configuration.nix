@@ -113,6 +113,12 @@
         enable = true;
       };
     };
+    udev = {
+      packages = [
+        pkgs.via
+        pkgs.qmk-udev-rules
+      ];
+    };
   };
 
   systemd = {
@@ -183,7 +189,6 @@
     gcc
 
     cudatoolkit
-    via
   ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
