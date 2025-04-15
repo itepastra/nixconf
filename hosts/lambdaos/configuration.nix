@@ -183,6 +183,7 @@
     gcc
 
     cudatoolkit
+    via
   ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
