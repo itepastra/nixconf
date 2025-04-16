@@ -36,6 +36,7 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
+  hardware.keyboard.qmk.enable = true;
 
   nixpkgs.config = {
     nvidia.acceptLicense = true;
@@ -189,6 +190,7 @@
     gcc
 
     cudatoolkit
+    via
   ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
