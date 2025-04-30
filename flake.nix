@@ -2,8 +2,8 @@
   description = "Nixos config flake";
 
   inputs = {
-     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-		# nixpkgs.url = "/home/noa/Documents/programming/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    # nixpkgs.url = "/home/noa/Documents/programming/nixpkgs";
 
     nix-colors = {
       url = "github:itepastra/nix-colors";
