@@ -36,8 +36,7 @@ let
     ''
   ) displays;
 in
-pkgs.substituteAll {
-  src = ./template.kdl;
+pkgs.replaceVars ./template.kdl {
   terminal = terminal;
   launcher = launcher;
   power_menu = power-menu;
@@ -45,4 +44,7 @@ pkgs.substituteAll {
 
   displays = displays-string;
   autostart = autostart-string;
+
+  DEFAULT_AUDIO_SINK = null;
+  DEFAULT_AUDIO_SOURCE = null;
 }

@@ -289,8 +289,7 @@ in
           let
             display_config =
               let
-                display-shader = pkgs.substituteAll {
-                  src = ../../modules/automapaper/display-with_vars.glsl;
+                display-shader = pkgs.replaceVars ../../modules/automapaper/display-with_vars.glsl {
                   background = inputs.nix-colors.lib.conversions.hexToGLSLVec config.lib.stylix.colors.base00;
                   foreground = inputs.nix-colors.lib.conversions.hexToGLSLVec config.lib.stylix.colors.base0E;
                 };
