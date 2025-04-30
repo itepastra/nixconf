@@ -4,7 +4,7 @@
 }:
 {
   imports = [
-    inputs.nixcord.homeManagerModules.nixcord
+    inputs.nixcord.homeModules.nixcord
   ];
   home.file.".config/Vencord/themes/midnight.theme.css".source = ./theme.css;
   programs.nixcord = {
