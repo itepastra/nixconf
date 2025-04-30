@@ -465,12 +465,6 @@ in
     };
   };
 
-  # NOTE: remove when stylix is fixed
-  qt = {
-    enable = lib.mkForce true;
-    platformTheme.name = "adwaita";
-  };
-
   services = {
     # to make my yubikey and git signing do things correctly
     gpg-agent = {
@@ -537,7 +531,7 @@ in
       firefox.profileNames = [ "profile_0" ];
       qt = {
         enable = true;
-        platform = "adwaita";
+        platform = "qtct";
       };
     };
   };
