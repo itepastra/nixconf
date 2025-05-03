@@ -78,7 +78,7 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-qt;
+      pinentry.package = pkgs.pinentry-qt;
     };
 
     niri = {

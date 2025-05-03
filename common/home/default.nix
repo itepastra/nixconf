@@ -424,7 +424,6 @@ in
     # lsd makes files look better
     lsd = {
       enable = true;
-      enableAliases = true;
     };
     # manpages can be quite useful
     man.enable = true;
@@ -471,13 +470,13 @@ in
       enable = true;
       enableZshIntegration = true;
       enableSshSupport = true;
-      pinentryPackage = lib.mkIf enableGraphical pkgs.pinentry-qt;
+      pinentry.package = lib.mkIf enableGraphical pkgs.pinentry-qt;
     };
     # notification daemon, I think it looks better than dunst
     mako = {
       enable = true;
       # make notifications time out after 30 sec by default
-      defaultTimeout = 30000;
+      settings.defaultTimeout = "30000";
     };
     playerctld.enable = true;
     swayidle = {

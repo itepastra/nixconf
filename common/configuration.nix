@@ -97,7 +97,7 @@
     liberation_ttf
     maple-mono.NF
     newcomputermodern
-		roboto
+    roboto
   ];
 
   xdg.portal = {
