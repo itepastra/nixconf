@@ -260,7 +260,7 @@ in
 
   services = {
     authentik = {
-      enable = false;
+      enable = true;
       environmentFile = config.age.secrets."authentik/env".path;
       nginx = {
         enable = true;
