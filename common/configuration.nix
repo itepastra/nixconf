@@ -8,6 +8,7 @@
 {
   imports = [
     ./.
+    ../modules/games/steam.nix
   ];
 
   hardware = {

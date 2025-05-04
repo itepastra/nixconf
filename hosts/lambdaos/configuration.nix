@@ -13,7 +13,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/games/steam.nix
     ../../modules/plasma
 
     ../../common
@@ -25,8 +24,6 @@
 
   age.identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
 
-  hardware.enableRedistributableFirmware = true;
-  hardware.enableAllFirmware = true;
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement = {
@@ -217,8 +214,6 @@
       };
     };
   };
-
-  nixpkgs.config.allowUnfree = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
