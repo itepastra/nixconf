@@ -10,6 +10,4 @@ I have three active systems, my pc (lambdaOS), my laptop (muOS) and my server (n
 Both my pc and laptop are running mainly niri with plasma mostly just
 there because I didn't want to setup sddm themes myself.  
 
-the server has some nginx helper functions so I can easily add more proxies for random websites I make.
-
 I hope you have a great rest of your day.
