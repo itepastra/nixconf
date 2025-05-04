@@ -249,6 +249,7 @@ in
       "secrets/nix-store-key".file = ../../secrets/nix-serve/private.age;
       "discord/disqalculate".file = ../../secrets/discord/disqalculate.age;
       "factorio/solrunners".file = ../../secrets/factorio/solrunners.age;
+      "authentik/env".file = ../../secrets/authentik/env.age;
       "rsecrets/radicale" = {
         file = ../../secrets/radicale/htpasswd.age;
         owner = "radicale";
@@ -258,6 +259,19 @@ in
   };
 
   services = {
+    authentik = {
+      enable = true;
+      environmentFile = config.age.secrets."authentik/env".path;
+      nginx = {
+        enable = true;
+        enableACME = true;
+        host = "auth.itepastra.nl";
+      };
+      settings = {
+        disable_startup_analytics = true;
+        avatars = "initials";
+      };
+    };
     factorio = {
       enable = true;
       package = pkgs.factorio-headless.override {

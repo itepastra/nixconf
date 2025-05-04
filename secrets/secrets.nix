@@ -42,4 +42,8 @@ in
     noa
     nuOS
   ];
+  "authentik/env.age".publicKeys = [
+    noa
+    nuOS
+  ];
 }

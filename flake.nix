@@ -5,6 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/master";
     # nixpkgs.url = "/home/noa/Documents/programming/nixpkgs";
 
+    authentik = {
+      url = "github:nix-community/authentik-nix";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -114,6 +118,7 @@
             ./hosts/nuos/configuration.nix
             inputs.home-manager.nixosModules.default
             inputs.agenix.nixosModules.default
+            inputs.authentik.nixosModules.default
           ];
         };
         muOS = nixpkgs.lib.nixosSystem {
