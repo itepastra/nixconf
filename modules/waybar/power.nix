@@ -24,11 +24,11 @@ in
       };
       style = ''
         #custom-poweroff {
-          color: #${config.colorScheme.palette.taskbarText};
+          color: #${config.lib.stylix.colors.base04};
           margin: 0px 2px;
           padding: 0 15px;
           border-radius: 999px;
-          box-shadow: inset 0 0 0 1px #${config.colorScheme.palette.base01};
+          box-shadow: inset 0 0 0 1px #${config.lib.stylix.colors.base01};
         }
       '';
     };

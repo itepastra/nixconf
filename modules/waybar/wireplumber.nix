@@ -28,10 +28,10 @@ in
       };
       style = ''
         #wireplumber {
-          color: #${config.colorScheme.palette.taskbarText};
+          color: #${config.lib.stylix.colors.base04};
           margin: 5px 0px;
           padding: 0 8px;
-          background-color: #${config.colorScheme.palette.taskbarBackground};
+          background-color: #${config.lib.stylix.colors.base10};
         }
       '';
     };

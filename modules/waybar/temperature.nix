@@ -24,15 +24,15 @@ in
       };
       style = ''
         #temperature {
-          color: #${config.colorScheme.palette.taskbarText};
+          color: #${config.lib.stylix.colors.base04};
           margin: 5px 0px;
           padding: 0 8px;
-          background-color: #${config.colorScheme.palette.taskbarBackground};
+          background-color: #${config.lib.stylix.colors.base10};
           border-radius: 0 999px 999px 0;
         }
 
         #temperature.critcal {
-          color: #${config.colorScheme.palette.base08};
+          color: #${config.lib.stylix.colors.base08};
         }
       '';
     };

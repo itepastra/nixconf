@@ -5,10 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/master";
     # nixpkgs.url = "/home/noa/Documents/programming/nixpkgs";
 
-    nix-colors = {
-      url = "github:itepastra/nix-colors";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -75,6 +71,7 @@
     nixcord = {
       url = "github:kaylorben/nixcord";
     };
+
     disqalculate = {
       url = "github:itepastra/disqalculate";
     };

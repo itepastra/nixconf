@@ -15,12 +15,6 @@
         remotePlay.openFirewall = true;
         gamescopeSession.enable = true;
         dedicatedServer.openFirewall = true;
-        extraPkgs =
-          pkgs: with pkgs; [
-            pango
-            libthai
-            harfbuzz
-          ];
       };
 
       alvr = {

@@ -50,7 +50,6 @@ in
     ./spotify.nix
     ./battery.nix
     ./bluetooth.nix
-    ../../common/colors.nix
   ];
 
   config = lib.mkIf cfg.enable {
@@ -101,7 +100,7 @@ in
 
         window#waybar {
           background-color: transparent;
-          color: #${config.colorScheme.palette.taskbarText};
+          color: #${config.lib.stylix.colors.base04};
           transition-property: background-color;
           transition-duration: 0.5s;
         }
@@ -131,11 +130,11 @@ in
         }
 
         tooltip {
-          background-color: #${config.colorScheme.palette.base00};
+          background-color: #${config.lib.stylix.colors.base00};
           border: 1px solid;
-          border-color: #${config.colorScheme.palette.taskbarText};
+          border-color: #${config.lib.stylix.colors.base04};
           border-radius: 10px;
-          color: #${config.colorScheme.palette.base05};
+          color: #${config.lib.stylix.colors.base05};
         }
         tooltip label {
           padding: 5px;

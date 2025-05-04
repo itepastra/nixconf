@@ -155,22 +155,6 @@
         "type": "github"
       }
     },
-    "base16-schemes": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1696158499,
-        "narHash": "sha256-5yIHgDTPjoX/3oDEfLSQ0eJZdFL1SaCfb9d6M0RmOTM=",
-        "owner": "tinted-theming",
-        "repo": "base16-schemes",
-        "rev": "a9112eaae86d9dd8ee6bb9445b664fba2f94037a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tinted-theming",
-        "repo": "base16-schemes",
-        "type": "github"
-      }
-    },
     "base16-vim": {
       "flake": false,
       "locked": {
@@ -1089,25 +1073,6 @@
         "type": "github"
       }
     },
-    "nix-colors": {
-      "inputs": {
-        "base16-schemes": "base16-schemes",
-        "nixpkgs-lib": "nixpkgs-lib"
-      },
-      "locked": {
-        "lastModified": 1718718715,
-        "narHash": "sha256-NS95zWZfv/IZvqoAouUW8RJIiBf+HFTKNRlay0GxLzI=",
-        "owner": "itepastra",
-        "repo": "nix-colors",
-        "rev": "5020bfccdad81ca4b0827d3b49ad72353ba1694c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "itepastra",
-        "repo": "nix-colors",
-        "type": "github"
-      }
-    },
     "nix-filter": {
       "locked": {
         "lastModified": 1731533336,
@@ -1207,21 +1172,6 @@
         "id": "nixpkgs",
         "ref": "nixos-24.11",
         "type": "indirect"
-      }
-    },
-    "nixpkgs-lib": {
-      "locked": {
-        "lastModified": 1697935651,
-        "narHash": "sha256-qOfWjQ2JQSQL15KLh6D7xQhx0qgZlYZTYlcEiRuAMMw=",
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "rev": "e1e11fdbb01113d85c7f41cada9d2847660e3902",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "type": "github"
       }
     },
     "nixpkgs-regression": {
@@ -1469,7 +1419,6 @@
         "lix-module": "lix-module",
         "mailserver": "mailserver",
         "niri": "niri",
-        "nix-colors": "nix-colors",
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_8",
         "oxalica": "oxalica",

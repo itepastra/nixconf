@@ -23,15 +23,15 @@ in
         calendar = {
           weeks-pos = "left";
           format = {
-            today = "<span color='#${config.colorScheme.palette.base17}'><u>{}</u></span>"; # TODO: use nix-colors
-            weeks = "<span color='#${config.colorScheme.palette.base17}'>{}</span>"; # TODO: use nix-colors
+            today = "<span color='#${config.lib.stylix.colors.base17}'><u>{}</u></span>";
+            weeks = "<span color='#${config.lib.stylix.colors.base17}'>{}</span>";
           };
         };
       };
       style = ''
         #clock {
-          color: #${config.colorScheme.palette.taskbarText};
-          background-color: #${config.colorScheme.palette.taskbarBackground};
+          color: #${config.lib.stylix.colors.base04};
+          background-color: #${config.lib.stylix.colors.base10};
           margin: 5px 0px;
           padding: 0 12px;
           border-radius: 999px 0 0 999px;

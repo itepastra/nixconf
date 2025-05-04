@@ -16,11 +16,11 @@ in
       };
       style = ''
         #tray {
-          color: #${config.colorScheme.palette.taskbarText};
+          color: #${config.lib.stylix.colors.base04};
           margin: 5px 0px;
           padding: 4px 10px;
           border-radius: 999px;
-          background-color: #${config.colorScheme.palette.taskbarBackground};
+          background-color: #${config.lib.stylix.colors.base10};
         }
 
         #tray > * {
@@ -32,7 +32,7 @@ in
         }
 
         #tray > .needs-attention {
-          background-color: #${config.colorScheme.palette.base08};
+          background-color: #${config.lib.stylix.colors.base08};
           border-radius: 999px;
         }
       '';

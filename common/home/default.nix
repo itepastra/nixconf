@@ -289,9 +289,18 @@ in
           let
             display_config =
               let
+                hexToGLSLVec =
+                  color:
+                  let
+                    cs = config.lib.stylix.colors;
+                    red = cs."${color}-dec-r";
+                    green = cs."${color}-dec-g";
+                    blue = cs."${color}-dec-b";
+                  in
+                  "vec4(${red}, ${green}, ${blue}, 1.0);";
                 display-shader = pkgs.replaceVars ../../modules/automapaper/display-with_vars.glsl {
-                  background = inputs.nix-colors.lib.conversions.hexToGLSLVec config.lib.stylix.colors.base00;
-                  foreground = inputs.nix-colors.lib.conversions.hexToGLSLVec config.lib.stylix.colors.base0E;
+                  background = hexToGLSLVec "base00";
+                  foreground = hexToGLSLVec "base0E";
                 };
                 state-shader = ../../modules/automapaper/state-game_of_life.glsl;
                 init-shader = ../../modules/automapaper/init.glsl;

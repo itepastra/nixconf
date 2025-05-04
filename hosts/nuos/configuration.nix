@@ -7,7 +7,6 @@
   pkgs,
   inputs,
   lib,
-  nix-colors,
   config,
   ...
 }:
@@ -92,7 +91,6 @@ in
   home-manager = {
     extraSpecialArgs = {
       inherit inputs;
-      inherit nix-colors;
     };
     users = {
       "noa" = (import ../../common/home) {

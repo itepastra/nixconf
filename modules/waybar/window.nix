@@ -18,7 +18,7 @@ in
         window#waybar {
           background-color: transparent;
           border-radius: 999px;
-          color: #${config.colorScheme.palette.base05};
+          color: #${config.lib.stylix.colors.base05};
           transition-property: background-color;
           transition-duration: .5s;
         }
@@ -37,7 +37,7 @@ in
 
         #window { 
           margin-left: 6px;
-          color: #${config.colorScheme.palette.taskbarText};
+          color: #${config.lib.stylix.colors.base04};
         }
       '';
     };

@@ -26,10 +26,10 @@ in
       };
       style = ''
         #custom-spotify {
-          color: #${config.colorScheme.palette.base14};
+          color: #${config.lib.stylix.colors.base14};
           margin: 5px 0px;
           padding: 0 8px;
-          background-color: #${config.colorScheme.palette.taskbarBackground};
+          background-color: #${config.lib.stylix.colors.base10};
           border-radius: 0 999px 999px 0;
         }
       '';

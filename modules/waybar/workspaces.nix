@@ -24,21 +24,21 @@ in
           min-width: 15px;
           min-height: 15px;
           background-color: transparent;
-          color: #${config.colorScheme.palette.taskbarText};
+          color: #${config.lib.stylix.colors.base04};
           border-radius: 999px;
         }
 
         #workspaces button:hover {
-          background-color: #${config.colorScheme.palette.base17};
+          background-color: #${config.lib.stylix.colors.base17};
         }
 
         #workspaces button.active {
           font-weight: bold;
-          background-color: #${config.colorScheme.palette.base0E};
+          background-color: #${config.lib.stylix.colors.base0E};
         }
 
         #workspaces button.urgent {
-          background-color: #${config.colorScheme.palette.base08};
+          background-color: #${config.lib.stylix.colors.base08};
         }
 
         #workspaces {

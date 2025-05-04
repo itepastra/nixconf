@@ -37,20 +37,20 @@ in
       };
       style = ''
         #battery {
-          color: #${config.colorScheme.palette.taskbarText};
+          color: #${config.lib.stylix.colors.base04};
           margin: 5px 2px;
           padding: 0 12px;
           border-radius: 999px;
           min-width: 40px;
           transition: all 0.3s;
-          background-color: #${config.colorScheme.palette.taskbarBackground};
+          background-color: #${config.lib.stylix.colors.base10};
         }
 
         #battery.charging,
         #battery.plugged,
         #battery.full {
-          color: #${config.colorScheme.palette.taskbarText};
-          background-color: #${config.colorScheme.palette.taskbarBackground};
+          color: #${config.lib.stylix.colors.base04};
+          background-color: #${config.lib.stylix.colors.base10};
           box-shadow: none;
         }
 
@@ -61,16 +61,16 @@ in
 
         @keyframes batteryCritical {
           0% {
-            background-color: #${config.colorScheme.palette.base08};
-            color: #${config.colorScheme.palette.base06};
+            background-color: #${config.lib.stylix.colors.base08};
+            color: #${config.lib.stylix.colors.base06};
           }
           50% {
-            background-color: #${config.colorScheme.palette.base02};
-            color: #${config.colorScheme.palette.base08};
+            background-color: #${config.lib.stylix.colors.base02};
+            color: #${config.lib.stylix.colors.base08};
           }
           100% {
-            background-color: #${config.colorScheme.palette.base08};
-            color: #${config.colorScheme.palette.base06};
+            background-color: #${config.lib.stylix.colors.base08};
+            color: #${config.lib.stylix.colors.base06};
           }
         }
       '';
