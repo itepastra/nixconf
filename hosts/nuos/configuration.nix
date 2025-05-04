@@ -11,7 +11,7 @@
   ...
 }:
 let
-  enableFlurry = false;
+  enableFlurry = true;
 in
 {
   imports = [
