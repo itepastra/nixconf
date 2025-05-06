@@ -133,16 +133,6 @@
             ./hosts/muos/configuration.nix
           ];
         };
-        zelden = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            inputs.home-manager.nixosModules.default
-            inputs.stylix.nixosModules.stylix
-            ./hosts/zelden/configuration.nix
-          ];
-        };
       };
       nixosModules = {
         automapaper = ./modules/automapaper;
