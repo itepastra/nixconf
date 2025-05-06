@@ -5,84 +5,58 @@
     nixpkgs.url = "github:nixos/nixpkgs/master";
     # nixpkgs.url = "/home/noa/Documents/programming/nixpkgs";
 
-    authentik = {
-      url = "github:nix-community/authentik-nix";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # for secret management
+    agenix.url = "github:ryantm/agenix";
+    # SSO thingy
+    authentik.url = "github:nix-community/authentik-nix";
+    # Wallpaper
     automapaper = {
       url = "github:itepastra/automapaper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    # declarative disk partitioning
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    lazy = {
-      url = "github:bobvanderlinden/nixos-config";
-      inputs.nixpkgs.follows = "nixpkgs";
+    # discord bot for libqalculate
+    disqalculate = {
+      url = "github:itepastra/disqalculate";
     };
-
-    mailserver = {
-      url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hardware = {
-      url = "github:NixOS/nixos-hardware/master";
-    };
-
-    agenix = {
-      url = "github:ryantm/agenix";
-    };
-
-    oxalica = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+    # various hardware configurations
+    hardware.url = "github:NixOS/nixos-hardware/master";
+    # pixelflut stress test tool
     tsunami = {
       url = "github:itepastra/tsunami";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    # pixelflut server
     flurry = {
       url = "github:itepastra/flurry";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    niri = {
-      url = "github:YaLTeR/niri";
+    # scrolling window manager
+    niri.url = "github:YaLTeR/niri";
+    # alternative nix implementation
+    lix = {
+      url = "git+https://git.lix.systems/lix-project/lix.git";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    # module for lix
     lix-module = {
       url = "git+https://git.lix.systems/lix-project/nixos-module.git";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.lix.follows = "lix";
     };
-
-    lix = {
-      url = "git+https://git.lix.systems/lix-project/lix.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixcord = {
-      url = "github:kaylorben/nixcord";
-    };
-
-    disqalculate = {
-      url = "github:itepastra/disqalculate";
-    };
-
-    stylix = {
-      url = "github:danth/stylix";
-    };
+    # declarative vencord client
+    nixcord.url = "github:kaylorben/nixcord";
+    # for styling apps etc in a consistent theme
+    stylix.url = "github:danth/stylix";
   };
 
   outputs =
@@ -112,8 +86,6 @@
           };
           modules = [
             disko.nixosModules.disko
-            inputs.mailserver.nixosModules.default
-            # TODO: find out how I can remove this
             inputs.stylix.nixosModules.stylix
             ./hosts/nuos/configuration.nix
             inputs.home-manager.nixosModules.default
