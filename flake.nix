@@ -63,49 +63,47 @@
     {
       self,
       nixpkgs,
-      disko,
       ...
     }@inputs:
     {
-      nixosConfigurations = {
-        lambdaOS = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./hosts/lambdaos/configuration.nix
-            inputs.stylix.nixosModules.stylix
-            inputs.home-manager.nixosModules.default
-            inputs.agenix.nixosModules.default
-            inputs.lix-module.nixosModules.default
-          ];
-        };
-        nuOS = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
+      nixosConfigurations =
+        let
+          commonModules = with inputs; [
+            stylix.nixosModules.stylix
+            home-manager.nixosModules.default
+            agenix.nixosModules.default
             disko.nixosModules.disko
-            inputs.stylix.nixosModules.stylix
-            ./hosts/nuos/configuration.nix
-            inputs.home-manager.nixosModules.default
-            inputs.agenix.nixosModules.default
-            inputs.authentik.nixosModules.default
           ];
-        };
-        muOS = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
+        in
+        {
+          lambdaOS = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs;
+            };
+            modules = [
+              ./hosts/lambdaos/configuration.nix
+              inputs.lix-module.nixosModules.default
+            ] ++ commonModules;
           };
-          modules = [
-            disko.nixosModules.disko
-            inputs.stylix.nixosModules.stylix
-            inputs.home-manager.nixosModules.default
-            inputs.hardware.nixosModules.framework-11th-gen-intel
-            ./hosts/muos/configuration.nix
-          ];
+          nuOS = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs;
+            };
+            modules = [
+              inputs.authentik.nixosModules.default
+              ./hosts/nuos/configuration.nix
+            ] ++ commonModules;
+          };
+          muOS = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs;
+            };
+            modules = [
+              inputs.hardware.nixosModules.framework-11th-gen-intel
+              ./hosts/muos/configuration.nix
+            ] ++ commonModules;
+          };
         };
-      };
       nixosModules = {
         automapaper = ./modules/automapaper;
       };
