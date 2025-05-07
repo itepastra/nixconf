@@ -1198,6 +1198,22 @@
     },
     "nixpkgs_8": {
       "locked": {
+        "lastModified": 1744536153,
+        "narHash": "sha256-awS2zRgF4uTwrOKwwiJcByDzDOdo3Q1rPZbiHQg/N38=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "18dd725c29603f582cf1900e0d25f9f1063dbf11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_9": {
+      "locked": {
         "lastModified": 1745930157,
         "narHash": "sha256-y3h3NLnzRSiUkYpnfvnS669zWZLoqqI6NprtLQ+5dck=",
         "owner": "NixOS",
@@ -1209,6 +1225,25 @@
         "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixsg": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_8"
+      },
+      "locked": {
+        "lastModified": 1746574841,
+        "narHash": "sha256-CxtdCmhRPOp/5JEcNkdrez3Giks2FrVcIzO+wguPI50=",
+        "owner": "itepastra",
+        "repo": "nixsg",
+        "rev": "a54ad56f9d7c86d8313e819299c9275b5ad6c7b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "itepastra",
+        "ref": "no-md-parser",
+        "repo": "nixsg",
         "type": "github"
       }
     },
@@ -1297,6 +1332,7 @@
         "niri": "niri",
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_7",
+        "nixsg": "nixsg",
         "stylix": "stylix",
         "tsunami": "tsunami_2"
       }
@@ -1334,7 +1370,7 @@
         "git-hooks": "git-hooks",
         "gnome-shell": "gnome-shell",
         "home-manager": "home-manager_3",
-        "nixpkgs": "nixpkgs_8",
+        "nixpkgs": "nixpkgs_9",
         "nur": "nur",
         "systems": "systems_8",
         "tinted-foot": "tinted-foot",

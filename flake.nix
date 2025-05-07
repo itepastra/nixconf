@@ -5,6 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/master";
     # nixpkgs.url = "/home/noa/Documents/programming/nixpkgs";
 
+    # nix based ssg
+    nixsg.url = "github:itepastra/nixsg/no-md-parser";
+    #nixsg.url = "/home/noa/Documents/programming/nixsg";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,6 +87,7 @@
             modules = [
               ./hosts/lambdaos/configuration.nix
               inputs.lix-module.nixosModules.default
+              inputs.nixsg.nixosModules.nginxSite
             ] ++ commonModules;
           };
           nuOS = nixpkgs.lib.nixosSystem {
