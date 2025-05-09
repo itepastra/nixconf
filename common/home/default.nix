@@ -485,7 +485,7 @@ in
     mako = {
       enable = true;
       # make notifications time out after 30 sec by default
-      settings.defaultTimeout = "30000";
+      settings.default-timeout = "30000";
     };
     playerctld.enable = true;
     swayidle = {
