@@ -129,36 +129,43 @@
     };
 
     services = {
-      "update-flake" = {
-        path = with pkgs; [
-          git
-          openssh
-          nix
-          nixos-rebuild
-        ];
-        script = ''
-          [[ ! -d '/root/nixconf' ]] && git clone git@github.com:itepastra/nixconf /root/nixconf
-          cd /root/nixconf
-          git fetch
-          git reset --hard origin/main
-          git pull
-          nix flake update --commit-lock-file
-          nixos-rebuild boot -L --flake .
-          git push
-        '';
-        serviceConfig = {
-          Type = "oneshot";
-          User = "root";
-          RemainAfterExit = true;
+      "update-flake" =
+        let
+          script = pkgs.writeShellApplication {
+            name = "update-flake-script";
+            runtimeInputs = with pkgs; [
+              git
+              openssh
+              config.nix.package
+              config.system.build.nixos-rebuild
+            ];
+            text = ''
+              [[ ! -d '/root/nixconf' ]] && git clone git@github.com:itepastra/nixconf /root/nixconf
+              cd /root/nixconf
+              git fetch
+              git reset --hard origin/main
+              git pull
+              nix flake update --commit-lock-file
+              nixos-rebuild boot -L --flake .
+              git push
+            '';
+          };
+        in
+        {
+          serviceConfig = {
+            Type = "oneshot";
+            User = "root";
+            ExecStart = "${script}/bin/update-flake-script";
+            RemainAfterExit = true;
+          };
+          wants = [
+            "network-online.target"
+          ];
+          after = [
+            "network-online.target"
+          ];
+          restartIfChanged = false;
         };
-        wants = [
-          "network-online.target"
-        ];
-        after = [
-          "network-online.target"
-        ];
-        restartIfChanged = false;
-      };
     };
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";

@@ -122,7 +122,7 @@ in
       serviceConfig = {
         Type = "exec";
         User = "root";
-        ExecStart = "${pkgs.nixos-rebuild-ng}/bin/nixos-rebuild boot --flake github:itepastra/nixconf";
+        ExecStart = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild switch --flake github:itepastra/nixconf";
         ExecStopPost = ''shutdown -r +5 "Preparing update finished, rebooting..."'';
       };
       wants = [

@@ -3,6 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 {
+  config,
   pkgs,
   ...
 }:
@@ -75,7 +76,7 @@
       serviceConfig = {
         Type = "exec";
         User = "root";
-        ExecStart = "${pkgs.nixos-rebuild-ng}/bin/nixos-rebuild switch --flake github:itepastra/nixconf";
+        ExecStart = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild switch --flake github:itepastra/nixconf";
       };
       wants = [
         "network-online.target"
