@@ -77,6 +77,7 @@
             home-manager.nixosModules.default
             agenix.nixosModules.default
             disko.nixosModules.disko
+            lix-module.nixosModules.default
           ];
         in
         {
@@ -86,7 +87,6 @@
             };
             modules = [
               ./hosts/lambdaos/configuration.nix
-              inputs.lix-module.nixosModules.default
               inputs.nixsg.nixosModules.nginxSite
             ] ++ commonModules;
           };
