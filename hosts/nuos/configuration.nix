@@ -117,16 +117,13 @@ in
   systemd.services = {
     "update-from-flake" = {
       path = with pkgs; [
-        nixos-rebuild
         git
       ];
-      script = ''
-        nixos-rebuild boot --flake github:itepastra/nixconf#nuOS
-        shutdown -r +5 "System will reboot in 5 minutes"
-      '';
       serviceConfig = {
-        Type = "oneshot";
+        Type = "exec";
         User = "root";
+        ExecStart = "${pkgs.nixos-rebuild-ng}/bin/nixos-rebuild boot --flake github:itepastra/nixconf";
+        ExecStopPost = ''shutdown -r +5 "Preparing update finished, rebooting..."'';
       };
       wants = [
         "network-online.target"

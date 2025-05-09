@@ -70,13 +70,12 @@
 
     services."update-from-flake" = {
       path = with pkgs; [
-        nixos-rebuild
         git
       ];
-      script = ''nixos-rebuild switch --flake github:itepastra/nixconf'';
       serviceConfig = {
-        Type = "oneshot";
+        Type = "exec";
         User = "root";
+        ExecStart = "${pkgs.nixos-rebuild-ng}/bin/nixos-rebuild switch --flake github:itepastra/nixconf";
       };
       wants = [
         "network-online.target"
