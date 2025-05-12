@@ -124,6 +124,7 @@
   };
 
   boot = {
+    tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_latest;
 
     consoleLogLevel = 0;
