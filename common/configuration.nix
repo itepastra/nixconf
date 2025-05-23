@@ -218,4 +218,6 @@
     switch.enableNg = true;
     rebuild.enableNg = true;
   };
+
+  stylix.targets.plymouth.enable = false;
 }
