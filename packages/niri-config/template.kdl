@@ -23,6 +23,10 @@ input {
     focus-follows-mouse max-scroll-amount="40%"
 }
 
+debug {
+  wait-for-frame-completion-in-pipewire
+}
+
 environment {
 	DISPLAY ":0"
 }
