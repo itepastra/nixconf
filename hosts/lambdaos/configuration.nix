@@ -199,7 +199,7 @@
 
   systemd.services.nvidia-control-devices = {
     wantedBy = [ "multi-user.target" ];
-    serviceConfig.ExecStart = "${pkgs.linuxPackages.nvidia_x11.bin}/bin/nvidia-smi";
+    serviceConfig.ExecStart = "${pkgs.linuxPackages.nvidia_x11_beta.bin}/bin/nvidia-smi";
   };
 
   virtualisation.libvirtd = {
