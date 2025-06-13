@@ -14,9 +14,7 @@ in
       type = lib.types.package;
       default = pkgs.waybar.override {
         cavaSupport = false;
-        hyprlandSupport = false;
         pulseSupport = false;
-        swaySupport = false;
       };
     };
     modules = {

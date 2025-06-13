@@ -216,5 +216,8 @@
     rebuild.enableNg = true;
   };
 
-  stylix.targets.plymouth.enable = false;
+  stylix = {
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    targets.plymouth.enable = false;
+  };
 }
