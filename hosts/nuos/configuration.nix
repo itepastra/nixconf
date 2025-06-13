@@ -415,6 +415,10 @@ in
     };
   };
 
+  stylix = {
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+  };
+
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     22 # ssh
