@@ -173,9 +173,6 @@
       };
     };
     pcscd.enable = true; # for yubikey
-    desktopManager.plasma6 = {
-      enable = true;
-    };
     pipewire = {
       enable = true;
       alsa.enable = true;

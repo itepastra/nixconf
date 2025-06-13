@@ -11,7 +11,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/plasma
 
     ../../common
     ../../common/configuration.nix
@@ -78,10 +77,6 @@
       };
       "root" = import ./root.nix;
     };
-  };
-
-  modules = {
-    plasma.enable = false;
   };
 
   boot.kernelModules = [
