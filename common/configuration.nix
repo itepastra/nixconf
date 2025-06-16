@@ -199,7 +199,7 @@
 
   virtualisation.docker = {
     enable = true;
-    package = pkgs.docker_27;
+    package = pkgs.docker;
     rootless = {
       enable = true;
       setSocketVariable = true;
