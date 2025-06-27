@@ -181,7 +181,6 @@ in
       modules = {
         left = [
           "niri/workspaces"
-          "tray"
           "niri/window"
         ];
         center = [
