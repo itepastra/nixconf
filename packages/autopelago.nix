@@ -2,7 +2,7 @@
   pkgs,
   ...
 }:
-pkgs.buildDotnetModule rec {
+pkgs.buildDotnetModule {
   pname = "autopelago";
   version = "0.10.0-unstable-2025-06-02";
 
