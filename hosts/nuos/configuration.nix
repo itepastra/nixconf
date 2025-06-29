@@ -119,6 +119,7 @@ in
       let
         script = pkgs.writeShellScript "archipelago-server" ''
           cd /home/noa/Archipelago
+          ${pkgs.python312Full}/bin/python -m venv .
           source bin/activate
           python MultiServer.py output/AP_43890937735956963351.zip
         '';
