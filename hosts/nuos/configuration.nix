@@ -115,6 +115,34 @@ in
   };
 
   systemd.services = {
+    "archipelago" =
+      let
+        script = pkgs.writeShellScript "archipelago-server" ''
+          cd /home/noa/Archipelago
+          source bin/activate
+          python MultiServer.py output/AP_43890937735956963351.zip
+        '';
+      in
+      {
+        serviceConfig = {
+          Type = "simple";
+          User = "noa";
+          ExecStart = "${script}";
+
+          BindPaths = [
+            "/home/noa/Archipelago"
+          ];
+          Restart = "always";
+        };
+        wants = [
+          "network-online.target"
+        ];
+        after = [
+          "network-online.target"
+        ];
+        restartIfChanged = true;
+      };
+
     "update-from-flake" = {
       path = with pkgs; [
         git
