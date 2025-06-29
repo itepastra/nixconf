@@ -271,9 +271,10 @@ in
     };
     factorio = {
       enable = true;
-      package = pkgs.factorio-headless.override {
-        versionsJson = ./versions.json;
-      };
+      # package = pkgs.factorio-headless.override {
+      #   versionsJson = ./versions.json;
+      # };
+      package = pkgs.factorio-headless;
       openFirewall = true;
       public = true;
       nonBlockingSaving = true;
