@@ -464,6 +464,8 @@ in
     24454 # minecraft (voice)
 
     22000 # syncthing
+
+    38281 # archipelago
   ];
   networking.firewall.allowedUDPPorts = [
     22 # ssh
