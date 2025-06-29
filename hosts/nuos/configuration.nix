@@ -124,6 +124,7 @@ in
         '';
       in
       {
+        enable = true;
         serviceConfig = {
           Type = "simple";
           User = "noa";
