@@ -194,35 +194,6 @@ in
           restartIfChanged = true;
         };
 
-      "ap-factorio" =
-        let
-          script = pkgs.writeShellScript "archipelago-server" ''
-            ${archipelago}/bin/archipelago FactorioClient -- --server-settings /home/noa/Archipelago/factorio-server-settings.json
-          '';
-        in
-        {
-          enable = true;
-          serviceConfig = {
-            Type = "simple";
-            User = "noa";
-            ExecStart = "${script}";
-
-            BindPaths = [
-              "/home/noa/Archipelago"
-              "/home/noa/.factorio"
-            ];
-            Restart = "always";
-          };
-          wants = [
-            "network-online.target"
-          ];
-          after = [
-            "network-online.target"
-          ];
-          wantedBy = [ "multi-user.target" ];
-          restartIfChanged = true;
-        };
-
       "update-from-flake" = {
         path = with pkgs; [
           git
