@@ -114,72 +114,124 @@ in
     };
   };
 
-  systemd.services = {
-    "archipelago" =
-      let
-        ap =
-          {
-            lib,
-            appimageTools,
-            fetchurl,
-            nix-update-script,
-            extraPackages ? [ ],
-          }:
-          let
-            pname = "archipelago";
-            version = "0.6.2";
-            src = fetchurl {
-              url = "https://github.com/ArchipelagoMW/Archipelago/releases/download/${version}-rc3/Archipelago_${version}_linux-x86_64.AppImage";
-              hash = "sha256-5uoHIKaBPgZEg5rPx1yv/uqb2iBQs6uYLRPO9Z1N2Wg=";
-            };
-
-            appimageContents = appimageTools.extractType2 { inherit pname version src; };
-          in
-          appimageTools.wrapType2 {
-            inherit pname version src;
-            extraPkgs =
-              pkgs:
-              [
-                pkgs.xsel
-                pkgs.xclip
-                pkgs.mtdev
-              ]
-              ++ extraPackages;
-            extraInstallCommands = ''
-              install -Dm444 ${appimageContents}/archipelago.desktop -t $out/share/applications
-              substituteInPlace $out/share/applications/archipelago.desktop \
-                --replace-fail 'opt/Archipelago/ArchipelagoLauncher' "archipelago"
-              cp -r ${appimageContents}/usr/share/icons $out/share
-            '';
-
-            passthru.updateScript = nix-update-script { };
-
-            meta = {
-              description = "Multi-Game Randomizer and Server";
-              homepage = "https://archipelago.gg";
-              changelog = "https://github.com/ArchipelagoMW/Archipelago/releases/tag/${version}";
-              license = lib.licenses.mit;
-              mainProgram = "archipelago";
-              maintainers = with lib.maintainers; [ pyrox0 ];
-              platforms = lib.platforms.linux;
-            };
+  systemd.services =
+    let
+      ap =
+        {
+          lib,
+          appimageTools,
+          fetchurl,
+          nix-update-script,
+          extraPackages ? [ ],
+        }:
+        let
+          pname = "archipelago";
+          version = "0.6.2";
+          src = fetchurl {
+            url = "https://github.com/ArchipelagoMW/Archipelago/releases/download/${version}-rc3/Archipelago_${version}_linux-x86_64.AppImage";
+            hash = "sha256-5uoHIKaBPgZEg5rPx1yv/uqb2iBQs6uYLRPO9Z1N2Wg=";
           };
-        archipelago = pkgs.callPackage ap { };
-        script = pkgs.writeShellScript "archipelago-server" ''
-          ${archipelago}/bin/archipelago MultiServer -- /home/noa/Archipelago/output/AP_43890937735956963351.zip
-        '';
-      in
-      {
-        enable = true;
-        serviceConfig = {
-          Type = "simple";
-          User = "noa";
-          ExecStart = "${script}";
 
-          BindPaths = [
-            "/home/noa/Archipelago"
+          appimageContents = appimageTools.extractType2 { inherit pname version src; };
+        in
+        appimageTools.wrapType2 {
+          inherit pname version src;
+          extraPkgs =
+            pkgs:
+            [
+              pkgs.xsel
+              pkgs.xclip
+              pkgs.mtdev
+            ]
+            ++ extraPackages;
+          extraInstallCommands = ''
+            install -Dm444 ${appimageContents}/archipelago.desktop -t $out/share/applications
+            substituteInPlace $out/share/applications/archipelago.desktop \
+              --replace-fail 'opt/Archipelago/ArchipelagoLauncher' "archipelago"
+            cp -r ${appimageContents}/usr/share/icons $out/share
+          '';
+
+          passthru.updateScript = nix-update-script { };
+
+          meta = {
+            description = "Multi-Game Randomizer and Server";
+            homepage = "https://archipelago.gg";
+            changelog = "https://github.com/ArchipelagoMW/Archipelago/releases/tag/${version}";
+            license = lib.licenses.mit;
+            mainProgram = "archipelago";
+            maintainers = with lib.maintainers; [ pyrox0 ];
+            platforms = lib.platforms.linux;
+          };
+        };
+      archipelago = pkgs.callPackage ap { };
+    in
+    {
+      "archipelago" =
+        let
+          script = pkgs.writeShellScript "archipelago-server" ''
+            ${archipelago}/bin/archipelago MultiServer -- /home/noa/Archipelago/output/AP_43890937735956963351.zip
+          '';
+        in
+        {
+          enable = true;
+          serviceConfig = {
+            Type = "simple";
+            User = "noa";
+            ExecStart = "${script}";
+
+            BindPaths = [
+              "/home/noa/Archipelago"
+            ];
+            Restart = "always";
+          };
+          wants = [
+            "network-online.target"
           ];
-          Restart = "always";
+          after = [
+            "network-online.target"
+          ];
+          wantedBy = [ "multi-user.target" ];
+          restartIfChanged = true;
+        };
+
+      "ap-factorio" =
+        let
+          script = pkgs.writeShellScript "archipelago-server" ''
+            ${archipelago}/bin/archipelago FactorioClient -- --server-settings /home/noa/Archipelago/factorio-server-settings.json
+          '';
+        in
+        {
+          enable = true;
+          serviceConfig = {
+            Type = "simple";
+            User = "noa";
+            ExecStart = "${script}";
+
+            BindPaths = [
+              "/home/noa/Archipelago"
+              "/home/noa/.factorio"
+            ];
+            Restart = "always";
+          };
+          wants = [
+            "network-online.target"
+          ];
+          after = [
+            "network-online.target"
+          ];
+          wantedBy = [ "multi-user.target" ];
+          restartIfChanged = true;
+        };
+
+      "update-from-flake" = {
+        path = with pkgs; [
+          git
+        ];
+        serviceConfig = {
+          Type = "exec";
+          User = "root";
+          ExecStart = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild switch --flake github:itepastra/nixconf";
+          ExecStopPost = ''shutdown -r +5 "Preparing update finished, rebooting..."'';
         };
         wants = [
           "network-online.target"
@@ -187,108 +239,88 @@ in
         after = [
           "network-online.target"
         ];
-        wantedBy = [ "multi-user.target" ];
-        restartIfChanged = true;
+        restartIfChanged = false;
       };
 
-    "update-from-flake" = {
-      path = with pkgs; [
-        git
-      ];
-      serviceConfig = {
-        Type = "exec";
-        User = "root";
-        ExecStart = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild switch --flake github:itepastra/nixconf";
-        ExecStopPost = ''shutdown -r +5 "Preparing update finished, rebooting..."'';
-      };
-      wants = [
-        "network-online.target"
-      ];
-      after = [
-        "network-online.target"
-      ];
-      restartIfChanged = false;
-    };
-
-    "flurry" = {
-      enable = enableFlurry;
-      description = "Pixelflut server";
-      serviceConfig = {
-        ExecStart = "${
-          inputs.flurry.packages.${pkgs.system}.default.overrideAttrs (
-            finalAttrs: previousAttrs: {
-              patches = [
-                (pkgs.fetchpatch2 {
-                  name = "flurry-server-config.patch";
-                  url = "https://github.com/itepastra/flurry/commit/db6019fd1a9b363b090f2fc093d0267a37c0d6ff.patch";
-                  hash = "sha256-EoIjx2kN8hDrN7vLc4FyWp7JqOHIgYFR1V3NVdoDtsw=";
-                })
-              ];
-            }
-          )
-        }/bin/flurry";
-        ExecStop = "pkill flurry";
-        Restart = "on-failure";
-      };
-      wants = [
-        "network-online.target"
-      ];
-      after = [
-        "network-online.target"
-      ];
-      wantedBy = [ "default.target" ];
-    };
-
-    "disqalculate" = {
-      enable = true;
-      wants = [
-        "network-online.target"
-      ];
-      after = [
-        "network-online.target"
-      ];
-      wantedBy = [ "default.target" ];
-      restartTriggers = [ inputs.disqalculate.packages.${pkgs.system}.default ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${inputs.disqalculate.packages.${pkgs.system}.default}/bin/disqalculate";
-        ExecStop = "${pkgs.busybox}/bin/pkill disqalculate";
-        RuntimeDirectory = "disqalculate";
-        RootDirectory = "/run/disqalculate";
-        User = "disqalculate";
-        NoNewPrivileges = true;
-        ProtectHome = true;
-        ProtectProc = "noaccess";
-        ProcSubset = "pid";
-        ProtectClock = true;
-        ProtectKernelLogs = true;
-        ProtectSystem = "strict";
-        ProtectHostname = true;
-        PrivateTmp = true;
-        PrivateDevices = true;
-        PrivateUsers = true;
-        RestrictAddressFamilies = "AF_INET";
-        ProtectKernelTunables = true;
-        RestrictNamespaces = true;
-        CapabilityBoundingSet = "";
-        EnvironmentFile = config.age.secrets."discord/disqalculate".path;
-        BindReadOnlyPaths = [
-          "/nix/store"
-          "/etc/ssl"
-          "/etc/static/ssl"
-          "/etc/resolv.conf"
-          "/bin/sh"
+      "flurry" = {
+        enable = enableFlurry;
+        description = "Pixelflut server";
+        serviceConfig = {
+          ExecStart = "${
+            inputs.flurry.packages.${pkgs.system}.default.overrideAttrs (
+              finalAttrs: previousAttrs: {
+                patches = [
+                  (pkgs.fetchpatch2 {
+                    name = "flurry-server-config.patch";
+                    url = "https://github.com/itepastra/flurry/commit/db6019fd1a9b363b090f2fc093d0267a37c0d6ff.patch";
+                    hash = "sha256-EoIjx2kN8hDrN7vLc4FyWp7JqOHIgYFR1V3NVdoDtsw=";
+                  })
+                ];
+              }
+            )
+          }/bin/flurry";
+          ExecStop = "pkill flurry";
+          Restart = "on-failure";
+        };
+        wants = [
+          "network-online.target"
         ];
-        Restart = "always";
-        RestartSec = 10;
-        TimeoutStopSec = 10;
+        after = [
+          "network-online.target"
+        ];
+        wantedBy = [ "default.target" ];
       };
-      unitConfig = {
-        StartLimitInterval = 400;
-        StartLimitBurst = 30;
+
+      "disqalculate" = {
+        enable = true;
+        wants = [
+          "network-online.target"
+        ];
+        after = [
+          "network-online.target"
+        ];
+        wantedBy = [ "default.target" ];
+        restartTriggers = [ inputs.disqalculate.packages.${pkgs.system}.default ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${inputs.disqalculate.packages.${pkgs.system}.default}/bin/disqalculate";
+          ExecStop = "${pkgs.busybox}/bin/pkill disqalculate";
+          RuntimeDirectory = "disqalculate";
+          RootDirectory = "/run/disqalculate";
+          User = "disqalculate";
+          NoNewPrivileges = true;
+          ProtectHome = true;
+          ProtectProc = "noaccess";
+          ProcSubset = "pid";
+          ProtectClock = true;
+          ProtectKernelLogs = true;
+          ProtectSystem = "strict";
+          ProtectHostname = true;
+          PrivateTmp = true;
+          PrivateDevices = true;
+          PrivateUsers = true;
+          RestrictAddressFamilies = "AF_INET";
+          ProtectKernelTunables = true;
+          RestrictNamespaces = true;
+          CapabilityBoundingSet = "";
+          EnvironmentFile = config.age.secrets."discord/disqalculate".path;
+          BindReadOnlyPaths = [
+            "/nix/store"
+            "/etc/ssl"
+            "/etc/static/ssl"
+            "/etc/resolv.conf"
+            "/bin/sh"
+          ];
+          Restart = "always";
+          RestartSec = 10;
+          TimeoutStopSec = 10;
+        };
+        unitConfig = {
+          StartLimitInterval = 400;
+          StartLimitBurst = 30;
+        };
       };
     };
-  };
 
   virtualisation = {
     docker = {
@@ -346,7 +378,7 @@ in
       };
     };
     factorio = {
-      enable = true;
+      enable = false;
       # package = pkgs.factorio-headless.override {
       #   versionsJson = ./versions.json;
       # };
