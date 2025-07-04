@@ -73,8 +73,8 @@
       nixosConfigurations =
         let
           commonModules = with inputs; [
-            stylix.nixosModules.stylix
             home-manager.nixosModules.default
+            stylix.nixosModules.stylix
             agenix.nixosModules.default
             disko.nixosModules.disko
             lix-module.nixosModules.default
