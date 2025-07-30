@@ -128,8 +128,8 @@ in
           pname = "archipelago";
           version = "0.6.2";
           src = fetchurl {
-            url = "https://github.com/ArchipelagoMW/Archipelago/releases/download/${version}-rc3/Archipelago_${version}_linux-x86_64.AppImage";
-            hash = "sha256-5uoHIKaBPgZEg5rPx1yv/uqb2iBQs6uYLRPO9Z1N2Wg=";
+            url = "https://github.com/ArchipelagoMW/Archipelago/releases/download/${version}/Archipelago_${version}_linux-x86_64.AppImage";
+            hash = "";
           };
 
           appimageContents = appimageTools.extractType2 { inherit pname version src; };
