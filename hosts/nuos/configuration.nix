@@ -495,7 +495,10 @@ in
   };
 
   stylix = {
+    enable = true;
+    autoEnable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    targets.plymouth.enable = false;
   };
 
   # Open ports in the firewall.
