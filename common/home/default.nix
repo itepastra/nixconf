@@ -40,20 +40,19 @@ let
   '';
 in
 {
-  imports =
-    [
-      # I made some cursed modules (waybar is the worst)
-      ../../modules
-      # Was too lazy to do fully declarative nvim, so the lua is hidden there as well
-      ../nvim/nvim.nix
-      # we import extraConfig, it's funny that this has the correct effect
-      extraConfig
-    ]
-    # these have no use if there isn't any display....
-    ++ lib.optionals enableGraphical [
-      ../discord/discord.nix
-      ../spotify.nix
-    ];
+  imports = [
+    # I made some cursed modules (waybar is the worst)
+    ../../modules
+    # Was too lazy to do fully declarative nvim, so the lua is hidden there as well
+    ../nvim/nvim.nix
+    # we import extraConfig, it's funny that this has the correct effect
+    extraConfig
+  ]
+  # these have no use if there isn't any display....
+  ++ lib.optionals enableGraphical [
+    ../discord/discord.nix
+    ../spotify.nix
+  ];
 
   home = {
     file = {
@@ -512,7 +511,10 @@ in
     };
     enable = true;
     fonts = {
-      emoji = config.stylix.fonts.monospace;
+      emoji = {
+        name = "Maple Mono NF";
+        package = pkgs.maple-mono.NF;
+      };
       monospace = {
         name = "Maple Mono NF";
         package = pkgs.maple-mono.NF;
@@ -521,7 +523,11 @@ in
         name = "Lexend";
         package = pkgs.lexend;
       };
-      serif = config.stylix.fonts.sansSerif;
+      serif = {
+        name = "Lexend";
+        package = pkgs.lexend;
+      };
+
     };
     opacity = {
       terminal = 0.2;
