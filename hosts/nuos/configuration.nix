@@ -129,7 +129,7 @@ in
           version = "0.6.2";
           src = fetchurl {
             url = "https://github.com/ArchipelagoMW/Archipelago/releases/download/${version}/Archipelago_${version}_linux-x86_64.AppImage";
-            hash = "";
+            hash = "sha256-DdlfHb8iTCfTGGBUYQeELYh2NF/2GcamtuJzeYb2A5M=";
           };
 
           appimageContents = appimageTools.extractType2 { inherit pname version src; };
