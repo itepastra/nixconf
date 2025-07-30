@@ -169,7 +169,7 @@ in
       "archipelago" =
         let
           script = pkgs.writeShellScript "archipelago-server" ''
-            ${archipelago}/bin/archipelago MultiServer -- /home/noa/Archipelago/output/AP_43890937735956963351.zip
+            ${archipelago}/bin/archipelago MultiServer -- /home/noa/Archipelago/output/AP_56296685100817462728.zip
           '';
         in
         {
@@ -483,15 +483,14 @@ in
         "maintenance.noa.voorwaarts.nl"
         "map.noa.voorwaarts.nl"
       ];
-      "itepastra.nl".extraDomainNames =
-        [
-          "locked.itepastra.nl"
-          "calendar.itepastra.nl"
-          "home.itepastra.nl"
-        ]
-        ++ [
-          (lib.mkIf enableFlurry "flurry.itepastra.nl")
-        ];
+      "itepastra.nl".extraDomainNames = [
+        "locked.itepastra.nl"
+        "calendar.itepastra.nl"
+        "home.itepastra.nl"
+      ]
+      ++ [
+        (lib.mkIf enableFlurry "flurry.itepastra.nl")
+      ];
     };
   };
 
