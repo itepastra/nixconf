@@ -169,7 +169,7 @@ in
       "archipelago" =
         let
           script = pkgs.writeShellScript "archipelago-server" ''
-            ${archipelago}/bin/archipelago MultiServer -- /home/noa/Archipelago/output/AP_56296685100817462728.zip
+            ${archipelago}/bin/archipelago MultiServer -- /home/noa/Archipelago/output/AP_17354877273586005606.zip
           '';
         in
         {
