@@ -785,11 +785,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753848447,
-        "narHash": "sha256-fsld/crW9XRodFUG1GK8Lt0ERv6ARl9Wj3Xb0x96J4w=",
+        "lastModified": 1753888434,
+        "narHash": "sha256-xQhSeLJVsxxkwchE4s6v1CnOI6YegCqeA1fgk/ivVI4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d732b648e5a7e3b89439ee25895e4eb24b7e5452",
+        "rev": "0630790b31d4547d79ff247bc3ba1adda3a017d9",
         "type": "github"
       },
       "original": {
@@ -810,11 +810,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1753818358,
-        "narHash": "sha256-SCShtQ6n/fIIrZRnJNWQfGpDQHPi3KVUHB5V+dpbfU0=",
+        "lastModified": 1753849119,
+        "narHash": "sha256-2sDX5Nv/DGIzZH+3pIlAUpZfVlMGz7Hl/mqHUaic+p8=",
         "ref": "refs/heads/main",
-        "rev": "93acdd40f6c3eab1a25ea03d7a160433ed551677",
-        "revCount": 18225,
+        "rev": "321807a40e1fdd44d950ff01746c95cb6e2eced3",
+        "revCount": 18226,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix.git"
       },
@@ -1149,11 +1149,11 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1753851946,
-        "narHash": "sha256-4mPb6o8uWlVdAchtkcF81gjJbQFuCZTz2s/n8neYLx8=",
+        "lastModified": 1753940802,
+        "narHash": "sha256-j8uU9RObPiH+jS6nMb+JVpMWIdLynytChevt4Xtx13Y=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "bf8fe59e5830c2afc6961f11ac941660d6f3fa80",
+        "rev": "531ef345f82f4fcaf04646b961963ed69f9c1f09",
         "type": "github"
       },
       "original": {
@@ -1349,11 +1349,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1753836228,
-        "narHash": "sha256-cWdFqyNEqGbB6S5neG8MnrOaEXtPQRSlx0pm9NRehzs=",
+        "lastModified": 1753919664,
+        "narHash": "sha256-U7Ts8VbVD4Z6n67gFx00dkpQJu27fMu173IUopX3pNI=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "cf71ad5aae3555d9ccc3ae0b522a88e8973c500d",
+        "rev": "30f5022236cf8dd257941cb0f910e198e7e464c7",
         "type": "github"
       },
       "original": {
