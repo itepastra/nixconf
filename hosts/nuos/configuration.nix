@@ -181,6 +181,7 @@ in
 
             BindPaths = [
               "/home/noa/Archipelago"
+              "/home/noa/.local/share/Archipelago/"
             ];
             Restart = "always";
           };
