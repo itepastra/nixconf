@@ -164,12 +164,13 @@ in
           };
         };
       archipelago = pkgs.callPackage ap { };
+      world = "AP_78826017969466809374.zip";
     in
     {
       "archipelago" =
         let
           script = pkgs.writeShellScript "archipelago-server" ''
-            ${archipelago}/bin/archipelago MultiServer -- /home/noa/Archipelago/output/AP_17354877273586005606.zip
+            ${archipelago}/bin/archipelago MultiServer -- /home/noa/Archipelago/output/${world}
           '';
         in
         {
