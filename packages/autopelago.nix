@@ -4,13 +4,13 @@
 }:
 pkgs.buildDotnetModule {
   pname = "autopelago";
-  version = "0.10.0-unstable-2025-06-02";
+  version = "0.10.4";
 
   src = pkgs.fetchFromGitHub {
     owner = "airbreather";
     repo = "Autopelago";
-    rev = "c3413875e5ec3e79cd5f4a74b4270d2dfd96083c";
-    hash = "sha256-w4jSijCJrOnujiUxqaUPyUoQ4FXteGVmUaB6z4ReKWA=";
+    rev = "v0.10.4";
+    hash = "sha256-qTHJ5nuB5NF+ju5gmxkP/s7uRjrNpkkyBzkhD/0n4D4=";
   };
 
   runtimeDeps = [ pkgs.libGL ];
