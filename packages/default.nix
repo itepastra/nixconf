@@ -22,7 +22,7 @@ forAllSystems (
     call = path: import path { inherit pkgs system; };
   in
   {
-    autopelago = call ./autopelago.nix;
+    autopelago = call ./autopelago;
     melonloader = call ./melon.nix;
     fuzzel-launch = call ./fuzzel-launch.nix;
     fuzzel-power = call ./fuzzel-power.nix;
