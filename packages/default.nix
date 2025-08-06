@@ -23,7 +23,6 @@ forAllSystems (
   in
   {
     autopelago = call ./autopelago.nix;
-    archipelago = call ./archipelago.nix;
     melonloader = call ./melon.nix;
     fuzzel-launch = call ./fuzzel-launch.nix;
     fuzzel-power = call ./fuzzel-power.nix;
