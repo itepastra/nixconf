@@ -165,6 +165,7 @@
   };
 
   services = {
+    mullvad-vpn.enable = true;
     displayManager = {
       defaultSession = "niri";
       sddm = {
