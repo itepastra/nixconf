@@ -25,5 +25,6 @@ forAllSystems (
     autopelago = call ./autopelago;
     fuzzel-launch = call ./fuzzel-launch.nix;
     fuzzel-power = call ./fuzzel-power.nix;
+    vvvvvv-ap = call ./vvvvvv-ap;
   }
 )
