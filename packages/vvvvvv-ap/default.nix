@@ -38,7 +38,7 @@ pkgs.stdenv.mkDerivation rec {
   '';
 
   postInstall = ''
-    cp "${src-data}" "$out/bin/"
+    cp "${src-data}" "$out/bin/data.zip"
   '';
 
   preFixup = ''
