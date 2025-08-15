@@ -408,11 +408,19 @@ in
           fields = "name,generic,comment,categories,filename,keywords";
           terminal = "kitty";
           prompt = "' ➜  '";
+          font = "Maple Mono NF";
           layer = "top";
           lines = 10;
           width = 35;
           horizontal-pad = 25;
           inner-pad = 5;
+        };
+        colors = {
+          background = "${config.lib.stylix.colors.base00}aa";
+          text = "${config.lib.stylix.colors.base05}ff";
+          selection = "${config.lib.stylix.colors.base01}bb";
+          selection-match = "${config.lib.stylix.colors.base06}ff";
+          border = "${config.lib.stylix.colors.base0E}ee";
         };
         border = {
           radius = 15;
@@ -542,6 +550,7 @@ in
       neovim.enable = false;
       waybar.enable = false;
       swaylock.enable = true;
+      fuzzel.enable = false;
       firefox.profileNames = [ "profile_0" ];
       qt = {
         enable = true;
