@@ -77,4 +77,24 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  stylix = {
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    enable = true;
+    opacity = {
+      terminal = 0.2;
+      popups = 0.66;
+    };
+    override = {
+      # I liked my background colors from before, make it in more spots
+      base00 = "0a000a";
+    };
+    targets = {
+      neovim.enable = false;
+      waybar.enable = false;
+      qt = {
+        enable = true;
+        platform = "qtct";
+      };
+    };
+  };
 }

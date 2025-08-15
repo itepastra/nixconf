@@ -93,4 +93,45 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  stylix = {
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    enable = true;
+    fonts = {
+      emoji = {
+        name = "Maple Mono NF";
+        package = pkgs.maple-mono.NF;
+      };
+      monospace = {
+        name = "Maple Mono NF";
+        package = pkgs.maple-mono.NF;
+      };
+      sansSerif = {
+        name = "Lexend";
+        package = pkgs.lexend;
+      };
+      serif = {
+        name = "Lexend";
+        package = pkgs.lexend;
+      };
+
+    };
+    opacity = {
+      terminal = 0.2;
+      popups = 0.66;
+    };
+    override = {
+      # I liked my background colors from before, make it in more spots
+      base00 = "0a000a";
+    };
+    targets = {
+      neovim.enable = false;
+      waybar.enable = false;
+      swaylock.enable = true;
+      firefox.profileNames = [ "profile_0" ];
+      qt = {
+        enable = true;
+        platform = "qtct";
+      };
+    };
+  };
 }
