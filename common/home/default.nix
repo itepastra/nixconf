@@ -510,6 +510,7 @@ in
       size = 32;
     };
     enable = true;
+    polarity = "dark";
     fonts = {
       emoji = {
         name = "Maple Mono NF";
