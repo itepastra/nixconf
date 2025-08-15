@@ -417,9 +417,9 @@ in
         };
         colors = {
           background = "${config.lib.stylix.colors.base00}aa";
-          text = "${config.lib.stylix.colors.base05}ff";
-          selection = "${config.lib.stylix.colors.base01}bb";
-          selection-match = "${config.lib.stylix.colors.base06}ff";
+          text = "${config.lib.stylix.colors.base01}bb";
+          selection = "${config.lib.stylix.colors.base01}ff";
+          selection-match = "${config.lib.stylix.colors.base05}ff";
           border = "${config.lib.stylix.colors.base0E}ee";
         };
         border = {
