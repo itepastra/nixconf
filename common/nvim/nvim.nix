@@ -22,6 +22,7 @@
         nixfmt-rfc-style
         gcc
         typst
+        python313Full
       ];
       defaultEditor = true;
       viAlias = true;
