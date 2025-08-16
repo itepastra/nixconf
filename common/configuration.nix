@@ -96,6 +96,7 @@
     maple-mono.NF
     newcomputermodern
     roboto
+    dejavu-fonts
   ];
 
   xdg.portal = {
