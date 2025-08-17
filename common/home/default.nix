@@ -477,6 +477,10 @@ in
         };
       };
     };
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
   };
 
   services = {
@@ -519,25 +523,6 @@ in
     };
     enable = true;
     polarity = "dark";
-    fonts = {
-      emoji = {
-        name = "Maple Mono NF";
-        package = pkgs.maple-mono.NF;
-      };
-      monospace = {
-        name = "Maple Mono NF";
-        package = pkgs.maple-mono.NF;
-      };
-      sansSerif = {
-        name = "Lexend";
-        package = pkgs.lexend;
-      };
-      serif = {
-        name = "Lexend";
-        package = pkgs.lexend;
-      };
-
-    };
     opacity = {
       terminal = 0.2;
       popups = 0.66;
