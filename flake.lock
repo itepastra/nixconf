@@ -305,11 +305,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754971456,
-        "narHash": "sha256-p04ZnIBGzerSyiY2dNGmookCldhldWAu03y0s3P8CB0=",
+        "lastModified": 1755519972,
+        "narHash": "sha256-bU4nqi3IpsUZJeyS8Jk85ytlX61i4b0KCxXX9YcOgVc=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "8246829f2e675a46919718f9a64b71afe3bfb22d",
+        "rev": "4073ff2f481f9ef3501678ff479ed81402caae6d",
         "type": "github"
       },
       "original": {
@@ -785,11 +785,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1755442500,
-        "narHash": "sha256-RHK4H6SWzkAtW/5WBHsyugaXJX25yr5y7FAZznxcBJs=",
+        "lastModified": 1755625756,
+        "narHash": "sha256-t57ayMEdV9g1aCfHzoQjHj1Fh3LDeyblceADm2hsLHM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d2ffdedfc39c591367b1ddf22b4ce107f029dcc3",
+        "rev": "dd026d86420781e84d0732f2fa28e1c051117b59",
         "type": "github"
       },
       "original": {
@@ -810,11 +810,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1755435313,
-        "narHash": "sha256-0KFO9VENBqmV9zlGr9iq275fj3/AjjKLTij2cYtjGbw=",
+        "lastModified": 1755608933,
+        "narHash": "sha256-1iSxO09S7MXC5ovHHEiugBcUHAesVfKivS/fm6KA5AQ=",
         "ref": "refs/heads/main",
-        "rev": "3de996f521083b40aa9c3567b4b48107f5390df4",
-        "revCount": 18262,
+        "rev": "001c70d2bab8a06c648cbc456e59a271792fe99d",
+        "revCount": 18285,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix.git"
       },
@@ -835,11 +835,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751909859,
-        "narHash": "sha256-gbpuESxl/An4GTh7QEbQRYJozVIxWkwVGbWK0/0GoRc=",
+        "lastModified": 1755621638,
+        "narHash": "sha256-xGdoc9Uv8BvzMcQXPtdKnIltw5kQIPFiLYeKt4yiznc=",
         "ref": "refs/heads/main",
-        "rev": "4d4c2b8f0a801c91ce5b717c77fe3a17efa1402f",
-        "revCount": 150,
+        "rev": "ba169d91ddf35e47e02ec12f6de02c413144efe4",
+        "revCount": 152,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/nixos-module.git"
       },
@@ -896,11 +896,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1755460838,
-        "narHash": "sha256-DV3qHp0qGLHDmalBT13YT+K9Ihu1mYwkF/8cpFKhSYk=",
+        "lastModified": 1755621063,
+        "narHash": "sha256-Z7I2nWEdMHTBd47OE2OqN3kyukU//lgsyDSyi4vW5vs=",
         "owner": "YaLTeR",
         "repo": "niri",
-        "rev": "3a85e77518aca0351d74508133e28c8737cc1414",
+        "rev": "1013147ba3154788cb16ffc32b8155fd2008dfa3",
         "type": "github"
       },
       "original": {
@@ -960,11 +960,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1755395461,
-        "narHash": "sha256-2zsR2QAE7wnDWzzMpVDpV6k+PCrcoVf1+yiNd4dbd08=",
+        "lastModified": 1755620637,
+        "narHash": "sha256-GrjnULS8kCt5mjS1GY0hTVoo79FWNnHDyPBwfjTVKUs=",
         "owner": "kaylorben",
         "repo": "nixcord",
-        "rev": "b1260171b674953712e093acfd285585f6586a01",
+        "rev": "98d17e0edf67cf359a5e3bee8f9c44e574978fed",
         "type": "github"
       },
       "original": {
@@ -1149,11 +1149,11 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1755465171,
-        "narHash": "sha256-vGNQOI+26Lxjf0YNfXRScZ++1TqvFNZpDP47GWFv8Po=",
+        "lastModified": 1755640677,
+        "narHash": "sha256-8PzY9Z2B/ThcEPfECbNiBl+xeosCFs9PAJCBi364wI0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e4f28529650e163574f78bd309150fccba09b15d",
+        "rev": "0d77f6c00bfe7fb9641ec926356166e912b337b7",
         "type": "github"
       },
       "original": {
@@ -1349,11 +1349,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1755378131,
-        "narHash": "sha256-0GKZEzTUcaoama56xaagKnMk5hqMbTUfGF4KfzLwje4=",
+        "lastModified": 1755636375,
+        "narHash": "sha256-HQQ7LdyHWCUcRBeGLTwJm+tJ8hmuglSzP/ZLeNBjFkk=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "82242e0f9b1d91b6f170807a6ec622cfdb816eac",
+        "rev": "2567b924669c566d132ce4cafd4bc0a119846b52",
         "type": "github"
       },
       "original": {
