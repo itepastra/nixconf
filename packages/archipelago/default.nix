@@ -10,10 +10,10 @@ let
     nix-update-script
     ;
   pname = "archipelago";
-  version = "0.0.2";
+  version = "0.0.4";
   src = fetchurl {
-    url = "https://github.com/itepastra/Archipelago/releases/download/0.0.2/Archipelago_0.6.4_linux-x86_64.AppImage";
-    hash = "sha256-nw9IwrUUbfVBXWW6g/od1xTERuu296R1Ydbd8fet76k=";
+    url = "https://github.com/itepastra/Archipelago/releases/download/${version}/Archipelago_0.6.4_linux-x86_64.AppImage";
+    hash = "sha256-CpB79z0xz+W8223QknK/BlINUl/ukYAsWn1fDhll3tM=";
   };
 
   appimageContents = appimageTools.extractType2 { inherit pname version src; };
