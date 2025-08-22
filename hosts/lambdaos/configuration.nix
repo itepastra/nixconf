@@ -58,7 +58,7 @@
         enableGames = true;
         displays = [
           {
-            name = "DP-3";
+            name = "DP-2";
             horizontal = 2560;
             vertical = 1440;
             horizontal-offset = 2560;
