@@ -46,6 +46,7 @@
 
   services = {
     fprintd.enable = true;
+    fwupd.enable = true;
     tlp.enable = true;
     power-profiles-daemon.enable = false;
     avahi = {

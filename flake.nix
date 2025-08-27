@@ -107,7 +107,7 @@
               inherit inputs;
             };
             modules = [
-              inputs.hardware.nixosModules.framework-11th-gen-intel
+              inputs.hardware.nixosModules.framework-amd-ai-300-series
               ./hosts/muos/configuration.nix
             ]
             ++ commonModules;
