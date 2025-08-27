@@ -43,7 +43,6 @@
       7791 # Pixelflut
       38281 # Archipelago
       2283 # immich
-      5123
     ];
     firewall.allowedUDPPorts = [
       38281 # Archipelago
