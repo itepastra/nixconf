@@ -2,7 +2,8 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/master";
+    # nixpkgs.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs/51df7c0ced79f069f0082eb26fcef8cca2a4eb50";
     # nixpkgs.url = "/home/noa/Documents/programming/nixpkgs";
 
     # nix based ssg
@@ -88,7 +89,8 @@
             modules = [
               ./hosts/lambdaos/configuration.nix
               inputs.nixsg.nixosModules.nginxSite
-            ] ++ commonModules;
+            ]
+            ++ commonModules;
           };
           nuOS = nixpkgs.lib.nixosSystem {
             specialArgs = {
@@ -97,7 +99,8 @@
             modules = [
               inputs.authentik.nixosModules.default
               ./hosts/nuos/configuration.nix
-            ] ++ commonModules;
+            ]
+            ++ commonModules;
           };
           muOS = nixpkgs.lib.nixosSystem {
             specialArgs = {
@@ -106,7 +109,8 @@
             modules = [
               inputs.hardware.nixosModules.framework-11th-gen-intel
               ./hosts/muos/configuration.nix
-            ] ++ commonModules;
+            ]
+            ++ commonModules;
           };
         };
       nixosModules = {
