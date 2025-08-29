@@ -240,6 +240,13 @@
 
     };
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
-    targets.plymouth.enable = false;
+    targets = {
+      plymouth.enable = false;
+      qt = {
+        enable = true;
+        platform = pkgs.lib.mkForce "qtct";
+      };
+    };
+
   };
 }
