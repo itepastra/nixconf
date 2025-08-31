@@ -10,10 +10,10 @@ let
     nix-update-script
     ;
   pname = "archipelago";
-  version = "0.0.8";
+  version = "0.0.9";
   src = fetchurl {
     url = "https://github.com/itepastra/Archipelago/releases/download/${version}/Archipelago_0.6.4_linux-x86_64.AppImage";
-    hash = "sha256-TNXaigMURFp9XUpRNVAXeDOYUksLRUuydy4F8yc+2Q8=";
+    hash = "sha256-gpTRUjzj5cWVb8khIw1P4pV7Cmd9nVIcBBxLqpptW9o=";
   };
 
   appimageContents = appimageTools.extractType2 { inherit pname version src; };
@@ -40,10 +40,6 @@ appimageTools.wrapType2 {
     changelog = "https://github.com/ArchipelagoMW/Archipelago/releases/tag/${version}";
     license = lib.licenses.mit;
     mainProgram = "archipelago";
-    maintainers = with lib.maintainers; [
-      pyrox0
-      iqubic
-    ];
     platforms = lib.platforms.linux;
   };
 }
