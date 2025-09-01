@@ -447,8 +447,10 @@ in
     # ssh, my big friend. WHY do you do difficult sometimes
     ssh = {
       enable = true;
-      compression = true;
       matchBlocks = {
+        "*" = {
+          compression = true;
+        };
         "aur" = {
           host = "aur.archlinux.org";
           hostname = "aur.archlinux.org";
