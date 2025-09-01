@@ -45,17 +45,6 @@
     };
     # scrolling window manager
     niri.url = "github:YaLTeR/niri";
-    # alternative nix implementation
-    lix = {
-      url = "git+https://git.lix.systems/lix-project/lix.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # module for lix
-    lix-module = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.lix.follows = "lix";
-    };
     # declarative vencord client
     nixcord.url = "github:kaylorben/nixcord";
     # for styling apps etc in a consistent theme
@@ -76,7 +65,6 @@
             stylix.nixosModules.stylix
             agenix.nixosModules.default
             disko.nixosModules.disko
-            lix-module.nixosModules.default
           ];
         in
         {
