@@ -57,6 +57,10 @@
   # Configure console keymap
   console.keyMap = "us-acentos";
 
+  environment.systemPackages = [
+    pkgs.age-plugin-yubikey
+  ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
     defaultUserShell = pkgs.zsh;
