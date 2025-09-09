@@ -394,22 +394,27 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "noa@voorwaarts.nl";
-    certs = {
-      "noa.voorwaarts.nl".extraDomainNames = [
-        "images.noa.voorwaarts.nl"
-        "maintenance.noa.voorwaarts.nl"
-        "map.noa.voorwaarts.nl"
-      ];
-      "itepastra.nl".extraDomainNames = [
-        "locked.itepastra.nl"
-        "calendar.itepastra.nl"
-        "home.itepastra.nl"
-      ]
-      ++ [
-        (lib.mkIf (import ./toggles.nix).enableFlurry "flurry.itepastra.nl")
-      ]
-      ++ [ (lib.mkIf (import ./toggles.nix).enableQubitQuilt "geenit.nl") ];
-    };
+    certs = lib.mkMerge [
+      ({
+        "noa.voorwaarts.nl".extraDomainNames = [
+          "images.noa.voorwaarts.nl"
+          "maintenance.noa.voorwaarts.nl"
+          "map.noa.voorwaarts.nl"
+        ];
+        "itepastra.nl".extraDomainNames = [
+          "locked.itepastra.nl"
+          "calendar.itepastra.nl"
+          "home.itepastra.nl"
+        ]
+        ++ [
+          (lib.mkIf (import ./toggles.nix).enableFlurry "flurry.itepastra.nl")
+        ];
+      })
+      (lib.mkIf (import ./toggles.nix).enableQubitQuilt {
+        "geenit.nl" = { };
+      })
+    ];
+
   };
 
   stylix = {
