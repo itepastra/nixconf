@@ -76,7 +76,7 @@ in
         (lib.mkIf (import ./toggles.nix).enableFlurry {
           "flurry.itepastra.nl" = proxy "itepastra.nl" "http://127.0.0.1:3000";
         })
-        (lib.mkif (import ./toggles.nix).enableQubitQuilt {
+        (lib.mkIf (import ./toggles.nix).enableQubitQuilt {
           "geenit.nl" = {
             forceSSL = true;
             enableACME = true;
