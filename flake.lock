@@ -216,6 +216,22 @@
         "type": "github"
       }
     },
+    "booktheme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741979577,
+        "narHash": "sha256-SECuhWk5pDEgERURb78QrzSyKINV62fLXladfPA5q9w=",
+        "owner": "getzola",
+        "repo": "book",
+        "rev": "4ee06ce568e1c9f6d19f53bf521fb267603bc6c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "getzola",
+        "repo": "book",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1748047550,
@@ -338,6 +354,18 @@
         "owner": "itepastra",
         "repo": "disqalculate",
         "type": "github"
+      }
+    },
+    "export_templates": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-rtBhRkzwg9imC8WSr4AsuQnMcfv3n/jB8+/mPRPGzzk=",
+        "type": "file",
+        "url": "https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v4.4.1-stable_export_templates.tpz"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v4.4.1-stable_export_templates.tpz"
       }
     },
     "fenix": {
@@ -1037,6 +1065,22 @@
     },
     "nixpkgs_10": {
       "locked": {
+        "lastModified": 1756911493,
+        "narHash": "sha256-6n/n1GZQ/vi+LhFXMSyoseKdNfc2QQaSBXJdgamrbkE=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "c6a788f552b7b7af703b1a29802a7233c0067908",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_11": {
+      "locked": {
         "lastModified": 1756819007,
         "narHash": "sha256-12V64nKG/O/guxSYnr5/nq1EfqwJCdD2+cIGmhz3nrE=",
         "owner": "NixOS",
@@ -1289,6 +1333,27 @@
         "type": "github"
       }
     },
+    "qubit-quilt": {
+      "inputs": {
+        "booktheme": "booktheme",
+        "export_templates": "export_templates",
+        "nixpkgs": "nixpkgs_10"
+      },
+      "locked": {
+        "lastModified": 1757398682,
+        "narHash": "sha256-kdvzQkhEpv1Vog+DehW1ZaGC8zlp8fheF7i1BC7Npeg=",
+        "owner": "itepastra",
+        "repo": "Quantum-surface-application",
+        "rev": "375a658a480e6b79b52f05ab5764f4d0cc7c66cc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "itepastra",
+        "ref": "init-website",
+        "repo": "Quantum-surface-application",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -1305,6 +1370,7 @@
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_8",
         "nixsg": "nixsg",
+        "qubit-quilt": "qubit-quilt",
         "stylix": "stylix",
         "tsunami": "tsunami_2"
       }
@@ -1339,7 +1405,7 @@
         "firefox-gnome-theme": "firefox-gnome-theme",
         "flake-parts": "flake-parts_3",
         "gnome-shell": "gnome-shell",
-        "nixpkgs": "nixpkgs_10",
+        "nixpkgs": "nixpkgs_11",
         "nur": "nur",
         "systems": "systems_7",
         "tinted-foot": "tinted-foot",

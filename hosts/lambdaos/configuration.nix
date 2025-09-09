@@ -96,6 +96,7 @@
       enable = true;
       libraries = with pkgs; [
         libc
+        icu
       ];
     };
   };

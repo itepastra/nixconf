@@ -56,6 +56,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.lix.follows = "lix";
     };
+    qubit-quilt = {
+      url = "github:itepastra/Quantum-surface-application/init-website";
+    };
     # declarative vencord client
     nixcord.url = "github:kaylorben/nixcord";
     # for styling apps etc in a consistent theme
