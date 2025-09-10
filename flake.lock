@@ -1340,16 +1340,16 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1757424740,
-        "narHash": "sha256-CcQRv2DGeht5pQey8LRxqG+xhGedNzx1ouhxGODgyfo=",
+        "lastModified": 1757505376,
+        "narHash": "sha256-2Dp37q92uQDyu1gpqWGxmP7AUu36KkJjnUH2czKiKaU=",
         "owner": "itepastra",
         "repo": "Quantum-surface-application",
-        "rev": "b54bf88f2612d0b3fcc8b675aa729f534c96ca9f",
+        "rev": "3af5fc57fbce6858ba18f904366982945dc9b3f6",
         "type": "github"
       },
       "original": {
         "owner": "itepastra",
-        "ref": "init-website",
+        "ref": "qubit-controls",
         "repo": "Quantum-surface-application",
         "type": "github"
       }

@@ -57,7 +57,7 @@
       inputs.lix.follows = "lix";
     };
     qubit-quilt = {
-      url = "github:itepastra/Quantum-surface-application/init-website";
+      url = "github:itepastra/Quantum-surface-application/qubit-controls";
     };
     # declarative vencord client
     nixcord.url = "github:kaylorben/nixcord";
