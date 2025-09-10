@@ -1340,11 +1340,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1757506510,
-        "narHash": "sha256-7qXnz8WBXXayXieqTJVW0G3etYOPE8ba0z4p8PZgEqc=",
+        "lastModified": 1757509969,
+        "narHash": "sha256-REVjNzIxTBRRlPyCHAE48zOi+uh4Kl6CSruZjqPxneA=",
         "owner": "itepastra",
         "repo": "Quantum-surface-application",
-        "rev": "f6c05a52195e9e9dea5fdd4b325d7917d8ca3d6b",
+        "rev": "b8664751b6c88fdf9b6f18151f46c432f21403ee",
         "type": "github"
       },
       "original": {
