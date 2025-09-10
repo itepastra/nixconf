@@ -17,11 +17,6 @@
         dedicatedServer.openFirewall = true;
       };
 
-      alvr = {
-        enable = true;
-        openFirewall = true;
-      };
-
       gamemode.enable = true;
     };
 
