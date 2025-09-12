@@ -43,11 +43,6 @@
       url = "github:itepastra/flurry";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # scrolling window manager
-    niri = {
-      url = "github:YaLTeR/niri";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # alternative nix implementation
     lix = {
       url = "git+https://git.lix.systems/lix-project/lix.git";
