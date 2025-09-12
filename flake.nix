@@ -2,7 +2,7 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
 
     # nix based ssg
     nixsg.url = "github:itepastra/nixsg/no-md-parser";
@@ -44,7 +44,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # scrolling window manager
-    niri.url = "github:YaLTeR/niri";
+    niri = {
+      url = "github:YaLTeR/niri";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # alternative nix implementation
     lix = {
       url = "git+https://git.lix.systems/lix-project/lix.git";
@@ -57,7 +60,7 @@
       inputs.lix.follows = "lix";
     };
     qubit-quilt = {
-      url = "github:itepastra/Quantum-surface-application/qubit-controls";
+      url = "github:itepastra/Quantum-surface-application";
     };
     # declarative vencord client
     nixcord.url = "github:kaylorben/nixcord";
