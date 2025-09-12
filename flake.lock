@@ -99,11 +99,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1757062396,
-        "narHash": "sha256-403iuoMVVjk64sF1GgZfrRwOnVU1H14sflE+LNp927c=",
+        "lastModified": 1757676906,
+        "narHash": "sha256-2Zbde5orbGsYdzroe51P1AW8pFMCNyqHgLjmHYJvOmE=",
         "owner": "nix-community",
         "repo": "authentik-nix",
-        "rev": "22827e9a0cc002a076ee8bd14c3433ebc6c87f95",
+        "rev": "04db807ac00ba6d62808ffab18b3b6d500b6f7cb",
         "type": "github"
       },
       "original": {
@@ -838,11 +838,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1757618151,
-        "narHash": "sha256-tJtyTagzB7VKAdjGn4KNb3TSbKkgBdHBnZWI84WDW/g=",
+        "lastModified": 1757677923,
+        "narHash": "sha256-qCBCmH3xfXUU4zlUAKEsnduvB756xsY0HS6Fhc0Ejeo=",
         "ref": "refs/heads/main",
-        "rev": "b5cf7dff7b8118e11c18c8d10a4b569b695d044f",
-        "revCount": 18332,
+        "rev": "b966d2e53bd6f5f03ae86b60b12d7489cf91f1a6",
+        "revCount": 18337,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix.git"
       },
@@ -1142,11 +1142,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1757674516,
-        "narHash": "sha256-U4BVKgXJ8XJuWRpDGzyyTxEzPTehGiYACF6DiBUHWi0=",
+        "lastModified": 1757695692,
+        "narHash": "sha256-UqsTGMr7iCofAmhPs5LvTXEA8vEhHhEhWGvW2zUKlvY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7f9bf6f84462128090b4ba3a7be6966bbf31b28e",
+        "rev": "0e03b5669c0f4a8935823d309d3230e57a972321",
         "type": "github"
       },
       "original": {
