@@ -91,6 +91,16 @@
     "nvidia_uvm"
   ];
 
+  programs = {
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        libc
+        icu
+      ];
+    };
+  };
+
   services = {
     postgresql = {
       enable = true;
