@@ -54,9 +54,9 @@ in
             };
           };
 
-          "images.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:2283/";
-          "maintenance.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:5000/";
-          "map.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://127.0.0.1:8123/";
+          # "images.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:2283/";
+          # "maintenance.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:5000/";
+          # "map.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://127.0.0.1:8123/";
 
           "itepastra.nl" = {
             forceSSL = true;
@@ -68,10 +68,10 @@ in
             };
           };
 
-          "calendar.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:29341";
+          # "calendar.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:29341";
 
           # home-assistant proxy
-          "home.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:8123";
+          #"home.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:8123";
         })
         (lib.mkIf (import ./toggles.nix).enableFlurry {
           "flurry.itepastra.nl" = proxy "itepastra.nl" "http://127.0.0.1:3000";
