@@ -77,7 +77,7 @@ in
           "flurry.itepastra.nl" = proxy "itepastra.nl" "http://127.0.0.1:3000";
         })
         (lib.mkIf (import ./toggles.nix).enableQubitQuilt {
-          "geenit.nl" = {
+          "qq.geenit.nl" = {
             forceSSL = true;
             enableACME = true;
             extraConfig = extra;

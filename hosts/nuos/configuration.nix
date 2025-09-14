@@ -411,7 +411,7 @@
         ];
       })
       (lib.mkIf (import ./toggles.nix).enableQubitQuilt {
-        "geenit.nl" = { };
+        "qq.geenit.nl" = { };
       })
     ];
 
