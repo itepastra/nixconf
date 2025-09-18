@@ -2,7 +2,7 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/c718a7eca49a03ec19488c101bd11fb7689e4e08";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
 
     # nix based ssg
     nixsg.url = "github:itepastra/nixsg/no-md-parser";
