@@ -102,6 +102,8 @@ in
         yubico-piv-tool
         libreoffice
         tmux
+
+        krita
       ];
 
     # # I set my cursor here, the one I fetched above
