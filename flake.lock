@@ -99,11 +99,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1758012467,
-        "narHash": "sha256-chw8rq+XzKf58G2NyPvM8uUJUbQTpZbGGEKaWfkD6Zg=",
+        "lastModified": 1758177015,
+        "narHash": "sha256-PCUWdbaxayY3YfSjVlyddBMYoGvSaRysd5AmZ8gqSFs=",
         "owner": "nix-community",
         "repo": "authentik-nix",
-        "rev": "367332e56eed4525cb676125c65c8a005c476785",
+        "rev": "4c626ed84cc0f1278bfba0f534efd6cba2788d75",
         "type": "github"
       },
       "original": {
@@ -115,16 +115,16 @@
     "authentik-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1757951234,
-        "narHash": "sha256-4RU/mllgqoykXqeO67iodmhsgIrJqow0LitaQGLKS8Q=",
+        "lastModified": 1758035356,
+        "narHash": "sha256-DkvxDwHCfSqEpZ9rRXNR8MP0Mz/y1kHAr38exrHQ39c=",
         "owner": "goauthentik",
         "repo": "authentik",
-        "rev": "28ff5614006ceea21b2633da8c675eb75c6bacdd",
+        "rev": "680feaefa17934471a6b33ebc35caf5b64120404",
         "type": "github"
       },
       "original": {
         "owner": "goauthentik",
-        "ref": "version/2025.8.2",
+        "ref": "version/2025.8.3",
         "repo": "authentik",
         "type": "github"
       }
@@ -321,11 +321,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1757508292,
-        "narHash": "sha256-7lVWL5bC6xBIMWWDal41LlGAG+9u2zUorqo3QCUL4p4=",
+        "lastModified": 1758287904,
+        "narHash": "sha256-IGmaEf3Do8o5Cwp1kXBN1wQmZwQN3NLfq5t4nHtVtcU=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "146f45bee02b8bd88812cfce6ffc0f933788875a",
+        "rev": "67ff9807dd148e704baadbd4fd783b54282ca627",
         "type": "github"
       },
       "original": {
@@ -813,11 +813,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1758119172,
-        "narHash": "sha256-LnVuGLf0PJHqqIHroxEzwXS57mjAdHSrXi0iODKbbiU=",
+        "lastModified": 1758545873,
+        "narHash": "sha256-0VP5cVd6DyibHNPC/IJ5Ut+KuNYUeKmr5ltzf+IcpjA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "9f408dc51c8e8216a94379e6356bdadbe8b4fef9",
+        "rev": "de5369834ff1f75246c46be89ef993392e961c26",
         "type": "github"
       },
       "original": {
@@ -838,11 +838,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1758126409,
-        "narHash": "sha256-RkqywRKSg1Dq0fgtiMCiMjfbCBiqfXsLSVMLKhCiL80=",
+        "lastModified": 1758524657,
+        "narHash": "sha256-lE6mqb8aq+1Cp0q8TPyYV1T1JwLxySFVkDO35jgurr4=",
         "ref": "refs/heads/main",
-        "rev": "0018b988597f7e5fa482e3a77e3d6b539c146ed4",
-        "revCount": 18347,
+        "rev": "f68233ec4320c75c3e913313f47a06621b1e0dfe",
+        "revCount": 18371,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix.git"
       },
@@ -969,11 +969,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1758071854,
-        "narHash": "sha256-j+WhSfu+/gehgfV3zCVV7Nt8DERdXm8e3TAJ9r9wUtA=",
+        "lastModified": 1758529184,
+        "narHash": "sha256-5vlU2JBQknXaeBCmw0NqWzT6BP3WbiVjFylwhzsHuSA=",
         "owner": "kaylorben",
         "repo": "nixcord",
-        "rev": "cebd8615c6e896b34083986eeee1a9b5c662689a",
+        "rev": "cae5b4a4c5d91fde75fe32dcca06e77f6ac9c56b",
         "type": "github"
       },
       "original": {
@@ -1174,11 +1174,11 @@
     },
     "nixpkgs_9": {
       "locked": {
-        "lastModified": 1756911493,
-        "narHash": "sha256-6n/n1GZQ/vi+LhFXMSyoseKdNfc2QQaSBXJdgamrbkE=",
+        "lastModified": 1758262103,
+        "narHash": "sha256-aBGl3XEOsjWw6W3AHiKibN7FeoG73dutQQEqnd/etR8=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c6a788f552b7b7af703b1a29802a7233c0067908",
+        "rev": "12bd230118a1901a4a5d393f9f56b6ad7e571d01",
         "type": "github"
       },
       "original": {
@@ -1305,11 +1305,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1758053733,
-        "narHash": "sha256-ARLLR/uYXmcbC20OJHUC1OZ/faEjizH0IZu9R+QBU88=",
+        "lastModified": 1758550704,
+        "narHash": "sha256-XJUHlNJnYqtGWah/qIVXv9B5pilthN1HYYQXwekJbSk=",
         "owner": "itepastra",
         "repo": "Quantum-surface-application",
-        "rev": "7fb1ce683564e1af3f1bb81686694aead8b0e4d8",
+        "rev": "cca3314aa372dc4dc4805a1b1d6472df2e030640",
         "type": "github"
       },
       "original": {
