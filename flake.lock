@@ -1310,7 +1310,6 @@
       },
       "locked": {
         "lastModified": 1758718054,
-        "narHash": "sha256-/K8PpbwtwSYpfq2faIehv/UYt9QvcKbcCCBTebNU4zU=",
         "owner": "itepastra",
         "repo": "Quantum-surface-application",
         "rev": "e1a71ae7115f8e20fa5fcee80cf2f67101116449",
