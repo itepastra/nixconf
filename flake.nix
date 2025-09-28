@@ -115,5 +115,6 @@
         automapaper = ./modules/automapaper;
       };
       packages = import ./packages { inherit nixpkgs; };
+      formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
     };
 }
