@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/master";
 
     # nix based ssg
-    nixsg.url = "github:itepastra/nixsg/no-md-parser";
+    nixsg.url = "github:itepastra/nixsg";
     #nixsg.url = "/home/noa/Documents/programming/nixsg";
 
     home-manager = {
