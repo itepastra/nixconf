@@ -760,11 +760,11 @@
     "godot_src": {
       "flake": false,
       "locked": {
-        "lastModified": 1759760783,
-        "narHash": "sha256-oFrw2e+GKBH7HnSk3RdVOT+3NM9Nb3mnwupunaqEpSU=",
+        "lastModified": 1759783955,
+        "narHash": "sha256-/1iLAb9IdDhuB6qjWWinLEjKq/peYCuKwEO0c5xwu/w=",
         "owner": "itepastra",
         "repo": "godot",
-        "rev": "adab9241869ad9c97c9dbd402f58a59e278b0b54",
+        "rev": "6e33357cc13b064cf4b59aaf0f80110a27edf1cb",
         "type": "github"
       },
       "original": {
@@ -1146,11 +1146,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1759084553,
-        "narHash": "sha256-+nLoleLrwBZfWy77xEEJ7p9+TL6nVozcJC5s1pk08yM=",
+        "lastModified": 1759916821,
+        "narHash": "sha256-Nu5vTBN3/0sb/tssJ/85fQbMguX1XtYB1QRIDJw4KA8=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "34d8587b96f57b7f8fc3d8d92360bc6c8f9fb103",
+        "rev": "2b6e272f5f1f7bcc8b6d8d52cb49c1a340396824",
         "type": "github"
       },
       "original": {
@@ -1308,11 +1308,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1759761094,
-        "narHash": "sha256-6QTWTizSCYz9oHIWvTO34uoouK+S59s1Dsd6FJNtQbg=",
+        "lastModified": 1759913930,
+        "narHash": "sha256-V7iFBxU6pP8QVgwurw6r+lJK64OjseEiJ+7FROE6/54=",
         "owner": "itepastra",
         "repo": "Quantum-surface-application",
-        "rev": "2065cffb69b36252f3759e673c99b303839c6e2e",
+        "rev": "641b0c2dbef27e2c4396ca4e0a83e1c0e5da5c73",
         "type": "github"
       },
       "original": {
