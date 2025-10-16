@@ -386,6 +386,7 @@
           "maintenance.noa.voorwaarts.nl"
           "map.noa.voorwaarts.nl"
         ];
+        "geenit.nl" = { };
         "itepastra.nl".extraDomainNames = [
           "locked.itepastra.nl"
           "calendar.itepastra.nl"
