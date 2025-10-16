@@ -36,6 +36,7 @@ in
         pull.rebase = false;
         commit.gpgsign = cfg.do_sign;
         push.autoSetupRemote = true;
+        credential.helper = "store";
       };
     };
   };
