@@ -348,16 +348,17 @@
     forgejo = {
       enable = true;
       settings = {
-        server = {
-          DOMAIN = "git.geenit.nl";
-          HTTP_PORT = 2929;
-          ROOT_URL = "https://git.geenit.nl";
-        };
         DEFAULT = {
           APP_NAME = "Solgit";
           APP_SLOGAN = "Git of da runners";
           RUN_MODE = "dev";
         };
+        server = {
+          DOMAIN = "git.geenit.nl";
+          HTTP_PORT = 2929;
+          ROOT_URL = "https://git.geenit.nl";
+        };
+        service.DISABLE_REGISTRATION = true;
       };
 
       database = {
