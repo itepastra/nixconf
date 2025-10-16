@@ -72,6 +72,16 @@ in
 
           # home-assistant proxy
           "home.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:8123";
+
+          "geenit.nl" = {
+            forceSSL = true;
+            enableACME = true;
+            extraConfig = extra;
+            locations."/" = {
+              proxyWebsockets = true;
+              proxyPass = "http://127.0.0.1:2929/";
+            };
+          };
         })
         (lib.mkIf (import ./toggles.nix).enableFlurry {
           "flurry.itepastra.nl" = proxy "itepastra.nl" "http://127.0.0.1:3000";

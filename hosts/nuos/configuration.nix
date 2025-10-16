@@ -340,34 +340,28 @@
       admins = [ "itepastra" ];
       extraSettingsFile = config.age.secrets."factorio/solrunners".path;
     };
-    github-runners = {
-      flurry-runner = {
-        enable = true;
-        extraPackages = with pkgs; [
-          nodejs
-          curl
-        ];
-        name = "flurry-runner";
-        replace = true;
-        tokenFile = config.age.secrets."secrets/token-flurry".path;
-        url = "https://github.com/itepastra/flurry";
-      };
-      anstml-runner = {
-        enable = true;
-        extraPackages = with pkgs; [
-          nodejs
-          curl
-        ];
-        name = "anstml-runner";
-        replace = true;
-        tokenFile = config.age.secrets."secrets/token-anstml".path;
-        url = "https://github.com/itepastra/anstml";
-      };
-    };
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
+    };
+    forgejo = {
+      enable = true;
+      settings = {
+        server = {
+          DOMAIN = "geenit.nl";
+          HTTP_PORT = 2929;
+        };
+        DEFAULT = {
+          APP_NAME = "Solgit";
+          APP_SLOGAN = "Git of da runners";
+          RUN_MODE = "dev";
+        };
+      };
+
+      database = {
+        type = "postgres";
+      };
     };
     radicale = {
       enable = true;
