@@ -73,7 +73,7 @@ in
           # home-assistant proxy
           "home.itepastra.nl" = proxy "itepastra.nl" "http://[::1]:8123";
 
-          "geenit.nl" = {
+          "git.geenit.nl" = {
             forceSSL = true;
             enableACME = true;
             extraConfig = extra;
