@@ -24,6 +24,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = [
+      pkgs.git-credential-manager
+    ];
+
     programs.git = {
       enable = true;
       userName = cfg.name;
@@ -37,6 +41,7 @@ in
         commit.gpgsign = cfg.do_sign;
         push.autoSetupRemote = true;
         credential.helper = "store";
+        credential.credentialStore = "secretservice";
       };
     };
   };
