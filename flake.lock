@@ -843,11 +843,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1760373051,
-        "narHash": "sha256-bzHF5WGmvtpHLAhIb25trISoVH3jpV0vXdAConSMI1w=",
+        "lastModified": 1760552848,
+        "narHash": "sha256-ibkmGcXZUpSSMMePfD+CFML5BFUHKVycSwh2FPRx2qg=",
         "ref": "refs/heads/main",
-        "rev": "faa0b4f29163372ad4e5118cb13840358f6504e0",
-        "revCount": 18431,
+        "rev": "cac395ffbccbd0ebdbd6c7aa46f003a0be212112",
+        "revCount": 18434,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix.git"
       },
@@ -974,11 +974,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1760491287,
-        "narHash": "sha256-BOvhD3Q9fZcxQbjz9YPdOTrWjRnyUVqW2YTFJZI8rQE=",
+        "lastModified": 1760577660,
+        "narHash": "sha256-ukYkRvYyzzq2qIDVZHfTizNVmrUsKa+Am7V+4K4w4Fg=",
         "owner": "kaylorben",
         "repo": "nixcord",
-        "rev": "b88450ad729eed534601ff0813b3fed46dd013cb",
+        "rev": "1f1d0421558822f69934be92685f1a6f0f16b98e",
         "type": "github"
       },
       "original": {
@@ -1147,11 +1147,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1760514381,
-        "narHash": "sha256-pnIpQa8eg7LeKOzceK1StMSlXzSRd8ZG1hlbHlNpyEw=",
+        "lastModified": 1760602311,
+        "narHash": "sha256-WBuHO1gvLwXLuzSVqolQX7EOtn3KHNNjV+/61rHDthA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "022f85617572e1c3f00500c7aef225a0e8e5ce1e",
+        "rev": "3b8a01a3cf41846ef64a6ad7168db5fd06cf3bfa",
         "type": "github"
       },
       "original": {
@@ -1309,11 +1309,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1760443300,
-        "narHash": "sha256-uDD85CeMGOurTiQBl2v7ONWsSL6v0gXeYi2cgSIq2sU=",
+        "lastModified": 1760517003,
+        "narHash": "sha256-/P34srRL9Td42m8eEZWkKq5k49DkB15eAQPFQkUqU7c=",
         "owner": "itepastra",
         "repo": "Quantum-surface-application",
-        "rev": "88bfd035950424b0a34528e386c9188116a4c409",
+        "rev": "5e707e3b31e01f98a8769667c946319a3da5b180",
         "type": "github"
       },
       "original": {
