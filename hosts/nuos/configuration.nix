@@ -351,6 +351,7 @@
         server = {
           DOMAIN = "git.geenit.nl";
           HTTP_PORT = 2929;
+          ROOT_URL = "https://git.geenit.nl";
         };
         DEFAULT = {
           APP_NAME = "Solgit";
