@@ -349,7 +349,7 @@
       enable = true;
       settings = {
         server = {
-          DOMAIN = "geenit.nl";
+          DOMAIN = "git.geenit.nl";
           HTTP_PORT = 2929;
         };
         DEFAULT = {
