@@ -1309,11 +1309,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1760893822,
-        "narHash": "sha256-ougeKpSczNrrMIYMVwQ/DfzW7JbLfZAicbIU39xRkRo=",
+        "lastModified": 1761048973,
+        "narHash": "sha256-SvHz4PRXqh3T7tkAuHkEHmtA9+o+/aJKteop/O1vgDs=",
         "owner": "itepastra",
         "repo": "Quantum-surface-application",
-        "rev": "8c35f6b56de753ada3142ed858e21287b67e4260",
+        "rev": "0790674d9b02dd0e639666bb7f131fc109e968d7",
         "type": "github"
       },
       "original": {
