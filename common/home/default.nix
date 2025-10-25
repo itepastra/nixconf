@@ -453,6 +453,7 @@ in
     # ssh, my big friend. WHY do you do difficult sometimes
     ssh = {
       enable = true;
+      enableDefaultConfig = false;
       matchBlocks = {
         "*" = {
           compression = true;
