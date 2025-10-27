@@ -2,7 +2,7 @@
 { lib, ... }:
 {
   disko.devices = {
-    disk.main = {
+    disk.disk1 = {
       device = lib.mkDefault "/dev/nvme0n1";
       type = "disk";
       content = {
@@ -15,7 +15,7 @@
           };
           esp = {
             name = "ESP";
-            size = "1G";
+            size = "500M";
             type = "EF00";
             content = {
               type = "filesystem";
@@ -26,12 +26,11 @@
           root = {
             size = "100%";
             content = {
-              type = "btrfs";
-              extraArgs = [ "-f" ];
+              type = "filesystem";
+              format = "ext4";
               mountpoint = "/";
               mountOptions = [
-                "compress=zstd"
-                "noatime" # ignore access times
+                "defaults"
               ];
             };
           };
