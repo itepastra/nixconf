@@ -20,7 +20,7 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
-    modules.games.minecraft.enable = true;
-    modules.games.lutris.enable = true;
+    modules.games.minecraft.enable = lib.mkDefault true;
+    modules.games.lutris.enable = lib.mkDefault true;
   };
 }

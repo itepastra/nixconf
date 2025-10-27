@@ -154,6 +154,7 @@ in
   modules = {
     # imagine steam but like without a monitor
     games.enable = enableGraphical && enableGames;
+    games.lutris.enable = false;
 
     # other things I like to use
     apps = {
