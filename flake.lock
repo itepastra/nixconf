@@ -825,11 +825,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1761635345,
-        "narHash": "sha256-sLdpVGwngdvwN1h/92uewuO749hujs8DCvfrJtr/2FU=",
+        "lastModified": 1761640886,
+        "narHash": "sha256-e50zwva5PhD4IC6hc5A+BQDcPToJWU5q10nDn9UqVhc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c0b192e003994a869a0251f10dbcd3d7de9c509d",
+        "rev": "7271a39b1cd7d9b6799399dc2fbf1d5a6f16edea",
         "type": "github"
       },
       "original": {
@@ -986,11 +986,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1761569249,
-        "narHash": "sha256-YNAGOnw5xuImKYHUMvrNG4qGEd8Dom/v6i57GvlM470=",
+        "lastModified": 1761641373,
+        "narHash": "sha256-U84cKHsA+5y8b9k3cSiQrQ5aRhkDCe61Dq/HTz0bToU=",
         "owner": "itepastra",
         "repo": "Quantum-surface-application",
-        "rev": "102bfb8c2d7cd81e98e561decc0e690bbd2327b4",
+        "rev": "3ed2d9a7fce3a65fe20bdf69cc93084bfb8a79e8",
         "type": "github"
       },
       "original": {
