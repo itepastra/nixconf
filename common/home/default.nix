@@ -28,7 +28,7 @@ let
 
   # I like my animated rainbow cursor, so I get it here
   cursor_name = "Bibata-Rainbow-Modern";
-  cursor_src = pkgs.runCommandNoCC cursor_name { } ''
+  cursor_src = pkgs.runCommand cursor_name { } ''
     mkdir -p $out/share/icons
     ln -s ${
       pkgs.fetchzip {
