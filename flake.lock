@@ -3,11 +3,11 @@
     "advisory-db": {
       "flake": false,
       "locked": {
-        "lastModified": 1761631338,
-        "narHash": "sha256-F6dlUrDiShwhMfPR+WoVmaQguGdEwjW9SI4nKlkay7c=",
+        "lastModified": 1762160821,
+        "narHash": "sha256-p7w6xk8DFkH82VDiyAfdaI7MySdakUGQc81cuAuGKKc=",
         "owner": "rustsec",
         "repo": "advisory-db",
-        "rev": "2e45336771e36acf5bcefe7c99280ab214719707",
+        "rev": "efae9f98cbc46ae877f5616c04b4c3f13ecedcf7",
         "type": "github"
       },
       "original": {
@@ -582,11 +582,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762087455,
-        "narHash": "sha256-hpbPma1eUKwLAmiVRoMgIHbHiIKFkcACobJLbDt6ABw=",
+        "lastModified": 1762146130,
+        "narHash": "sha256-/XOEA0a61fZ45i/BpaSsyLNNbw/yKwjMbkB/IWSGLzU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "43e205606aeb253bfcee15fd8a4a01d8ce8384ca",
+        "rev": "b5ed4afc2277339bdf0e9edf59befff7350cf075",
         "type": "github"
       },
       "original": {
@@ -748,11 +748,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761985367,
-        "narHash": "sha256-d3r/PvZPbxGyORCIhHFQCy9ErsZ5zvLsDfC7/YocN8M=",
+        "lastModified": 1762132006,
+        "narHash": "sha256-p/SPmpOjl0VcN57RSCEas9iCK7ZMACpqjmYhaASavoc=",
         "owner": "kaylorben",
         "repo": "nixcord",
-        "rev": "59ffa1a20eb1311d1447a012fcd839c73cae77be",
+        "rev": "b7b4ef9e4ea61a83b229957c62e9dd5b5dc1abf8",
         "type": "github"
       },
       "original": {
@@ -825,11 +825,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1762099039,
-        "narHash": "sha256-rWfXMCC3x4CmurhCkoUg8nJ6TD5lrZtlQRgoNEAQRA8=",
+        "lastModified": 1762170481,
+        "narHash": "sha256-JyFmCpq2Nl0WB5IScJSxzLAESmrS9/jKNjD4QN373qI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7ab501fef80324348405def21f79bcdbe8b35196",
+        "rev": "c787dd813d78c85511b307135a703504e01cd4cf",
         "type": "github"
       },
       "original": {
@@ -986,11 +986,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1762100332,
-        "narHash": "sha256-odPyMrB8x97Nfwal14FeBZia0NCGWoLYyawIH9mN9Vo=",
+        "lastModified": 1762170857,
+        "narHash": "sha256-RX0NZRA68p66Q9jnN1sYxXetHswDQsd0iYN1benne20=",
         "owner": "itepastra",
         "repo": "Quantum-surface-application",
-        "rev": "8eb8e19301d25ad68e78b30d951e2c02cd043629",
+        "rev": "3cdf1a6dae89ada194b73c0cf384148be9649820",
         "type": "github"
       },
       "original": {
@@ -1050,11 +1050,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1761840967,
-        "narHash": "sha256-alE8Vesztx3tPxXpJURtYWD8x1cXaU/x+10Q6hbgGBY=",
+        "lastModified": 1762101397,
+        "narHash": "sha256-wGiL2K3kAyBBmIZpJEskaSIgyzzpg0zwfvri+Sy6/CI=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "c33226f205aeab42a170913cd1f8bc3428b7e6b1",
+        "rev": "8c0640d5722a02178c8ee80a62c5f019cab4b3c1",
         "type": "github"
       },
       "original": {
