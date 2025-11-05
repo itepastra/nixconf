@@ -327,7 +327,7 @@
 
   services = {
     factorio = {
-      enable = false;
+      enable = true;
       # package = pkgs.factorio-headless.override {
       #   versionsJson = ./versions.json;
       # };
