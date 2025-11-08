@@ -79,8 +79,8 @@ in
       ]
       # FLURRY AND TSUNAMI :3 (I made these)
       ++ lib.optionals enableFlut [
-        inputs.flurry.packages.${system}.default
-        inputs.tsunami.packages.${system}.default
+        inputs.flurry.packages.${stdenv.hostPlatform.system}.default
+        inputs.tsunami.packages.${stdenv.hostPlatform.system}.default
       ]
       # and ofc the things that are only logical with graphics
       ++ lib.optionals enableGraphical [
@@ -143,7 +143,7 @@ in
       "niri/config.kdl".source = import ../../packages/niri-config/default.nix {
         inherit pkgs displays;
         inputs = inputs;
-        self-pkgs = inputs.self.packages.${pkgs.system};
+        self-pkgs = inputs.self.packages.${pkgs.stdenv.hostPlatform.system};
       };
     };
   };
@@ -338,7 +338,7 @@ in
 
             Service = {
               ExecStart = "${
-                inputs.automapaper.packages.${pkgs.system}.automapaper
+                inputs.automapaper.packages.${pkgs.stdenv.hostPlatform.system}.automapaper
               }/bin/automapaper -C ${display_config}/config.toml";
               Restart = "on-failure";
               RestartSec = 15;
