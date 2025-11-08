@@ -94,6 +94,7 @@
   fonts.packages = with pkgs; [
     font-awesome
     noto-fonts
+    stix-two
     fira-code
     fira-code-symbols
     liberation_ttf
