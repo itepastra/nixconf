@@ -175,6 +175,11 @@ window-rule {
 }
 
 window-rule {
+  match app-id=r#"^factorio$"#
+  default-column-width { proportion: 1; }
+}
+
+window-rule {
   match app-id=r#"^kitty$"#
   draw-border-with-background false
 }
