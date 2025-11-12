@@ -14,6 +14,7 @@
             type = "EF02";
           };
           esp = {
+            priority = 1;
             name = "ESP";
             size = "1G";
             type = "EF00";
@@ -28,6 +29,7 @@
             size = "100%";
             content = {
               type = "btrfs";
+              extraArgs = [ "-f" ];
               subvolumes = {
                 "/rootfs" = {
                   mountpoint = "/";
