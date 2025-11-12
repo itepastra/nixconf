@@ -346,11 +346,11 @@
       settings.KbdInteractiveAuthentication = false;
     };
     forgejo = {
-      enable = true;
+      enable = false;
       settings = {
         DEFAULT = {
-          APP_NAME = "Solgit";
-          APP_SLOGAN = "Git of da runners";
+          APP_NAME = "OaGit";
+          APP_SLOGAN = "Noa's personal git";
           RUN_MODE = "dev";
         };
         server = {
