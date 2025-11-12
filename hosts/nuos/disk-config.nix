@@ -53,7 +53,6 @@
                 };
               };
 
-              mountpoint = "/partition-root";
             };
           };
         };
