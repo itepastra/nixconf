@@ -1,6 +1,6 @@
 let
   noa = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKOiz4Dsp4fgtwgOvARzOO9kZI4fSwJ4QJCf34dGVB6Z";
-  nuOS = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM79/rtDi2KIN75Rr6ae+A8lPTSCQfCkhbx1tGmQ3Qed";
+  nuOS = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMD1SQumqEsx1N0v35ThrGgb9rH12j/eOIUf3TdEi0G6";
 in
 {
   "factorio/solrunners.age".publicKeys = [
