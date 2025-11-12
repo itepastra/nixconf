@@ -139,7 +139,10 @@ in
       configPackages = [ pkgs.niri ];
     };
     # If I have a monitor I want niri with my config, but niri wants it at that spot
-    configFile = lib.mkIf enableGraphical {
+    configFile = {
+      "mimeapps.list".force = true;
+    }
+    // lib.mkIf enableGraphical {
       "niri/config.kdl".source = import ../../packages/niri-config/default.nix {
         inherit pkgs displays;
         inputs = inputs;
