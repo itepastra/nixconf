@@ -15,7 +15,7 @@
           };
           esp = {
             name = "ESP";
-            size = "500M";
+            size = "1G";
             type = "EF00";
             content = {
               type = "filesystem";
@@ -26,12 +26,35 @@
           root = {
             size = "100%";
             content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
-              mountOptions = [
-                "defaults"
-              ];
+              type = "btrfs";
+              subvolumes = {
+                "/rootfs" = {
+                  mountpoint = "/";
+                };
+
+                "/home" = {
+                  mountOptions = [ "compress=zstd" ];
+                  mountpoint = "/home";
+                };
+
+                "/nix" = {
+                  mountOptions = [
+                    "compress=zstd"
+                    "noatime"
+                  ];
+                  mountpoint = "/nix";
+                };
+
+                "/immich" = {
+                  mountOptions = [
+                    "compress=zstd"
+                    "noatime"
+                  ];
+                  mountpoint = "/var/lib/immich";
+                };
+              };
+
+              mountpoint = "/partition-root";
             };
           };
         };
