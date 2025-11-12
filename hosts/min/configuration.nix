@@ -9,6 +9,10 @@
   ];
 
   networking.useDHCP = lib.mkDefault true;
+  networking = {
+    hostName = "nuOS"; # Define your hostname.
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 

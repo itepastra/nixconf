@@ -195,6 +195,15 @@
             ]
             ++ commonModules;
           };
+
+          alphaOS = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs;
+            };
+            modules = [
+              ./hosts/min/configuration.nix
+            ];
+          };
         };
       nixosModules = {
         automapaper = ./modules/automapaper;
