@@ -345,7 +345,7 @@
       settings.KbdInteractiveAuthentication = false;
     };
     forgejo = {
-      enable = false;
+      enable = true;
       settings = {
         DEFAULT = {
           APP_NAME = "OaGit";
