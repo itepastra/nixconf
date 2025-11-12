@@ -357,7 +357,7 @@
           HTTP_PORT = 2929;
           ROOT_URL = "https://git.geenit.nl";
         };
-        service.DISABLE_REGISTRATION = true;
+        service.DISABLE_REGISTRATION = false;
       };
 
       database = {
