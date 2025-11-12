@@ -202,6 +202,7 @@
             };
             modules = [
               ./hosts/min/configuration.nix
+              inputs.disko.nixosModules.disko
             ];
           };
         };
