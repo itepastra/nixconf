@@ -21,7 +21,7 @@ in
     };
 
     services.home-assistant = {
-      enable = true;
+      enable = false;
       extraComponents = [
         "esphome"
         "met"
