@@ -339,6 +339,12 @@
       admins = [ "itepastra" ];
       extraSettingsFile = config.age.secrets."factorio/solrunners".path;
     };
+    immich = {
+      enable = true;
+      settings = {
+        server.externalDomain = "https://images.noa.voorwaarts.nl";
+      };
+    };
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
