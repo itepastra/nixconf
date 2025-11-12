@@ -319,8 +319,6 @@
       "authentik/env".file = ../../secrets/authentik/env.age;
       "rsecrets/radicale" = {
         file = ../../secrets/radicale/htpasswd.age;
-        owner = "radicale";
-        group = "radicale";
       };
     };
   };
