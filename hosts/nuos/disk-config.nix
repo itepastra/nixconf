@@ -8,11 +8,6 @@
       content = {
         type = "gpt";
         partitions = {
-          boot = {
-            name = "boot";
-            size = "1M";
-            type = "EF02";
-          };
           esp = {
             priority = 1;
             name = "ESP";
