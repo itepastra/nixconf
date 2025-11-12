@@ -6,6 +6,7 @@
 {
   imports = [
     ../nuos/disk-config.nix
+    ../../common/boot.nix
   ];
 
   networking.useDHCP = lib.mkDefault true;
