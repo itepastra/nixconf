@@ -12,16 +12,16 @@ in
 {
   config = {
 
-    # age.secrets = {
-    #   "ha/ns" = {
-    #     file = ../../secrets/home-assistant/ns.age;
-    #     owner = "hass";
-    #     group = "hass";
-    #   };
-    # };
+    age.secrets = {
+      "ha/ns" = {
+        file = ../../secrets/home-assistant/ns.age;
+        owner = "hass";
+        group = "hass";
+      };
+    };
 
     services.home-assistant = {
-      enable = false;
+      enable = true;
       extraComponents = [
         "esphome"
         "met"
