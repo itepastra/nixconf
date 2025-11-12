@@ -526,7 +526,7 @@ in
 
   stylix = {
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
-    cursor = {
+    cursor = lib.mkIf enableGraphical {
       name = cursor_name;
       package = cursor_src;
       size = 32;
