@@ -22,10 +22,6 @@ in
     noa
     nuOS
   ];
-  "nix-serve/private.age".publicKeys = [
-    noa
-    nuOS
-  ];
   "radicale/htpasswd.age".publicKeys = [
     noa
     nuOS

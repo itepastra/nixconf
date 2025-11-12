@@ -313,12 +313,13 @@
       "secrets/token-flurry".file = ../../secrets/github/flurry.age;
       "secrets/token-anstml".file = ../../secrets/github/anstml.age;
       "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
-      "secrets/nix-store-key".file = ../../secrets/nix-serve/private.age;
       "discord/disqalculate".file = ../../secrets/discord/disqalculate.age;
       "factorio/solrunners".file = ../../secrets/factorio/solrunners.age;
       "authentik/env".file = ../../secrets/authentik/env.age;
       "rsecrets/radicale" = {
         file = ../../secrets/radicale/htpasswd.age;
+        owner = "radicale";
+        group = "radicale";
       };
     };
   };
