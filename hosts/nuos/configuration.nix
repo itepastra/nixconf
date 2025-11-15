@@ -323,7 +323,7 @@
         };
       }
       {
-        "discord/disqalculate".file = {
+        "discord/disqalculate" = {
           file = ../../secrets/discord/disqalculate.age;
           owner = "disqalculate";
           group = "disqalculate";
