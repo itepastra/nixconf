@@ -382,10 +382,10 @@ in
   };
 
   programs = {
-    chromium = {
-      enable = enableGraphical;
-      package = pkgs.ungoogled-chromium;
-    };
+    # chromium = {
+    #   enable = enableGraphical;
+    #   package = pkgs.ungoogled-chromium;
+    # };
     # wowa, I can set btop settings from here???
     btop = {
       enable = true;
