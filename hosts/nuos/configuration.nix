@@ -309,19 +309,27 @@
 
   age = {
     identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
-    secrets = {
-      "secrets/token-flurry".file = ../../secrets/github/flurry.age;
-      "secrets/token-anstml".file = ../../secrets/github/anstml.age;
-      "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
-      "discord/disqalculate".file = ../../secrets/discord/disqalculate.age;
-      "factorio/solrunners".file = ../../secrets/factorio/solrunners.age;
-      "authentik/env".file = ../../secrets/authentik/env.age;
-      "rsecrets/radicale" = {
-        file = ../../secrets/radicale/htpasswd.age;
-        owner = "radicale";
-        group = "radicale";
-      };
-    };
+    secrets = lib.mkMerge [
+      {
+        "secrets/token-flurry".file = ../../secrets/github/flurry.age;
+        "secrets/token-anstml".file = ../../secrets/github/anstml.age;
+        "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
+        "factorio/solrunners".file = ../../secrets/factorio/solrunners.age;
+        "authentik/env".file = ../../secrets/authentik/env.age;
+        "rsecrets/radicale" = {
+          file = ../../secrets/radicale/htpasswd.age;
+          owner = "radicale";
+          group = "radicale";
+        };
+      }
+      {
+        "discord/disqalculate".file = {
+          file = ../../secrets/discord/disqalculate.age;
+          owner = "disqalculate";
+          group = "disqalculate";
+        };
+      }
+    ];
   };
 
   services = {
