@@ -98,13 +98,13 @@
     };
   };
 
-  systemd.timers."update-from-flake" = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "*-*-* 05:00:00";
-      Persistent = true;
-    };
-  };
+  # systemd.timers."update-from-flake" = {
+  #   wantedBy = [ "timers.target" ];
+  #   timerConfig = {
+  #     OnCalendar = "*-*-* 05:00:00";
+  #     Persistent = true;
+  #   };
+  # };
 
   nix = {
     settings = {
