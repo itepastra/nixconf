@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    ../nuos/disk-config.nix
+    ../muos/disk-config.nix
     ../../common/boot.nix
   ];
 
