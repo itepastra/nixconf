@@ -493,7 +493,7 @@ require("lazy").setup({
   {
     'chomosuke/typst-preview.nvim',
     opts = {
-      open_cmd = 'firefox %s -P typst-preview --class typst-preview',
+      open_cmd = 'firefox %s',
       port = 28282,
     },
     ft = 'typst',
