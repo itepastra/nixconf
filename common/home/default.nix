@@ -150,6 +150,7 @@ in
         "x-scheme-handler/https" = "firefox.desktop";
         "x-scheme-handler/about" = "firefox.desktop";
         "x-scheme-handler/unknown" = "firefox.desktop";
+        "application/pdf" = "firefox.desktop";
       };
     };
     # If I have a monitor I want niri with my config, but niri wants it at that spot
