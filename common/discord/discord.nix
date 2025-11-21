@@ -14,11 +14,11 @@
       frameless = true;
       useQuickCss = true;
       plugins = {
-        blurNSFW.enable = true;
+        blurNsfw.enable = true;
         fakeNitro.enable = true;
         fixSpotifyEmbeds.enable = true;
         callTimer.enable = true;
-        clearURLs.enable = true;
+        clearUrLs.enable = true;
         fixYoutubeEmbeds.enable = true;
         noF1.enable = true;
         petpet.enable = true;
