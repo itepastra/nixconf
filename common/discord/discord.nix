@@ -22,11 +22,6 @@
         fixYoutubeEmbeds.enable = true;
         noF1.enable = true;
         petpet.enable = true;
-        replaceGoogleSearch = {
-          enable = true;
-          customEngineName = "duck duck go";
-          customEngineURL = "https://duckduckgo.com/";
-        };
         spotifyCrack.enable = true;
         typingTweaks.enable = true;
         unindent.enable = true;
