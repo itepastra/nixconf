@@ -58,9 +58,8 @@ in
     file = {
       # makes yubikey stuff work
       ".gnupg/scdaemon.conf".text = "disable-ccid";
+      ".ssh/id_rsa_yubikey.pub".text = builtins.elemAt (import ../ssh-keys.nix) 0;
       # I don't want the directory directly in home, even though I only go to it via the symlink
-      "programming".source =
-        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/programming/";
     };
     # haha, now I can set my home folder like this
     homeDirectory = "/home/${me.nickname}";
