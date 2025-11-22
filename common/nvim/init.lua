@@ -177,6 +177,13 @@ require('lazy').setup({
   'tpope/vim-fugitive',          -- git thing
   'norcalli/nvim-colorizer.lua', -- highlight colors and rgb codes
 
+  {
+    'chomosuke/typst-preview.nvim',
+    lazy = false, -- or ft = 'typst'
+    version = '1.*',
+    opts = {},    -- lazy.nvim will implicitly calls `setup {}`
+  }
+
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
