@@ -182,7 +182,7 @@ require('lazy').setup({
     lazy = false, -- or ft = 'typst'
     version = '1.*',
     opts = {},    -- lazy.nvim will implicitly calls `setup {}`
-  }
+  },
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
