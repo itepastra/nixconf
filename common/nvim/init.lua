@@ -32,6 +32,10 @@ vim.o.showmode = false
 --   vim.o.clipboard = 'unnamedplus'
 -- end)
 
+vim.o.tabstop = 4;
+vim.o.shiftwidth = 4;
+vim.o.expandtab = true;
+
 -- Enable break indent
 vim.o.breakindent = true
 
