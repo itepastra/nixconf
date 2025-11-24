@@ -28,7 +28,11 @@
       viAlias = true;
       vimAlias = true;
 
-      extraLuaConfig = lib.fileContents ./init.lua;
+      extraLuaConfig =
+        builtins.replaceStrings
+          [ "@websocat@" "@tinymist@" ]
+          [ "${pkgs.websocat}/bin/websocat" "${pkgs.tinymist}/bin/tinymist" ]
+          (lib.fileContents ./init.lua);
     };
   };
 }

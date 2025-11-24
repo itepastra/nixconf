@@ -186,7 +186,14 @@ require('lazy').setup({
     lazy = false, -- or ft = 'typst'
     version = '1.*',
     opts = {
+      debug = true,
       open_cmd = 'firefox %s',
+
+      dependencies_bin = {
+        ['tinymist'] = "@tinymist@",
+        ['websocat'] = "@websocat@",
+      },
+
       port = 28282,
     }, -- lazy.nvim will implicitly calls `setup {}`
   },
