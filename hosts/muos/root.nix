@@ -126,7 +126,6 @@
     targets = {
       neovim.enable = false;
       waybar.enable = false;
-      swaylock.enable = true;
       firefox.profileNames = [ "profile_0" ];
       qt = {
         enable = true;

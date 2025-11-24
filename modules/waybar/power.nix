@@ -20,7 +20,7 @@ in
       settings.mainBar."${name}" = {
         format = "";
         on-click = "${inputs.self.packages.${pkgs.system}.fuzzel-power}/bin/fuzzel-power";
-        on-click-right = "${pkgs.swaylock}/bin/swaylock"; # TODO: change to whatever lock screen i want
+        on-click-right = "${pkgs.hyprlock}/bin/hyprlock";
       };
       style = ''
         #custom-poweroff {

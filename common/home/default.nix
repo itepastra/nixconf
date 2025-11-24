@@ -458,6 +458,9 @@ in
     };
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
+    hyprlock = {
+      enable = enableGraphical;
+    };
     # add `play funny video` as alias because why not
     zsh.shellAliases.bzzt = lib.mkIf enableGraphical ''nix-shell -p mpv --command "mpv ~/Videos/BZZZM.mp4"'';
     # lsd makes files look better
@@ -503,10 +506,6 @@ in
           user = "git";
         };
       };
-    };
-    zoxide = {
-      enable = true;
-      enableZshIntegration = true;
     };
   };
 
@@ -561,7 +560,6 @@ in
     targets = {
       neovim.enable = false;
       waybar.enable = false;
-      swaylock.enable = true;
       fuzzel.enable = false;
       firefox.profileNames = [ "profile_0" ];
       qt = {

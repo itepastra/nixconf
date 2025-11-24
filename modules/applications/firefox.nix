@@ -24,6 +24,7 @@ in
           isDefault = true;
           search = {
             default = "ddg";
+            force = true;
             order = [
               "ddg"
               "google"

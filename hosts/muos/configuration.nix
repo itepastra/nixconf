@@ -12,6 +12,8 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
 
+    ../../common/graphix.nix
+
     ../../common
     ../../common/configuration.nix
 

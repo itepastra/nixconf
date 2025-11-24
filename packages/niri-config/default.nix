@@ -8,7 +8,7 @@ let
   terminal = "${pkgs.kitty}/bin/kitty";
   launcher = "${self-pkgs.fuzzel-launch}/bin/fuzzel-launch";
   power-menu = "${self-pkgs.fuzzel-power}/bin/fuzzel-power";
-  lockscreen = "${pkgs.swaylock}/bin/swaylock";
+  lockscreen = "${pkgs.hyprlock}/bin/hyprlock";
   autostart-string =
     "spawn-at-startup \""
     + pkgs.lib.strings.concatStringsSep "\nspawn-at-startup \"" [
