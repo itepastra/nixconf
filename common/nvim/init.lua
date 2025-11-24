@@ -185,7 +185,10 @@ require('lazy').setup({
     'chomosuke/typst-preview.nvim',
     lazy = false, -- or ft = 'typst'
     version = '1.*',
-    opts = {},    -- lazy.nvim will implicitly calls `setup {}`
+    opts = {
+      open_cmd = 'firefox %s',
+      port = 28282,
+    }, -- lazy.nvim will implicitly calls `setup {}`
   },
 
   -- NOTE: Plugins can also be added by using a table,
