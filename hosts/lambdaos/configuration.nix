@@ -97,6 +97,7 @@
       libraries = with pkgs; [
         libc
         icu
+        stdenv.cc.cc.lib
       ];
     };
   };
