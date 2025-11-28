@@ -433,6 +433,9 @@ require('lazy').setup({
         'dundalek/lazy-lsp.nvim',
         opts = {
           use_vim_lsp_config = true,
+          excluded_servers = {
+            "pylyzer"
+          },
         }
       },
 
