@@ -46,11 +46,6 @@
     ];
   };
 
-  fileSystems."/home/noa/Pictures/library" = {
-    device = "/dev/disk/by-uuid/93a74173-8719-4be2-86b3-dc80588b9cf8";
-    fsType = "ext4";
-  };
-
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
