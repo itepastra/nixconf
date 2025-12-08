@@ -308,7 +308,7 @@
   };
 
   age = {
-    identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
+    identityPaths = [ "/etc/ssh/ssh_host_ed25519_key.pub" ];
     secrets = lib.mkMerge [
       {
         "secrets/token-flurry".file = ../../secrets/github/flurry.age;
