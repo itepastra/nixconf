@@ -218,10 +218,6 @@
     sudo.execWheelOnly = true;
   };
 
-  system = {
-    rebuild.enableNg = true;
-  };
-
   stylix = {
     enable = true;
     autoEnable = true;
