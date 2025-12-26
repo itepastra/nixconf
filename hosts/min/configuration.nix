@@ -5,13 +5,13 @@
 }:
 {
   imports = [
-    ../muos/disk-config.nix
+    ../lambdaos/disk-config.nix
     ../../common/boot.nix
   ];
 
   networking.useDHCP = lib.mkDefault true;
   networking = {
-    hostName = "nuOS"; # Define your hostname.
+    hostName = "lambdaOS"; # Define your hostname.
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
   };
 

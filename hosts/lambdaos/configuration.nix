@@ -5,6 +5,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -17,6 +18,8 @@
 
     ./rescue.nix
     ./restic.nix
+
+    ./disk-config.nix
   ];
 
   age.identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
@@ -28,7 +31,7 @@
     };
     open = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   hardware.keyboard.qmk.enable = true;
 
@@ -65,15 +68,15 @@
             refresh-rate = 360;
             scale = "1";
           }
-          {
-            name = "HDMI-A-1";
-            horizontal = 2560;
-            vertical = 1440;
-            horizontal-offset = 2560;
-            vertical-offset = 0;
-            refresh-rate = 144;
-            scale = "1";
-          }
+          # {
+          #   name = "HDMI-A-1";
+          #   horizontal = 2560;
+          #   vertical = 1440;
+          #   horizontal-offset = 2560;
+          #   vertical-offset = 0;
+          #   refresh-rate = 144;
+          #   scale = "1";
+          # }
         ];
         extraConfig = {
           programs.btop.package = pkgs.btop.overrideAttrs (oldAttrs: {
@@ -92,6 +95,10 @@
   ];
 
   programs = {
+    alvr = {
+      enable = true;
+      openFirewall = true;
+    };
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
@@ -232,5 +239,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "26.05"; # Did you read the comment?
 }

@@ -14,11 +14,9 @@
       frameless = true;
       useQuickCss = true;
       plugins = {
-        blurNsfw.enable = true;
         fakeNitro.enable = true;
         fixSpotifyEmbeds.enable = true;
         callTimer.enable = true;
-        clearUrLs.enable = true;
         fixYoutubeEmbeds.enable = true;
         noF1.enable = true;
         petpet.enable = true;
