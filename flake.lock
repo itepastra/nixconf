@@ -43,22 +43,6 @@
         "type": "github"
       }
     },
-    "alvr-nixpkgs": {
-      "locked": {
-        "lastModified": 1765840429,
-        "narHash": "sha256-OV/iFdwGWlEJd7kO3YmDa0Co413SiqEHTLMnhlNNJJo=",
-        "owner": "itepastra",
-        "repo": "nixpkgs",
-        "rev": "485513cf380aff6bab5f5991e03d467fd4de5313",
-        "type": "github"
-      },
-      "original": {
-        "owner": "itepastra",
-        "ref": "alvr-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "authentik": {
       "inputs": {
         "authentik-src": "authentik-src",
@@ -1021,7 +1005,6 @@
       "inputs": {
         "advisory-db": "advisory-db",
         "agenix": "agenix",
-        "alvr-nixpkgs": "alvr-nixpkgs",
         "authentik": "authentik",
         "automapaper": "automapaper",
         "crane": "crane",
