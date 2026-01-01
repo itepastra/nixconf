@@ -102,11 +102,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1733737024,
-        "narHash": "sha256-CD5uqmMxRPaq+wkD012MSyvx0GC9BPloy2E7BGG5NWM=",
+        "lastModified": 1767272747,
+        "narHash": "sha256-na64sSzYi0gYkjKIJ2Fg2IrOpwAvcbHfkQHL3pvnLjU=",
         "owner": "itepastra",
         "repo": "automapaper",
-        "rev": "32176bfe5d26d57e3183f73904e5b8c891818ef6",
+        "rev": "07b5b23f176cf11a55666b46d981c100bf562d4c",
         "type": "github"
       },
       "original": {
@@ -827,11 +827,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1767271343,
-        "narHash": "sha256-2SKP6RLgSZDD4mXxxVlObRGFaGp5gaaxlFNf+DUV/Lg=",
+        "lastModified": 1767278013,
+        "narHash": "sha256-V1+q0lYAjOF0o3sm2icHkfGN9S82RE0280IFjvVdAGY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "713b4f4e0399053d700d8cac3a1ee51e1354d2ba",
+        "rev": "1c4d72de11c5053c5d7058bfcea366ee050ab752",
         "type": "github"
       },
       "original": {
