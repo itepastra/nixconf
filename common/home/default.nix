@@ -125,7 +125,7 @@ in
     };
 
     # the default config told me not to change this
-    stateVersion = "23.11"; # WARN: Do not change :3
+    stateVersion = "26.05"; # WARN: Do not change :3
 
     # I can also use me here, wowa
     username = me.nickname;
