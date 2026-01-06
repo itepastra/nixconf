@@ -33,7 +33,7 @@
     };
 
     # main inputs
-    nixpkgs.url = "github:nixos/nixpkgs/51be9c59a890463e15d0677cb550787dc0d4bbfe";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
 
     nixsg.url = "github:itepastra/nixsg";
 
