@@ -186,7 +186,7 @@ require('lazy').setup({
     lazy = false, -- or ft = 'typst'
     version = '1.*',
     opts = {
-      debug = true,
+      debug = false,
       open_cmd = 'firefox %s',
 
       dependencies_bin = {
