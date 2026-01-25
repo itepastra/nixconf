@@ -750,15 +750,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1768845897,
-        "narHash": "sha256-RpGlRmG2UGiv8D+bxTClaDjpzNUOyNZ/qqfw83KMuOI=",
-        "owner": "kaylorben",
+        "lastModified": 1768863048,
+        "narHash": "sha256-wXp4FFTFQ7DxALauk5gVCB0ie9hErm7Lv9nxs7WzBw0=",
+        "owner": "PartlyAwesome",
         "repo": "nixcord",
-        "rev": "1fc8c300280dcd69e0f733132ac380231486185f",
+        "rev": "e16d8d3187a184981a51c07cd8c181bcc23eea3e",
         "type": "github"
       },
       "original": {
-        "owner": "kaylorben",
+        "owner": "PartlyAwesome",
+        "ref": "fix-activation-scripts",
         "repo": "nixcord",
         "type": "github"
       }

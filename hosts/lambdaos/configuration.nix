@@ -24,6 +24,10 @@
 
   age.identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
 
+  hardware.opentabletdriver = {
+    enable = true;
+    daemon.enable = true;
+  };
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement = {
@@ -84,7 +88,7 @@
             vertical = 1440;
             horizontal-offset = 0;
             vertical-offset = 0;
-            refresh-rate = 360;
+            refresh-rate = 359.979;
             scale = "1";
           }
           # {
