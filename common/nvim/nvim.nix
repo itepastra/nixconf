@@ -28,7 +28,7 @@
       viAlias = true;
       vimAlias = true;
 
-      extraLuaConfig =
+      initLua =
         builtins.replaceStrings
           [ "@websocat@" "@tinymist@" ]
           [ "${pkgs.websocat}/bin/websocat" "${pkgs.tinymist}/bin/tinymist" ]
