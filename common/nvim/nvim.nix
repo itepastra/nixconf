@@ -19,7 +19,7 @@
         wget
         tree-sitter
         fd
-        nixfmt-rfc-style
+        nixfmt
         gcc
         typst
         python313
