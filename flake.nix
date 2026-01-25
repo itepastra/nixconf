@@ -129,7 +129,7 @@
     };
     # declarative vencord client
     nixcord = {
-      url = "github:PartlyAwesome/nixcord/fix-activation-scripts";
+      url = "github:FlameFlag/nixcord";
       inputs = {
         flake-parts.follows = "flake-parts";
         flake-compat.follows = "flake-compat";

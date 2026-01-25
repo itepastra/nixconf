@@ -17,7 +17,6 @@
     ../../common/configuration.nix
 
     ./rescue.nix
-    ./restic.nix
 
     ./disk-config.nix
   ];
@@ -54,6 +53,12 @@
     ];
     firewall.allowedUDPPorts = [
       38281 # Archipelago
+    ];
+
+    nameservers = [
+      "192.168.42.1"
+      "1.1.1.1"
+      "8.8.8.8"
     ];
 
     wg-quick.interfaces = {
@@ -152,6 +157,19 @@
     hardware = {
       openrgb = {
         enable = true;
+      };
+    };
+    resolved = {
+      enable = true;
+      settings.Resolve = {
+        DNSSEC = "true";
+        Domains = [ "~." ];
+        FallbackDNS = [
+          "192.168.42.1"
+          "10.69.69.1"
+          "8.8.8.8"
+        ];
+        DNSOverTLS = "true";
       };
     };
     udev = {

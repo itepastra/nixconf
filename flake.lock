@@ -750,16 +750,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1768863048,
-        "narHash": "sha256-wXp4FFTFQ7DxALauk5gVCB0ie9hErm7Lv9nxs7WzBw0=",
-        "owner": "PartlyAwesome",
+        "lastModified": 1769337638,
+        "narHash": "sha256-xJvTZGJWaSBq857V/PVL5GblIpiuO0IuUupLvBxNqr0=",
+        "owner": "FlameFlag",
         "repo": "nixcord",
-        "rev": "e16d8d3187a184981a51c07cd8c181bcc23eea3e",
+        "rev": "ef69bfad63be091496c444675aee2e8af6a8973c",
         "type": "github"
       },
       "original": {
-        "owner": "PartlyAwesome",
-        "ref": "fix-activation-scripts",
+        "owner": "FlameFlag",
         "repo": "nixcord",
         "type": "github"
       }
