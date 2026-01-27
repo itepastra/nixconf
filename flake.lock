@@ -957,6 +957,22 @@
         "type": "github"
       }
     },
+    "prettier-plugins": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1756747291,
+        "narHash": "sha256-IunmEVfCr6CzK9WMKyb59E7zHG0NxHzO/SjoaT2kS34=",
+        "owner": "nix-utilities",
+        "repo": "prettier-with-plugins",
+        "rev": "8f25f283cedad10b50212b69377b950bf093c6d7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-utilities",
+        "repo": "prettier-with-plugins",
+        "type": "github"
+      }
+    },
     "pyproject-build-systems": {
       "inputs": {
         "nixpkgs": [
@@ -1048,6 +1064,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixsg": "nixsg",
         "nixvim": "nixvim",
+        "prettier-plugins": "prettier-plugins",
         "qubit-quilt": "qubit-quilt",
         "stylix": "stylix",
         "systems": "systems_2",

@@ -145,6 +145,10 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    prettier-plugins = {
+      url = "github:nix-utilities/prettier-with-plugins";
+      flake = false;
+    };
     # for styling apps etc in a consistent theme
     stylix = {
       url = "github:danth/stylix";

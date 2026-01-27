@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 {
   config.programs.nixvim.plugins.conform-nvim = {
     settings = {
@@ -8,13 +13,7 @@
             return
           end
 
-          local function on_format(err)
-            if err and err:match("timeout$") then
-              slow_format_filetypes[vim.bo[bufnr].filetype] = true
-            end
-          end
-
-          return { timeout_ms = 200, lsp_fallback = true }, on_format
+          return { timeout_ms = 1000, lsp_fallback = true }, on_format
          end
       '';
 
@@ -30,28 +29,23 @@
       notify_on_error = true;
       formatters_by_ft = {
         html = {
-          __unkeyed-1 = "prettierd";
-          __unkeyed-2 = "prettier";
+          __unkeyed-1 = "prettier";
           stop_after_first = true;
         };
         css = {
-          __unkeyed-1 = "prettierd";
-          __unkeyed-2 = "prettier";
+          __unkeyed-1 = "prettier";
           stop_after_first = true;
         };
         javascript = {
-          __unkeyed-1 = "prettierd";
-          __unkeyed-2 = "prettier";
+          __unkeyed-1 = "prettier";
           stop_after_first = true;
         };
         typescript = {
-          __unkeyed-1 = "prettierd";
-          __unkeyed-2 = "prettier";
+          __unkeyed-1 = "prettier";
           stop_after_first = true;
         };
         svelte = {
-          __unkeyed-1 = "prettierd";
-          __unkeyed-2 = "prettier";
+          __unkeyed-1 = "prettier";
           stop_after_first = true;
         };
         python = [
@@ -61,13 +55,11 @@
         lua = [ "stylua" ];
         nix = [ "nixfmt" ];
         markdown = {
-          __unkeyed-1 = "prettierd";
-          __unkeyed-2 = "prettier";
+          __unkeyed-1 = "prettier";
           stop_after_first = true;
         };
         yaml = {
-          __unkeyed-1 = "prettierd";
-          __unkeyed-2 = "prettier";
+          __unkeyed-1 = "prettier";
           stop_after_first = true;
         };
         bicep = [ "bicep" ];
@@ -96,12 +88,18 @@
         jq = {
           command = "${lib.getExe pkgs.jq}";
         };
-        prettierd = {
-          command = "${lib.getExe pkgs.prettierd}";
-        };
-        prettier = {
-          command = "${lib.getExe pkgs.prettier}";
-        };
+        prettier =
+          let
+            pwp = import inputs.prettier-plugins { inherit lib pkgs; };
+            prettierCustom = pwp.prettier {
+              enabled = with pwp.plugins; [
+                prettier-plugin-svelte
+              ];
+            };
+          in
+          {
+            command = "${lib.getExe prettierCustom}";
+          };
         stylua = {
           command = "${lib.getExe pkgs.stylua}";
         };
