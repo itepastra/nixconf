@@ -70,7 +70,6 @@
           __unkeyed-2 = "prettier";
           stop_after_first = true;
         };
-        terraform = [ "terraform_fmt" ];
         bicep = [ "bicep" ];
         bash = [
           "shellcheck"
@@ -99,6 +98,9 @@
         };
         prettierd = {
           command = "${lib.getExe pkgs.prettierd}";
+        };
+        prettier = {
+          command = "${lib.getExe pkgs.prettier}";
         };
         stylua = {
           command = "${lib.getExe pkgs.stylua}";
