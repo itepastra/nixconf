@@ -63,7 +63,7 @@
 
     wg-quick.interfaces = {
       wg0 = {
-        address = [ "10.69.69.14/24" ];
+        address = [ "10.69.69.5/24" ];
         dns = [ "10.69.69.1" ];
         privateKeyFile = "/home/noa/wireguard-keys/private";
 
