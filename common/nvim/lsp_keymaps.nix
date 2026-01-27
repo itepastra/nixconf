@@ -6,7 +6,7 @@
     mode = "n";
   }
   {
-    key = "gD";
+    key = "gr";
     lspBufAction = "references";
     mode = "n";
   }

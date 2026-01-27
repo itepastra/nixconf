@@ -48,6 +48,7 @@
           "shfmt"
         ];
         json = [ "jq" ];
+        bib = [ "bibtex-tidy" ];
         "_" = [ "trim_whitespace" ];
       };
 
@@ -66,6 +67,9 @@
         };
         jq = {
           command = "${lib.getExe pkgs.jq}";
+        };
+        bibtex-tidy = {
+          command = "${lib.getExe pkgs.bibtex-tidy}";
         };
         prettier =
           let
