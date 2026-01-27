@@ -95,12 +95,16 @@ in
           mode = "v";
         }
         {
-          action = "<diagnostic>setloclist<cr>";
+          action = {
+            __raw = "vim.diagnostic.setloclist";
+          };
           key = "<leader>q";
           mode = "n";
         }
         {
-          action = "<diagnostic>open_float<cr>";
+          action = {
+            __raw = "vim.diagnostic.open_float";
+          };
           key = "<leader>e";
           mode = "n";
         }

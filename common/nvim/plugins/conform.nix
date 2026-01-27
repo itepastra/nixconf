@@ -28,40 +28,19 @@
       '';
       notify_on_error = true;
       formatters_by_ft = {
-        html = {
-          __unkeyed-1 = "prettier";
-          stop_after_first = true;
-        };
-        css = {
-          __unkeyed-1 = "prettier";
-          stop_after_first = true;
-        };
-        javascript = {
-          __unkeyed-1 = "prettier";
-          stop_after_first = true;
-        };
-        typescript = {
-          __unkeyed-1 = "prettier";
-          stop_after_first = true;
-        };
-        svelte = {
-          __unkeyed-1 = "prettier";
-          stop_after_first = true;
-        };
+        html = [ "prettier" ];
+        css = [ "prettier" ];
+        javascript = [ "prettier" ];
+        typescript = [ "prettier" ];
+        svelte = [ "prettier" ];
         python = [
           "black"
           "isort"
         ];
         lua = [ "stylua" ];
         nix = [ "nixfmt" ];
-        markdown = {
-          __unkeyed-1 = "prettier";
-          stop_after_first = true;
-        };
-        yaml = {
-          __unkeyed-1 = "prettier";
-          stop_after_first = true;
-        };
+        markdown = [ "prettier" ];
+        yaml = [ "prettier" ];
         bicep = [ "bicep" ];
         bash = [
           "shellcheck"
