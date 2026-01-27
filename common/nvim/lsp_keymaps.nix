@@ -26,6 +26,18 @@
     mode = "n";
   }
   {
+    key = "<leader>ca";
+    lspBufAction = "code_action";
+    mode = [
+      "n"
+      "x"
+    ];
+  }
+  {
+    key = "<leader>rn";
+    lspBufAction = "rename";
+  }
+  {
     action = mkRaw "require('telescope.builtin').lsp_definitions";
     key = "gd";
   }
