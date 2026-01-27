@@ -43,8 +43,6 @@ in
   imports = [
     # I made some cursed modules (waybar is the worst)
     ../../modules
-    # Was too lazy to do fully declarative nvim, so the lua is hidden there as well
-    ../nvim/nvim.nix
     # we import extraConfig, it's funny that this has the correct effect
     extraConfig
   ]
@@ -191,9 +189,6 @@ in
       };
       # mail stuffs
       thunderbird.enable = enableGraphical;
-      # this just makes neovim function, or does it not matter anymore??
-      # TODO: check if this is needed
-      neovim.enableLanguages = true;
     };
     # my very cursed module for waybar is activated here
     waybar = {
@@ -231,7 +226,7 @@ in
         spotify =
           let
             spotify = (
-              pkgs.writeShellScriptBin "spotify" ''${pkgs.spotify}/bin/spotify --enable-features=UseOzonePlatform --ozone-platform=wayland''
+              pkgs.writeShellScriptBin "spotify" "${pkgs.spotify}/bin/spotify --enable-features=UseOzonePlatform --ozone-platform=wayland"
             );
           in
           {

@@ -891,6 +891,32 @@
         "type": "github"
       }
     },
+    "nixvim": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769418848,
+        "narHash": "sha256-jLSg9IkglcIw64kU1utXxsxXhiVdD45dkh9ZJKaFQ7U=",
+        "owner": "nix-community",
+        "repo": "nixvim",
+        "rev": "c19a0517ddeed4c1548611e42e187048fc2e5dcf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixvim",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -1021,6 +1047,7 @@
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_2",
         "nixsg": "nixsg",
+        "nixvim": "nixvim",
         "qubit-quilt": "qubit-quilt",
         "stylix": "stylix",
         "systems": "systems_2",

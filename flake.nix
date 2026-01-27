@@ -37,6 +37,15 @@
 
     nixsg.url = "github:itepastra/nixsg";
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+      };
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -162,6 +171,7 @@
             stylix.nixosModules.stylix
             agenix.nixosModules.default
             disko.nixosModules.disko
+            nixvim.nixosModules.nixvim
           ];
         in
         {

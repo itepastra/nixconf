@@ -7,6 +7,7 @@
   imports = [
     ./.
     ../modules/games/steam.nix
+    ./nvim
   ];
 
   hardware = {
