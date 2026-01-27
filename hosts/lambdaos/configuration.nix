@@ -60,24 +60,6 @@
       "1.1.1.1"
       "8.8.8.8"
     ];
-
-    wg-quick.interfaces = {
-      wg0 = {
-        address = [ "10.69.69.5/24" ];
-        dns = [ "10.69.69.1" ];
-        privateKeyFile = "/home/noa/wireguard-keys/private";
-
-        peers = [
-          {
-            publicKey = "ocuQMYcNAfQazg/goCip1tAR9A84lIpoM4Ifz2E8/UY=";
-            presharedKeyFile = "/home/noa/wireguard-keys/psk";
-            allowedIPs = [ "10.69.69.1/32" ];
-            endpoint = "wg.peppidesu.dev:51820";
-            persistentKeepalive = 25;
-          }
-        ];
-      };
-    };
   };
 
   home-manager = {
