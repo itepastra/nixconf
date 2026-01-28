@@ -18,5 +18,8 @@
     treesitter.enable = true;
     guess-indent.enable = true;
     gitsigns.enable = true;
+    blink-cmp.enable = true;
+    blink-indent.enable = true;
+    todo-comments.enable = true;
   };
 }

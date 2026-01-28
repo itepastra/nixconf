@@ -7,6 +7,7 @@
 {
   config.programs.nixvim.plugins.conform-nvim = {
     settings = {
+      default_format_opts.lsp_format = "fallback";
       format_on_save = ''
         function(bufnr)
           if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -55,6 +56,11 @@
       formatters = {
         black = {
           command = "${lib.getExe pkgs.black}";
+          append_args = [
+            "-l"
+            "120"
+            "-C"
+          ];
         };
         isort = {
           command = "${lib.getExe pkgs.isort}";
