@@ -38,4 +38,7 @@
   typst = {
     enable = true;
   };
+  roslyn_ls = {
+    enable = true;
+  };
 }
