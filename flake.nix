@@ -179,6 +179,16 @@
           ];
         in
         {
+          xiOS = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs;
+            };
+            modules = [
+              inputs.hardware.nixosModules.apple-macbook-air-5
+              ./hosts/xios/configuration.nix
+            ]
+            ++ commonModules;
+          };
           lambdaOS = nixpkgs.lib.nixosSystem {
             specialArgs = {
               inherit inputs;
