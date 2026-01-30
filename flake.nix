@@ -185,9 +185,9 @@
             };
             modules = [
               inputs.hardware.nixosModules.apple-macbook-air-5
+              inputs.disko.nixosModules.disko
               ./hosts/xios/configuration.nix
-            ]
-            ++ commonModules;
+            ];
           };
           lambdaOS = nixpkgs.lib.nixosSystem {
             specialArgs = {
