@@ -202,7 +202,6 @@
           Type = "exec";
           User = "root";
           ExecStart = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild switch --flake github:itepastra/nixconf";
-          ExecStopPost = ''shutdown -r +5 "Preparing update finished, rebooting..."'';
         };
         wants = [
           "network-online.target"
