@@ -121,11 +121,11 @@ in
         };
       };
 
-      lsp = {
-        inlayHints.enable = true;
-        keymaps = import ./lsp_keymaps.nix helpers;
-        servers = import ./lsp_configs.nix;
-      };
+      # lsp = {
+      #   inlayHints.enable = true;
+      #   keymaps = import ./lsp_keymaps.nix helpers;
+      #   servers = import ./lsp_configs.nix;
+      # };
 
       autoCmd = [
         {

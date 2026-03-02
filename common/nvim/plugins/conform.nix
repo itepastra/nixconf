@@ -78,16 +78,17 @@
           command = "${lib.getExe pkgs.bibtex-tidy}";
         };
         prettier =
-          let
-            pwp = import inputs.prettier-plugins { inherit lib pkgs; };
-            prettierCustom = pwp.prettier {
-              enabled = with pwp.plugins; [
-                prettier-plugin-svelte
-              ];
-            };
-          in
+          # let
+          #   pwp = import inputs.prettier-plugins { inherit lib pkgs; };
+          #   prettierCustom = pwp.prettier {
+          #     enabled = with pwp.plugins; [
+          #       prettier-plugin-svelte
+          #     ];
+          #   };
+          # in
           {
-            command = "${lib.getExe prettierCustom}";
+            # command = "${lib.getExe prettierCustom}";
+            command = "${lib.getExe pkgs.prettier}";
           };
         stylua = {
           command = "${lib.getExe pkgs.stylua}";
