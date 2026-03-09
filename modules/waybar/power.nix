@@ -19,7 +19,9 @@ in
     programs.waybar = {
       settings.mainBar."${name}" = {
         format = "";
-        on-click = "${inputs.self.packages.${pkgs.system}.fuzzel-power}/bin/fuzzel-power";
+        on-click = "${
+          inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.fuzzel-power
+        }/bin/fuzzel-power";
         on-click-right = "${pkgs.hyprlock}/bin/hyprlock";
       };
       style = ''

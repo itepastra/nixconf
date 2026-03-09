@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 pkgs.writeShellScriptBin "fuzzel-power" ''
   lock="Lock"
   poweroff="Poweroff"
   reboot="Reboot"
   sleep="Suspend"
   logout="Log out"
-  selected_option=$(echo -e "$poweroff\n$reboot\n$logout\n$sleep\n$lock" | ${pkgs.fuzzel}/bin/fuzzel --dmenu -i -p "Power ➜  ")
+  selected_option=$(echo -e "$poweroff\n$reboot\n$logout\n$sleep\n$lock" | ${pkgs.lib.getExe pkgs.fuzzel} --dmenu -i -p "Power ➜  ")
 
   if [ "$selected_option" == "$lock" ]
   then
@@ -26,7 +26,9 @@ pkgs.writeShellScriptBin "fuzzel-power" ''
   elif [ "$selected_option" == "$logout" ]
   then
   echo "logout"
-  ${pkgs.niri}/bin/niri msg action quit --skip-confirmation
+  ${
+    pkgs.lib.getExe inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.default
+  } msg action quit --skip-confirmation
   else
   echo "No match"
   fi

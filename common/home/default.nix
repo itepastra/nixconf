@@ -133,7 +133,7 @@ in
     portal = {
       enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
-      configPackages = [ pkgs.niri ];
+      configPackages = [ inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.default ];
     };
 
     mime = {
@@ -524,8 +524,12 @@ in
       timeouts = [
         {
           timeout = 300;
-          command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
-          resumeCommand = "${pkgs.niri}/bin/niri msg action power-on-monitors";
+          command = "${
+            pkgs.lib.getExe inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.default
+          } msg action power-off-monitors";
+          resumeCommand = "${
+            pkgs.lib.getExe inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.default
+          } msg action power-on-monitors";
         }
       ];
     };

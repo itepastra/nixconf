@@ -217,7 +217,7 @@
         description = "Pixelflut server";
         serviceConfig = {
           ExecStart = "${
-            inputs.flurry.packages.${pkgs.system}.default.overrideAttrs (
+            inputs.flurry.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (
               finalAttrs: previousAttrs: {
                 patches = [
                   (pkgs.fetchpatch2 {
@@ -250,10 +250,12 @@
           "network-online.target"
         ];
         wantedBy = [ "default.target" ];
-        restartTriggers = [ inputs.disqalculate.packages.${pkgs.system}.default ];
+        restartTriggers = [ inputs.disqalculate.packages.${pkgs.stdenv.hostPlatform.system}.default ];
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${inputs.disqalculate.packages.${pkgs.system}.default}/bin/disqalculate";
+          ExecStart = "${
+            inputs.disqalculate.packages.${pkgs.stdenv.hostPlatform.system}.default
+          }/bin/disqalculate";
           ExecStop = "${pkgs.busybox}/bin/pkill disqalculate";
           RuntimeDirectory = "disqalculate";
           RootDirectory = "/run/disqalculate";

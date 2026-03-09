@@ -1,4 +1,4 @@
-{ nixpkgs }:
+{ nixpkgs, inputs }:
 let
   allSystems = [
     "x86_64-linux" # 64-bit Intel/AMD Linux
@@ -19,7 +19,7 @@ in
 forAllSystems (
   { pkgs, system }:
   let
-    call = path: import path { inherit pkgs system; };
+    call = path: import path { inherit pkgs system inputs; };
   in
   {
     archipelago = call ./archipelago;

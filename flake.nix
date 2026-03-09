@@ -149,6 +149,14 @@
         nur.inputs.flake-parts.follows = "flake-parts";
       };
     };
+    # Compositor
+    niri = {
+      url = "github:niri-wm/niri";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        rust-overlay.follows = "";
+      };
+    };
   };
 
   outputs =
@@ -222,7 +230,7 @@
       nixosModules = {
         automapaper = ./modules/automapaper;
       };
-      packages = import ./packages { inherit nixpkgs; };
+      packages = import ./packages { inherit nixpkgs inputs; };
       formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
     };
 }

@@ -3,6 +3,10 @@
   inputs,
   ...
 }:
+let
+  sddm-theme = pkgs.elegant-sddm;
+  sddm-theme-name = "Elegant";
+in
 {
   imports = [
     ./.
@@ -60,6 +64,7 @@
 
   environment.systemPackages = [
     pkgs.age-plugin-yubikey
+    sddm-theme
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -117,7 +122,7 @@
 
     niri = {
       enable = true;
-      # package = inputs.niri.packages.${pkgs.system}.niri;
+      package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
     nm-applet.enable = true;
 
@@ -177,10 +182,11 @@
       sddm = {
         enable = true;
         wayland.enable = true;
+        theme = sddm-theme-name;
+        extraPackages = [ sddm-theme ];
       };
     };
     pcscd.enable = true; # for yubikey
-    desktopManager.plasma6.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
