@@ -88,7 +88,7 @@ in
 
   environment.systemPackages = [
     pkgs.age-plugin-yubikey
-    #sddm-theme
+    sddm-theme
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
