@@ -4,8 +4,32 @@
   ...
 }:
 let
-  sddm-theme = pkgs.sddm-astronaut;
-  sddm-theme-name = "sddm-astronaut-theme";
+  sddm-theme = pkgs.where-is-my-sddm-theme.override {
+    themeConfig = {
+      General = {
+        passwordInputBackground = "#393552";
+        passwordInputRadius = 80;
+        passwordInputBorderWidth = 4;
+        passwordInputBorderColor = "#c4a7e7";
+        passwordFontSize = 96;
+        passwordCursorColor = "#2a283e";
+        passwordTextColor = "#e0def4";
+        passwordAllowEmpty = true;
+        wrongPasswordBorderRadius = 80;
+        wrongPasswordBorderColor = "#eb6f92";
+        cursorBlinkAnimation = true;
+        showSessionsByDefault = false;
+        sessionsFontSize = 24;
+        showUsersByDefault = true;
+        usersFontSize = 48;
+        showUserRealNameByDefault = true;
+        backgroundFill = "#232136";
+        backgroundFillMode = "aspect";
+        basicTextColor = "#e0def4";
+      };
+    };
+  };
+  sddm-theme-name = "where_is_my_sddm_theme";
 in
 {
   imports = [
