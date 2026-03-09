@@ -200,6 +200,7 @@ in
   };
 
   services = {
+    desktopManager.plasma6.enable = true;
     mullvad-vpn.enable = true;
     displayManager = {
       defaultSession = "niri";
