@@ -24,6 +24,9 @@
     enable = true;
   };
   basedpyright = {
+    enable = false;
+  };
+  ty = {
     enable = true;
   };
   gopls = {
