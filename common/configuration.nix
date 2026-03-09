@@ -4,8 +4,8 @@
   ...
 }:
 let
-  sddm-theme = pkgs.elegant-sddm;
-  sddm-theme-name = "Elegant";
+  sddm-theme = pkgs.sddm-astronaut;
+  sddm-theme-name = "sddm-astronaut-theme";
 in
 {
   imports = [
