@@ -88,7 +88,7 @@ in
 
   environment.systemPackages = [
     pkgs.age-plugin-yubikey
-    sddm-theme
+    #sddm-theme
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -206,8 +206,8 @@ in
       sddm = {
         enable = true;
         wayland.enable = true;
-        theme = sddm-theme-name;
-        extraPackages = [ sddm-theme ];
+        # theme = sddm-theme-name;
+        # extraPackages = [ sddm-theme ];
       };
     };
     pcscd.enable = true; # for yubikey
