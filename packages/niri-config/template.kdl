@@ -139,7 +139,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // Animation settings.
 // The wiki explains how to configure individual animations:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
+// https://github.com/niri-wm/niri/wiki/Configuration:-Animations
 animations {
     // Uncomment to turn off all animations.
     // off
@@ -162,7 +162,7 @@ window-rule {
 
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+// https://github.com/niri-wm/niri/wiki/Configuration:-Window-Rules
 
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
