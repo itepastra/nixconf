@@ -97,7 +97,7 @@ in
         qbittorrent
         keepassxc
         yubico-piv-tool
-        libreoffice
+        libreoffice-qt-fresh
         tmux
 
         krita
