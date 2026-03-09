@@ -60,16 +60,6 @@
         systems.follows = "systems";
       };
     };
-    # SSO thingy
-    authentik = {
-      url = "github:nix-community/authentik-nix";
-      inputs = {
-        flake-utils.follows = "flake-utils";
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        flake-compat.follows = "flake-compat";
-      };
-    };
     # Wallpaper
     automapaper = {
       url = "github:itepastra/automapaper";
@@ -204,7 +194,6 @@
               inherit inputs;
             };
             modules = [
-              inputs.authentik.nixosModules.default
               ./hosts/nuos/configuration.nix
             ]
             ++ commonModules;

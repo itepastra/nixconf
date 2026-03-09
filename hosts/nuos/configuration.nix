@@ -314,7 +314,6 @@
         "secrets/token-anstml".file = ../../secrets/github/anstml.age;
         "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
         "factorio/solrunners".file = ../../secrets/factorio/solrunners.age;
-        "authentik/env".file = ../../secrets/authentik/env.age;
         "rsecrets/radicale" = {
           file = ../../secrets/radicale/htpasswd.age;
           owner = "radicale";
