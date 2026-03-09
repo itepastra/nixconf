@@ -24,7 +24,7 @@ in
           ""
           ""
         ];
-        on-click = lib.meta.getExe' pkgs.helvum "helvum";
+        on-click = lib.meta.getExe pkgs.crosspipe;
       };
       style = ''
         #wireplumber {
