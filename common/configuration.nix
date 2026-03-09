@@ -206,8 +206,16 @@ in
       sddm = {
         enable = true;
         wayland.enable = true;
-        # theme = sddm-theme-name;
-        # extraPackages = [ sddm-theme ];
+        theme = sddm-theme-name;
+        extraPackages = with pkgs.kdePackages; [
+          sddm-theme
+          breeze-icons
+          kirigami
+          libplasma
+          plasma5support
+          qtsvg
+          qtvirtualkeyboard
+        ];
       };
     };
     pcscd.enable = true; # for yubikey
