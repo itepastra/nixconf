@@ -93,7 +93,7 @@ in
 
         # apps
         localsend
-        blueberry
+        blueman
         qbittorrent
         keepassxc
         yubico-piv-tool

@@ -18,7 +18,7 @@ in
     programs.waybar = {
       settings.mainBar."${name}" = {
         format = "";
-        on-click = lib.meta.getExe' pkgs.blueberry "blueberry";
+        on-click = lib.meta.getExe pkgs.blueman;
       };
       style = ''
         #custom-bluetooth {
