@@ -41,7 +41,7 @@
   typst = {
     enable = true;
   };
-  roslyn_ls = {
+  csharp_ls = {
     enable = true;
   };
 }
