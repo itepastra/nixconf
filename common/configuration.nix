@@ -256,7 +256,7 @@ in
       };
 
     };
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
     targets = {
       plymouth.enable = false;
       qt = {
