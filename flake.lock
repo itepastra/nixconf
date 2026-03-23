@@ -3,11 +3,11 @@
     "advisory-db": {
       "flake": false,
       "locked": {
-        "lastModified": 1774075535,
-        "narHash": "sha256-bWqK7U2lQrDv9R2xDMm03mEptp9f5+ud6seMRwnsCBs=",
+        "lastModified": 1774258319,
+        "narHash": "sha256-OyAOz14B8f6bdstIO9C/+khNZiebgt1+PNrNKqIbw/8=",
         "owner": "rustsec",
         "repo": "advisory-db",
-        "rev": "55eac3575466f4f66f2b97ed1515a001022cf7ca",
+        "rev": "53e3e72004e53879ceb61566004769b013cf0393",
         "type": "github"
       },
       "original": {
@@ -514,11 +514,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774007980,
-        "narHash": "sha256-FOnZjElEI8pqqCvB6K/1JRHTE8o4rer8driivTpq2uo=",
+        "lastModified": 1774210133,
+        "narHash": "sha256-yeiWCY9aAUUJ3ebMVjs0UZXRnT5x90MCtpbpOWiXrvM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "9670de2921812bc4e0452f6e3efd8c859696c183",
+        "rev": "c6fe2944ad9f2444b2d767c4a5edee7c166e8a95",
         "type": "github"
       },
       "original": {
@@ -541,11 +541,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1774114723,
-        "narHash": "sha256-mSqGD2H8XxPKCwEWN08IejYS253csZewtVOk7M0Gkv0=",
+        "lastModified": 1774179034,
+        "narHash": "sha256-vitpz0y8mNuhqLOmlOrdgUuAJX3SfUsnRub/3I5qeVA=",
         "ref": "refs/heads/main",
-        "rev": "66d702d28d273a07a0e15ecfac03447dbee274cc",
-        "revCount": 19090,
+        "rev": "4960a217fef824e4e38e8380a432001a20489a94",
+        "revCount": 19094,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix.git"
       },
@@ -754,11 +754,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1774121042,
-        "narHash": "sha256-ijRnuSkh/pNkbZhkFuNZzuWt4k1JlvaYuIAzwQSxg0U=",
+        "lastModified": 1774258837,
+        "narHash": "sha256-D4Wamij86LMrxabq4bZ4s/VT8/rHUqMA7H4XwDLDzkc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0413811b77a71be15c39114d2ee7a32739fd5542",
+        "rev": "2ba00ee5d9a247d97efe645ace915549b70c2f15",
         "type": "github"
       },
       "original": {
@@ -973,11 +973,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1773792048,
-        "narHash": "sha256-Oy9PCLG3vtflFBWcJd8c/EB3h5RU7ABAIDWn6JrGf6o=",
+        "lastModified": 1774124764,
+        "narHash": "sha256-Poz9WTjiRlqZIf197CrMMJfTifZhrZpbHFv0eU1Nhtg=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "3f2f9d307fe58c6abe2a16eb9b62c42d53ef5ee1",
+        "rev": "e31c79f571c5595a155f84b9d77ce53a84745494",
         "type": "github"
       },
       "original": {
