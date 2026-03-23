@@ -94,7 +94,7 @@
       "noa" = (import ../../common/home) {
         enableFlut = true;
       };
-      "root" = import ./root.nix;
+      "root" = import ../../common/home/root.nix;
     };
   };
 

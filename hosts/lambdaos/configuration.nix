@@ -96,7 +96,7 @@
           });
         };
       };
-      "root" = import ./root.nix;
+      "root" = import ../../common/home/root.nix;
     };
   };
 
