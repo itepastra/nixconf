@@ -58,7 +58,7 @@
           command = "${lib.getExe pkgs.black}";
           append_args = [
             "-l"
-            "120"
+            "160"
             "-C"
           ];
         };
