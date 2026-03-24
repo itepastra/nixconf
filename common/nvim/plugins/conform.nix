@@ -35,8 +35,8 @@
         typescript = [ "prettier" ];
         svelte = [ "prettier" ];
         python = [
-          "black"
           "isort"
+          "yapf"
         ];
         lua = [ "stylua" ];
         nix = [ "nixfmt" ];
@@ -64,6 +64,17 @@
         };
         isort = {
           command = "${lib.getExe pkgs.isort}";
+          append_args = [
+            "--line-length"
+            "160"
+          ];
+        };
+        yapf = {
+          command = "${lib.getExe pkgs.yapf}";
+          append_args = [
+            "--style"
+            "{based_on_style: pep8, column_limit: 160, dedent_closing_brackets: false, coalesce_brackets: false, split_before_named_assigns: false, split_before_closing_bracket: false, align_closing_bracket_with_visual_indent: true}"
+          ];
         };
         nixfmt = {
           command = "${lib.getExe pkgs.nixfmt}";
