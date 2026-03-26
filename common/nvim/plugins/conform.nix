@@ -14,6 +14,10 @@
             return
           end
 
+          if vim.bo[bufnr].filetype == "python" then
+            return { timeout_ms = 100000, lsp_fallback = false }, on_format
+          end
+
           return { timeout_ms = 1000, lsp_fallback = true }, on_format
          end
       '';
@@ -35,8 +39,9 @@
         typescript = [ "prettier" ];
         svelte = [ "prettier" ];
         python = [
+          #"pycharm"
           "isort"
-          "yapf"
+          "black"
         ];
         lua = [ "stylua" ];
         nix = [ "nixfmt" ];
@@ -54,11 +59,22 @@
       };
 
       formatters = {
+        pycharm = {
+          command = "${lib.getExe pkgs.jetbrains.pycharm}";
+
+          stdin = false;
+          args = [
+            "format"
+            "-s"
+            "${./pycharm.xml}"
+            "$FILENAME"
+          ];
+        };
         black = {
           command = "${lib.getExe pkgs.black}";
           append_args = [
             "-l"
-            "160"
+            "100"
             "-C"
           ];
         };

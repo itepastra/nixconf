@@ -1,5 +1,7 @@
+{ enableGraphics }:
 {
   pkgs,
+  lib,
   inputs,
   ...
 }:
@@ -9,7 +11,6 @@ let
 in
 {
   imports = [
-    ./.
     ../modules/games/steam.nix
     ./nvim
   ];
@@ -110,78 +111,52 @@ in
   ];
 
   xdg.portal = {
-    enable = true;
+    enable = enableGraphics;
   };
 
   programs = {
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-curses;
+      pinentryPackage = if enableGraphics then pkgs.pinentry-curses else pkgs.pinentry-tty;
     };
 
     niri = {
-      enable = true;
+      enable = enableGraphics;
       package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
-    nm-applet.enable = true;
+    nm-applet.enable = enableGraphics;
 
-    wireshark.enable = true;
+    wireshark.enable = enableGraphics;
     zsh.enable = true;
   };
 
   modules = {
-    games.steam.enable = true;
+    games.steam.enable = enableGraphics;
   };
 
   boot = {
-    tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_latest;
-
-    consoleLogLevel = 0;
 
     initrd.verbose = false;
     plymouth = rec {
-      enable = true;
+      enable = enableGraphics;
       theme = "colorful";
       themePackages = [ (pkgs.adi1090x-plymouth-themes.override { selected_themes = [ theme ]; }) ];
     };
 
-    kernelParams = [
+    kernelParams = lib.mkIf enableGraphics [
       "plymouth.use-simpledrm"
-      "quiet"
-      "splash"
-      "boot.shell_on_fail"
-      "i915.fastboot=1"
-      "loglevel=3"
-      "rd.systemd.show_status=false"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
     ];
-
-    kernelModules = [
-      "nct6775"
-      "k10temp"
-    ];
-
-    loader = {
-      timeout = 3;
-      efi.canTouchEfiVariables = true;
-      systemd-boot = {
-        enable = true;
-        editor = false;
-        configurationLimit = 100;
-      };
-    };
   };
 
   services = {
-    desktopManager.plasma6.enable = true;
-    mullvad-vpn.enable = true;
+    desktopManager.plasma6.enable = enableGraphics;
+    mullvad-vpn.enable = false;
     displayManager = {
       defaultSession = "niri";
       sddm = {
-        enable = true;
+        enable = enableGraphics;
         wayland.enable = true;
         theme = sddm-theme-name;
         extraPackages = with pkgs.kdePackages; [
@@ -197,7 +172,7 @@ in
     };
     pcscd.enable = true; # for yubikey
     pipewire = {
-      enable = true;
+      enable = enableGraphics;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;

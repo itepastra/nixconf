@@ -12,8 +12,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
 
-    ../../common
-    ../../common/configuration.nix
+    ((import ../../common) { enableGraphics = true; })
 
     ./disk-config.nix
   ];

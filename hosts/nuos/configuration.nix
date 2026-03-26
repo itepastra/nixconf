@@ -22,7 +22,7 @@
     ./home-assistant.nix
     ./nginx.nix
 
-    ../../common
+    ((import ../../common) { enableGraphics = false; })
   ];
 
   # LOVE me some blob
