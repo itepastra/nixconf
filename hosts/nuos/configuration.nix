@@ -51,6 +51,7 @@
       isSystemUser = true;
       group = "disqalculate";
     };
+    noa.extraGroups = [ "libvirt" ];
   };
 
   # Allow unfree packages
