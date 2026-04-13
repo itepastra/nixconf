@@ -26,7 +26,10 @@ in
       };
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" ];
+        plugins = [
+          "git"
+          "kitty"
+        ];
         theme = "frisk";
       };
       initContent = ''
