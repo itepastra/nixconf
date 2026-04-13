@@ -57,6 +57,11 @@
       enable = true;
       browsing = true;
     };
+    ollama = {
+      enable = true;
+      package = pkgs.ollama-rocm;
+      openFirewall = true;
+    };
   };
 
   systemd = {

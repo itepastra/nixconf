@@ -74,7 +74,7 @@
           command = "${lib.getExe pkgs.black}";
           append_args = [
             "-l"
-            "100"
+            "120"
             "-C"
           ];
         };
@@ -82,7 +82,7 @@
           command = "${lib.getExe pkgs.isort}";
           append_args = [
             "--line-length"
-            "160"
+            "120"
           ];
         };
         yapf = {
