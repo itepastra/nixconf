@@ -116,6 +116,7 @@
     };
   };
 
+  networking.enableIPv6 = false;
   networking.firewall.allowedTCPPorts = [
     49152
     49153

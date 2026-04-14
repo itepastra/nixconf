@@ -45,12 +45,23 @@ in
     ../../modules
     # we import extraConfig, it's funny that this has the correct effect
     extraConfig
+    inputs.flatpaks.homeModules.default
   ]
   # these have no use if there isn't any display....
   ++ lib.optionals enableGraphical [
     ../discord/discord.nix
     ../spotify.nix
   ];
+
+  services.flatpak = {
+    enable = true;
+    remotes = {
+      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+    };
+    packages = [
+      "flathub:app/net.jami.Jami//stable"
+    ];
+  };
 
   home = {
     file = {
@@ -83,7 +94,6 @@ in
       ++ lib.optionals enableGraphical [
         #comminucation things
         signal-desktop
-        jami
 
         # service things
         dconf
