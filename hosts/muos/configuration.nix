@@ -62,6 +62,17 @@
       package = pkgs.ollama-rocm;
       openFirewall = true;
     };
+    open-webui = {
+      enable = true;
+      package = pkgs.open-webui.overrideAttrs (
+        finalAttrs: previousAttrs: {
+          buildInputs = previousAttrs.buildInputs ++ [
+            pkgs.repomix
+            pkgs.git
+          ];
+        }
+      );
+    };
   };
 
   systemd = {
@@ -105,7 +116,10 @@
     };
   };
 
-  networking.firewall.allowedUDPPorts = [ 8800 ];
+  networking.firewall.allowedTCPPorts = [
+    49152
+    49153
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

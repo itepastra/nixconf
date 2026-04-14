@@ -83,6 +83,7 @@ in
       ++ lib.optionals enableGraphical [
         #comminucation things
         signal-desktop
+        jami
 
         # service things
         dconf

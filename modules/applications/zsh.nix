@@ -28,7 +28,6 @@ in
         enable = true;
         plugins = [
           "git"
-          "kitty"
         ];
         theme = "frisk";
       };
@@ -59,6 +58,12 @@ in
           print "zsh: command not found: $cmd"
           return 127
         }
+
+        if [[ "$TERM" == 'xterm-kitty' ]]; then
+          alias ssh="kitty +kitten ssh"
+          alias ssh-slow="infocmp -a xterm-kitty | ssh myserver tic -x -o \~/.terminfo /dev/stdin"
+          alias ssh-base="/usr/bin/env ssh"
+        fi
       '';
     };
   };
