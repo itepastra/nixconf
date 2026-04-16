@@ -55,10 +55,15 @@
         ];
         json = [ "jq" ];
         bib = [ "bibtex-tidy" ];
+        cpp = [ "clang-format" ];
+        c = [ "clang-format" ];
         "_" = [ "trim_whitespace" ];
       };
 
       formatters = {
+        clang-format = {
+          command = "${lib.getExe pkgs.clang-format}";
+        };
         pycharm = {
           command = "${lib.getExe pkgs.jetbrains.pycharm}";
 
