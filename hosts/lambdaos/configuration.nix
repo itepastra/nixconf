@@ -88,10 +88,11 @@
           # }
         ];
         extraConfig = {
-          programs.btop.package = pkgs.btop.overrideAttrs (oldAttrs: {
+          programs.btop.package = pkgs.btop-cuda.overrideAttrs (oldAttrs: {
             cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
               "-DBTOP_GPU=ON"
             ];
+            patches = (oldAttrs.patches or [ ]) ++ [ ../../common/home/btop-no-nix-store.patch ];
           });
         };
       };

@@ -26,6 +26,7 @@ let
     email = "noa@voorwaarts.nl";
   };
 
+  wa = config.programs.btop;
   # I like my animated rainbow cursor, so I get it here
   cursor_name = "Bibata-Rainbow-Modern";
   cursor_src = pkgs.runCommand cursor_name { } ''
@@ -398,11 +399,6 @@ in
     # wowa, I can set btop settings from here???
     btop = {
       enable = true;
-      package = pkgs.btop.overrideAttrs (
-        finalAttrs: previousAttrs: {
-          patches = (previousAttrs.patches or [ ]) ++ [ ./btop-no-nix-store.patch ];
-        }
-      );
       settings = {
         theme_background = false;
         truecolor = true;
