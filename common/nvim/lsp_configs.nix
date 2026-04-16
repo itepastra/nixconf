@@ -35,8 +35,9 @@
   gopls = {
     enable = true;
   };
-  rust-analyzer = {
+  rust_analyzer = {
     enable = true;
+    packageFallback = true;
   };
   jsonls = {
     enable = true;

@@ -57,10 +57,16 @@
         bib = [ "bibtex-tidy" ];
         cpp = [ "clang-format" ];
         c = [ "clang-format" ];
+        rust = [
+          "rustfmt"
+        ];
         "_" = [ "trim_whitespace" ];
       };
 
       formatters = {
+        rustfmt = {
+          command = "${lib.getExe pkgs.rustfmt}";
+        };
         clang-format = {
           command = "${lib.getExe' pkgs.clang-tools "clang-format"}";
         };
