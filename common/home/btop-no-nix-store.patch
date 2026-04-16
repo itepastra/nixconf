@@ -1,0 +1,92 @@
+tree 1786a1009b45c1f303eb2b9e48a11246ffd8d50e
+parent 975e3951daa7d3114112d2cd4ee689cf5ee38745
+author Noa Aarts <noa@voorwaarts.nl> Thu Apr 16 12:53:22 2026 +0200
+committer Noa Aarts <noa@voorwaarts.nl> Thu Apr 16 12:53:22 2026 +0200
+
+strip nix prefix
+
+diff --git a/src/btop_tools.hpp b/src/btop_tools.hpp
+index eec2fae..c96ddeb 100644
+--- a/src/btop_tools.hpp
++++ b/src/btop_tools.hpp
+@@ -226,6 +226,79 @@ namespace Tools {
+ 
+ 	//* Replace ascii control characters with <replacement> in <str> and return new string
+ 	inline string replace_ascii_control(string str, const char replacement = ' ') {
++		auto is_nix_base32_char = [](char c) {
++			switch (c) {
++				case '0': case '1': case '2': case '3': case '4':
++				case '5': case '6': case '7': case '8': case '9':
++				case 'a': case 'b': case 'c': case 'd': case 'f':
++				case 'g': case 'h': case 'i': case 'j': case 'k':
++				case 'l': case 'm': case 'n': case 'p': case 'q':
++				case 'r': case 's': case 'v': case 'w': case 'x':
++				case 'y': case 'z':
++					return true;
++				default:
++					return false;
++			}
++		};
++
++		constexpr std::string_view prefix = "/nix/store/";
++
++		size_t read = 0;
++		size_t write = 0;
++		const std::string_view in(str);
++
++		while (read < in.size()) {
++			if (read + prefix.size() <= in.size() &&
++				in.compare(read, prefix.size(), prefix) == 0) {
++
++				size_t i = read + prefix.size();
++
++				// Check 32-char hash
++				if (i + 32 < in.size()) {
++					bool ok = true;
++					for (size_t k = 0; k < 32; ++k) {
++						if (!is_nix_base32_char(in[i + k])) {
++							ok = false;
++							break;
++						}
++					}
++
++					if (ok) {
++						i += 32;
++
++						// expect '-'
++						if (i < in.size() && in[i] == '-') {
++							++i;
++							size_t name_start = i;
++
++							// find end of {name}
++							while (i < in.size() && in[i] != '/')
++								++i;
++
++							if (i > name_start) {
++								if (i < in.size() && in[i] == '/') {
++									// /nix/store/{hash}-{name}/something -> something
++									read = i;
++									continue;
++								}
++								else {
++									// /nix/store/{hash}-{name} -> {name}
++									while (name_start < i)
++										str[write++] = str[name_start++];
++									read = i;
++									continue;
++								}
++							}
++						}
++					}
++				}
++			}
++
++			str[write++] = str[read++];
++		}
++
++		str.resize(write);
++
+ 		std::ranges::for_each(str, [&replacement](char& c) { if (c < 0x20) c = replacement; });
+ 		return str;
+ 	}
+

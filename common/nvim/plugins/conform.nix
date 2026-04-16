@@ -62,7 +62,7 @@
 
       formatters = {
         clang-format = {
-          command = "${lib.getExe pkgs.clang-format}";
+          command = "${lib.getExe' pkgs.clang-tools "clang-format"}";
         };
         pycharm = {
           command = "${lib.getExe pkgs.jetbrains.pycharm}";

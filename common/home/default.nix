@@ -398,6 +398,11 @@ in
     # wowa, I can set btop settings from here???
     btop = {
       enable = true;
+      package = pkgs.btop.overrideAttrs (
+        finalAttrs: previousAttrs: {
+          patches = (previousAttrs.patches or [ ]) ++ [ ./btop-no-nix-store.patch ];
+        }
+      );
       settings = {
         theme_background = false;
         truecolor = true;
