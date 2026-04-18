@@ -128,6 +128,7 @@ in
     nm-applet.enable = enableGraphics;
 
     wireshark.enable = enableGraphics;
+    xwayland.enable = enableGraphics;
     zsh.enable = true;
   };
 

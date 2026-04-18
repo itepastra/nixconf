@@ -276,7 +276,7 @@ in
           };
 
           Service = {
-            ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+            ExecStart = "${lib.getExe pkgs.xwayland-satellite}";
             Type = "exec";
             Restart = "on-failure";
             RestartSec = 15;
