@@ -190,7 +190,7 @@ in
       enable = false;
       xkb = {
         layout = "us";
-        variant = "altgr intl";
+        variant = "altgr-intl";
       };
     };
     udev.packages = [ pkgs.yubikey-personalization ];
