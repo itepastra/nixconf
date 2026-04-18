@@ -100,6 +100,7 @@ in
         yubico-piv-tool
         libreoffice-qt-fresh
         tmux
+        nautilus
 
         krita
       ];
