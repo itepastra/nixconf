@@ -126,6 +126,8 @@
     };
   };
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   networking.enableIPv6 = false;
   networking.firewall.allowedTCPPorts = [
     49152
