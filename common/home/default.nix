@@ -174,7 +174,13 @@ in
     games.enable = enableGraphical && enableGames;
     games.lutris.enable = false;
 
-    automapaper.enable = enableGraphical;
+    automapaper = {
+      enable = enableGraphical;
+      config = {
+        c1 = "000000";
+        c2 = "${config.lib.stylix.colors.base00}";
+      };
+    };
 
     # other things I like to use
     apps = {
