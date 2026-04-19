@@ -59,11 +59,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776612762,
+        "lastModified": 1776625647,
         "narHash": "sha256-PEzTp5FgkTznwH+OPhovyn7w5u4L8c9K8HVlTUPQIvg=",
         "ref": "refs/heads/main",
-        "rev": "8fb3ad2f7385b56b9fa0e8810ea8de93f3fd0f39",
-        "revCount": 26,
+        "rev": "ee88c4869ef4104d0fae4aa3884785a207b766f8",
+        "revCount": 28,
         "type": "git",
         "url": "https://git.geenit.nl/noa/automapaper-ng.git"
       },
