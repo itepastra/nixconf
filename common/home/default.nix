@@ -6,7 +6,7 @@
   enableFlut ? false,
   # GAMESS, like for things like steam and minecraft
   enableGames ? false,
-  # what displays are connected? automapaper and niri will be configured using this
+  # what displays are connected? niri will be configured using this
   displays ? [ ],
   # is there any extra specific config necessary (like nvidia on lambdaOS)
   extraConfig ? { },
@@ -44,6 +44,7 @@ in
   imports = [
     # I made some cursed modules (waybar is the worst)
     ../../modules
+    ../../modules/automapaper
     # we import extraConfig, it's funny that this has the correct effect
     extraConfig
   ]
@@ -172,6 +173,8 @@ in
     # imagine steam but like without a monitor
     games.enable = enableGraphical && enableGames;
     games.lutris.enable = false;
+
+    automapaper.enable = enableGraphical;
 
     # other things I like to use
     apps = {

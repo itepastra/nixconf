@@ -62,9 +62,12 @@
     };
     # Wallpaper
     automapaper = {
-      url = "github:itepastra/automapaper";
+      url = "git+https://git.geenit.nl/noa/automapaper-ng.git";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        crane.follows = "crane";
+        flake-utils.follows = "flake-utils";
+        advisory-db.follows = "advisory-db";
       };
     };
     # declarative disk partitioning
@@ -227,9 +230,6 @@
             ];
           };
         };
-      nixosModules = {
-        automapaper = ./modules/automapaper;
-      };
       packages = import ./packages { inherit nixpkgs inputs; };
       formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
     };
