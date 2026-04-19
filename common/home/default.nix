@@ -178,7 +178,7 @@ in
       enable = enableGraphical;
       config = {
         c1 = "000000";
-        c2 = "${config.lib.stylix.colors.base00}";
+        c2 = "${config.lib.stylix.colors.base01}";
       };
     };
 
