@@ -59,11 +59,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776608912,
-        "narHash": "sha256-iy9osZWZIFBiXlmGIqoymOFSIclgBpDl6T9GZkxernQ=",
+        "lastModified": 1776612762,
+        "narHash": "sha256-PEzTp5FgkTznwH+OPhovyn7w5u4L8c9K8HVlTUPQIvg=",
         "ref": "refs/heads/main",
-        "rev": "31aba21ad2f3e81306af8e961f1f904a2eb7d791",
-        "revCount": 22,
+        "rev": "8fb3ad2f7385b56b9fa0e8810ea8de93f3fd0f39",
+        "revCount": 26,
         "type": "git",
         "url": "https://git.geenit.nl/noa/automapaper-ng.git"
       },
@@ -761,11 +761,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1776610501,
-        "narHash": "sha256-4ptSXwL8jelaExNDfDM9HQKIdRyb0UEC+EsUhraAD8c=",
+        "lastModified": 1776612429,
+        "narHash": "sha256-q1j12yoQFucK2C0hO2K7lrIJA6T1oaFYneTUjOuVxUw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "6387538f232c950e9eb84489b6c75c213a54c316",
+        "rev": "a83e55debe1114a66af1fd88d34d45b9fb2cd3b7",
         "type": "github"
       },
       "original": {
