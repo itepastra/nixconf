@@ -159,8 +159,6 @@ in
   };
 
   services = {
-    flatpak.enable = true;
-    #desktopManager.plasma6.enable = enableGraphics;
     mullvad-vpn.enable = false;
     displayManager = {
       defaultSession = "niri";
