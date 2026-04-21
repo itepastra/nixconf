@@ -179,6 +179,7 @@ in
       config = {
         c1 = "000000";
         c2 = "${config.lib.stylix.colors.base01}";
+        decay_time = 1.0;
       };
     };
 
