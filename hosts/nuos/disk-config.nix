@@ -58,5 +58,25 @@
         };
       };
     };
+    disk.disk2 = {
+      device = lib.mkDefault "/dev/sda";
+      type = "disk";
+      content = {
+        type = "gpt";
+        partitions.data = {
+          size = "100%";
+          content = {
+            type = "btrfs";
+            extraArgs = [ "-f" ];
+            subvolumes = {
+              "libfs" = {
+                mountpoint = "/data";
+                mountOptions = [ "compress=zstd" ];
+              };
+            };
+          };
+        };
+      };
+    };
   };
 }
