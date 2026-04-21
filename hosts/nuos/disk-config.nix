@@ -69,7 +69,7 @@
             type = "btrfs";
             extraArgs = [ "-f" ];
             subvolumes = {
-              "libfs" = {
+              "/datafs" = {
                 mountpoint = "/data";
                 mountOptions = [ "compress=zstd" ];
               };
