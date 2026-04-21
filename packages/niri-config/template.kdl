@@ -23,10 +23,6 @@ input {
     focus-follows-mouse max-scroll-amount="40%"
 }
 
-environment {
-	DISPLAY ":0"
-}
-
 @displays@
 
 layout {
@@ -60,6 +56,7 @@ layout {
     //
     // Alternatively, you can override it with a window rule called
     // `draw-border-with-background`.
+    background-color "transparent"
 
     // You can change how the focus ring looks.
     focus-ring {
@@ -122,6 +119,10 @@ layout {
 
 @autostart@
 
+
+xwayland-satellite {
+    path "@xwayland@"
+}
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
 // Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
@@ -369,3 +370,18 @@ binds {
     Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
 }
+
+overview {
+    backdrop-color "#000000"
+
+    workspace-shadow {
+        off
+    }
+
+}
+
+layer-rule {
+    match namespace="^automapaper$"
+    place-within-backdrop true
+}
+

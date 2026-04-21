@@ -44,6 +44,7 @@ pkgs.replaceVars ./template.kdl {
 
   displays = displays-string;
   autostart = autostart-string;
+  xwayland = pkgs.lib.getExe pkgs.xwayland-satellite;
 
   DEFAULT_AUDIO_SINK = null;
   DEFAULT_AUDIO_SOURCE = null;

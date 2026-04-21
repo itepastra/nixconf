@@ -275,24 +275,6 @@ in
           };
         };
 
-        xwayland = {
-          Install = {
-            WantedBy = [ "niri.service" ];
-          };
-
-          Unit = {
-            After = "graphical-session.target";
-            Requisite = "graphical-session.target";
-          };
-
-          Service = {
-            ExecStart = "${lib.getExe pkgs.xwayland-satellite}";
-            Type = "exec";
-            Restart = "on-failure";
-            RestartSec = 15;
-          };
-        };
-
         waybar = {
           Service.RestartSec = 5;
         };
