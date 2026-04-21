@@ -59,11 +59,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776679380,
-        "narHash": "sha256-zV0LmjNuBNaoFArVVnpvzsnaYuvc4zZGApIuPrEwgi0=",
+        "lastModified": 1776761091,
+        "narHash": "sha256-SsvPOHDh3Rzz5sgziz2Ey/wQ6J+ELOU+j7bJULnrZSg=",
         "ref": "refs/heads/main",
-        "rev": "1a39e861d9ce93356e74bfe2e128f99738ab7d8f",
-        "revCount": 29,
+        "rev": "e9264eb7f3071986d186161b97fe276c5c07ef33",
+        "revCount": 30,
         "type": "git",
         "url": "https://git.geenit.nl/noa/automapaper-ng.git"
       },
