@@ -168,7 +168,7 @@ in
           Service = {
             ExecStart = "${lib.getExe inputs.automapaper.packages.${pkgs.stdenv.hostPlatform.system}.default}";
             Type = "exec";
-            Restart = "on-failure";
+            Restart = "always";
             RestartSec = 15;
           };
         };
@@ -185,7 +185,7 @@ in
           Service = {
             ExecStart = lib.getExe niri-automapaper;
             Type = "exec";
-            Restart = "on-failure";
+            Restart = "always";
             RestartSec = 15;
           };
         };
