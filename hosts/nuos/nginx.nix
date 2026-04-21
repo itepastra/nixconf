@@ -82,6 +82,16 @@ in
               proxyPass = "http://127.0.0.1:2929/";
             };
           };
+
+          "lib.geenit.nl" = {
+            forceSSL = true;
+            enableACME = true;
+            extraConfig = extra;
+            locations."/" = {
+              proxyWebsockets = true;
+              proxyPass = "http://127.0.0.1:8083/";
+            };
+          };
         })
         (lib.mkIf (import ./toggles.nix).enableFlurry {
           "flurry.itepastra.nl" = proxy "itepastra.nl" "http://127.0.0.1:3000";

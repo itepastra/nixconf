@@ -323,8 +323,12 @@
   };
 
   services = {
-    factorio = {
+    calibre-web = {
       enable = true;
+      options.calibreLibrary = "/data/calibreLibrary";
+    };
+    factorio = {
+      enable = false;
       # package = pkgs.factorio-headless.override {
       #   versionsJson = ./versions.json;
       # };
