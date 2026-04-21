@@ -380,8 +380,3 @@ overview {
 
 }
 
-layer-rule {
-    match namespace="^automapaper$"
-    place-within-backdrop true
-}
-
