@@ -20,8 +20,8 @@ forAllSystems (
   { pkgs, system }:
   {
     archipelago = pkgs.callPackage ./archipelago { };
-    fuzzel-launch = pkgs.callPackage ./fuzzel-launch.nix { };
-    fuzzel-power = pkgs.callPackage ./fuzzel-power.nix { inherit inputs; };
+    fuzzel-launch = pkgs.callPackage ./fuzzel-launch { };
+    fuzzel-power = pkgs.callPackage ./fuzzel-power { inherit inputs; };
     vvvvvv-ap = pkgs.callPackage ./vvvvvv-ap { };
   }
 )
