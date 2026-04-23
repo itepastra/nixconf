@@ -54,6 +54,8 @@
     noa.extraGroups = [ "libvirt" ];
   };
 
+  boot.kernelPackages = pkgs.linuxPackages;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
