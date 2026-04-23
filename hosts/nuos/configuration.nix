@@ -65,6 +65,8 @@
     systemPackages = with pkgs; [
       git
       zsh
+
+      calibre
     ];
   };
 
