@@ -1,7 +1,7 @@
 let
   noa = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKOiz4Dsp4fgtwgOvARzOO9kZI4fSwJ4QJCf34dGVB6Z";
   nuOS = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDV2IDF4FP1T6qWcv+drtnbKyXkeB9kOAbU4wVWNfPSO";
-  muOS = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMD1SQumqEsx1N0v35ThrGgb9rH12j/eOIUf3TdEi0G6";
+  muOS = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGfjb+nIw9uwI6vYL3b4LDNzLjMbNFHicJLLQznrrqF6";
 in
 {
   "factorio/solrunners.age".publicKeys = [
@@ -51,5 +51,8 @@ in
     noa
     muOS
     nuOS
+  ];
+  "wg/muos.age".publicKeys = [
+    muOS
   ];
 }

@@ -85,6 +85,35 @@
     };
   };
 
+  age.secrets."wg/muos" = {
+    file = ../../secrets/wg/muos.age;
+  };
+
+  networking.wg-quick.interfaces = {
+    wg-pep = {
+      address = [
+        "10.90.14.2/16"
+        "fc00:90:90:90::14:2/64"
+      ];
+      privateKeyFile = config.age.secrets."wg/muos".path;
+      dns = [
+        "10.90.0.1"
+        "fc00:90:90:90::1"
+      ];
+      peers = [
+        {
+          publicKey = "NNeWO/cXpvBci9n/K1W93jKN4wTeHUXZxsELI2XpWQM=";
+          allowedIPs = [
+            "10.90.0.0/16"
+            "fc00:90:90:90::/64"
+          ];
+          endpoint = "wg.peppidesu.dev:51820";
+          #endpoint = "2a02:a465:8b0a:1:1a10:b9e8:e4a6:3f1d:51820";
+        }
+      ];
+    };
+  };
+
   systemd = {
 
     timers."update-from-flake" = {
@@ -128,7 +157,6 @@
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  networking.enableIPv6 = false;
   networking.firewall.allowedTCPPorts = [
     49152
     49153
