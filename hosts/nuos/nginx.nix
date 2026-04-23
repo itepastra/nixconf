@@ -89,7 +89,7 @@ in
             extraConfig = extra;
             locations."/" = {
               proxyWebsockets = true;
-              proxyPass = "http://127.0.0.1:8083/";
+              proxyPass = "http://[::1]:8083/";
             };
           };
         })
