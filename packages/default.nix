@@ -1,11 +1,12 @@
 { nixpkgs, inputs }:
 let
   allSystems = [
-    "x86_64-linux" # 64-bit Intel/AMD Linux
-    "aarch64-linux" # 64-bit ARM Linux
-    "x86_64-darwin" # 64-bit Intel macOS
-    "aarch64-darwin" # 64-bit ARM macOS
+    "x86_64-linux"
+    "aarch64-linux"
+    "x86_64-darwin"
+    "aarch64-darwin"
   ];
+
   forAllSystems =
     f:
     nixpkgs.lib.genAttrs allSystems (
@@ -15,13 +16,25 @@ let
         pkgs = import nixpkgs { inherit system; };
       }
     );
+
+  packageNames =
+    let
+      entries = builtins.readDir ./.;
+    in
+    builtins.filter (name: entries.${name} == "directory") (builtins.attrNames entries);
+
 in
 forAllSystems (
   { pkgs, system }:
-  {
-    archipelago = pkgs.callPackage ./archipelago { };
-    fuzzel-launch = pkgs.callPackage ./fuzzel-launch { };
-    fuzzel-power = pkgs.callPackage ./fuzzel-power { inherit inputs; };
-    vvvvvv-ap = pkgs.callPackage ./vvvvvv-ap { };
-  }
+  let
+    extraArgs = {
+      fuzzel-power = { inherit inputs; };
+    };
+  in
+  builtins.listToAttrs (
+    map (name: {
+      inherit name;
+      value = pkgs.callPackage (./. + "/${name}") (extraArgs.${name} or { });
+    }) packageNames
+  )
 )
