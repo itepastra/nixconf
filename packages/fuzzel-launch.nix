@@ -1,4 +1,8 @@
-{ pkgs, ... }:
-pkgs.writeShellScriptBin "fuzzel-launch" ''
-  ${pkgs.fuzzel}/bin/fuzzel
+{
+  writeShellScriptBin,
+  fuzzel,
+  lib,
+}:
+writeShellScriptBin "fuzzel-launch" ''
+  ${lib.getExe fuzzel}
 ''

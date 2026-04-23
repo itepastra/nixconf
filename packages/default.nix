@@ -18,15 +18,10 @@ let
 in
 forAllSystems (
   { pkgs, system }:
-  let
-    call = path: import path { inherit pkgs system inputs; };
-  in
   {
-    archipelago = call ./archipelago;
-    autopelago = call ./autopelago;
-    fuzzel-launch = call ./fuzzel-launch.nix;
-    fuzzel-power = call ./fuzzel-power.nix;
-    vvvvvv-ap = call ./vvvvvv-ap;
-    stoat-server = call ./stoat-server;
+    archipelago = pkgs.callPackage ./archipelago { };
+    fuzzel-launch = pkgs.callPackage ./fuzzel-launch.nix { };
+    fuzzel-power = pkgs.callPackage ./fuzzel-power.nix { inherit inputs; };
+    vvvvvv-ap = pkgs.callPackage ./vvvvvv-ap { };
   }
 )

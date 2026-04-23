@@ -1,14 +1,10 @@
 {
-  pkgs,
-  ...
+  lib,
+  appimageTools,
+  fetchurl,
+  nix-update-script,
 }:
 let
-  inherit (pkgs)
-    lib
-    appimageTools
-    fetchurl
-    nix-update-script
-    ;
   pname = "archipelago";
   version = "0.0.9";
   src = fetchurl {

@@ -1,16 +1,23 @@
-{ pkgs, inputs, ... }:
-pkgs.writeShellScriptBin "fuzzel-power" ''
+{
+  writeShellScriptBin,
+  fuzzel,
+  lib,
+  hyprlock,
+  stdenvNoCC,
+  inputs,
+}:
+writeShellScriptBin "fuzzel-power" ''
   lock="Lock"
   poweroff="Poweroff"
   reboot="Reboot"
   sleep="Suspend"
   logout="Log out"
-  selected_option=$(echo -e "$poweroff\n$reboot\n$logout\n$sleep\n$lock" | ${pkgs.lib.getExe pkgs.fuzzel} --dmenu -i -p "Power ➜  ")
+  selected_option=$(echo -e "$poweroff\n$reboot\n$logout\n$sleep\n$lock" | ${lib.getExe fuzzel} --dmenu -i -p "Power ➜  ")
 
   if [ "$selected_option" == "$lock" ]
   then
   echo "lock"
-  ${pkgs.hyprlock}/bin/hyprlock
+  ${hyprlock}/bin/hyprlock
   elif [ "$selected_option" == "$poweroff" ]
   then
   echo "poweroff"
@@ -27,7 +34,7 @@ pkgs.writeShellScriptBin "fuzzel-power" ''
   then
   echo "logout"
   ${
-    pkgs.lib.getExe inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.default
+    lib.getExe inputs.niri.packages.${stdenvNoCC.hostPlatform.system}.default
   } msg action quit --skip-confirmation
   else
   echo "No match"
