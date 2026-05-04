@@ -50,11 +50,14 @@ void main() {
         out_color = vec4(0.0, max(current.g - 0.01, 0.0), 0.0, 1.0);
     }
 
+
     if (mouse_active > 0.5) {
-        vec2 difference = v_uv - mouse;
+        vec2 scale = vec2(textureSize(state_tex, 0));
+        vec2 difference = ((v_uv - mouse)) * scale;
         float len2 = dot(difference, difference);
-        if (len2 < 0.0001) {
+        if (len2 < 20) {
             out_color.r = 1.0;
+            out_color.g = 1.0;
         }
     }
 }
