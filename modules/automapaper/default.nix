@@ -30,12 +30,12 @@ let
 
           # Fall back to workspace index.
           case "$idx" in
-              1) echo "#4c7899" ;;
-              2) echo "#7aa2f7" ;;
-              3) echo "#9ece6a" ;;
-              4) echo "#e0af68" ;;
-              5) echo "#bb9af7" ;;
-              *) echo "#3b4252" ;;
+              1) echo "#ffcc66" ;;
+              2) echo "#dd4466" ;;
+              3) echo "#66bb88" ;;
+              4) echo "#0077dd" ;;
+              5) echo "#cc77ff" ;;
+              *) echo "#ccc8bf" ;;
           esac
       }
 
