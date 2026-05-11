@@ -74,11 +74,6 @@
       enable = true;
       browsing = true;
     };
-    ollama = {
-      enable = true;
-      package = pkgs.ollama-rocm;
-      openFirewall = true;
-    };
     open-webui = {
       enable = true;
       package = pkgs.open-webui.overrideAttrs (

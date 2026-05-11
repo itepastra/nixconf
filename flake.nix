@@ -230,7 +230,7 @@
             ];
           };
         };
-      packages = import ./packages { inherit nixpkgs inputs; };
+      packages = import ./packages { inherit nixpkgs inputs self; };
       formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
     };
 }

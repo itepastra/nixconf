@@ -1,4 +1,8 @@
-{ nixpkgs, inputs }:
+{
+  nixpkgs,
+  inputs,
+  self,
+}:
 let
   allSystems = [
     "x86_64-linux"
@@ -29,6 +33,8 @@ forAllSystems (
   let
     extraArgs = {
       fuzzel-power = { inherit inputs; };
+      onthespot.pywidevine = self.packages.${system}.pywidevine;
+      pywidevine.pymp4 = self.packages.${system}.pymp4;
     };
   in
   builtins.listToAttrs (
