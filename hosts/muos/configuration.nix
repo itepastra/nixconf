@@ -74,17 +74,6 @@
       enable = true;
       browsing = true;
     };
-    open-webui = {
-      enable = true;
-      package = pkgs.open-webui.overrideAttrs (
-        finalAttrs: previousAttrs: {
-          buildInputs = previousAttrs.buildInputs ++ [
-            pkgs.repomix
-            pkgs.git
-          ];
-        }
-      );
-    };
   };
 
   age.secrets."wg/muos" = {
