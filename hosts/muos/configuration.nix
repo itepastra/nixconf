@@ -59,12 +59,6 @@
     tlp.enable = true;
     power-profiles-daemon.enable = false;
 
-    monero = {
-      enable = true;
-      prune = true;
-      mining.threads = 8;
-    };
-
     avahi = {
       enable = true;
       nssmdns4 = true;
