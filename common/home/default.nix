@@ -75,8 +75,6 @@ in
         #network things
         dig
         mtr
-
-        (appimage-run.override { extraPkgs = pkgs: [ pkgs.zstd ]; })
       ]
       # FLURRY AND TSUNAMI :3 (I made these)
       ++ lib.optionals enableFlut [
@@ -104,6 +102,7 @@ in
         libreoffice-qt-fresh
         tmux
         nautilus
+        feishin
 
         krita
       ];
