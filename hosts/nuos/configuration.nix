@@ -345,6 +345,18 @@
       admins = [ "itepastra" ];
       extraSettingsFile = config.age.secrets."factorio/solrunners".path;
     };
+    i2pd = {
+      enable = true;
+      enableIPv4 = true;
+      bandwidth = 256;
+      port = 19494;
+      proto = {
+        http.enable = true;
+        sam.enable = true;
+        socksProxy.enable = true;
+        httpProxy.enable = true;
+      };
+    };
     immich = {
       enable = true;
       settings = {
@@ -429,6 +441,8 @@
     25565 # minecraft
     24454 # minecraft (voice)
 
+    19494 # i2p
+
     22000 # syncthing
 
     38281 # archipelago
@@ -437,6 +451,8 @@
     22 # ssh
     80 # http
     443 # https
+
+    19494 # i2p
 
     22000 # syncthing
     21027 # syncthing
