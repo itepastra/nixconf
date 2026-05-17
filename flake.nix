@@ -144,7 +144,7 @@
     };
     # for styling apps etc in a consistent theme
     stylix = {
-      url = "github:danth/stylix";
+      url = "github:nix-community/stylix";
       inputs = {
         systems.follows = "systems";
         nixpkgs.follows = "nixpkgs";
