@@ -68,6 +68,18 @@
       enable = true;
       browsing = true;
     };
+    i2pd = {
+      enable = true;
+      enableIPv4 = true;
+      enableIPv6 = true;
+      bandwidth = 128;
+      proto = {
+        http.enable = true;
+        sam.enable = true;
+        socksProxy.enable = true;
+        httpProxy.enable = true;
+      };
+    };
   };
 
   age.secrets."wg/muos" = {
@@ -142,10 +154,12 @@
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  networking.firewall.allowedTCPPorts = [
-    49152
-    49153
-  ];
+  networking.firewall = {
+    allowedTCPPorts = [
+      49152
+      49153
+    ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
