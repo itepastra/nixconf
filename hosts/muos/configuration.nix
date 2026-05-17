@@ -73,6 +73,7 @@
       enableIPv4 = true;
       enableIPv6 = true;
       bandwidth = 128;
+      port = 19494;
       proto = {
         http.enable = true;
         sam.enable = true;
@@ -156,9 +157,11 @@
 
   networking.firewall = {
     allowedTCPPorts = [
+      19494
       49152
       49153
     ];
+    allowedUDPPorts = [ 19494 ];
   };
 
   # This value determines the NixOS release from which the default
