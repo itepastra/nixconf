@@ -31,6 +31,7 @@ in
 
   nixpkgs.config = {
     allowUnfree = true;
+    contentAdressedByDefault = true;
   };
 
   nix.settings = {

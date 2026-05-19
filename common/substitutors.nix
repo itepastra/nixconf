@@ -9,6 +9,7 @@
       experimental-features = [
         "nix-command"
         "flakes"
+        "ca-derivations"
       ];
       substituters = [
         "https://cosmic.cachix.org/"
