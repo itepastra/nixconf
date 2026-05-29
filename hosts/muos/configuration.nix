@@ -53,6 +53,10 @@
     };
   };
 
+  environment.systemPackages = [
+    pkgs.wineWow64Packages.stagingFull
+  ];
+
   services = {
     fprintd.enable = true;
     fwupd.enable = true;
