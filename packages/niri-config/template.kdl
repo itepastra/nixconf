@@ -163,7 +163,7 @@ window-rule {
 
 window-rule {
     match app-id=r#"^fl64.exe$"#
-    default-column-width { proportion: 1 }
+    default-column-width { proportion 1.0; }
 }
 
 // Window rules let you adjust behavior for individual windows.
