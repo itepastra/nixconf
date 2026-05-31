@@ -237,10 +237,10 @@ in
         name = "Lexend";
         package = pkgs.lexend;
       };
-
     };
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
     targets = {
+      kmscon.enable = false;
       plymouth.enable = false;
       qt = {
         enable = true;
