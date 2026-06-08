@@ -146,7 +146,7 @@ in
       };
       frame_time = lib.mkOption {
         type = lib.types.float;
-        default = 0.01666;
+        default = 0.1;
       };
     };
   };
