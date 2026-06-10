@@ -215,6 +215,7 @@ in
     rtkit.enable = true;
     polkit.enable = true;
     sudo.execWheelOnly = true;
+    pam.services.login.enableGnomeKeyring = true;
   };
 
   stylix = {
