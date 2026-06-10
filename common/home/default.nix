@@ -176,7 +176,7 @@ in
     games.lutris.enable = false;
 
     automapaper = {
-      enable = enableGraphical;
+      enable = false;
       config = {
         c1 = "000000";
         c2 = "${config.lib.stylix.colors.base01}";
