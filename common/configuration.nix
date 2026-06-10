@@ -160,6 +160,7 @@ in
   };
 
   services = {
+    gnome.gnome-keyring.enable = true;
     mullvad-vpn.enable = false;
     displayManager = {
       defaultSession = "niri";
