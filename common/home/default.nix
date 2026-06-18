@@ -294,6 +294,7 @@ in
     userDirs = {
       enable = true;
       createDirectories = true;
+      setSessionVariables = true;
     };
   };
 
@@ -397,7 +398,7 @@ in
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks = {
+      settings = {
         "*" = {
           compression = true;
         };

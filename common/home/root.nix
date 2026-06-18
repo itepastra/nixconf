@@ -57,8 +57,11 @@
     TERM = "kitty";
   };
 
-  xdg.userDirs.enable = true;
-  xdg.userDirs.createDirectories = true;
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    setSessionVariables = true;
+  };
 
   dconf = {
     enable = true;
