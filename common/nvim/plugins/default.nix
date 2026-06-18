@@ -11,7 +11,10 @@
     lspconfig.enable = true;
     telescope.enable = true;
     mini-statusline.enable = true;
-    typst-preview.enable = true;
+    typst-preview = {
+      enable = true;
+      settings.port = 29129;
+    };
     web-devicons.enable = true;
     fugitive.enable = true;
     colorizer.enable = true;
