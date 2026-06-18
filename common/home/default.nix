@@ -427,6 +427,11 @@ in
           port = 22;
           user = "git";
         };
+        "lagoon" = {
+          host = "lagoon.home.arpa";
+          hostname = "lagoon.home.arpa";
+          forwardAgent = true;
+        };
       };
     };
   };
