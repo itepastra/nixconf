@@ -13,7 +13,10 @@
     mini-statusline.enable = true;
     typst-preview = {
       enable = true;
-      settings.port = 29129;
+      settings = {
+        port = 29129;
+        open_cmd = "firefox %s";
+      };
     };
     web-devicons.enable = true;
     fugitive.enable = true;
