@@ -42,6 +42,7 @@
       inputs = {
         flake-parts.follows = "flake-parts";
         systems.follows = "systems";
+        nixpkgs.follows = "nixpkgs";
       };
     };
 
