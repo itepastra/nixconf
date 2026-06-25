@@ -169,7 +169,13 @@
       29716
       42671
     ];
-    allowedUDPPorts = [ 19494 ];
+    allowedUDPPorts = [
+      19494
+
+      # meshchat
+      29716
+      42671
+    ];
   };
 
   # This value determines the NixOS release from which the default
