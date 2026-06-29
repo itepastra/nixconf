@@ -2,6 +2,7 @@
   lib,
   appimageTools,
   fetchurl,
+  python313Packages,
 }:
 let
   version = "4.7.1";
@@ -16,6 +17,10 @@ let
 in
 appimageTools.wrapType2 rec {
   inherit pname version src;
+
+  extraPackages = [
+    python313Packages.librt
+  ];
 
   meta = {
     description = "Comminucation client for reticulum";
