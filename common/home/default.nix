@@ -104,6 +104,7 @@ in
         nautilus
         feishin
 
+        kanri
         krita
       ];
 
