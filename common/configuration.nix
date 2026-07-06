@@ -161,7 +161,10 @@ in
 
   services = {
     gnome.gnome-keyring.enable = true;
-    mullvad-vpn.enable = false;
+    mullvad-vpn = {
+      enable = true;
+      package = pkgs.mullvad-vpn;
+    };
     displayManager = {
       defaultSession = "niri";
       sddm = {
