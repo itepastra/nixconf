@@ -239,6 +239,7 @@
 
     cudatoolkit
     via
+    wineWow64Packages.stagingFull
   ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
