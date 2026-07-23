@@ -109,15 +109,7 @@ in
       ];
 
     # # I set my cursor here, the one I fetched above
-    # pointerCursor = lib.mkIf enableGraphical {
-    #   gtk.enable = true;
-    #   name = cursor_name;
-    #   size = 32;
-    #   package = pkgs.runCommandNoCC "${cursor_name}" { } ''
-    #     mkdir -p $out/share/icons
-    #     ln -s ${cursor_src} $out/share/icons/${cursor_name}
-    #   '';
-    # };
+    pointerCursor.enable = lib.mkIf enableGraphical true;
     # make stuff use .config etc (ask nicely at least)
     preferXdgDirectories = true;
 

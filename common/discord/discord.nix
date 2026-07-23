@@ -9,6 +9,7 @@
   home.file.".config/Vencord/themes/midnight.theme.css".source = ./theme.css;
   programs.nixcord = {
     enable = true;
+    discord.vencord.enable = true;
     quickCss = "";
     config = {
       frameless = true;
