@@ -35,8 +35,6 @@
     # main inputs
     nixpkgs.url = "github:nixos/nixpkgs/master";
 
-    nixsg.url = "github:itepastra/nixsg";
-
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs = {
@@ -91,21 +89,23 @@
     hardware.url = "github:NixOS/nixos-hardware/master";
     # pixelflut stress test tool
     tsunami = {
-      url = "github:itepastra/tsunami";
+      url = "git+https://git.geenit.nl/noa/tsunami.git";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         advisory-db.follows = "advisory-db";
         crane.follows = "crane";
+        fenix.follows = "fenix";
         flake-utils.follows = "flake-utils";
       };
     };
     # pixelflut server
     flurry = {
-      url = "github:itepastra/flurry";
+      url = "git+https://git.geenit.nl/noa/flurry.git";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         advisory-db.follows = "advisory-db";
         crane.follows = "crane";
+        fenix.follows = "fenix";
         tsunami.follows = "tsunami";
       };
     };
@@ -125,9 +125,6 @@
         lix.follows = "lix";
         flake-utils.follows = "flake-utils";
       };
-    };
-    qubit-quilt = {
-      url = "github:itepastra/Quantum-surface-application";
     };
     # declarative vencord client
     nixcord = {
@@ -154,7 +151,8 @@
     };
     # Compositor
     niri = {
-      url = "github:niri-wm/niri";
+      #url = "github:niri-wm/niri";
+      url = "github:ShadowRZ/niri/shadowrz/bump-nixpkgs";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
@@ -195,7 +193,6 @@
             };
             modules = [
               ./hosts/lambdaos/configuration.nix
-              inputs.nixsg.nixosModules.nginxSite
             ]
             ++ commonModules;
           };

@@ -6,7 +6,6 @@
 }:
 let
   enableFlurry = true;
-  enableQubitQuilt = true;
 in
 {
   services.nginx =
@@ -95,16 +94,6 @@ in
         })
         (lib.mkIf (import ./toggles.nix).enableFlurry {
           "flurry.itepastra.nl" = proxy "itepastra.nl" "http://127.0.0.1:3000";
-        })
-        (lib.mkIf (import ./toggles.nix).enableQubitQuilt {
-          "qq.geenit.nl" = {
-            forceSSL = true;
-            enableACME = true;
-            extraConfig = extra;
-            locations."/" = {
-              root = inputs.qubit-quilt.packages."x86_64-linux".default;
-            };
-          };
         })
       ];
     };

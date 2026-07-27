@@ -1,4 +1,3 @@
 {
   enableFlurry = true;
-  enableQubitQuilt = true;
 }

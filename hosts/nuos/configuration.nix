@@ -421,9 +421,6 @@
           (lib.mkIf (import ./toggles.nix).enableFlurry "flurry.itepastra.nl")
         ];
       })
-      (lib.mkIf (import ./toggles.nix).enableQubitQuilt {
-        "qq.geenit.nl" = { };
-      })
     ];
 
   };
