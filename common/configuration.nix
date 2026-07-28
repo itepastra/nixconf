@@ -163,7 +163,7 @@ in
     gnome.gnome-keyring.enable = true;
     mullvad-vpn = {
       enable = true;
-      gui.enable = true;
+      gui.enable = enableGraphics;
     };
     displayManager = {
       defaultSession = "niri";
