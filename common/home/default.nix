@@ -157,6 +157,22 @@ in
         inputs = inputs;
         self-pkgs = inputs.self.packages.${pkgs.stdenv.hostPlatform.system};
       };
+
+    };
+
+    desktopEntries = lib.mkIf enableGraphical {
+      gimp = {
+        name = "GIMP";
+        exec = "nix run nixpkgs\\#gimp3 -- %u";
+        terminal = false;
+        type = "Application";
+      };
+      osu = {
+        name = "Osu!";
+        exec = "bash -c \"NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs\\#osu-lazer-bin -- %u\"";
+        terminal = false;
+        type = "Application";
+      };
     };
   };
 
