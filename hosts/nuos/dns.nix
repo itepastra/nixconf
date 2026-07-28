@@ -10,7 +10,7 @@
       enable = true;
       settings = {
         listen_addresses = [
-          "[::]:53"
+          #"[::]:53" # Don't have ipv6 yet
           "127.0.0.1:53"
         ];
         sources.public-resolvers = {
@@ -22,7 +22,7 @@
           minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
           refresh_delay = 72;
         };
-        ipv6_servers = true;
+        #ipv6_servers = true;
 
         require_nolog = true;
         require_nofilter = true;
