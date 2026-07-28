@@ -30,5 +30,7 @@
   };
 
   networking.firewall.allowedTCPPorts = [ 53 ];
-  system.services.dnscrypt-proxy.serviceConfig.stateDirectory = "dnscrypt-proxy";
+  systemd.services.dnscrypt-proxy.serviceConfig = {
+    stateDirectory = "dnscrypt-proxy";
+  };
 }
