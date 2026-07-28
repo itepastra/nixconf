@@ -128,7 +128,7 @@ in
 
   xdg = {
     portal = {
-      enable = true;
+      enable = enableGraphical;
       extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
       configPackages = [ inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.default ];
     };
@@ -233,7 +233,7 @@ in
           "temperature"
         ];
       };
-      enable = lib.mkDefault enableGraphical;
+      enable = enableGraphical;
     };
   };
 

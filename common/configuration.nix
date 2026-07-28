@@ -166,7 +166,7 @@ in
       gui.enable = enableGraphics;
     };
     displayManager = {
-      defaultSession = "niri";
+      defaultSession = lib.mkIf enableGraphics "niri";
       sddm = {
         enable = enableGraphics;
         wayland.enable = true;
