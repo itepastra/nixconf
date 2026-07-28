@@ -21,6 +21,7 @@
 
     ./home-assistant.nix
     ./nginx.nix
+    ./dns.nix
 
     ((import ../../common) { enableGraphics = false; })
   ];
@@ -434,9 +435,6 @@
     8443 # nifi
 
     7791 # flurry
-
-    25565 # minecraft
-    24454 # minecraft (voice)
 
     19494 # i2p
 
