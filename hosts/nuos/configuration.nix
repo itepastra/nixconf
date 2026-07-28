@@ -432,8 +432,6 @@
     80 # http
     443 # https
 
-    8443 # nifi
-
     7791 # flurry
 
     19494 # i2p
