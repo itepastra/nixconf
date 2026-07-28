@@ -395,11 +395,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785155305,
-        "narHash": "sha256-DPNovWUzYh9gUPCDx85Rciv1hz0RlhV3uOnOFRZ0tHU=",
+        "lastModified": 1785252598,
+        "narHash": "sha256-YEzx2vmM6CYYeAarVR99115mFOPkOMFpHGxAC8uN9wc=",
         "ref": "refs/heads/main",
-        "rev": "390b702e6c9f941a0d7578e0a4cfa6a02d5a5298",
-        "revCount": 184,
+        "rev": "31ea04f59c56b3afd0a30274ab37ae23920650c8",
+        "revCount": 185,
         "type": "git",
         "url": "https://git.geenit.nl/noa/flurry.git"
       },
@@ -469,11 +469,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785168662,
-        "narHash": "sha256-kGJTc0oEUQuEwV66lSlMxYtOEtpk9N/HS43k+rFAvs8=",
+        "lastModified": 1785239295,
+        "narHash": "sha256-aYFoftXjm7Df7CAoR0XoMQjJ9rTZ/l9d1jr9EqD7sHM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "cbb77679b3d992c8b62f884cd3a84af534a28621",
+        "rev": "42bb40f7aaab63a107b64a20c4a4ade6550758d0",
         "type": "github"
       },
       "original": {
@@ -631,11 +631,11 @@
         "nixpkgs-nixcord": "nixpkgs-nixcord"
       },
       "locked": {
-        "lastModified": 1785231959,
-        "narHash": "sha256-cxpzPKr79MVXTMMlYjBXayJeZaW3cjcHIEFHMydPLIw=",
+        "lastModified": 1785252465,
+        "narHash": "sha256-9ZRr4r7GosJtTdnZX4pS3ln6sT3rt/dJc/DTZSIsXMQ=",
         "owner": "FlameFlag",
         "repo": "nixcord",
-        "rev": "4c48acb3692f6fb2356d4b3de5ac553f30fce8cf",
+        "rev": "2275f57f6c0481bbbf0ee0b73b2a566a58dd54ea",
         "type": "github"
       },
       "original": {
@@ -722,11 +722,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1785234309,
-        "narHash": "sha256-1wzf5kLa40gCNOH/tV450Drgo1LX2wNIVnRtgV452ZE=",
+        "lastModified": 1785253009,
+        "narHash": "sha256-lu8FMgkYgTaLHGTDumjGf//+RzCOH6TVMMfyXpV8rw0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "06015cd61034ba39ddcf5135900fbd2035498be0",
+        "rev": "023b63b43493cdc3f8fff8261c105418171fb305",
         "type": "github"
       },
       "original": {
@@ -995,11 +995,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785154954,
-        "narHash": "sha256-gUK0dPNquPaHOL9eweqxrBzIwQJZEJW/ylhmYM7UrOc=",
+        "lastModified": 1785252460,
+        "narHash": "sha256-vkVho7MoVKMfv41p+Bhq5YPotP9pf2dzp+LtfsPqPuA=",
         "ref": "refs/heads/main",
-        "rev": "c72b6a870ed675f636231b8a057ff3cad0abeb9f",
-        "revCount": 42,
+        "rev": "c8b8f993c8b1bb0fd48b19290c744e6125883659",
+        "revCount": 43,
         "type": "git",
         "url": "https://git.geenit.nl/noa/tsunami.git"
       },
