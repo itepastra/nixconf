@@ -456,13 +456,13 @@ in
     };
     # notification daemon, I think it looks better than dunst
     mako = {
-      enable = true;
+      enable = enableGraphical;
       # make notifications time out after 30 sec by default
       settings.default-timeout = "30000";
     };
-    playerctld.enable = true;
+    playerctld.enable = enableGraphical;
     swayidle = {
-      enable = true;
+      enable = enableGraphical;
       timeouts = [
         {
           timeout = 300;
