@@ -477,7 +477,7 @@ in
     };
     # sync my password store and homework
     syncthing = {
-      enable = true;
+      enable = enableGraphical;
     };
   };
 
