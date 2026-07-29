@@ -142,19 +142,6 @@
         enable = true;
       };
     };
-    resolved = {
-      enable = true;
-      settings.Resolve = {
-        DNSSEC = "true";
-        Domains = [ "~." ];
-        FallbackDNS = [
-          "192.168.42.1"
-          "10.69.69.1"
-          "8.8.8.8"
-        ];
-        DNSOverTLS = "true";
-      };
-    };
     udev = {
       packages = [
         pkgs.via
