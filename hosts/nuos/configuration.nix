@@ -433,7 +433,6 @@
     443 # https
 
     7791 # flurry
-    8123 # home assistant
 
     19494 # i2p
 
