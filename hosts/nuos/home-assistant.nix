@@ -20,6 +20,8 @@ in
       };
     };
 
+    services.glances.enable = false;
+
     services.home-assistant = {
       enable = true;
       extraComponents = [

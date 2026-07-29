@@ -160,6 +160,14 @@ in
   };
 
   services = {
+    glances = {
+      enable = lib.mkDefault true;
+      openFirewall = true;
+      extraArgs = [
+        "--webserver"
+        "--disable-webui"
+      ];
+    };
     gnome.gnome-keyring.enable = true;
     mullvad-vpn = {
       enable = true;
