@@ -22,6 +22,7 @@
     ./home-assistant.nix
     ./nginx.nix
     ./dns.nix
+    ./syncthing.nix
 
     ((import ../../common) { enableGraphics = false; })
   ];
