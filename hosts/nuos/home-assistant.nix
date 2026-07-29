@@ -40,6 +40,7 @@ in
         "nederlandse_spoorwegen"
         # "caldav"
         "discord"
+        "glances"
       ];
 
       config = {
