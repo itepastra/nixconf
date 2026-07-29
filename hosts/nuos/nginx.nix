@@ -54,8 +54,6 @@ in
           };
 
           "images.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://localhost:2283/";
-          "maintenance.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://192.168.42.5:5000/";
-          "map.noa.voorwaarts.nl" = proxy "noa.voorwaarts.nl" "http://127.0.0.1:8123/";
 
           "itepastra.nl" = {
             forceSSL = true;

@@ -64,8 +64,14 @@ in
         #   }
         # ];
         "api" = { };
-        "automation manual" = [ ];
         "automation ui" = "!include automations.yaml";
+
+        recorder.db_url = "postgresql://@/hass";
+
+        homeassistant = {
+          external_url = "https://home.itepastra.nl";
+          internal_url = "https://home.itepastra.nl";
+        };
 
         http = {
           server_host = [
