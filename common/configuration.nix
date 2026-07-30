@@ -168,6 +168,11 @@ in
         "--disable-webui"
       ];
     };
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
     gnome.gnome-keyring.enable = true;
     mullvad-vpn = {
       enable = true;
