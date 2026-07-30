@@ -48,6 +48,7 @@ in
         "wake_on_lan"
         "webdav"
         "wled"
+        "homekit_controller"
       ];
 
       config = {
