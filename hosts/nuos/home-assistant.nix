@@ -126,7 +126,6 @@ in
       };
       openthread-border-router = {
         enable = true;
-        logLevel = "info";
         radio = {
           device = "/dev/serial/by-id/usb-1a86_USB_Single_Serial_585A039379-if00";
           baudRate = 460800;
