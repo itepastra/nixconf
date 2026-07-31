@@ -126,6 +126,10 @@ in
       };
       openthread-border-router = {
         enable = true;
+        radio = {
+          device = "/dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_40:4C:CA:56:CD:1C-if00";
+          baudRate = 460800;
+        };
       };
     };
 
