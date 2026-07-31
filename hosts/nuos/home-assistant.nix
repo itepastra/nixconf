@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   config,
   ...
 }:
@@ -142,7 +143,7 @@ in
     ];
 
     systemd.services.matter-server.serviceConfig = {
-      MemoryDenyWriteExecute = false;
+      MemoryDenyWriteExecute = lib.mkForce false;
     };
 
     nixpkgs.config.permittedInsecurePackages = [
