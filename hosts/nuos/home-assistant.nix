@@ -142,6 +142,10 @@ in
       "f ${config.services.home-assistant.configDir}/automations.yaml 0755 hass hass"
     ];
 
+    systemd.services.matter-server.serviceConfig = {
+      MemoryDenyWriteExecute = false;
+    };
+
     nixpkgs.config.permittedInsecurePackages = [
       "openssl-1.1.1w"
     ];
