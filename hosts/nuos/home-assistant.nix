@@ -122,7 +122,6 @@ in
       };
       matter-server = {
         enable = true;
-        openFirewall = true;
         package = pkgs.matterjs-server;
       };
       openthread-border-router = {
