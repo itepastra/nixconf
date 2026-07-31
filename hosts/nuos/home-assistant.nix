@@ -22,89 +22,111 @@ in
 
     services.glances.enable = false;
 
-    services.home-assistant = {
-      enable = true;
-      extraComponents = [
-        "discord"
-        "dsmr"
-        "caldav"
-        "esphome"
-        "github"
-        "glances"
-        "google_translate"
-        "heos"
-        "hue"
-        "immich"
-        "jellyfin"
-        "met"
-        "nederlandse_spoorwegen"
-        "radarr"
-        "radio_browser"
-        "sonarr"
-        "spotify"
-        "steam_online"
-        "syncthing"
-        "tado"
-        "wake_on_lan"
-        "webdav"
-        "wled"
-        "homekit_controller"
-      ];
+    services = {
+      home-assistant = {
+        enable = true;
+        extraComponents = [
+          "discord"
+          "dsmr"
+          "caldav"
+          "esphome"
+          "github"
+          "glances"
+          "google_translate"
+          "heos"
+          "hue"
+          "immich"
+          "jellyfin"
+          "met"
+          "nederlandse_spoorwegen"
+          "radarr"
+          "radio_browser"
+          "sonarr"
+          "spotify"
+          "steam_online"
+          "syncthing"
+          "tado"
+          "wake_on_lan"
+          "webdav"
+          "wled"
+          "homekit_controller"
+          "matter"
+          "thread"
+        ];
 
-      config = {
-        default_config = { };
-        # "sensor" = [
-        #   {
-        #     platform = "nederlandse_spoorwegen";
-        #     api_key_path = config.age.secrets."ha/ns".path;
-        #     routes = [
-        #       {
-        #         name = "Utrecht_Vaartsche-Leiden";
-        #         from = "Utvr";
-        #         to = "Ledn";
-        #       }
-        #       {
-        #         name = "Utrecht-Delft";
-        #         from = "Ut";
-        #         to = "Dt";
-        #       }
-        #     ];
-        #   }
-        # ];
-        "api" = { };
-        "automation ui" = "!include automations.yaml";
+        config = {
+          default_config = { };
+          # "sensor" = [
+          #   {
+          #     platform = "nederlandse_spoorwegen";
+          #     api_key_path = config.age.secrets."ha/ns".path;
+          #     routes = [
+          #       {
+          #         name = "Utrecht_Vaartsche-Leiden";
+          #         from = "Utvr";
+          #         to = "Ledn";
+          #       }
+          #       {
+          #         name = "Utrecht-Delft";
+          #         from = "Ut";
+          #         to = "Dt";
+          #       }
+          #     ];
+          #   }
+          # ];
+          "api" = { };
+          "automation ui" = "!include automations.yaml";
 
-        recorder.db_url = "postgresql://@/hass";
+          recorder.db_url = "postgresql://@/hass";
 
-        homeassistant = {
-          external_url = "https://home.itepastra.nl";
-          internal_url = "https://home.itepastra.nl";
+          homeassistant = {
+            external_url = "https://home.itepastra.nl";
+            internal_url = "https://home.itepastra.nl";
+          };
+
+          http = {
+            server_host = [
+              "::"
+              "0.0.0.0"
+            ];
+            trusted_proxies = [ "::1" ];
+            use_x_forwarded_for = true;
+          };
+
+          openFirewall = true;
         };
 
-        http = {
-          server_host = [
-            "::"
-            "0.0.0.0"
-          ];
-          trusted_proxies = [ "::1" ];
-          use_x_forwarded_for = true;
-        };
+        package = (
+          pkgs.home-assistant.override {
+            extraPackages =
+              py: with py; [
+                psycopg2
+              ];
+          }
+        );
+        # .overrideAttrs (oldAttrs: {
+        # 	doInstallCheck = false;
+        # });
 
-        openFirewall = true;
       };
 
-      package = (
-        pkgs.home-assistant.override {
-          extraPackages =
-            py: with py; [
-              psycopg2
-            ];
-        }
-      );
-      # .overrideAttrs (oldAttrs: {
-      # 	doInstallCheck = false;
-      # });
-
+      postgresql = {
+        enable = true;
+        ensureDatabases = [ "hass" ];
+        ensureUsers = [
+          {
+            name = "hass";
+            ensureDBOwnership = true;
+          }
+        ];
+      };
+      matter-server = {
+        enable = true;
+        openFirewall = true;
+      };
+      openthread-border-router = {
+        enable = true;
+      };
     };
 
     systemd.tmpfiles.rules = [
@@ -114,16 +136,5 @@ in
     nixpkgs.config.permittedInsecurePackages = [
       "openssl-1.1.1w"
     ];
-
-    services.postgresql = {
-      enable = true;
-      ensureDatabases = [ "hass" ];
-      ensureUsers = [
-        {
-          name = "hass";
-          ensureDBOwnership = true;
-        }
-      ];
-    };
   };
 }
