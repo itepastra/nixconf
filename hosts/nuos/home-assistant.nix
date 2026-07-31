@@ -27,19 +27,22 @@ in
       home-assistant = {
         enable = true;
         extraComponents = [
+          "caldav"
           "discord"
           "dsmr"
-          "caldav"
           "esphome"
           "github"
           "glances"
           "google_translate"
           "heos"
+          "homekit_controller"
           "hue"
           "immich"
           "jellyfin"
+          "matter"
           "met"
           "nederlandse_spoorwegen"
+          "otbr"
           "radarr"
           "radio_browser"
           "sonarr"
@@ -47,12 +50,10 @@ in
           "steam_online"
           "syncthing"
           "tado"
+          "thread"
           "wake_on_lan"
           "webdav"
           "wled"
-          "homekit_controller"
-          "matter"
-          "thread"
         ];
 
         config = {
