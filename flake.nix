@@ -137,7 +137,6 @@
       url = "github:FlameFlag/nixcord";
       inputs = {
         flake-parts.follows = "flake-parts";
-        flake-compat.follows = "flake-compat";
         nixpkgs.follows = "nixpkgs";
       };
     };
