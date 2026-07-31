@@ -126,10 +126,15 @@ in
       };
       openthread-border-router = {
         enable = true;
+        logLevel = "info";
         radio = {
-          device = "/dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_40:4C:CA:56:CD:1C-if00";
+          device = "/dev/serial/by-id/usb-1a86_USB_Single_Serial_585A039379-if00";
           baudRate = 460800;
         };
+        backboneInterfaces = [
+          "enp42s0"
+          "lo"
+        ];
       };
     };
 
