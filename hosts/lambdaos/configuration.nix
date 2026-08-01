@@ -116,6 +116,7 @@
         icu
         stdenv.cc.cc.lib
         zstd
+        libusb1
       ];
     };
   };
