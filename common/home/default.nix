@@ -460,6 +460,23 @@ in
       # make notifications time out after 30 sec by default
       settings.default-timeout = "30000";
     };
+    pipewire = {
+      enable = enableGraphical;
+      pulseConfigs = {
+        "17-osu-low-latency" = {
+          matches = [
+            { application.process.binary = "osu!"; }
+          ];
+
+          actions = {
+            update-props = {
+              pulse.min.req = "64/48000";
+              pulse.min.quantum = "64/48000";
+            };
+          };
+        };
+      };
+    };
     playerctld.enable = enableGraphical;
     swayidle = {
       enable = enableGraphical;
