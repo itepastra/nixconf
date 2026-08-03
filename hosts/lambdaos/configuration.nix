@@ -77,15 +77,16 @@
             refresh-rate = 359.979;
             scale = "1";
           }
-          # {
-          #   name = "HDMI-A-1";
-          #   horizontal = 2560;
-          #   vertical = 1440;
-          #   horizontal-offset = 2560;
-          #   vertical-offset = 0;
-          #   refresh-rate = 144;
-          #   scale = "1";
-          # }
+          {
+            name = "HDMI-A-2";
+            horizontal = 2560;
+            vertical = 1440;
+            horizontal-offset = 2560;
+            vertical-offset = -600;
+            refresh-rate = 144;
+            scale = "1";
+            transform = "90";
+          }
         ];
         extraConfig = {
           programs.btop.package = pkgs.btop-cuda.overrideAttrs (oldAttrs: {

@@ -22,16 +22,18 @@ let
       horizontal,
       vertical,
       refresh-rate,
-      horizontal-offset,
-      scale,
+      horizontal-offset ? 0,
+      vertical-offset ? 0,
+      scale ? "1",
+      transform ? "normal",
       ...
     }:
     ''
       output "${name}" {
         mode "${builtins.toString horizontal}x${builtins.toString vertical}@${builtins.toString refresh-rate}"
         scale ${scale}
-        transform "normal"
-        position x=${builtins.toString horizontal-offset} y=0
+        transform "${transform}"
+        position x=${builtins.toString horizontal-offset} y=${builtins.toString vertical-offset}
       }
     ''
   ) displays;
