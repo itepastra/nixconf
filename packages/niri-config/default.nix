@@ -26,6 +26,8 @@ let
       vertical-offset ? 0,
       scale ? "1",
       transform ? "normal",
+      default-column-width ? 0.5,
+      default-window-height ? 1.0,
       ...
     }:
     ''
@@ -34,6 +36,10 @@ let
         scale ${scale}
         transform "${transform}"
         position x=${builtins.toString horizontal-offset} y=${builtins.toString vertical-offset}
+
+        layout {
+          default-column-width { proportion ${builtins.toString default-column-width}; }
+        }
       }
     ''
   ) displays;

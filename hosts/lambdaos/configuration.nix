@@ -86,6 +86,8 @@
             refresh-rate = 144;
             scale = "1";
             transform = "90";
+            default-column-width = 1.0;
+            default-window-height = 0.5;
           }
         ];
         extraConfig = {
