@@ -168,6 +168,9 @@ in
         "--disable-webui"
       ];
     };
+    gvfs = {
+      enable = true;
+    };
     avahi = {
       enable = true;
       nssmdns4 = true;
