@@ -45,6 +45,7 @@ in
           "otbr"
           "radarr"
           "radio_browser"
+          "seventeentrack"
           "sonarr"
           "spotify"
           "steam_online"
