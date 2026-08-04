@@ -23,6 +23,7 @@
     ./nginx.nix
     ./dns.nix
     ./syncthing.nix
+    ./grimmory.nix
 
     ((import ../../common) { enableGraphics = false; })
   ];
@@ -67,8 +68,6 @@
     systemPackages = with pkgs; [
       git
       zsh
-
-      calibre
     ];
   };
 
@@ -329,10 +328,6 @@
   };
 
   services = {
-    calibre-web = {
-      enable = true;
-      options.calibreLibrary = "/data/calibreLibrary";
-    };
     factorio = {
       enable = false;
       # package = pkgs.factorio-headless.override {

@@ -840,6 +840,7 @@
         "prettier-plugins": "prettier-plugins",
         "stylix": "stylix",
         "systems": "systems_2",
+        "tixpkgs": "tixpkgs",
         "tsunami": "tsunami"
       }
     },
@@ -971,6 +972,32 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
+        "type": "github"
+      }
+    },
+    "tixpkgs": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785798031,
+        "narHash": "sha256-Hg4EDFuQeZygX6Usyvkllu4D4Rzw7yH/XKZDya62RxM=",
+        "owner": "74k1",
+        "repo": "tixpkgs",
+        "rev": "9c94f42eb60aeb050712e157cdd3c7c47392ca10",
+        "type": "github"
+      },
+      "original": {
+        "owner": "74k1",
+        "repo": "tixpkgs",
         "type": "github"
       }
     },

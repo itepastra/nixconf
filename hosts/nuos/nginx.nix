@@ -24,6 +24,7 @@ in
         useACMEHost = name;
         extraConfig = extra;
         locations."/" = {
+          recommendedProxySettings = true;
           proxyWebsockets = true;
           proxyPass = url;
         };
@@ -35,10 +36,11 @@ in
         modules = [ pkgs.nginxModules.brotli ];
       };
 
+      recommendedBrotliSettings = true;
+      recommendedGzipSettings = true;
       recommendedOptimisation = true;
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
-      recommendedBrotliSettings = true;
       sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
 
       virtualHosts = lib.mkMerge [
@@ -86,7 +88,7 @@ in
             extraConfig = extra;
             locations."/" = {
               proxyWebsockets = true;
-              proxyPass = "http://[::1]:8083/";
+              proxyPass = "http://127.0.0.1:25000/";
             };
           };
         })

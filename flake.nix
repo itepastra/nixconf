@@ -93,6 +93,17 @@
     };
     # various hardware configurations
     hardware.url = "github:NixOS/nixos-hardware/master";
+
+    # packages grimmory
+    tixpkgs = {
+      url = "github:74k1/tixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
     # pixelflut stress test tool
     tsunami = {
       url = "git+https://git.geenit.nl/noa/tsunami.git";
