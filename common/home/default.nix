@@ -464,16 +464,13 @@ in
     };
     pipewire = {
       enable = enableGraphical;
-      pulseConfigs = {
-        "17-osu-low-latency" = {
-          matches = [
-            { application.process.binary = "osu!"; }
-          ];
-
+      configs = {
+        "17-output-low-latency" = {
           actions = {
             update-props = {
-              pulse.min.req = "64/48000";
-              pulse.min.quantum = "64/48000";
+              default.clock.quantum = 64;
+              default.clock.min-quantum = 32;
+              default.clock.max-quantum = 2048;
             };
           };
         };
