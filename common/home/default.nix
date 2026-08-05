@@ -394,7 +394,9 @@ in
       enable = enableGraphical;
     };
     # add `play funny video` as alias because why not
-    zsh.shellAliases.bzzt = lib.mkIf enableGraphical ''nix-shell -p mpv --command "mpv ~/Videos/BZZZM.mp4"'';
+    zsh.shellAliases = {
+      osu = lib.mkIf enableGraphical "NIXPKGS_ALLOW_UNFREE=1 PIPEWIRE_LATENCY=64/44100 nix run --impure osu-lazer-bin ";
+    };
     # lsd makes files look better
     lsd = {
       enable = true;
