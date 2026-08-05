@@ -395,7 +395,7 @@ in
     };
     # add `play funny video` as alias because why not
     zsh.shellAliases = {
-      osu = lib.mkIf enableGraphical "NIXPKGS_ALLOW_UNFREE=1 PIPEWIRE_LATENCY=64/44100 nix run --impure osu-lazer-bin ";
+      osu = lib.mkIf enableGraphical "NIXPKGS_ALLOW_UNFREE=1 PIPEWIRE_LATENCY=64/44100 nix run --impure nixpkgs#osu-lazer-bin ";
     };
     # lsd makes files look better
     lsd = {
