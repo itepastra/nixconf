@@ -33,8 +33,7 @@ forAllSystems (
   let
     extraArgs = {
       fuzzel-power = { inherit inputs; };
-      onthespot.pywidevine = self.packages.${system}.pywidevine;
-      pywidevine.pymp4 = self.packages.${system}.pymp4;
+      ecoflow-energy-ha = { inherit (pkgs.python3Packages) aiofiles distutils; };
     };
   in
   builtins.listToAttrs (

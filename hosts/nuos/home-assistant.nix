@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   lib,
   config,
   ...
@@ -55,6 +56,10 @@ in
           "wake_on_lan"
           "webdav"
           "wled"
+        ];
+
+        customComponents = [
+          inputs.self.packages.${pkgs.stdenvNoCC.hostPlatform.system}.ecoflow-energy-ha
         ];
 
         config = {
