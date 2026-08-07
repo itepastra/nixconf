@@ -4,6 +4,7 @@
   fetchFromGitHub,
   aiofiles,
   distutils,
+  paho-mqtt,
   nix-update-script,
 }:
 
@@ -20,6 +21,7 @@ buildHomeAssistantComponent rec {
   };
 
   dependencies = [
+    paho-mqtt
   ];
 
   dontBuild = true;

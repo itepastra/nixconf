@@ -33,7 +33,7 @@ forAllSystems (
   let
     extraArgs = {
       fuzzel-power = { inherit inputs; };
-      ecoflow-energy-ha = { inherit (pkgs.python3Packages) aiofiles distutils; };
+      ecoflow-energy-ha = { inherit (pkgs.python3Packages) aiofiles distutils paho-mqtt; };
     };
   in
   builtins.listToAttrs (
