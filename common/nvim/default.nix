@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 let
@@ -17,6 +18,7 @@ in
       enable = true;
       enableMan = true;
       enablePrintInit = true;
+      nixpkgs.source = inputs.nixpkgs;
 
       defaultEditor = true;
       viAlias = true;
