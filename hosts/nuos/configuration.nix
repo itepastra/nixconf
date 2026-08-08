@@ -214,13 +214,30 @@
           ExecStart = "${
             inputs.flurry.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (
               finalAttrs: previousAttrs: {
-                patches = [
-                  (pkgs.fetchpatch2 {
-                    name = "flurry-server-config.patch";
-                    url = "https://github.com/itepastra/flurry/commit/db6019fd1a9b363b090f2fc093d0267a37c0d6ff.patch";
-                    hash = "sha256-EoIjx2kN8hDrN7vLc4FyWp7JqOHIgYFR1V3NVdoDtsw=";
-                  })
-                ];
+
+                postPatch = ''
+                  cat > src/config.rs <<'EOF'
+                  use std::time::Duration;
+
+                  pub const GRID_LENGTH: usize = 1;
+                  pub const HOST: &str = "0.0.0.0:7791";
+                  pub const WEB_HOST: &str = "127.0.0.1:3000";
+                  pub const IMAGE_SAVE_INTERVAL: Duration = Duration::from_secs(5);
+                  pub const JPEG_UPDATE_INTERVAL: Duration = Duration::from_millis(17);
+                  pub const WEB_UPDATE_INTERVAL: Duration = Duration::from_millis(50);
+                  pub const GRID_WIDTH: usize = 1280;
+                  pub const GRID_HEIGHT: usize = 720;
+
+                  pub const HELP_TEXT: &[u8] = b"Flurry is a pixelflut implementation, this means you can use commands to get and set pixels in the canvas
+                  SIZE returns the size of the canvas
+                  PX {x} {y} returns the color of the pixel at {x}, {y}
+                  If you include a color in hex format you set a pixel instead
+                  PX {x} {y} {RGB} sets the color of the pixel at {x}, {y} to the rgb value
+                  PX {x} {y} {RGBA} blends the pixel at {x}, {y} with the rgb value weighted by the a
+                  PX {x} {y} {W} sets the color of the pixel at {x}, {y} to the grayscale value
+                  ";
+                  EOF
+                '';
               }
             )
           }/bin/flurry";
