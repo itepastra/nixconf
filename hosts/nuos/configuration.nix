@@ -15,6 +15,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
+    inputs.flurry.nixosModules.default
     ./disk-config.nix
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -207,52 +208,6 @@
         restartIfChanged = false;
       };
 
-      "flurry" = {
-        enable = (import ./toggles.nix).enableFlurry;
-        description = "Pixelflut server";
-        serviceConfig = {
-          ExecStart = "${
-            inputs.flurry.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (
-              finalAttrs: previousAttrs: {
-
-                postPatch = ''
-                  cat > src/config.rs <<'EOF'
-                  use std::time::Duration;
-
-                  pub const GRID_LENGTH: usize = 1;
-                  pub const HOST: &str = "0.0.0.0:7791";
-                  pub const WEB_HOST: &str = "127.0.0.1:3000";
-                  pub const IMAGE_SAVE_INTERVAL: Duration = Duration::from_secs(5);
-                  pub const JPEG_UPDATE_INTERVAL: Duration = Duration::from_millis(17);
-                  pub const WEB_UPDATE_INTERVAL: Duration = Duration::from_millis(50);
-                  pub const GRID_WIDTH: usize = 1280;
-                  pub const GRID_HEIGHT: usize = 720;
-
-                  pub const HELP_TEXT: &[u8] = b"Flurry is a pixelflut implementation, this means you can use commands to get and set pixels in the canvas
-                  SIZE returns the size of the canvas
-                  PX {x} {y} returns the color of the pixel at {x}, {y}
-                  If you include a color in hex format you set a pixel instead
-                  PX {x} {y} {RGB} sets the color of the pixel at {x}, {y} to the rgb value
-                  PX {x} {y} {RGBA} blends the pixel at {x}, {y} with the rgb value weighted by the a
-                  PX {x} {y} {W} sets the color of the pixel at {x}, {y} to the grayscale value
-                  ";
-                  EOF
-                '';
-              }
-            )
-          }/bin/flurry";
-          ExecStop = "pkill flurry";
-          Restart = "on-failure";
-        };
-        wants = [
-          "network-online.target"
-        ];
-        after = [
-          "network-online.target"
-        ];
-        wantedBy = [ "default.target" ];
-      };
-
       "disqalculate" = {
         enable = true;
         wants = [
@@ -359,6 +314,14 @@
       admins = [ "itepastra" ];
       extraSettingsFile = config.age.secrets."factorio/solrunners".path;
     };
+    flurry = {
+      enable = (import ./toggles.nix).enableFlurry;
+      package = inputs.flurry.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      host = "0.0.0.0";
+      openFirewall = true;
+      grid_width = 1280;
+      grid_height = 1024;
+    };
     i2pd = {
       enable = true;
       enableIPv4 = true;
@@ -444,8 +407,6 @@
     22 # ssh
     80 # http
     443 # https
-
-    7791 # flurry
 
     19494 # i2p
 
