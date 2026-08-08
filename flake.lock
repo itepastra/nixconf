@@ -395,11 +395,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786209033,
-        "narHash": "sha256-QZy4x2ccM5K/LwuskK0A5LexHxQ8xoVRaAIjrWs6JCY=",
+        "lastModified": 1786213233,
+        "narHash": "sha256-knabgKkINUvuykkDkepR6soY83GIfmNiw0FrESjwhno=",
         "ref": "refs/heads/main",
-        "rev": "56e09bcb178acf79fe0cd00bc77ec69a10fa183d",
-        "revCount": 193,
+        "rev": "e010ceb27e2258c51482dfa2c72813a6a7ef051c",
+        "revCount": 196,
         "type": "git",
         "url": "https://git.geenit.nl/noa/flurry.git"
       },
