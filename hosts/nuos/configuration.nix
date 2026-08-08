@@ -321,6 +321,11 @@
       openFirewall = true;
       grid_width = 1280;
       grid_height = 1024;
+      features = [
+        "text"
+        "binary"
+        "palette"
+      ];
     };
     i2pd = {
       enable = true;
