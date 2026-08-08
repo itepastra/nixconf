@@ -4,9 +4,6 @@
   inputs,
   ...
 }:
-let
-  enableFlurry = true;
-in
 {
   services.nginx =
     let
