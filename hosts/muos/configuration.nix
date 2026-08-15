@@ -69,15 +69,15 @@
     };
     i2pd = {
       enable = true;
-      enableIPv4 = true;
-      enableIPv6 = true;
-      bandwidth = 128;
-      port = 19494;
-      proto = {
-        http.enable = true;
-        sam.enable = true;
-        socksProxy.enable = true;
-        httpProxy.enable = true;
+      settings = {
+        ipv4 = true;
+        ipv6 = true;
+        bandwidth = 128;
+        port = 19494;
+        http.enabled = true;
+        sam.enabled = true;
+        httpproxy.enabled = true;
+        socksproxy.enabled = true;
       };
     };
   };

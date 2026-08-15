@@ -329,14 +329,14 @@
     };
     i2pd = {
       enable = true;
-      enableIPv4 = true;
-      bandwidth = 256;
-      port = 19494;
-      proto = {
-        http.enable = true;
-        sam.enable = true;
-        socksProxy.enable = true;
-        httpProxy.enable = true;
+      settings = {
+        ipv4 = true;
+        bandwidth = 256;
+        port = 19494;
+        http.enabled = true;
+        sam.enabled = true;
+        httpproxy.enabled = true;
+        socksproxy.enabled = true;
       };
     };
     immich = {
