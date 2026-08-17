@@ -27,7 +27,6 @@
     ./grimmory.nix
 
     ((import ../../common) { enableGraphics = false; })
-    ../../modules/attic
   ];
 
   # LOVE me some blob
