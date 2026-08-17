@@ -148,6 +148,7 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.lix.follows = "lix";
+      inputs.flake-utils.follows = "flake-utils";
     };
 
     # declarative vencord client
