@@ -140,21 +140,16 @@
     };
     # alternative nix implementation
     lix = {
-      url = "git+https://git.lix.systems/lix-project/lix.git";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
-      };
+      url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
+      flake = false;
     };
-    # module for lix
+
     lix-module = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module.git";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        lix.follows = "lix";
-        flake-utils.follows = "flake-utils";
-      };
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.lix.follows = "lix";
     };
+
     # declarative vencord client
     nixcord = {
       url = "github:FlameFlag/nixcord";
@@ -202,6 +197,7 @@
             agenix.nixosModules.default
             disko.nixosModules.disko
             nixvim.nixosModules.nixvim
+            lix-module.nixosModules.default
           ];
         in
         {
