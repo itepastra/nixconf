@@ -89,6 +89,16 @@
     users = {
       "noa" = (import ../../common/home) {
         enableFlut = true;
+        extraConfig = {
+          programs.btop.package = pkgs.btop-rocm.overrideAttrs (
+            finalAttrs: previousAttrs: {
+              cmakeFlags = (previousAttrs.cmakeFlags or [ ]) ++ [
+                "-DBTOP_GPU=ON"
+              ];
+              patches = (previousAttrs.patches or [ ]) ++ [ ../../common/home/btop-no-nix-store.patch ];
+            }
+          );
+        };
       };
       "root" = import ../../common/home/root.nix;
     };
