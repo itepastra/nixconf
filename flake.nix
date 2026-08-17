@@ -91,6 +91,18 @@
         flake-utils.follows = "flake-utils";
       };
     };
+
+    # nix binary cache
+    attic = {
+      url = "github:zhaofengli/attic";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        crane.follows = "crane";
+        flake-compat.follows = "flake-compat";
+      };
+    };
+
     # various hardware configurations
     hardware.url = "github:NixOS/nixos-hardware/master";
 
