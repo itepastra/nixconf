@@ -18,7 +18,7 @@
     };
 
     postgresql = {
-      ensureDatabases = [ "attic" ];
+      ensureDatabases = [ "atticd" ];
       ensureUsers = [
         {
           name = config.services.atticd.user;
