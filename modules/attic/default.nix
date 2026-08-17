@@ -5,7 +5,7 @@
   ...
 }:
 {
-  imports = [ inputs.atticd.nixosModules.attic ];
+  imports = [ inputs.attic.nixosModules.atticd ];
 
   services = {
     atticd = {
