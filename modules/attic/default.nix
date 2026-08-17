@@ -21,7 +21,7 @@
       ensureDatabases = [ "attic" ];
       ensureUsers = [
         {
-          name = config.atticd.user;
+          name = config.services.atticd.user;
           ensureDBOwnership = true;
         }
       ];
