@@ -13,7 +13,7 @@
       environmentFile = "/data/attic/private";
       settings = {
         storage.path = "/data/attic/storage";
-        database.url = lib.mkIf config.postgresql.enable "postgresql://localhost/attic";
+        database.url = lib.mkIf config.services.postgresql.enable "postgresql://localhost/attic";
       };
     };
 
