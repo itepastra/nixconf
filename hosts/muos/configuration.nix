@@ -80,6 +80,7 @@
         socksproxy.enabled = true;
       };
     };
+    thermald.enable = true;
   };
 
   age.secrets."wg/muos" = {
