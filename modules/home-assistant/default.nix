@@ -11,9 +11,17 @@ in
 {
   imports = [
     ../postgres # home-assistant needs postgres to work consistently
+    ../nginx # for creating a proxy
   ];
 
   config = {
+
+    modules.nginx.proxies = [
+      {
+        url = url;
+        proxy_to = "[::1]:8123";
+      }
+    ];
 
     age.secrets = {
       "ha/ns" = {
