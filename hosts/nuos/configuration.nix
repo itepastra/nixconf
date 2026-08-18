@@ -20,11 +20,12 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
 
-    ./home-assistant.nix
     ./nginx.nix
     ./dns.nix
     ./syncthing.nix
     ./grimmory.nix
+
+    ../../modules/home-assistant
 
     ((import ../../common) { enableGraphics = false; })
   ];
