@@ -118,158 +118,77 @@
     };
   };
 
-  systemd.services =
-    let
-      ap =
-        {
-          lib,
-          appimageTools,
-          fetchurl,
-          nix-update-script,
-          extraPackages ? [ ],
-        }:
-        let
-          pname = "archipelago";
-          version = "0.6.2";
-          src = fetchurl {
-            url = "https://github.com/ArchipelagoMW/Archipelago/releases/download/${version}/Archipelago_${version}_linux-x86_64.AppImage";
-            hash = "sha256-DdlfHb8iTCfTGGBUYQeELYh2NF/2GcamtuJzeYb2A5M=";
-          };
-
-          appimageContents = appimageTools.extractType2 { inherit pname version src; };
-        in
-        appimageTools.wrapType2 {
-          inherit pname version src;
-          extraPkgs =
-            pkgs:
-            [
-              pkgs.xsel
-              pkgs.xclip
-              pkgs.mtdev
-            ]
-            ++ extraPackages;
-          extraInstallCommands = ''
-            install -Dm444 ${appimageContents}/archipelago.desktop -t $out/share/applications
-            substituteInPlace $out/share/applications/archipelago.desktop \
-              --replace-fail 'opt/Archipelago/ArchipelagoLauncher' "archipelago"
-            cp -r ${appimageContents}/usr/share/icons $out/share
-          '';
-
-          passthru.updateScript = nix-update-script { };
-
-          meta = {
-            description = "Multi-Game Randomizer and Server";
-            homepage = "https://archipelago.gg";
-            changelog = "https://github.com/ArchipelagoMW/Archipelago/releases/tag/${version}";
-            license = lib.licenses.mit;
-            mainProgram = "archipelago";
-            maintainers = with lib.maintainers; [ pyrox0 ];
-            platforms = lib.platforms.linux;
-          };
-        };
-      archipelago = pkgs.callPackage ap { };
-      world = "AP_78826017969466809374.zip";
-    in
-    {
-      "archipelago" =
-        let
-          script = pkgs.writeShellScript "archipelago-server" ''
-            ${archipelago}/bin/archipelago MultiServer -- /home/noa/Archipelago/output/${world}
-          '';
-        in
-        {
-          enable = false;
-          serviceConfig = {
-            Type = "simple";
-            User = "noa";
-            ExecStart = "${script}";
-
-            BindPaths = [
-              "/home/noa/Archipelago"
-              "/home/noa/.local/share/Archipelago/"
-            ];
-            Restart = "always";
-          };
-          wants = [
-            "network-online.target"
-          ];
-          after = [
-            "network-online.target"
-          ];
-          wantedBy = [ "multi-user.target" ];
-          restartIfChanged = true;
-        };
-
-      "update-from-flake" = {
-        path = with pkgs; [
-          git
-        ];
-        serviceConfig = {
-          Type = "exec";
-          User = "root";
-          ExecStart = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild switch --flake github:itepastra/nixconf";
-        };
-        wants = [
-          "network-online.target"
-        ];
-        after = [
-          "network-online.target"
-        ];
-        restartIfChanged = false;
+  systemd.services = {
+    "update-from-flake" = {
+      path = with pkgs; [
+        git
+      ];
+      serviceConfig = {
+        Type = "exec";
+        User = "root";
+        ExecStart = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild switch --flake github:itepastra/nixconf";
       };
+      wants = [
+        "network-online.target"
+      ];
+      after = [
+        "network-online.target"
+      ];
+      restartIfChanged = false;
+    };
 
-      "disqalculate" = {
-        enable = true;
-        wants = [
-          "network-online.target"
+    "disqalculate" = {
+      enable = true;
+      wants = [
+        "network-online.target"
+      ];
+      after = [
+        "network-online.target"
+      ];
+      wantedBy = [ "default.target" ];
+      restartTriggers = [ inputs.disqalculate.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${
+          inputs.disqalculate.packages.${pkgs.stdenv.hostPlatform.system}.default
+        }/bin/disqalculate";
+        ExecStop = "${pkgs.busybox}/bin/pkill disqalculate";
+        RuntimeDirectory = "disqalculate";
+        RootDirectory = "/run/disqalculate";
+        User = "disqalculate";
+        NoNewPrivileges = true;
+        ProtectHome = true;
+        ProtectProc = "noaccess";
+        ProcSubset = "pid";
+        ProtectClock = true;
+        ProtectKernelLogs = true;
+        ProtectSystem = "strict";
+        ProtectHostname = true;
+        PrivateTmp = true;
+        PrivateDevices = true;
+        PrivateUsers = true;
+        RestrictAddressFamilies = "AF_INET";
+        ProtectKernelTunables = true;
+        RestrictNamespaces = true;
+        CapabilityBoundingSet = "";
+        EnvironmentFile = config.age.secrets."discord/disqalculate".path;
+        BindReadOnlyPaths = [
+          "/nix/store"
+          "/etc/ssl"
+          "/etc/static/ssl"
+          "/etc/resolv.conf"
+          "/bin/sh"
         ];
-        after = [
-          "network-online.target"
-        ];
-        wantedBy = [ "default.target" ];
-        restartTriggers = [ inputs.disqalculate.packages.${pkgs.stdenv.hostPlatform.system}.default ];
-        serviceConfig = {
-          Type = "simple";
-          ExecStart = "${
-            inputs.disqalculate.packages.${pkgs.stdenv.hostPlatform.system}.default
-          }/bin/disqalculate";
-          ExecStop = "${pkgs.busybox}/bin/pkill disqalculate";
-          RuntimeDirectory = "disqalculate";
-          RootDirectory = "/run/disqalculate";
-          User = "disqalculate";
-          NoNewPrivileges = true;
-          ProtectHome = true;
-          ProtectProc = "noaccess";
-          ProcSubset = "pid";
-          ProtectClock = true;
-          ProtectKernelLogs = true;
-          ProtectSystem = "strict";
-          ProtectHostname = true;
-          PrivateTmp = true;
-          PrivateDevices = true;
-          PrivateUsers = true;
-          RestrictAddressFamilies = "AF_INET";
-          ProtectKernelTunables = true;
-          RestrictNamespaces = true;
-          CapabilityBoundingSet = "";
-          EnvironmentFile = config.age.secrets."discord/disqalculate".path;
-          BindReadOnlyPaths = [
-            "/nix/store"
-            "/etc/ssl"
-            "/etc/static/ssl"
-            "/etc/resolv.conf"
-            "/bin/sh"
-          ];
-          Restart = "always";
-          RestartSec = 10;
-          TimeoutStopSec = 10;
-        };
-        unitConfig = {
-          StartLimitInterval = 400;
-          StartLimitBurst = 30;
-        };
+        Restart = "always";
+        RestartSec = 10;
+        TimeoutStopSec = 10;
+      };
+      unitConfig = {
+        StartLimitInterval = 400;
+        StartLimitBurst = 30;
       };
     };
+  };
 
   virtualisation = {
     docker = {
