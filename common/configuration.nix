@@ -211,7 +211,7 @@ in
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
     };
-    thermald.enable = enableGraphics;
+    thermald.enable = true;
     xserver = {
       enable = false;
       xkb = {
