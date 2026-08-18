@@ -78,7 +78,7 @@
             scale = "1";
           }
           {
-            name = "HDMI-A-2";
+            name = "DP-3";
             horizontal = 2560;
             vertical = 1440;
             horizontal-offset = 2560;
