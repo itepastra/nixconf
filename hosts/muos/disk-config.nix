@@ -28,17 +28,18 @@
               extraArgs = [ "-f" ];
               subvolumes = {
                 "/rootfs" = {
+                  mountOptions = [ "compress=zstd:4" ];
                   mountpoint = "/";
                 };
 
                 "/home" = {
-                  mountOptions = [ "compress=zstd" ];
+                  mountOptions = [ "compress=zstd:4" ];
                   mountpoint = "/home";
                 };
 
                 "/nix" = {
                   mountOptions = [
-                    "compress=zstd"
+                    "compress=zstd:10"
                     "noatime"
                   ];
                   mountpoint = "/nix";
