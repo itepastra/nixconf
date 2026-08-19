@@ -125,7 +125,6 @@
     };
     udev = {
       packages = [
-        pkgs.via
         pkgs.qmk-udev-rules
       ];
     };
@@ -205,7 +204,6 @@
     gnumake
     gcc
 
-    cudatoolkit
     wineWow64Packages.stagingFull
   ];
 

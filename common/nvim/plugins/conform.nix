@@ -5,6 +5,9 @@
   ...
 }:
 {
+
+  config.nixpkgs.config.allowUnfreePackages = [ "pycharm" ];
+
   config.programs.nixvim.plugins.conform-nvim = {
     settings = {
       default_format_opts.lsp_format = "fallback";

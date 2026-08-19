@@ -34,7 +34,6 @@ in
   };
 
   nixpkgs.config = {
-    allowUnfree = true;
     contentAdressedByDefault = true;
   };
 
