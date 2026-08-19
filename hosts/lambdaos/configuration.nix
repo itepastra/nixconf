@@ -18,14 +18,11 @@
     ./rescue.nix
 
     ./disk-config.nix
+    ../../modules/tablet
   ];
 
   age.identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
 
-  hardware.opentabletdriver = {
-    enable = true;
-    daemon.enable = true;
-  };
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement = {
