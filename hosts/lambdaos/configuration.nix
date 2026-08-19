@@ -19,25 +19,12 @@
 
     ./disk-config.nix
     ../../modules/tablet
+    ../../modules/nvidia
   ];
 
   age.identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
 
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement = {
-      enable = true;
-    };
-    open = true;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
-  };
   hardware.keyboard.qmk.enable = true;
-
-  nixpkgs.config = {
-    nvidia.acceptLicense = true;
-    cudaSupport = true;
-  };
 
   networking = {
     hostName = "lambdaOS"; # Define your hostname.
@@ -89,9 +76,6 @@
         ];
         extraConfig = {
           programs.btop.package = pkgs.btop-cuda.overrideAttrs (oldAttrs: {
-            cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
-              "-DBTOP_GPU=ON"
-            ];
             patches = (oldAttrs.patches or [ ]) ++ [ ../../common/home/btop-no-nix-store.patch ];
           });
         };
@@ -99,10 +83,6 @@
       "root" = import ../../common/home/root.nix;
     };
   };
-
-  boot.kernelModules = [
-    "nvidia_uvm"
-  ];
 
   programs = {
     alvr = {
@@ -229,13 +209,6 @@
     via
     wineWow64Packages.stagingFull
   ];
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  systemd.services.nvidia-control-devices = {
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig.ExecStart = "${pkgs.linuxPackages.nvidia_x11_beta.bin}/bin/nvidia-smi";
-  };
 
   virtualisation.libvirtd = {
     enable = true;
