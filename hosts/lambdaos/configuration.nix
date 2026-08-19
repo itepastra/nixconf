@@ -206,7 +206,6 @@
     gcc
 
     cudatoolkit
-    via
     wineWow64Packages.stagingFull
   ];
 
