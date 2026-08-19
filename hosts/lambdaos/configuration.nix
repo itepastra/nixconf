@@ -75,7 +75,7 @@
           }
         ];
         extraConfig = {
-          programs.btop.package = pkgs.btop-cuda.overrideAttrs (oldAttrs: {
+          programs.btop.package = pkgs.btop.overrideAttrs (oldAttrs: {
             patches = (oldAttrs.patches or [ ]) ++ [ ../../common/home/btop-no-nix-store.patch ];
           });
         };
