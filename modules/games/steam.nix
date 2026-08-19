@@ -9,6 +9,10 @@
     enable = lib.mkEnableOption "enable steam";
   };
   config = lib.mkIf config.modules.games.steam.enable {
+    nixpkgs.config.allowUnfreePackages = [
+      "steam"
+      "steam-unwrapped"
+    ];
     programs = {
       steam = {
         enable = true;
