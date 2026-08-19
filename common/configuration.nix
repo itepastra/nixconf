@@ -27,7 +27,6 @@ in
       powerOnBoot = true;
     };
     enableRedistributableFirmware = true;
-    enableAllFirmware = true;
     graphics = {
       enable = true;
       enable32Bit = true;
