@@ -6,13 +6,22 @@
   ...
 }:
 let
-  ha = {
-    url = "https://home.itepastra.nl";
-  };
-
+  url = "https://home.itepastra.nl";
 in
 {
+  imports = [
+    ../postgres # home-assistant needs postgres to work consistently
+    ../nginx # for creating a proxy
+  ];
+
   config = {
+
+    modules.nginx.proxies = [
+      {
+        url = url;
+        proxy_to = "[::1]:8123";
+      }
+    ];
 
     age.secrets = {
       "ha/ns" = {
@@ -88,14 +97,14 @@ in
           recorder.db_url = "postgresql://@/hass";
 
           homeassistant = {
-            external_url = "https://home.itepastra.nl";
-            internal_url = "https://home.itepastra.nl";
+            external_url = url;
+            internal_url = url;
           };
 
           http = {
             server_host = [
-              "::"
-              "0.0.0.0"
+              "::1"
+              "127.0.0.1"
             ];
             trusted_proxies = [ "::1" ];
             use_x_forwarded_for = true;
@@ -119,7 +128,6 @@ in
       };
 
       postgresql = {
-        enable = true;
         ensureDatabases = [ "hass" ];
         ensureUsers = [
           {

@@ -14,7 +14,12 @@ in
   imports = [
     ../modules/games/steam.nix
     ./nvim
+    ../modules/info
   ];
+
+  modules.info = {
+    email = "noa@voorwaarts.nl";
+  };
 
   hardware = {
     bluetooth = {

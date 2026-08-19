@@ -20,11 +20,11 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
 
-    ./home-assistant.nix
-    ./nginx.nix
     ./dns.nix
     ./syncthing.nix
     ./grimmory.nix
+
+    ../../modules/home-assistant
 
     ((import ../../common) { enableGraphics = false; })
   ];
@@ -312,35 +312,9 @@
     };
   };
 
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "noa@voorwaarts.nl";
-    certs = lib.mkMerge [
-      ({
-        "noa.voorwaarts.nl".extraDomainNames = [
-          "images.noa.voorwaarts.nl"
-          "maintenance.noa.voorwaarts.nl"
-          "map.noa.voorwaarts.nl"
-        ];
-        "git.geenit.nl" = { };
-        "itepastra.nl".extraDomainNames = [
-          "locked.itepastra.nl"
-          "calendar.itepastra.nl"
-          "home.itepastra.nl"
-        ]
-        ++ [
-          (lib.mkIf (import ./toggles.nix).enableFlurry "flurry.itepastra.nl")
-        ];
-      })
-    ];
-
-  };
-
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     22 # ssh
-    80 # http
-    443 # https
 
     19494 # i2p
 
@@ -350,16 +324,12 @@
   ];
   networking.firewall.allowedUDPPorts = [
     22 # ssh
-    80 # http
-    443 # https
 
     19494 # i2p
 
     22000 # syncthing
     21027 # syncthing
   ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
