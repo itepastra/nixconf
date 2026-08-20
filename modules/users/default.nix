@@ -9,7 +9,7 @@
 
   users = lib.mkMerge [
     ({
-      users = (
+      users = lib.traceValSeq (
         lib.mapAttrs (
           user:
           {
@@ -21,7 +21,7 @@
           {
             description = lib.mkIf (name != "") name;
             openssh.authorizedKeys.keys = ssh-keys;
-            isNormalUser = true;
+            isNormalUser = lib.mkIf (user != "root") true;
             extraGroups = [
               "networkmanager"
               "docker"
@@ -35,9 +35,8 @@
     })
     {
       defaultUserShell = pkgs.zsh;
-      users = {
+      users = lib.traceValSeq {
         noa = lib.mkIf (config.modules.info ? noa) {
-          isNormalUser = true;
           extraGroups = [
             "wheel"
           ];
