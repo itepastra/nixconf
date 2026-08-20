@@ -17,10 +17,6 @@ in
     ../modules/info
   ];
 
-  modules.info = {
-    email = "noa@voorwaarts.nl";
-  };
-
   hardware = {
     bluetooth = {
       enable = true;
@@ -72,29 +68,6 @@ in
     pkgs.age-plugin-yubikey
     sddm-theme
   ];
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users = {
-    defaultUserShell = pkgs.zsh;
-    users = {
-      root = {
-        hashedPassword = "!";
-      };
-      noa = {
-        isNormalUser = true;
-        description = "Noa Aarts";
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-          "docker"
-          "wireshark"
-          "dialout"
-        ];
-        hashedPassword = "$6$rounds=512400$Zip3xoK2zcoR4qEL$N13YTHO5tpWfx2nKb1sye.ZPwfoRtMQ5f3YrMZqKzzoFoSSHHJ.l5ulCEa9HygFxZmBtPnwlseFEtl8ERnwF50";
-        openssh.authorizedKeys.keys = (import ./ssh-keys.nix);
-      };
-    };
-  };
 
   home-manager = {
     extraSpecialArgs = {
