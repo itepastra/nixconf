@@ -12,9 +12,9 @@ let
 in
 {
   imports = [
-    ../modules/games/steam.nix
-    ./nvim
-    ../modules/info
+    ../modules/steam
+    ../hm-modules/neovim
+    ../modules/users
   ];
 
   hardware = {

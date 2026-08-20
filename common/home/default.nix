@@ -42,24 +42,24 @@ let
 in
 {
   imports = [
-    # I made some cursed modules (waybar is the worst)
-    ../../modules
-    ../../modules/automapaper
     # we import extraConfig, it's funny that this has the correct effect
     extraConfig
   ]
   # these have no use if there isn't any display....
   ++ lib.optionals enableGraphical [
-    ../discord/discord.nix
-    ../spotify.nix
+    ../../hm-modules/applications
+    ../../hm-modules/automapaper
+    ../../hm-modules/games
+    ../../hm-modules/discord
+    ../../hm-modules/spotify
+    ../../hm-modules/waybar
   ];
 
   home = {
     file = {
       # makes yubikey stuff work
       ".gnupg/scdaemon.conf".text = "disable-ccid";
-      ".ssh/id_rsa_yubikey.pub".text = builtins.elemAt (import ../ssh-keys.nix) 0;
-      # I don't want the directory directly in home, even though I only go to it via the symlink
+      ".ssh/id_rsa_yubikey.pub".text = builtins.elemAt (import ../../config/info/ssh-keys.nix) 0;
     };
     # haha, now I can set my home folder like this
     homeDirectory = "/home/${me.nickname}";

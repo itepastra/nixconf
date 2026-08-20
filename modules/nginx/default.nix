@@ -4,7 +4,7 @@
   config,
 }:
 {
-  imports = [ ../info ];
+  imports = [ ../../config/info ];
 
   options.modules.nginx = {
     proxies = lib.mkOption {
@@ -77,7 +77,7 @@
 
   security.acme = {
     acceptTerms = true;
-    defaults.email = config.modules.info.email;
+    defaults.email = config.modules.info.noa.email;
     certs = lib.listToAttrs (
       builtins.map (
         { url, ... }:
