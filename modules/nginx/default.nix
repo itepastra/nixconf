@@ -89,7 +89,7 @@
             name = "${url}";
             value = { };
           }
-        ) (lib.filter ({ enableSSL, ... }: enableSSL) (lib.traceValSeq config.modules.nginx.proxies))
+        ) (lib.filter ({ enableSSL, ... }: enableSSL) config.modules.nginx.proxies)
       );
     };
 
