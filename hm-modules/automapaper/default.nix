@@ -151,50 +151,63 @@ in
     };
   };
 
-  config = lib.mkIf config.modules.automapaper.enable {
-    systemd.user = {
-      enable = true;
-      startServices = "sd-switch";
-      services = {
-        automapaper = {
-          Install = {
-            WantedBy = [ "niri.service" ];
-          };
-          Unit = {
-            After = "graphical-session.target";
-            Requisite = "graphical-session.target";
-          };
-
-          Service = {
-            ExecStart = "${lib.getExe inputs.automapaper.packages.${pkgs.stdenv.hostPlatform.system}.default}";
-            Type = "exec";
-            Restart = "always";
-            RestartSec = 15;
-          };
+  config = lib.mkMerge [
+    {
+      modules.automapaper = {
+        enable = false;
+        config = {
+          c1 = "000000";
+          c2 = "${config.lib.stylix.colors.base01}";
+          decay_time = 1.0;
         };
-        niri-automapaper = {
-          Install = {
-            WantedBy = [ "niri.service" ];
-          };
+      };
 
-          Unit = {
-            After = "graphical-session.target";
-            Requisite = "graphical-session.target";
-          };
+    }
+    (lib.mkIf config.modules.automapaper.enable {
+      systemd.user = {
+        enable = true;
+        startServices = "sd-switch";
+        services = {
+          automapaper = {
+            Install = {
+              WantedBy = [ "niri.service" ];
+            };
+            Unit = {
+              After = "graphical-session.target";
+              Requisite = "graphical-session.target";
+            };
 
-          Service = {
-            ExecStart = lib.getExe niri-automapaper;
-            Type = "exec";
-            Restart = "always";
-            RestartSec = 15;
+            Service = {
+              ExecStart = "${lib.getExe inputs.automapaper.packages.${pkgs.stdenv.hostPlatform.system}.default}";
+              Type = "exec";
+              Restart = "always";
+              RestartSec = 15;
+            };
+          };
+          niri-automapaper = {
+            Install = {
+              WantedBy = [ "niri.service" ];
+            };
+
+            Unit = {
+              After = "graphical-session.target";
+              Requisite = "graphical-session.target";
+            };
+
+            Service = {
+              ExecStart = lib.getExe niri-automapaper;
+              Type = "exec";
+              Restart = "always";
+              RestartSec = 15;
+            };
           };
         };
       };
-    };
 
-    xdg.configFile = {
-      "automapaper-ng/config.toml".source =
-        pkgs.writers.writeTOML "config.toml" config.modules.automapaper.config;
-    };
-  };
+      xdg.configFile = {
+        "automapaper-ng/config.toml".source =
+          pkgs.writers.writeTOML "config.toml" config.modules.automapaper.config;
+      };
+    })
+  ];
 }

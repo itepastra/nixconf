@@ -44,15 +44,18 @@ in
   imports = [
     # we import extraConfig, it's funny that this has the correct effect
     extraConfig
+    ../../hm-modules/git
+    ../../hm-modules/zsh
   ]
   # these have no use if there isn't any display....
   ++ lib.optionals enableGraphical [
-    ../../hm-modules/applications
     ../../hm-modules/automapaper
     ../../hm-modules/games
     ../../hm-modules/discord
     ../../hm-modules/spotify
     ../../hm-modules/waybar
+    ../../hm-modules/mail
+    ../../hm-modules/terminal
   ];
 
   home = {
@@ -179,63 +182,35 @@ in
   # Needed for like spotify or something
   nixpkgs.config.allowUnfree = true;
 
-  modules = {
-    # imagine steam but like without a monitor
-    games.enable = enableGraphical && enableGames;
-    games.lutris.enable = false;
-
-    automapaper = {
-      enable = false;
-      config = {
-        c1 = "000000";
-        c2 = "${config.lib.stylix.colors.base01}";
-        decay_time = 1.0;
-      };
-    };
-
-    # other things I like to use
-    apps = {
-      #my terminal language of choice
-      zsh.enable = true;
-      # some browser if I have a screen
-      firefox.enable = enableGraphical;
-      # terminal emulator...
-      kitty.enable = enableGraphical;
-      # git settings
-      # TODO: add the one that sets upstream branches on it's own
-      git = {
-        enable = true;
-        name = me.fullName;
-        email = me.email;
-        do_sign = true;
-      };
-      # mail stuffs
-      thunderbird.enable = enableGraphical;
-    };
-    # my very cursed module for waybar is activated here
-    waybar = {
-      modules = {
-        left = [
-          "niri/workspaces"
-          "niri/window"
-        ];
-        center = [
-          "clock"
-          "custom/spotify"
-        ];
-        right = [
-          "battery"
-          "custom/bluetooth"
-          "network"
-          "wireplumber"
-          "cpu"
-          "memory"
-          "temperature"
-        ];
-      };
-      enable = enableGraphical;
-    };
-  };
+  # modules = {
+  #   # imagine steam but like without a monitor
+  #   games.enable = enableGraphical && enableGames;
+  #   games.lutris.enable = false;
+  #
+  #   # my very cursed module for waybar is activated here
+  #   waybar = {
+  #     modules = {
+  #       left = [
+  #         "niri/workspaces"
+  #         "niri/window"
+  #       ];
+  #       center = [
+  #         "clock"
+  #         "custom/spotify"
+  #       ];
+  #       right = [
+  #         "battery"
+  #         "custom/bluetooth"
+  #         "network"
+  #         "wireplumber"
+  #         "cpu"
+  #         "memory"
+  #         "temperature"
+  #       ];
+  #     };
+  #     enable = enableGraphical;
+  #   };
+  # };
 
   systemd.user = {
     # since all these services are for programs in niri so far, I just enable all of them if I have screen.

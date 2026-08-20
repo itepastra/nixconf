@@ -31,6 +31,11 @@
     };
 
   config.modules.info = {
+    root = {
+      email = "noa@voorwaarts.nl";
+      name = "Noa Aarts";
+      password = "!";
+    };
     noa = {
       email = "noa@voorwaarts.nl";
       name = "Noa Aarts";

@@ -36,9 +36,6 @@
     {
       defaultUserShell = pkgs.zsh;
       users = {
-        root = {
-          hashedPassword = "!";
-        };
         noa = lib.mkIf (config.modules.info ? noa) {
           isNormalUser = true;
           extraGroups = [

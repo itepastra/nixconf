@@ -5,7 +5,8 @@
 
 {
   imports = [
-    ../../hm-modules/applications
+    ../../hm-modules/zsh
+    ../../hm-modules/git
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -36,16 +37,6 @@
     kitty
     lsd
   ];
-
-  modules = {
-    apps = {
-      git = {
-        enable = true;
-        name = "Noa Aarts";
-        email = "noa@voorwaarts.nl";
-      };
-    };
-  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
