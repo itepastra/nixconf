@@ -15,7 +15,7 @@ in
         proxy_to = "http://[::1]:2929";
       }
     ];
-    forgejo = {
+    services.forgejo = {
       enable = true;
       settings = {
         DEFAULT = {
