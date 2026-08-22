@@ -29,7 +29,6 @@
           ALLOW_SIGNUP = "False";
           BASE_URL = "https://recipes.geenit.nl";
           TZ = "europe/amsterdam";
-          API_PORT = "28728";
         };
       };
     };
