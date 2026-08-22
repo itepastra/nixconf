@@ -175,8 +175,7 @@
     };
     # Compositor
     niri = {
-      #url = "github:niri-wm/niri";
-      url = "github:ShadowRZ/niri/shadowrz/bump-nixpkgs";
+      url = "github:niri-wm/niri";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
