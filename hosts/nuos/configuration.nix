@@ -28,6 +28,7 @@
     ../../modules/mealie
     ../../modules/forgejo
     ../../modules/calendar
+    ../../modules/immich
 
     ((import ../../common) { enableGraphics = false; })
   ];
@@ -263,12 +264,6 @@
         sam.enabled = true;
         httpproxy.enabled = true;
         socksproxy.enabled = true;
-      };
-    };
-    immich = {
-      enable = true;
-      settings = {
-        server.externalDomain = "https://images.noa.voorwaarts.nl";
       };
     };
     openssh = {
