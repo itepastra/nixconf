@@ -25,6 +25,7 @@
     ./grimmory.nix
 
     ../../modules/home-assistant
+    ../../modules/mealie
 
     ((import ../../common) { enableGraphics = false; })
   ];
