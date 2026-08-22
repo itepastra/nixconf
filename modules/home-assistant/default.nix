@@ -19,7 +19,7 @@ in
     modules.nginx.proxies = [
       {
         url = lib.elemAt (lib.strings.splitString "://" url) 1;
-        proxy_to = "[::1]:8123";
+        proxy_to = "http://[::1]:8123";
       }
     ];
 

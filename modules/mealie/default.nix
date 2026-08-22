@@ -16,7 +16,7 @@
     modules.nginx.proxies = [
       {
         url = "recipes.geenit.nl";
-        proxy_to = "[::1]:28727";
+        proxy_to = "http://[::1]:28727";
       }
     ];
 
