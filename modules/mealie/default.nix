@@ -27,7 +27,7 @@
         listenAddress = "::1";
         settings = {
           ALLOW_SIGNUP = "False";
-          BASE_URL = "https://recipes.geenit.nl";
+          BASE_URL = "https://recipes.geenit.nl:443";
           TZ = "europe/amsterdam";
         };
       };
