@@ -24,8 +24,13 @@
       mealie = {
         enable = true;
         port = 28727;
+        listenAddress = "::1";
+        settings = {
+          ALLOW_SIGNUP = false;
+          BASE_URL = "https://recipes.geenit.nl";
+          TZ = "europe/amsterdam";
+        };
       };
-
     };
   };
 }
