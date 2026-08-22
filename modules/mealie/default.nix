@@ -26,7 +26,7 @@
         port = 28727;
         listenAddress = "::1";
         settings = {
-          ALLOW_SIGNUP = false;
+          ALLOW_SIGNUP = "False";
           BASE_URL = "https://recipes.geenit.nl";
           TZ = "europe/amsterdam";
         };
