@@ -27,10 +27,13 @@
         listenAddress = "::1";
         settings = {
           ALLOW_SIGNUP = "False";
-          BASE_URL = "https://recipes.geenit.nl:443";
+          BASE_URL = "https://recipes.geenit.nl";
           TZ = "europe/amsterdam";
+          API_PORT = "28728";
         };
       };
     };
+
+    networking.firewall.allowedTCPPorts = [ 28728 ];
   };
 }
