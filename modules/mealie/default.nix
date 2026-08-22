@@ -24,7 +24,6 @@
       mealie = {
         enable = true;
         port = 28727;
-        database.createLocally = true;
       };
 
     };
