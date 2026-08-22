@@ -16,6 +16,14 @@
         group = "radicale";
       };
     };
+
+    modules.nginx.proxies = [
+      {
+        url = "calendar.itepastra.nl";
+        proxy_to = "http://[::1]:29341";
+      }
+    ];
+
     services.radicale = {
       enable = true;
       settings = {
