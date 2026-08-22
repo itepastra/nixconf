@@ -26,6 +26,7 @@
 
     ../../modules/home-assistant
     ../../modules/mealie
+    ../../modules/forgejo
 
     ((import ../../common) { enableGraphics = false; })
   ];
@@ -278,26 +279,6 @@
       enable = true;
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
-    };
-    forgejo = {
-      enable = true;
-      settings = {
-        DEFAULT = {
-          APP_NAME = "OaGit";
-          APP_SLOGAN = "Noa's personal git";
-          RUN_MODE = "dev";
-        };
-        server = {
-          DOMAIN = "git.geenit.nl";
-          HTTP_PORT = 2929;
-          ROOT_URL = "https://git.geenit.nl";
-        };
-        service.DISABLE_REGISTRATION = true;
-      };
-
-      database = {
-        type = "postgres";
-      };
     };
     radicale = {
       enable = true;
