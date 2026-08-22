@@ -27,6 +27,7 @@
     ../../modules/home-assistant
     ../../modules/mealie
     ../../modules/forgejo
+    ../../modules/calendar
 
     ((import ../../common) { enableGraphics = false; })
   ];
@@ -213,11 +214,6 @@
         "secrets/token-anstml".file = ../../secrets/github/anstml.age;
         "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
         "factorio/solrunners".file = ../../secrets/factorio/solrunners.age;
-        "rsecrets/radicale" = {
-          file = ../../secrets/radicale/htpasswd.age;
-          owner = "radicale";
-          group = "radicale";
-        };
       }
       {
         "discord/disqalculate" = {
@@ -279,17 +275,6 @@
       enable = true;
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
-    };
-    radicale = {
-      enable = true;
-      settings = {
-        server.hosts = [ "[::1]:29341" ];
-        auth = {
-          type = "htpasswd";
-          htpasswd_filename = config.age.secrets."rsecrets/radicale".path;
-          htpasswd_encryption = "bcrypt";
-        };
-      };
     };
   };
 
