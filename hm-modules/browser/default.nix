@@ -9,9 +9,10 @@
         name = "profile_0";
         isDefault = true;
         search = {
-          default = "ddg";
+          default = "kagi";
           force = true;
           order = [
+            "kagi"
             "ddg"
             "google"
           ];
