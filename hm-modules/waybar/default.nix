@@ -52,7 +52,7 @@ in
 
   config = lib.mkMerge [
     {
-      waybar = {
+      modules.waybar = {
         modules = {
           left = [
             "niri/workspaces"
