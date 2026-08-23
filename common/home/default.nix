@@ -102,7 +102,7 @@ in
         qbittorrent
         keepassxc
         yubico-piv-tool
-        libreoffice-qt-fresh
+        libreoffice-qt-stable
         tmux
         nautilus
         feishin
