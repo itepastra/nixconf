@@ -56,6 +56,7 @@ in
     ../../hm-modules/waybar
     ../../hm-modules/mail
     ../../hm-modules/terminal
+    ../../hm-modules/browser
   ];
 
   home = {
