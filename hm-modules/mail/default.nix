@@ -15,7 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     accounts.email.accounts =
       let
-        gpg_key = "A16CDCBF1472541F";
+        gpg_key = "01EC926FEAEF43BA";
       in
       {
         "noa-voorwaarts" = {
