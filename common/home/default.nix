@@ -92,7 +92,6 @@ in
 
         # service things
         dconf
-        pipewire
         wl-clipboard
         libnotify
         playerctl
@@ -442,12 +441,10 @@ in
       enable = enableGraphical;
       configs = {
         "17-output-low-latency" = {
-          actions = {
-            update-props = {
-              default.clock.quantum = 64;
-              default.clock.min-quantum = 32;
-              default.clock.max-quantum = 2048;
-            };
+          "context.properties" = {
+            "default.clock.quantum" = 64;
+            "default.clock.min-quantum" = 32;
+            "default.clock.max-quantum" = 2048;
           };
         };
       };
