@@ -5,41 +5,77 @@ in
 {
   imports = [
     ../../config/info
-    ../zitadel
+    ../authprovider
   ];
+
   services.netbird = {
     enable = true;
-    ui.enable = true;
+
     server = {
       enable = true;
       enableNginx = true;
-      domain = url;
+      domain = "reef.geenit.nl";
+
       dashboard = {
         enable = true;
         settings = {
-          AUTH_AUTHORITY = "https://auth.geenit.nl/oauth2";
-          AUTH_AUDIENCE = "netbird";
+          AUTH_AUTHORITY = "https://auth.geenit.nl/realms/reef";
           AUTH_CLIENT_ID = "netbird";
+          AUTH_AUDIENCE = "netbird";
           AUTH_SUPPORTED_SCOPES = "openid profile email";
           NETBIRD_TOKEN_SOURCE = "idToken";
+          USE_AUTH0 = false;
         };
       };
+
       management = {
         enable = true;
-        oidcConfigEndpoint = "https://auth.geenit.nl/oauth2/.well-known/openid-configuration";
+        oidcConfigEndpoint = "https://auth.geenit.nl/realms/reef/.well-known";
         turnDomain = "turn.geenit.nl";
+        disableSingleAccountMode = true;
+
+        settings = {
+          IdpManagerConfig = {
+            ManagerType = "keycloak";
+            ClientConfig = {
+              Issuer = "https://auth.geenit.nl/realms/reef";
+              TokenEndpoint = "https://auth.geenit.nl/realms/reef/protocol/openid-connect/token";
+              ClientID = "netbird";
+              ClientSecret = "<your-client-secret>";
+              GrantType = "client_credentials";
+            };
+            ExtraConfig = { };
+          };
+
+          DeviceAuthorizationFlow = {
+            Provider = "hosted";
+            ProviderConfig = {
+              Audience = "netbird";
+              Domain = "https://auth.geenit.nl/realms/reef";
+              ClientID = "netbird";
+              TokenEndpoint = "https://auth.geenit.nl/realms/reef/protocol/openid-connect/token";
+              DeviceAuthEndpoint = "https://auth.geenit.nl/realms/reef/protocol/openid-connect/auth/device";
+              Scope = "openid profile email";
+              UseIDToken = true;
+            };
+          };
+
+          PKCEAuthorizationFlow = {
+            ProviderConfig = {
+              Audience = "netbird";
+              ClientID = "netbird";
+              ClientSecret = "";
+              AuthorizationEndpoint = "https://auth.geenit.nl/realms/reef/protocol/openid-connect/auth";
+              TokenEndpoint = "https://auth.geenit.nl/realms/reef/protocol/openid-connect/token";
+              Scope = "openid profile email";
+              RedirectURLs = [ "http://localhost:53000" ];
+              UseIDToken = true;
+            };
+          };
+        };
       };
       signal.enable = true;
     };
   };
 
-  networking.firewall.allowedUDPPorts = [ 3478 ];
-
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = config.modules.info.noa.email;
-    certs = {
-      # "reef.geenit.nl" = { };
-    };
-  };
 }
