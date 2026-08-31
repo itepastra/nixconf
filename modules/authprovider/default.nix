@@ -21,7 +21,7 @@ in
     enable = true;
     database = {
       type = "postgresql";
-      host = "localhost";
+      #host = "localhost";
       createLocally = true;
     };
 
