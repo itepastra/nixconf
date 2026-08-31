@@ -29,6 +29,7 @@
     ../../modules/forgejo
     ../../modules/calendar
     ../../modules/immich
+    ../../modules/authprovider
 
     ((import ../../common) { enableGraphics = false; })
   ];
