@@ -32,13 +32,15 @@ in
     };
     database = {
       type = "postgresql";
-      host = "/run/postgresql/.s.PGSQL.5432";
+      host = "/run/postgresql";
       createLocally = true;
     };
 
     settings = {
       http-enabled = true;
       http-port = 29919;
+
+      db-url = lib.mkForce "jdbc:postgresql:///keycloak?socketFactory=org.newsclub.net.unix.AFUNIXSocketFactory$FactoryArg&socketFactoryArg=/run/postgresql/.s.PGSQL.5432";
 
       hostname = "https://${url}";
       proxy-headers = "xforwarded";
