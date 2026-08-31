@@ -22,7 +22,7 @@ in
     database = {
       type = "postgresql";
       host = "localhost";
-      createLocally = false;
+      createLocally = true;
     };
 
     settings = {
