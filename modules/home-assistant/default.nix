@@ -118,6 +118,7 @@ in
             extraPackages =
               py: with py; [
                 psycopg2
+                pychromecast
               ];
           }
         );
