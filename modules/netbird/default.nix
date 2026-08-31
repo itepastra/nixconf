@@ -6,6 +6,7 @@ in
   imports = [
     ../../config/info
     ../authprovider
+    ../nginx
   ];
 
   services.netbird = {
@@ -78,4 +79,9 @@ in
     };
   };
 
+  security.acme = {
+    certs = {
+      "reef.geenit.nl" = { };
+    };
+  };
 }
