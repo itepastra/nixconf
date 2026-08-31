@@ -2,6 +2,7 @@ let
   noa = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKOiz4Dsp4fgtwgOvARzOO9kZI4fSwJ4QJCf34dGVB6Z";
   nuOS = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDV2IDF4FP1T6qWcv+drtnbKyXkeB9kOAbU4wVWNfPSO";
   muOS = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGfjb+nIw9uwI6vYL3b4LDNzLjMbNFHicJLLQznrrqF6";
+  lambdaOS = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICII469nfANk6y6D8gd06OkmxBClpZsNXMW1kxDOreLX";
 in
 {
   "factorio/solrunners.age".publicKeys = [
@@ -54,5 +55,10 @@ in
   ];
   "wg/muos.age".publicKeys = [
     muOS
+  ];
+  "zitadel/master.age".publicKeys = [
+    noa
+    lambdaOS
+    nuOS
   ];
 }
