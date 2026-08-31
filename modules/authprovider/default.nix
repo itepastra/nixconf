@@ -40,4 +40,9 @@ in
       proxy_to = "http://127.0.0.1:${builtins.toString config.services.keycloak.settings.http-port}";
     }
   ];
+
+  systemd.services.keycloak = {
+    after = [ "postgresql.target" ];
+    bindsTo = [ "postgresql.target" ];
+  };
 }
