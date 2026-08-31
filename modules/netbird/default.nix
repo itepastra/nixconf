@@ -79,9 +79,12 @@ in
     };
   };
 
-  security.acme = {
-    certs = {
-      "reef.geenit.nl" = { };
-    };
-  };
+  modules.nginx.proxies = [
+    {
+
+      url = "reef.geenit.nl";
+      proxy_to = "http://localhost:21111";
+    }
+  ];
+
 }
