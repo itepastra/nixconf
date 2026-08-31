@@ -21,7 +21,8 @@ in
     enable = true;
     database = {
       type = "postgresql";
-      host = "/run/postgresql";
+      host = "localhost";
+      createLocally = false;
     };
 
     settings = {
