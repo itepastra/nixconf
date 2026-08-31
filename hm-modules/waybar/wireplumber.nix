@@ -24,7 +24,8 @@ in
           ""
           ""
         ];
-        on-click = lib.meta.getExe pkgs.crosspipe;
+        on-click = lib.meta.getExe pkgs.pwvucontrol;
+        on-middle-click = lib.meta.getExe pkgs.crosspipe;
       };
       style = ''
         #wireplumber {
