@@ -56,7 +56,6 @@ in
               Domain = "https://auth.geenit.nl/realms/reef";
               ClientID = "netbird";
               ClientSecret = token;
-              GrantType = "client_credentials";
               TokenEndpoint = "https://auth.geenit.nl/realms/reef/protocol/openid-connect/token";
               DeviceAuthEndpoint = "https://auth.geenit.nl/realms/reef/protocol/openid-connect/auth/device";
               Scope = "openid profile email";
@@ -68,8 +67,7 @@ in
             ProviderConfig = {
               Audience = "netbird";
               ClientID = "netbird";
-              ClientSecret = token;
-              GrantType = "client_credentials";
+              ClientSecret = "";
               AuthorizationEndpoint = "https://auth.geenit.nl/realms/reef/protocol/openid-connect/auth";
               TokenEndpoint = "https://auth.geenit.nl/realms/reef/protocol/openid-connect/token";
               Scope = "openid profile email";
