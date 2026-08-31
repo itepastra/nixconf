@@ -29,7 +29,6 @@
     ../../modules/forgejo
     ../../modules/calendar
     ../../modules/immich
-    ../../modules/zitadel
 
     ((import ../../common) { enableGraphics = false; })
   ];
