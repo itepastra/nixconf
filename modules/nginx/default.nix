@@ -27,6 +27,20 @@
       );
       default = [ ];
     };
+    other = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.submodule {
+          options = {
+            url = lib.mkOption { type = lib.types.str; };
+            enableSSL = lib.mkOption {
+              type = lib.types.bool;
+              default = true;
+            };
+          };
+        }
+      );
+      default = [ ];
+    };
   };
 
   config = {
@@ -64,33 +78,55 @@
         recommendedTlsSettings = true;
         sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
 
-        virtualHosts = lib.listToAttrs (
-          builtins.map (
-            {
-              url,
-              proxy_to,
-              enableSSL,
-            }:
-            {
+        virtualHosts = lib.mkMerge [
+          (lib.listToAttrs (
+            builtins.map (
+              {
+                url,
+                proxy_to,
+                enableSSL,
+              }:
+              {
+                name = url;
+                value = proxy proxy_to enableSSL;
+              }
+            ) config.modules.nginx.proxies
+          ))
+          (lib.listToAttrs (
+            builtins.map ({ url, enableSSL }: {
               name = url;
-              value = proxy proxy_to enableSSL;
-            }
-          ) config.modules.nginx.proxies
-        );
+              value = {
+                forceSSL = enableSSL;
+                enableACME = enableSSL;
+              };
+            }) config.modules.nginx.other
+          ))
+        ];
       };
 
     security.acme = {
       acceptTerms = true;
       defaults.email = config.modules.info.noa.email;
-      certs = lib.listToAttrs (
-        map (
-          { url, ... }:
-          {
-            name = "${url}";
-            value = { };
-          }
-        ) (lib.filter ({ enableSSL, ... }: enableSSL) config.modules.nginx.proxies)
-      );
+      certs = lib.mkMerge [
+        (lib.listToAttrs (
+          map (
+            { url, ... }:
+            {
+              name = "${url}";
+              value = { };
+            }
+          ) (lib.filter ({ enableSSL, ... }: enableSSL) config.modules.nginx.proxies)
+        ))
+        (lib.listToAttrs (
+          map (
+            { url, ... }:
+            {
+              name = "${url}";
+              value = { };
+            }
+          ) (lib.filter ({ enableSSL, ... }: enableSSL) config.modules.nginx.other)
+        ))
+      ];
     };
 
     networking.firewall = {
