@@ -33,13 +33,6 @@ in
     };
   };
 
-  networking.hosts = {
-    "127.0.0.1" = [
-      "reef.geenit.nl"
-      "auth.geenit.nl"
-    ];
-  };
-
   networking.firewall.allowedUDPPorts = [ 3478 ];
 
   security.acme = {
