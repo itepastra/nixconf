@@ -1,6 +1,7 @@
 { config, lib, ... }:
 let
   url = "reef.geenit.nl";
+  token = "SPL7ZK9RUFbbbRk3DEU4KS5YezXwa6TdWifIW88PVVwBF1Kzj3uJNzlFvXhS4ObWM7KPtiZN4HDrWHABNTyXZd";
 in
 {
   imports = [
@@ -42,7 +43,7 @@ in
               Issuer = "https://auth.geenit.nl/realms/reef";
               TokenEndpoint = "https://auth.geenit.nl/realms/reef/protocol/openid-connect/token";
               ClientID = "netbird";
-              ClientSecret = "<your-client-secret>";
+              ClientSecret = token;
               GrantType = "client_credentials";
             };
             ExtraConfig = { };
@@ -54,6 +55,8 @@ in
               Audience = "netbird";
               Domain = "https://auth.geenit.nl/realms/reef";
               ClientID = "netbird";
+              ClientSecret = token;
+              GrantType = "client_credentials";
               TokenEndpoint = "https://auth.geenit.nl/realms/reef/protocol/openid-connect/token";
               DeviceAuthEndpoint = "https://auth.geenit.nl/realms/reef/protocol/openid-connect/auth/device";
               Scope = "openid profile email";
@@ -65,7 +68,8 @@ in
             ProviderConfig = {
               Audience = "netbird";
               ClientID = "netbird";
-              ClientSecret = "";
+              ClientSecret = token;
+              GrantType = "client_credentials";
               AuthorizationEndpoint = "https://auth.geenit.nl/realms/reef/protocol/openid-connect/auth";
               TokenEndpoint = "https://auth.geenit.nl/realms/reef/protocol/openid-connect/token";
               Scope = "openid profile email";
