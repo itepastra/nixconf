@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   url = "auth.geenit.nl";
 in
@@ -19,6 +19,7 @@ in
   };
   services.keycloak = {
     enable = true;
+    package = pkgs.keycloak.override { plugins = with pkgs.keycloakPlugins; [ junixsocket-common ]; };
     database = {
       type = "postgresql";
       host = "/run/postgresql/";
