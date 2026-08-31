@@ -20,8 +20,8 @@ in
   services.keycloak = {
     enable = true;
     database = {
-      #type = "postgresql";
-      #host = "localhost";
+      type = "postgresql";
+      host = "/run/postgresql/";
       createLocally = true;
     };
 
