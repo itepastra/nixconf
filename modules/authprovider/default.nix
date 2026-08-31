@@ -37,7 +37,7 @@ in
   modules.nginx.proxies = [
     {
       url = url;
-      proxy_to = "127.0.0.1:${builtins.toString config.services.keycloak.settings.http-port}";
+      proxy_to = "http://127.0.0.1:${builtins.toString config.services.keycloak.settings.http-port}";
     }
   ];
 }
