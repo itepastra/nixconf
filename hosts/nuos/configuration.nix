@@ -22,7 +22,6 @@
 
     ./dns.nix
     ./syncthing.nix
-    ./grimmory.nix
 
     ../../modules/home-assistant
     ../../modules/mealie
