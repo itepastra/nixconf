@@ -155,6 +155,8 @@
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  security.pam.services.sddm.fprintAuth = true;
+
   networking.firewall = {
     allowedTCPPorts = [
       19494
