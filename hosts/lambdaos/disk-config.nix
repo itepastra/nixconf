@@ -28,6 +28,9 @@
                 extraArgs = [ "-f" ];
                 subvolumes = {
                   "/rootfs" = {
+                    mountOptions = [
+                      "compress=zstd"
+                    ];
                     mountpoint = "/";
                   };
 
@@ -38,25 +41,11 @@
                     ];
                     mountpoint = "/nix";
                   };
-                };
-              };
-            };
-          };
-        };
-      };
-      home = {
-        device = lib.mkDefault "/dev/disk/nvme1n1";
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-            home = {
-              size = "100%";
-              content = {
-                type = "btrfs";
-                extraArgs = [ "-f" ];
-                subvolumes = {
+
                   "/home" = {
+                    mountOptions = [
+                      "compress=zstd"
+                    ];
                     mountpoint = "/home";
                   };
                 };
