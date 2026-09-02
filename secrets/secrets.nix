@@ -10,15 +10,7 @@ in
     muOS
     nuOS
   ];
-  "restic/env.age".publicKeys = [ noa ];
-  "restic/repo.age".publicKeys = [ noa ];
-  "restic/password.age".publicKeys = [ noa ];
   "github/flurry.age".publicKeys = [
-    noa
-    muOS
-    nuOS
-  ];
-  "github/anstml.age".publicKeys = [
     noa
     muOS
     nuOS
@@ -48,17 +40,8 @@ in
     muOS
     nuOS
   ];
-  "authentik/env.age".publicKeys = [
-    noa
-    muOS
-    nuOS
-  ];
   "wg/muos.age".publicKeys = [
-    muOS
-  ];
-  "zitadel/master.age".publicKeys = [
     noa
-    lambdaOS
-    nuOS
+    muOS
   ];
 }

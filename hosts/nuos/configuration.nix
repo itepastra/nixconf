@@ -212,9 +212,6 @@
     identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     secrets = lib.mkMerge [
       {
-        "secrets/token-flurry".file = ../../secrets/github/flurry.age;
-        "secrets/token-anstml".file = ../../secrets/github/anstml.age;
-        "secrets/token-nixconf".file = ../../secrets/github/nixconf.age;
         "factorio/solrunners".file = ../../secrets/factorio/solrunners.age;
       }
       {
