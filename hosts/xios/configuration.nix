@@ -1,39 +1,32 @@
 {
   config,
   lib,
+  pkgs,
+  inputs,
+  platform,
   ...
 }:
 {
-  imports = [
-    ./disk-config.nix
-    ../../common/boot.nix
+  boot.supportedFilesystems = [
+    "btrfs"
+    "ext4"
+    "tempfs"
   ];
 
-  networking.useDHCP = lib.mkDefault true;
-  networking = {
-    hostName = "xiOS"; # Define your hostname.
-    networkmanager.enable = true; # Easiest to use and most distros use this by default.
-  };
+  environment.systemPackages = [
+    inputs.disko.${platform}.disko-install
+  ];
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  isoImage.isoName = lib.mkForce "disko-nixos-${config.system.nixos.label}-${platform}.iso";
 
-  users.users = {
-    noa = {
-      isNormalUser = true;
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "docker"
-        "libvirt"
-      ];
-      hashedPassword = "$6$rounds=512400$g/s4dcRttXi4ux6c$Z6pKnhJXcWxv0TBSMtvJu5.piETdUBSgBVN7oDPKiQV.lbTYz1r.0XQLwMYxzcvaaX0DL6Iw/SEUTiC2M50wC/";
-      openssh.authorizedKeys.keys = import ../../common/ssh-keys.nix;
-    };
-  };
+  networking.wireless.enable = lib.mkForce true;
 
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = false;
-    settings.KbdInteractiveAuthentication = false;
-  };
+  nixpkgs.overlays = [
+    (final: prev: {
+      # Prevent mbrola-voices (~650MB) from being on the live media
+      espeak = prev.espeak.override {
+        mbrolaSupport = false;
+      };
+    })
+  ];
 }
