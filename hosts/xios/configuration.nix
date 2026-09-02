@@ -3,10 +3,14 @@
   lib,
   pkgs,
   inputs,
-  platform,
   ...
 }:
 {
+
+  imports = [
+    "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
+  ];
+
   boot.supportedFilesystems = [
     "btrfs"
     "ext4"
@@ -14,10 +18,10 @@
   ];
 
   environment.systemPackages = [
-    inputs.disko.${platform}.disko-install
+    inputs.disko.packages.${pkgs.stdenv.hostPlatform.system}.disko-install
   ];
 
-  isoImage.isoName = lib.mkForce "disko-nixos-${config.system.nixos.label}-${platform}.iso";
+  image.fileName = lib.mkForce "disko-nixos-${config.system.nixos.label}-${pkgs.stdenv.hostPlatform.system}.iso";
 
   networking.wireless.enable = lib.mkForce true;
 
@@ -29,4 +33,6 @@
       };
     })
   ];
+
+  nixpkgs.hostPlatform = "x86_64-linux";
 }
