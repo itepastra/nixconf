@@ -15,6 +15,7 @@ in
     ../modules/steam
     ../hm-modules/neovim
     ../modules/users
+    ../modules/podman
   ];
 
   hardware = {
