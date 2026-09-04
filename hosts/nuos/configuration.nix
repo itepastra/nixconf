@@ -28,7 +28,6 @@
     ../../modules/forgejo
     ../../modules/calendar
     ../../modules/immich
-    ../../modules/authprovider
     ../../modules/netbird
 
     ((import ../../common) { enableGraphics = false; })
