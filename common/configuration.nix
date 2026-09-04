@@ -197,15 +197,6 @@ in
     udev.packages = [ pkgs.yubikey-personalization ];
   };
 
-  virtualisation.docker = {
-    enable = true;
-    package = pkgs.docker;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
-
   security = {
     rtkit.enable = true;
     polkit.enable = true;
