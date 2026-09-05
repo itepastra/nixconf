@@ -9,9 +9,9 @@
       login = {
         enable = true;
         setupKeyFile = config.age.secrets."netbird/setup-${config.networking.hostName}".path;
-
-        config.ManagementURL = "https://reef.geenit.nl:443";
       };
+
+      config.ManagementURL = "https://reef.geenit.nl:443";
 
       hardened = false;
       openFirewall = true;
