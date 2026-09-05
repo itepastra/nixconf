@@ -197,6 +197,7 @@ in
       };
     };
     udev.packages = [ pkgs.yubikey-personalization ];
+    resolved.enable = false;
   };
 
   security = {
