@@ -14,13 +14,13 @@
 
   age.secrets = {
     "netbird/config.yaml" = {
-      file = ../../secrets/netbird/config.yaml;
+      file = ../../secrets/netbird/config.yaml.age;
       owner = "netbird";
       group = "netbird";
       mode = "600";
     };
     "netbird/dashboard.env" = {
-      file = ../../secrets/netbird/dashboard.env;
+      file = ../../secrets/netbird/dashboard.env.age;
       owner = "netbird";
       group = "netbird";
       mode = "600";

@@ -52,23 +52,23 @@ in
     noa
     lambdaOS
   ];
-  "netbird/config.yaml".publicKeys = [
+  "netbird/config.yaml.age".publicKeys = [
     noa
     muOS
     nuOS
   ];
-  "netbird/dashboard.env".publicKeys = [
+  "netbird/dashboard.env.age".publicKeys = [
     noa
     muOS
     nuOS
   ];
-  "netbird/setup-muOS".publicKeys = [
+  "netbird/setup-muOS.age".publicKeys = [
     muOS
   ];
-  "netbird/setup-nuOS".publicKeys = [
+  "netbird/setup-nuOS.age".publicKeys = [
     nuOS
   ];
-  "netbird/setup-lambdaOS".publicKeys = [
+  "netbird/setup-lambdaOS.age".publicKeys = [
     lambdaOS
   ];
 }

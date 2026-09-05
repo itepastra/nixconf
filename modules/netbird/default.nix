@@ -1,4 +1,12 @@
 { config, ... }: {
+  age.secrets = {
+    "netbird/setup-${config.networking.hostName}" = {
+      file = ../../secrets/netbird/setup-${config.networking.hostName}.age;
+      owner = "${config.services.netbird.clients.reef.user.name}";
+      group = "${config.services.netbird.clients.reef.user.group}";
+      mode = "600";
+    };
+  };
   services.netbird = {
     clients.reef = {
       port = 51820;
