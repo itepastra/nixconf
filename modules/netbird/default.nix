@@ -84,7 +84,7 @@
         "^/(signalexchange\.SignalExchange|management\.(ManagementService|ProxyService))/" = {
           proxyPass = "http://127.0.0.1:29919";
           extraConfig = ''
-            grpc_pass grpc://netbird_server;
+            grpc_pass grpc://127.0.0.1:29919;
             grpc_read_timeout 1d;
             grpc_send_timeout 1d;
             grpc_socket_keepalive on;
