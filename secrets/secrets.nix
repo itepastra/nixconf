@@ -62,4 +62,13 @@ in
     muOS
     nuOS
   ];
+  "netbird/setup-muOS".publicKeys = [
+    muOS
+  ];
+  "netbird/setup-nuOS".publicKeys = [
+    nuOS
+  ];
+  "netbird/setup-lambdaOS".publicKeys = [
+    lambdaOS
+  ];
 }
