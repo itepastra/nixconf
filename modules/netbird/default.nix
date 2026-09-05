@@ -19,7 +19,7 @@
       };
 
       login = {
-        enable = true;
+        enable = false;
         setupKeyFile = config.age.secrets."netbird/setup-${config.networking.hostName}".path;
       };
 
