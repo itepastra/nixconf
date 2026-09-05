@@ -15,13 +15,25 @@
 
       name = "reef";
 
-      environment = {
-        NG_MANAGEMENT_URL = "https://reef.geenit.nl:443";
+      login = {
+        enable = true;
+        setupKeyFile = config.age.secrets."netbird/setup-${config.networking.hostName}".path;
       };
 
-      login = {
-        enable = false;
-        setupKeyFile = config.age.secrets."netbird/setup-${config.networking.hostName}".path;
+      config = {
+        ManagementURL = {
+          Scheme = "https";
+          Opaque = "";
+          User = null;
+          Host = "reef.geenit.nl:443";
+          Path = "";
+          Fragment = "";
+          RawQuery = "";
+          RawPath = "";
+          RawFragment = "";
+          ForceQuery = false;
+          OmitHost = false;
+        };
       };
 
       hardened = false;
