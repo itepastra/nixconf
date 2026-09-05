@@ -88,31 +88,6 @@
     file = ../../secrets/wg/muos.age;
   };
 
-  networking.wg-quick.interfaces = {
-    wg-pep = {
-      address = [
-        "10.90.14.2/16"
-        "fc00:90:90:90::14:2/64"
-      ];
-      privateKeyFile = config.age.secrets."wg/muos".path;
-      dns = [
-        "10.90.0.1"
-        "fc00:90:90:90::1"
-        "9.9.9.9"
-      ];
-      peers = [
-        {
-          publicKey = "NNeWO/cXpvBci9n/K1W93jKN4wTeHUXZxsELI2XpWQM=";
-          allowedIPs = [
-            "10.90.0.0/16"
-            "fc00:90:90:90::/64"
-          ];
-          endpoint = "77.174.186.48:51820";
-        }
-      ];
-    };
-  };
-
   systemd = {
 
     timers."update-from-flake" = {
