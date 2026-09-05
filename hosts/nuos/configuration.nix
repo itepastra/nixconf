@@ -30,6 +30,7 @@
     ../../modules/immich
     ../../modules/netbird-server
     ../../modules/netbird
+    ../../modules/disqalculate
 
     ((import ../../common) { enableGraphics = false; })
   ];
@@ -53,14 +54,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.groups.disqalculate = { };
-  users.users = {
-    disqalculate = {
-      isSystemUser = true;
-      group = "disqalculate";
-    };
-    noa.extraGroups = [ "libvirt" ];
-  };
+  users.users.noa.extraGroups = [ "libvirt" ];
 
   boot.kernelPackages = pkgs.linuxPackages;
 
@@ -140,58 +134,6 @@
       ];
       restartIfChanged = false;
     };
-
-    "disqalculate" = {
-      enable = true;
-      wants = [
-        "network-online.target"
-      ];
-      after = [
-        "network-online.target"
-      ];
-      wantedBy = [ "default.target" ];
-      restartTriggers = [ inputs.disqalculate.packages.${pkgs.stdenv.hostPlatform.system}.default ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${
-          inputs.disqalculate.packages.${pkgs.stdenv.hostPlatform.system}.default
-        }/bin/disqalculate";
-        ExecStop = "${pkgs.busybox}/bin/pkill disqalculate";
-        RuntimeDirectory = "disqalculate";
-        RootDirectory = "/run/disqalculate";
-        User = "disqalculate";
-        NoNewPrivileges = true;
-        ProtectHome = true;
-        ProtectProc = "noaccess";
-        ProcSubset = "pid";
-        ProtectClock = true;
-        ProtectKernelLogs = true;
-        ProtectSystem = "strict";
-        ProtectHostname = true;
-        PrivateTmp = true;
-        PrivateDevices = true;
-        PrivateUsers = true;
-        RestrictAddressFamilies = "AF_INET";
-        ProtectKernelTunables = true;
-        RestrictNamespaces = true;
-        CapabilityBoundingSet = "";
-        EnvironmentFile = config.age.secrets."discord/disqalculate".path;
-        BindReadOnlyPaths = [
-          "/nix/store"
-          "/etc/ssl"
-          "/etc/static/ssl"
-          "/etc/resolv.conf"
-          "/bin/sh"
-        ];
-        Restart = "always";
-        RestartSec = 10;
-        TimeoutStopSec = 10;
-      };
-      unitConfig = {
-        StartLimitInterval = 400;
-        StartLimitBurst = 30;
-      };
-    };
   };
 
   virtualisation = {
@@ -207,18 +149,9 @@
 
   age = {
     identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    secrets = lib.mkMerge [
-      {
-        "factorio/solrunners".file = ../../secrets/factorio/solrunners.age;
-      }
-      {
-        "discord/disqalculate" = {
-          file = ../../secrets/discord/disqalculate.age;
-          owner = "disqalculate";
-          group = "disqalculate";
-        };
-      }
-    ];
+    secrets = {
+      "factorio/solrunners".file = ../../secrets/factorio/solrunners.age;
+    };
   };
 
   services = {
