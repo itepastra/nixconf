@@ -28,7 +28,7 @@
     ../../modules/forgejo
     ../../modules/calendar
     ../../modules/immich
-    ../../modules/netbird
+    ../../modules/netbird-server
 
     ((import ../../common) { enableGraphics = false; })
   ];
