@@ -1,6 +1,6 @@
 { lib, ... }:
 let
-  url = "https://git.geenit.nl";
+  url = "https://git.reef";
 in
 {
   imports = [
@@ -13,6 +13,7 @@ in
       {
         url = lib.elemAt (lib.strings.splitString "://" url) 1;
         proxy_to = "http://[::1]:2929";
+        enableSSL = false;
       }
     ];
     services.forgejo = {
