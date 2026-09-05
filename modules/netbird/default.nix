@@ -23,8 +23,6 @@
         setupKeyFile = config.age.secrets."netbird/setup-${config.networking.hostName}".path;
       };
 
-      #config.ManagementURL = "https://reef.geenit.nl:443";
-
       hardened = false;
       openFirewall = true;
       openInternalFirewall = true;
