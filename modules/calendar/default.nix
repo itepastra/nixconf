@@ -19,8 +19,9 @@
 
     modules.nginx.proxies = [
       {
-        url = "calendar.itepastra.nl";
+        url = "calendar.reef";
         proxy_to = "http://[::1]:29341";
+        enableSSL = false;
       }
     ];
 
