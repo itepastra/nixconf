@@ -86,7 +86,6 @@
             grpc_pass grpc://127.0.0.1:29919;
 
             grpc_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            grpc_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             grpc_set_header X-Forwarded-Proto https;
             grpc_set_header X-Forwarded-Host $host;
 
@@ -96,6 +95,7 @@
           '';
         };
         "~ ^/(api|oauth2)/" = {
+          proxyWebsockets = true;
           proxyPass = "http://127.0.0.1:29919";
           extraConfig = "proxy_set_header Host $host;";
         };
