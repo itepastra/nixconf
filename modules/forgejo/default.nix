@@ -15,6 +15,10 @@ in
         proxy_to = "http://[::1]:2929";
         enableSSL = false;
       }
+      {
+        url = "git.geenit.nl";
+        proxy_to = "http://[::1]:2929";
+      }
     ];
     services.forgejo = {
       enable = true;
