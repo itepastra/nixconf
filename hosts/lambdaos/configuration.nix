@@ -20,6 +20,7 @@
     ./disk-config.nix
     ../../modules/tablet
     ../../modules/nvidia
+    ../../modules/netbird
   ];
 
   age.identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];
