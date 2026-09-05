@@ -15,7 +15,6 @@
     ((import ../../common) { enableGraphics = true; })
 
     ./disk-config.nix
-    ../../modules/netbird
   ];
 
   powerManagement.enable = true;
