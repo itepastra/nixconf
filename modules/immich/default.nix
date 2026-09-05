@@ -1,6 +1,6 @@
 { lib, ... }:
 let
-  url = "https://images.noa.voorwaarts.nl";
+  url = "http://images.reef";
 in
 {
   imports = [
@@ -12,6 +12,7 @@ in
       {
         url = lib.elemAt (lib.strings.splitString "://" url) 1;
         proxy_to = "http://[::1]:2283";
+        enableSSL = false;
       }
     ];
     services.immich = {
