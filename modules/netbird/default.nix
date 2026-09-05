@@ -61,11 +61,7 @@
           v
           ({
             extraConfig = ''
-              proxy_set_header X-Real-IP $remote_addr;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header X-Scheme $scheme;
-              proxy_set_header X-Forwarded-Proto https;
-              proxy_set_header X-Forwarded-Host $host;
             '';
           })
         ]
@@ -77,11 +73,10 @@
           extraConfig = ''
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection "Upgrade";
-            proxy_set_header Host $host;
             proxy_read_timeout 1d;
           '';
         };
-        "~ ^/(signalexchange\.SignalExchange|management\.(ManagementService|ProxyService))/" = {
+        "~ ^/(signalexchange\\.SignalExchange|management\\.(ManagementService|ProxyService))/" = {
           extraConfig = ''
             grpc_pass grpc://127.0.0.1:29919;
 
@@ -95,9 +90,8 @@
           '';
         };
         "~ ^/(api|oauth2)/" = {
-          proxyWebsockets = true;
           proxyPass = "http://127.0.0.1:29919";
-          extraConfig = "proxy_set_header Host $host;";
+
         };
         "/" = {
           proxyPass = "http://127.0.0.1:29918";
