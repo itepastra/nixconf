@@ -42,6 +42,7 @@
       autoStart = true;
       ports = [
         "127.0.0.1:29919:80"
+        "127.0.0.1:29920:9000"
         "3478:3478/udp"
       ];
       volumes = [
@@ -59,21 +60,20 @@
         lib.mkMerge [
           v
           ({
-            proxyWebsockets = true;
             extraConfig = ''
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
               proxy_set_header X-Scheme $scheme;
               proxy_set_header X-Forwarded-Proto https;
               proxy_set_header X-Forwarded-Host $host;
-              grpc_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             '';
           })
         ]
       )
       {
-        "^/(relay|ws-proxy/)" = {
+        "~ ^/(relay|ws-proxy/)" = {
           proxyPass = "http://127.0.0.1:29919";
+          proxyWebsockets = true;
           extraConfig = ''
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection "Upgrade";
@@ -81,16 +81,21 @@
             proxy_read_timeout 1d;
           '';
         };
-        "^/(signalexchange\.SignalExchange|management\.(ManagementService|ProxyService))/" = {
-          proxyPass = "http://127.0.0.1:29919";
+        "~ ^/(signalexchange\.SignalExchange|management\.(ManagementService|ProxyService))/" = {
           extraConfig = ''
             grpc_pass grpc://127.0.0.1:29919;
+
+            grpc_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            grpc_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            grpc_set_header X-Forwarded-Proto https;
+            grpc_set_header X-Forwarded-Host $host;
+
             grpc_read_timeout 1d;
             grpc_send_timeout 1d;
             grpc_socket_keepalive on;
           '';
         };
-        "^/(api|oauth2)/" = {
+        "~ ^/(api|oauth2)/" = {
           proxyPass = "http://127.0.0.1:29919";
           extraConfig = "proxy_set_header Host $host;";
         };
