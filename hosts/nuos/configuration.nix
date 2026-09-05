@@ -29,6 +29,7 @@
     ../../modules/calendar
     ../../modules/immich
     ../../modules/netbird-server
+    ../../modules/netbird
 
     ((import ../../common) { enableGraphics = false; })
   ];
