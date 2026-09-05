@@ -1,7 +1,7 @@
 let
   noa = "age1yubikey1qv9qr2l4srzpt9h9ess58hv4m58njxw50356vgjm92mswul2xnt22fk4t9v";
   nuOS = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDV2IDF4FP1T6qWcv+drtnbKyXkeB9kOAbU4wVWNfPSO";
-  muOS = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHw47VIyrawkRLzYKgbd0P6DLDyVvwHfVb5DBPPQUG+d";
+  muOS = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINYLME/00EUuEeTOSf2RaH30OGpXrRzsYNp404sWyxYm";
   lambdaOS = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICII469nfANk6y6D8gd06OkmxBClpZsNXMW1kxDOreLX";
 in
 {
@@ -51,5 +51,15 @@ in
   "wg/lambdaos.age".publicKeys = [
     noa
     lambdaOS
+  ];
+  "netbird/config.yaml".publicKeys = [
+    noa
+    muOS
+    nuOS
+  ];
+  "netbird/dashboard.env".publicKeys = [
+    noa
+    muOS
+    nuOS
   ];
 }
