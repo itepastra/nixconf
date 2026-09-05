@@ -1,5 +1,5 @@
-{ config, ... }: {
-  age.secrets = {
+{ config, lib, ... }: {
+  age.secrets = lib.mkIf config.services.netbird.clients.reef.login.enable {
     "netbird/setup-${config.networking.hostName}" = {
       file = ../../secrets/netbird/setup-${config.networking.hostName}.age;
       owner = "${config.services.netbird.clients.reef.user.name}";
@@ -7,6 +7,7 @@
       mode = "600";
     };
   };
+
   services.netbird = {
     clients.reef = {
       port = 51820;
