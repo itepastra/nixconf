@@ -1,7 +1,4 @@
-{ lib, ... }:
-let
-  url = "https://git.reef";
-in
+{ ... }:
 {
   imports = [
     ../postgres
@@ -11,7 +8,7 @@ in
   config = {
     modules.nginx.proxies = [
       {
-        url = lib.elemAt (lib.strings.splitString "://" url) 1;
+        url = "git.reef";
         proxy_to = "http://[::1]:2929";
         enableSSL = false;
       }
@@ -31,7 +28,7 @@ in
         server = {
           DOMAIN = "git.geenit.nl";
           HTTP_PORT = 2929;
-          ROOT_URL = url;
+          ROOT_URL = "https://git.geenit.nl";
         };
         service.DISABLE_REGISTRATION = true;
       };
