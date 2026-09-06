@@ -1,8 +1,7 @@
 {
   pkgs,
   self-pkgs,
-  inputs,
-  displays,
+  displays ? [ ],
 }:
 let
   terminal = "${pkgs.kitty}/bin/kitty";

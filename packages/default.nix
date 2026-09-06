@@ -34,6 +34,9 @@ forAllSystems (
     extraArgs = {
       fuzzel-power = { inherit inputs; };
       ecoflow-energy-ha = { inherit (pkgs.python3Packages) aiofiles distutils paho-mqtt; };
+      niri-config = {
+        self-pkgs = self.packages.${system};
+      };
     };
   in
   builtins.listToAttrs (
