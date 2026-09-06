@@ -1,45 +1,41 @@
 { config, lib, ... }: {
-  age.secrets = lib.mkIf config.services.netbird.clients.reef.login.enable {
-    "netbird/setup-${config.networking.hostName}" = {
-      file = ../../secrets/netbird/setup-${config.networking.hostName}.age;
-      owner = "${config.services.netbird.clients.reef.user.name}";
-      group = "${config.services.netbird.clients.reef.user.group}";
-      mode = "600";
+  options.modules.netbird = {
+    clients = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ "reef" ];
     };
   };
 
-  services.netbird = {
-    clients.reef = {
-      port = 51820;
-      interface = "reef0";
+  config.services.netbird.clients = builtins.listToAttrs (
+    lib.imap (idx: val: {
+      name = "${val}";
+      value = {
+        port = 51820 + idx - 1;
+        interface = "reef${builtins.toString (idx - 1)}";
 
-      name = "reef";
+        name = "${val}";
 
-      login = {
-        enable = true;
-        setupKeyFile = config.age.secrets."netbird/setup-${config.networking.hostName}".path;
-      };
-
-      config = {
-        ManagementURL = {
-          Scheme = "https";
-          Opaque = "";
-          User = null;
-          Host = "reef.geenit.nl:443";
-          Path = "";
-          Fragment = "";
-          RawQuery = "";
-          RawPath = "";
-          RawFragment = "";
-          ForceQuery = false;
-          OmitHost = false;
+        config = {
+          ManagementURL = {
+            Scheme = "https";
+            Opaque = "";
+            User = null;
+            Host = "reef.geenit.nl:443";
+            Path = "";
+            Fragment = "";
+            RawQuery = "";
+            RawPath = "";
+            RawFragment = "";
+            ForceQuery = false;
+            OmitHost = false;
+          };
         };
-      };
 
-      hardened = false;
-      openFirewall = true;
-      openInternalFirewall = true;
-      ui.enable = true;
-    };
-  };
+        hardened = false;
+        openFirewall = true;
+        openInternalFirewall = true;
+        ui.enable = true;
+      };
+    }) config.modules.netbird.clients
+  );
 }
