@@ -40,18 +40,6 @@ in
     muOS
     nuOS
   ];
-  "wg/muos.age".publicKeys = [
-    noa
-    muOS
-  ];
-  "wg/nuos.age".publicKeys = [
-    noa
-    nuOS
-  ];
-  "wg/lambdaos.age".publicKeys = [
-    noa
-    lambdaOS
-  ];
   "netbird/config.yaml.age".publicKeys = [
     noa
     muOS
@@ -61,14 +49,5 @@ in
     noa
     muOS
     nuOS
-  ];
-  "netbird/setup-muOS.age".publicKeys = [
-    muOS
-  ];
-  "netbird/setup-nuOS.age".publicKeys = [
-    nuOS
-  ];
-  "netbird/setup-lambdaOS.age".publicKeys = [
-    lambdaOS
   ];
 }
