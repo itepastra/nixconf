@@ -154,7 +154,6 @@ in
       nssmdns4 = true;
       openFirewall = true;
     };
-    gnome.gnome-keyring.enable = true;
     mullvad-vpn = {
       enable = true;
       gui.enable = enableGraphics;
@@ -204,7 +203,6 @@ in
     rtkit.enable = true;
     polkit.enable = true;
     sudo.execWheelOnly = true;
-    pam.services.sddm.enableGnomeKeyring = true;
   };
 
 }
