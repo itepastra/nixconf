@@ -42,23 +42,23 @@
       }/bin/shuttlefish";
       ExecStop = "${pkgs.busybox}/bin/pkill shuttlefish";
       RuntimeDirectory = "shuttlefish";
-      # RuntimeDirectoryMode = 0750;
+      WorkingDirectory = "/run/shuttlefish";
       User = "shuttlefish";
-      # NoNewPrivileges = true;
+      NoNewPrivileges = true;
       # ProtectHome = true;
-      # ProtectProc = "noaccess";
-      # ProcSubset = "pid";
-      # ProtectClock = true;
-      # ProtectKernelLogs = true;
-      # ProtectSystem = "strict";
-      # ProtectHostname = true;
+      ProtectProc = "noaccess";
+      ProcSubset = "pid";
+      ProtectClock = true;
+      ProtectKernelLogs = true;
+      ProtectSystem = "strict";
+      ProtectHostname = true;
       # PrivateTmp = true;
       # PrivateDevices = true;
       # PrivateUsers = true;
-      # RestrictAddressFamilies = "AF_INET";
+      RestrictAddressFamilies = "AF_INET";
       # ProtectKernelTunables = true;
       # RestrictNamespaces = true;
-      # CapabilityBoundingSet = "";
+      CapabilityBoundingSet = "";
       EnvironmentFile = config.age.secrets."discord/shuttlefish".path;
       BindReadOnlyPaths = [
         "/nix/store"
