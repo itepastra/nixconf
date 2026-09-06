@@ -39,6 +39,11 @@
   hardware.enableRedistributableFirmware = true;
   hardware.enableAllFirmware = true;
 
+  modules.netbird.clients = [
+    "reef"
+    "anemone"
+  ];
+
   networking = {
     hostName = "nuOS"; # Define your hostname.
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
