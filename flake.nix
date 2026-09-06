@@ -86,6 +86,7 @@
       url = "github:itepastra/disqalculate";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        fenix.follows = "fenix";
         advisory-db.follows = "advisory-db";
         crane.follows = "crane";
         flake-utils.follows = "flake-utils";
@@ -96,6 +97,7 @@
       url = "git+https://git.geenit.nl/noa/shuttlefish";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        fenix.follows = "fenix";
         advisory-db.follows = "advisory-db";
         crane.follows = "crane";
         flake-utils.follows = "flake-utils";

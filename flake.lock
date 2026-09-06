@@ -236,7 +236,9 @@
         "crane": [
           "crane"
         ],
-        "fenix": "fenix",
+        "fenix": [
+          "fenix"
+        ],
         "flake-utils": [
           "flake-utils"
         ],
@@ -261,30 +263,6 @@
     "fenix": {
       "inputs": {
         "nixpkgs": [
-          "disqalculate",
-          "nixpkgs"
-        ],
-        "rust-analyzer-src": [
-          "disqalculate"
-        ]
-      },
-      "locked": {
-        "lastModified": 1785228137,
-        "narHash": "sha256-mEC1gtoL6bPy4QpurqhtNOGQeyaetspMIn4dmA+GkBs=",
-        "owner": "nix-community",
-        "repo": "fenix",
-        "rev": "62014c793a319d723cde515ad3f568dab03ed530",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "fenix",
-        "type": "github"
-      }
-    },
-    "fenix_2": {
-      "inputs": {
-        "nixpkgs": [
           "nixpkgs"
         ],
         "rust-analyzer-src": []
@@ -295,30 +273,6 @@
         "owner": "nix-community",
         "repo": "fenix",
         "rev": "a557691643f3b1ab520474d20ba2491d957ef729",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "fenix",
-        "type": "github"
-      }
-    },
-    "fenix_3": {
-      "inputs": {
-        "nixpkgs": [
-          "shuttlefish",
-          "nixpkgs"
-        ],
-        "rust-analyzer-src": [
-          "shuttlefish"
-        ]
-      },
-      "locked": {
-        "lastModified": 1785228137,
-        "narHash": "sha256-mEC1gtoL6bPy4QpurqhtNOGQeyaetspMIn4dmA+GkBs=",
-        "owner": "nix-community",
-        "repo": "fenix",
-        "rev": "62014c793a319d723cde515ad3f568dab03ed530",
         "type": "github"
       },
       "original": {
@@ -793,7 +747,7 @@
         "crane": "crane",
         "disko": "disko",
         "disqalculate": "disqalculate",
-        "fenix": "fenix_2",
+        "fenix": "fenix",
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
@@ -822,7 +776,9 @@
         "crane": [
           "crane"
         ],
-        "fenix": "fenix_3",
+        "fenix": [
+          "fenix"
+        ],
         "flake-utils": [
           "flake-utils"
         ],
