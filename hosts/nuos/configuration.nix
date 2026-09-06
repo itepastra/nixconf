@@ -31,6 +31,7 @@
     ../../modules/netbird-server
     ../../modules/netbird
     ../../modules/disqalculate
+    ../../modules/shuttlefish
 
     ((import ../../common) { enableGraphics = false; })
   ];
