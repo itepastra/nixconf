@@ -42,7 +42,7 @@
       }/bin/shuttlefish";
       ExecStop = "${pkgs.busybox}/bin/pkill shuttlefish";
       RuntimeDirectory = "shuttlefish";
-      RootDirectory = "/run/shuttlefish";
+      RuntimeDirectoryMode = 0750;
       User = "shuttlefish";
       NoNewPrivileges = true;
       ProtectHome = true;
@@ -67,7 +67,6 @@
         "/etc/resolv.conf"
         "/bin/sh"
       ];
-      ReadWritePaths = [ "/run/shuttlefish" ];
       Restart = "always";
       RestartSec = 10;
       TimeoutStopSec = 10;
