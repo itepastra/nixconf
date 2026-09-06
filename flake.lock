@@ -787,11 +787,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788719692,
-        "narHash": "sha256-cuZD0FF6fiBGxz6+L3h96WuwiZIw8tFWRvf0k4ucyrI=",
+        "lastModified": 1788722026,
+        "narHash": "sha256-cEQi5rp/K5sWEH0HM2h567N75ZR91OgMnK3NuraLmgE=",
         "ref": "refs/heads/main",
-        "rev": "ea40f19839078650b9348212eb114a3ab92a383b",
-        "revCount": 7,
+        "rev": "54fe0627cc023426c60d9fbf5747b2d09d2bdb7c",
+        "revCount": 8,
         "type": "git",
         "url": "https://git.geenit.nl/noa/shuttlefish"
       },
