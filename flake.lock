@@ -303,6 +303,30 @@
         "type": "github"
       }
     },
+    "fenix_3": {
+      "inputs": {
+        "nixpkgs": [
+          "shuttlefish",
+          "nixpkgs"
+        ],
+        "rust-analyzer-src": [
+          "shuttlefish"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785228137,
+        "narHash": "sha256-mEC1gtoL6bPy4QpurqhtNOGQeyaetspMIn4dmA+GkBs=",
+        "owner": "nix-community",
+        "repo": "fenix",
+        "rev": "62014c793a319d723cde515ad3f568dab03ed530",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "fenix",
+        "type": "github"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -783,10 +807,41 @@
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
         "prettier-plugins": "prettier-plugins",
+        "shuttlefish": "shuttlefish",
         "stylix": "stylix",
         "systems": "systems_2",
         "tixpkgs": "tixpkgs",
         "tsunami": "tsunami"
+      }
+    },
+    "shuttlefish": {
+      "inputs": {
+        "advisory-db": [
+          "advisory-db"
+        ],
+        "crane": [
+          "crane"
+        ],
+        "fenix": "fenix_3",
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788715417,
+        "narHash": "sha256-zE0HkLA/SvJLd6oc0I28t098e/yKvB2xi/UbUR/UdAY=",
+        "ref": "refs/heads/main",
+        "rev": "659afd3f34807c3adbf68ab87456b1cd6a194a17",
+        "revCount": 2,
+        "type": "git",
+        "url": "https://git.geenit.nl/noa/shuttlefish"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.geenit.nl/noa/shuttlefish"
       }
     },
     "stylix": {

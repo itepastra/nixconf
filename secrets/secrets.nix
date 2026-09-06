@@ -40,6 +40,11 @@ in
     muOS
     nuOS
   ];
+  "discord/shuttlefish.age".publicKeys = [
+    noa
+    nuOS
+    lambdaOS
+  ];
   "netbird/config.yaml.age".publicKeys = [
     noa
     muOS

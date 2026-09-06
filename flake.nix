@@ -92,6 +92,16 @@
       };
     };
 
+    shuttlefish = {
+      url = "git+https://git.geenit.nl/noa/shuttlefish";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        advisory-db.follows = "advisory-db";
+        crane.follows = "crane";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
     # nix binary cache
     attic = {
       url = "github:zhaofengli/attic";
