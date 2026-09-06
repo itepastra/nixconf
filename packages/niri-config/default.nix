@@ -2,6 +2,7 @@
   pkgs,
   self-pkgs,
   displays ? [ ],
+  ...
 }:
 let
   terminal = "${pkgs.kitty}/bin/kitty";

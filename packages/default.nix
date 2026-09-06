@@ -2,6 +2,7 @@
   nixpkgs,
   inputs,
   self,
+  ...
 }:
 let
   allSystems = [
