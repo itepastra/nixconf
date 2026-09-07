@@ -42,6 +42,7 @@
       }/bin/shuttlefish";
       ExecStop = "${pkgs.busybox}/bin/pkill shuttlefish";
       RuntimeDirectory = "shuttlefish";
+      StateDirectory = "shuttlefish";
       WorkingDirectory = "/var/lib/shuttlefish";
       User = "shuttlefish";
       NoNewPrivileges = true;
@@ -66,9 +67,6 @@
         "/etc/static/ssl"
         "/etc/resolv.conf"
         "/bin/sh"
-      ];
-      ReadWritePaths = [
-        "/var/lib/shuttlefish"
       ];
       Restart = "always";
       RestartSec = 10;
