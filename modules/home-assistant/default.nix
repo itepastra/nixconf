@@ -65,6 +65,8 @@ in
           "wake_on_lan"
           "webdav"
           "wled"
+          "local_todo"
+          "local_calendar"
         ];
 
         customComponents = [
