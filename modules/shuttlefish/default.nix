@@ -67,6 +67,9 @@
         "/etc/resolv.conf"
         "/bin/sh"
       ];
+      ReadWritePaths = [
+        "/var/lib/shuttlefish"
+      ];
       Restart = "always";
       RestartSec = 10;
       TimeoutStopSec = 10;
