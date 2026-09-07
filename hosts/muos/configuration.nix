@@ -84,10 +84,6 @@
     thermald.enable = true;
   };
 
-  age.secrets."wg/muos" = {
-    file = ../../secrets/wg/muos.age;
-  };
-
   systemd = {
 
     timers."update-from-flake" = {
