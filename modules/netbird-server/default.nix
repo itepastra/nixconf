@@ -104,4 +104,6 @@
     }
   ];
 
+  networking.firewall.allowedUDPPorts = [ 3478 ];
+
 }
