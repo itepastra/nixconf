@@ -41,8 +41,8 @@
   hardware.enableAllFirmware = true;
 
   modules.netbird.clients = [
-    "reef"
     "anemone"
+    "reef"
   ];
 
   networking = {
