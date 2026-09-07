@@ -236,6 +236,8 @@ in
       require_nofilter = true;
       require_dnssec = false;
 
+      block_undelegated = false;
+
       cache_size = 4096;
 
       cloaking_rules = pkgs.writeText "cloaking-rules.txt" ''
