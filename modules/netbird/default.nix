@@ -34,7 +34,7 @@
         hardened = false;
         openFirewall = true;
         openInternalFirewall = true;
-        ui.enable = true;
+        ui.enable = false;
       };
     }) config.modules.netbird.clients
   );
