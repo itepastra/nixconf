@@ -1,0 +1,134 @@
+tree f46dfe0d1a1a0ac7aefdc51de97a8611e28eced9
+parent 6e39144aaf5a6bc01b9f795010b0914431067183
+author Noa Aarts <noa@voorwaarts.nl> Mon May 4 13:28:10 2026 +0200
+committer Noa Aarts <noa@voorwaarts.nl> Mon May 4 13:31:06 2026 +0200
+
+for 1.4.7
+
+diff --git a/src/btop_tools.cpp b/src/btop_tools.cpp
+index 99380b4..740918a 100644
+--- a/src/btop_tools.cpp
++++ b/src/btop_tools.cpp
+@@ -212,25 +212,118 @@ namespace Term {
+ namespace Tools {
+
+ 	string replace_ascii_control(string str, const char replacement) {
++		auto is_nix_base32_char = [](char c) {
++			switch (c) {
++				case '0': case '1': case '2': case '3': case '4':
++				case '5': case '6': case '7': case '8': case '9':
++				case 'a': case 'b': case 'c': case 'd': case 'f':
++				case 'g': case 'h': case 'i': case 'j': case 'k':
++				case 'l': case 'm': case 'n': case 'p': case 'q':
++				case 'r': case 's': case 'v': case 'w': case 'x':
++				case 'y': case 'z':
++					return true;
++				default:
++					return false;
++			}
++		};
++
++		constexpr std::string_view prefix = "/nix/store/";
++
++		size_t read = 0;
++		size_t write = 0;
++		const std::string_view in(str);
++
++		while (read < in.size()) {
++			// Must match prefix
++			if (!(read + prefix.size() <= in.size() &&
++				  in.compare(read, prefix.size(), prefix) == 0)) {
++				str[write++] = str[read++];
++				continue;
++			}
++
++			size_t i = read + prefix.size();
++
++			// Need space for 32-char hash
++			if (i + 32 >= in.size()) {
++				str[write++] = str[read++];
++				continue;
++			}
++
++			// Validate hash
++			bool ok = true;
++			for (size_t k = 0; k < 32; ++k) {
++				if (!is_nix_base32_char(in[i + k])) {
++					ok = false;
++					break;
++				}
++			}
++			if (!ok) {
++				str[write++] = str[read++];
++				continue;
++			}
++
++			i += 32;
++
++			// Expect '-'
++			if (!(i < in.size() && in[i] == '-')) {
++				str[write++] = str[read++];
++				continue;
++			}
++
++			++i;
++			size_t name_start = i;
++
++			// Find end of name
++			while (i < in.size() && in[i] != '/')
++				++i;
++
++			if (i == name_start) {
++				str[write++] = str[read++];
++				continue;
++			}
++
++			// Case: /nix/store/{hash}-{name}/something -> skip prefix
++			if (i < in.size() && in[i] == '/') {
++				read = i;
++				continue;
++			}
++
++			// Case: /nix/store/{hash}-{name} -> emit {name}
++			while (name_start < i)
++				str[write++] = str[name_start++];
++
++			read = i;
++		}
++		str.resize(write);
++
+ 		if (str.empty())
+ 			return str;
++
+ 		const char* str_data = &str.data()[0];
+ 		size_t w_len = 1 + std::mbstowcs(nullptr, str_data, 0);
+-		if (w_len <= 1)	{
+-			std::ranges::for_each(str, [&replacement](char& c) { if (c < 0x20) c = replacement; });
++
++		if (w_len <= 1) {
++			std::ranges::for_each(str, [&replacement](char& c) {
++				if (c < 0x20)
++					c = replacement;
++			});
+ 			return str;
+ 		}
++
+ 		vector<wchar_t> w_str(w_len);
+ 		std::mbstowcs(&w_str[0], str_data, w_len);
++
+ 		for (size_t i = 0; i < w_str.size() - 1; i++) {
+ 			if (widechar_wcwidth(w_str[i]) > 1)
+ 				continue;
+ 			if (w_str[i] < 0x20)
+ 				w_str[i] = replacement;
+ 		}
++
+ 		size_t bytes = std::wcstombs(nullptr, w_str.data(), 0);
+ 		if (bytes == static_cast<size_t>(-1))
+ 			return str;
++
+ 		str.resize(bytes);
+ 		std::wcstombs(&str[0], &w_str[0], bytes);
+
+
+
