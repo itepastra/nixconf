@@ -42,7 +42,7 @@
       }/bin/shuttlefish";
       ExecStop = "${pkgs.busybox}/bin/pkill shuttlefish";
       RuntimeDirectory = "shuttlefish";
-      WorkingDirectory = "/run/shuttlefish";
+      WorkingDirectory = "/var/lib/shuttlefish";
       User = "shuttlefish";
       NoNewPrivileges = true;
       # ProtectHome = true;
