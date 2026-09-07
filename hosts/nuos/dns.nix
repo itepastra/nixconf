@@ -270,12 +270,12 @@ in
 
     wants = [
       "network-online.target"
-      "netbird-anemone.service"
+      "netbird-reef.service"
     ];
 
     after = [
       "network-online.target"
-      "netbird-anemone.service"
+      "netbird-reef.service"
     ];
 
     serviceConfig = {
