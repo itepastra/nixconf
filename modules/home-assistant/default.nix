@@ -6,7 +6,7 @@
   ...
 }:
 let
-  url = "http://home.reef";
+  url = "http://home.itepastra.nl";
 in
 {
   imports = [
@@ -20,7 +20,6 @@ in
       {
         url = lib.elemAt (lib.strings.splitString "://" url) 1;
         proxy_to = "http://[::1]:8123";
-        enableSSL = false;
       }
     ];
 
