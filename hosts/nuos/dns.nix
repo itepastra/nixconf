@@ -99,8 +99,6 @@ let
         ${pkgs.coreutils}/bin/mv -f \
           "$updated_tmp" \
           "$forwarding_rules"
-
-        ${pkgs.systemd}/bin/systemctl try-restart dnscrypt-proxy.service
       else
         ${pkgs.coreutils}/bin/rm -f "$updated_tmp"
       fi
@@ -202,7 +200,6 @@ let
       "$rules_tmp" \
       "$forwarding_rules"
 
-    ${pkgs.systemd}/bin/systemctl try-restart dnscrypt-proxy.service
   '';
 in
 {
@@ -217,6 +214,8 @@ in
       listen_addresses = [
         "127.0.0.1:53"
       ];
+
+      enable_hot_reload = true;
 
       forwarding_rules = forwardingRulesFile;
 
@@ -309,9 +308,6 @@ in
       # Give NetBird a little time to establish reef1 after boot.
       OnBootSec = "30s";
 
-      # Check periodically for:
-      #   - changes to the TLD list
-      #   - changes to anemone's NetBird IP
       OnUnitActiveSec = "5min";
 
       # Avoid doing the request at exactly the same time on every machine.
