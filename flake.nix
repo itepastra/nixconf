@@ -192,6 +192,12 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+
+    # Why do I want the fucky daw? because why tf not
+    septabee = {
+      url = "github:ap6661/septabee-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -228,6 +234,7 @@
               inherit inputs;
             };
             modules = [
+              inputs.septabee.nixosModules.x86_64-linux.default
               ./hosts/lambdaos/configuration.nix
             ]
             ++ commonModules;
@@ -247,6 +254,7 @@
             };
             modules = [
               inputs.hardware.nixosModules.framework-amd-ai-300-series
+              inputs.septabee.nixosModules.x86_64-linux.default
               ./hosts/muos/configuration.nix
             ]
             ++ commonModules;

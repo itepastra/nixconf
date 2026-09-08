@@ -99,6 +99,8 @@ in
 
         kanri
         krita
+
+        inputs.septabee.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
 
     # # I set my cursor here, the one I fetched above

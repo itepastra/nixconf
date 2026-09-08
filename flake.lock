@@ -761,11 +761,32 @@
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
         "prettier-plugins": "prettier-plugins",
+        "septabee": "septabee",
         "shuttlefish": "shuttlefish",
         "stylix": "stylix",
         "systems": "systems_2",
         "tixpkgs": "tixpkgs",
         "tsunami": "tsunami"
+      }
+    },
+    "septabee": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788670522,
+        "narHash": "sha256-P+Q+APkzqAwfff5uVBbdxUyLjVXHZ2AMf0tT98NEe/A=",
+        "owner": "ap6661",
+        "repo": "septabee-flake",
+        "rev": "5c2860a32b131783de58c86aa921644a8e20295b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ap6661",
+        "repo": "septabee-flake",
+        "type": "github"
       }
     },
     "shuttlefish": {
