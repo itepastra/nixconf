@@ -17,18 +17,23 @@ in
     attic
   ];
 
+  systemd.tmpfiles.rules = [
+    "C /root/.config/attic/config.toml 0600 root root - ${
+      (pkgs.formats.toml { }).generate "attic-config.toml" {
+        default-server = "trench";
+        servers.trench = {
+          endpoint = "http://trench.reef";
+          token-file = config.age.secrets."attic/anemone".path;
+        };
+      }
+    }"
+  ];
+
   systemd.services.attic-watch-store = {
     description = "Attic watch store";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
-    environment.ATTIC_CONFIG = (pkgs.formats.toml { }).generate "attic-config.toml" {
-      default-server = "trench";
-      servers.trench = {
-        endpoint = "http://trench.reef";
-        token-file = config.age.secrets."attic/anemone".path;
-      };
-    };
     serviceConfig = {
       ExecStart = "${attic}/bin/attic watch-store trench:anemone";
       Restart = "on-failure";
