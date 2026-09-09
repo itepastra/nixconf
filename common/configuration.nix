@@ -20,6 +20,13 @@ in
     ../modules/stylix
   ];
 
+  age.secrets."attic/anemone" = {
+    file = ../../secrets/attic/anemone.age;
+    user = "noa";
+    group = "noa";
+    mode = "600";
+  };
+
   hardware = {
     bluetooth = {
       enable = true;

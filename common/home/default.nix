@@ -50,13 +50,6 @@ in
     ../../hm-modules/attic
   ];
 
-  age.secrets."attic/anemone" = {
-    file = ../../secrets/attic/anemone.age;
-    user = "noa";
-    group = "noa";
-    mode = "600";
-  };
-
   home = {
     file = {
       # makes yubikey stuff work
