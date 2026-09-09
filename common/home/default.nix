@@ -69,6 +69,9 @@ in
         #network things
         dig
         mtr
+
+        # because someone wanted me to add this
+        busybox
       ]
       # FLURRY AND TSUNAMI :3 (I made these)
       ++ lib.optionals enableFlut [
