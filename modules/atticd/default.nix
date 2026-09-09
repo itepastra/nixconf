@@ -14,7 +14,7 @@
     file = ../../secrets/atticd/env.age;
     owner = config.services.atticd.user;
     group = config.services.atticd.group;
-    mode = 600;
+    mode = "600";
   };
 
   services = {
