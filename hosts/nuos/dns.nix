@@ -212,8 +212,7 @@ in
 
     settings = {
       listen_addresses = [
-        "0.0.0.0:53"
-        "[::]:53"
+        "192.168.42.2:53"
       ];
 
       enable_hot_reload = true;
