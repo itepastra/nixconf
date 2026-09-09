@@ -42,7 +42,7 @@ in
   };
 
   nix.settings = {
-    substituters = [ "http://trench.reef/anemone" ];
+    substituters = [ "http://trench.reef/anemone?priority=10" ];
     trusted-substituters = [ "http://trench.reef/anemone" ];
   };
 }
