@@ -196,6 +196,7 @@
     pepoapkgs = {
       url = "github:itepastra/pepoapkgs";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
 
     # Why do I want the fucky daw? because why tf not
