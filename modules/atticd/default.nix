@@ -35,7 +35,7 @@
 
         storage = {
           type = "local";
-          path = "/data/attic/storage";
+          path = "/data/atticd/storage";
         };
         database.url = lib.mkIf config.services.postgresql.enable "postgresql:///${config.services.atticd.user}";
       };
