@@ -46,11 +46,7 @@
     };
     overlays = [
       (final: prev: {
-        btop = (prev.btop.override { cudaSupport = true; }).overrideAttrs (oldAttrs: {
-          cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
-            "-DBTOP_GPU=ON"
-          ];
-        });
+        btop = (prev.btop.override { cudaSupport = true; });
       })
     ];
   };

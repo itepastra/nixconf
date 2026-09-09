@@ -70,7 +70,7 @@ in
         ];
 
         customComponents = [
-          inputs.self.packages.${pkgs.stdenvNoCC.hostPlatform.system}.ecoflow-energy-ha
+          pkgs.ecoflow-energy-ha
         ];
 
         config = {

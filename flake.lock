@@ -722,6 +722,26 @@
         "type": "github"
       }
     },
+    "pepoapkgs": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788949209,
+        "narHash": "sha256-3/juqpQU8VWc1PdjtTl4mVyOfvGkzsPwsJj8GbFfzFA=",
+        "owner": "itepastra",
+        "repo": "pepoapkgs",
+        "rev": "7db5cf88fe9a53ad311536d863dc5552ba6cd10f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "itepastra",
+        "repo": "pepoapkgs",
+        "type": "github"
+      }
+    },
     "prettier-plugins": {
       "flake": false,
       "locked": {
@@ -760,6 +780,7 @@
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
+        "pepoapkgs": "pepoapkgs",
         "prettier-plugins": "prettier-plugins",
         "septabee": "septabee",
         "shuttlefish": "shuttlefish",

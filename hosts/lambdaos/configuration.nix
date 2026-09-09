@@ -74,11 +74,6 @@
             default-window-height = 0.5;
           }
         ];
-        extraConfig = {
-          programs.btop.package = pkgs.btop.overrideAttrs (oldAttrs: {
-            patches = (oldAttrs.patches or [ ]) ++ [ ../../common/home/btop-no-nix-store.patch ];
-          });
-        };
       };
       "root" = import ../../common/home/root.nix;
     };

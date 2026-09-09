@@ -11,6 +11,7 @@ let
   sddm-theme-name = "Elegant";
 in
 {
+
   imports = [
     ../modules/steam
     ../hm-modules/neovim
@@ -31,8 +32,12 @@ in
     };
   };
 
-  nixpkgs.config = {
-    contentAdressedByDefault = true;
+  nixpkgs = {
+    overlays = [
+      inputs.pepoapkgs.overlays.additions
+      inputs.pepoapkgs.overlays.modifications
+    ];
+    config.contentAdressedByDefault = true;
   };
 
   nix.settings = {

@@ -193,6 +193,11 @@
       };
     };
 
+    pepoapkgs = {
+      url = "github:itepastra/pepoapkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Why do I want the fucky daw? because why tf not
     septabee = {
       url = "github:ap6661/septabee-flake";
@@ -206,6 +211,31 @@
       nixpkgs,
       ...
     }@inputs:
+    let
+      allSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+
+      forAllSystems =
+        f:
+        nixpkgs.lib.genAttrs allSystems (
+          system:
+          f {
+            inherit system;
+            pkgs = import nixpkgs { inherit system; };
+          }
+        );
+
+      packageNames =
+        let
+          entries = builtins.readDir ./.;
+        in
+        builtins.filter (name: entries.${name} == "directory") (builtins.attrNames entries);
+
+    in
     {
       nixosConfigurations =
         let
