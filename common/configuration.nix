@@ -18,6 +18,7 @@ in
     ../modules/users
     ../modules/podman
     ../modules/stylix
+    ../modules/attic
   ];
 
   hardware = {
