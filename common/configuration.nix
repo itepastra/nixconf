@@ -56,12 +56,9 @@ in
     networkmanager.enable = true;
     firewall.allowedTCPPorts = [
       53317 # Localsend
-      22000 # syncthing
     ];
     firewall.allowedUDPPorts = [
       53317
-      22000 # syncthing
-      21027 # syncthing
     ];
   };
 

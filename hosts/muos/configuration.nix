@@ -16,6 +16,7 @@
 
     ./disk-config.nix
     ../../modules/netbird
+    ../../modules/syncthing
   ];
 
   powerManagement.enable = true;

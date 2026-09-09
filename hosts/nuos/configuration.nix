@@ -21,7 +21,6 @@
     (modulesPath + "/profiles/qemu-guest.nix")
 
     ./dns.nix
-    ./syncthing.nix
 
     ../../modules/home-assistant
     ../../modules/mealie
@@ -32,6 +31,7 @@
     ../../modules/netbird
     ../../modules/disqalculate
     ../../modules/shuttlefish
+    ../../modules/syncthing
 
     ((import ../../common) { enableGraphics = false; })
   ];
@@ -196,26 +196,18 @@
       enable = true;
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
+      openFirewall = true;
     };
   };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
-    22 # ssh
-
     19494 # i2p
-
-    22000 # syncthing
 
     38281 # archipelago
   ];
   networking.firewall.allowedUDPPorts = [
-    22 # ssh
-
     19494 # i2p
-
-    22000 # syncthing
-    21027 # syncthing
   ];
 
   # Copy the NixOS configuration file and link it from the resulting system

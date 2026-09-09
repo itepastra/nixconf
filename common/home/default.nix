@@ -456,9 +456,5 @@ in
         }
       ];
     };
-    # sync my password store and homework
-    syncthing = {
-      enable = enableGraphical;
-    };
   };
 }
