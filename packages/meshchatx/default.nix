@@ -23,7 +23,7 @@ appimageTools.wrapType2 rec {
   ];
 
   meta = {
-    description = "Comminucation client for reticulum";
+    description = "Communication client for reticulum";
     homepage = "https://meshchatx.com/";
     downloadPage = "https://meshchatx.com/download";
     license = lib.licenses.bsd0;
