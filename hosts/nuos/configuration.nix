@@ -22,17 +22,17 @@
 
     ./dns.nix
 
-    ../../modules/home-assistant
-    ../../modules/mealie
-    ../../modules/forgejo
+    ../../modules/atticd
     ../../modules/calendar
-    ../../modules/immich
-    ../../modules/netbird-server
-    ../../modules/netbird
     ../../modules/disqalculate
+    ../../modules/forgejo
+    ../../modules/home-assistant
+    ../../modules/immich
+    ../../modules/mealie
+    ../../modules/netbird
+    ../../modules/netbird-server
     ../../modules/shuttlefish
     ../../modules/syncthing
-    ../../modules/atticd
 
     ((import ../../common) { enableGraphics = false; })
   ];
