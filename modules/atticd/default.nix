@@ -52,7 +52,10 @@
     };
   };
 
-  systemd.services.atticd.serviceConfig.DynamicUser = lib.mkForce false;
+  systemd.services.atticd.serviceConfig = {
+    DynamicUser = lib.mkForce false;
+    PrivateUsers = lib.mkForce false;
+  };
 
   users.users.atticd = {
     isSystemUser = true;
