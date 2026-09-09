@@ -39,7 +39,6 @@
           path = "/data/atticd/storage";
         };
 
-        upstream-cache-filter = [ ];
         database.url = "postgresql:///${config.services.atticd.user}?host=/run/postgresql&user=${config.services.atticd.user}";
       };
     };
