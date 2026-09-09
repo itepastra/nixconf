@@ -27,7 +27,7 @@
         "libvirt"
       ];
       hashedPassword = "$6$rounds=512400$g/s4dcRttXi4ux6c$Z6pKnhJXcWxv0TBSMtvJu5.piETdUBSgBVN7oDPKiQV.lbTYz1r.0XQLwMYxzcvaaX0DL6Iw/SEUTiC2M50wC/";
-      openssh.authorizedKeys.keys = import ../../common/ssh-keys.nix;
+      openssh.authorizedKeys.keys = import ../../config/info/ssh-keys.nix;
     };
   };
 
