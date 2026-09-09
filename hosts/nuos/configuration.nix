@@ -32,6 +32,7 @@
     ../../modules/disqalculate
     ../../modules/shuttlefish
     ../../modules/syncthing
+    ../../modules/atticd
 
     ((import ../../common) { enableGraphics = false; })
   ];
