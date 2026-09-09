@@ -50,8 +50,16 @@
         }
       ];
     };
-
   };
+
+  systemd.services.atticd.serviceConfig.DynamicUser = false;
+
+  users.users.atticd = {
+    isSystemUser = true;
+    group = "atticd";
+  };
+
+  users.groups.atticd = { };
 
   modules.nginx.proxies = [
     {
