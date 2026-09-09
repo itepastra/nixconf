@@ -20,12 +20,12 @@ in
     ../modules/stylix
   ];
 
-  age.secrets."attic/anemone" = {
-    file = ../../secrets/attic/anemone.age;
-    owner = "noa";
-    group = "noa";
-    mode = "600";
-  };
+  # age.secrets."attic/anemone" = {
+  #   file = ../../secrets/attic/anemone.age;
+  #   owner = "noa";
+  #   group = "noa";
+  #   mode = "600";
+  # };
 
   hardware = {
     bluetooth = {

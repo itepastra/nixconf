@@ -23,7 +23,7 @@
       default-server = "trench";
       servers.trench = {
         endpoint = "http://trench.reef";
-        token-file = osConfig.age.secrets."attic/anemone".path;
+        token-file = "/run/agenix/attic/anemone";
       };
     };
   };
