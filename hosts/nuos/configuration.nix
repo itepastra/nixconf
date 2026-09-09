@@ -33,6 +33,7 @@
     ../../modules/netbird-server
     ../../modules/shuttlefish
     ../../modules/syncthing
+    ../../modules/attic
 
     ((import ../../common) { enableGraphics = false; })
   ];
