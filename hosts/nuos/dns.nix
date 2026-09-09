@@ -212,7 +212,8 @@ in
 
     settings = {
       listen_addresses = [
-        "127.0.0.1:53"
+        "0.0.0.0:53"
+        "[::]:53"
       ];
 
       enable_hot_reload = true;
@@ -244,6 +245,11 @@ in
         home.itepastra.nl 192.168.42.2
       '';
     };
+  };
+
+  networking.firewall = {
+    allowedTCPPorts = [ 53 ];
+    allowedUDPPorts = [ 53 ];
   };
 
   networking.resolvconf.useLocalResolver = true;
