@@ -35,7 +35,7 @@ in
     wants = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      ExecStart = "${attic}/bin/attic watch-store trench:anemone";
+      ExecStart = "${attic}/bin/attic watch-store --ignore-upstream-cache-filter trench:anemone";
       Restart = "on-failure";
       RestartSec = 10;
     };
