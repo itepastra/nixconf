@@ -290,16 +290,6 @@
             ]
             ++ commonModules;
           };
-
-          alphaOS = nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs;
-            };
-            modules = [
-              ./hosts/min/configuration.nix
-              inputs.disko.nixosModules.disko
-            ];
-          };
         };
       packages = import ./packages { inherit nixpkgs inputs self; };
 
