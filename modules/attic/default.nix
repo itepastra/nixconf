@@ -22,11 +22,11 @@ in
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
-    environment.ATTIC_CONFIG = (pkgs.formats.toml).generate "attic-config.toml" {
+    environment.ATTIC_CONFIG = (pkgs.formats.toml { }).generate "attic-config.toml" {
       default-server = "trench";
       servers.trench = {
         endpoint = "http://trench.reef";
-        token-file = config.age.secrets."attic/anemone";
+        token-file = config.age.secrets."attic/anemone".path;
       };
     };
     serviceConfig = {
