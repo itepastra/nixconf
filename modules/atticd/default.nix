@@ -33,7 +33,10 @@
           max-size = 256 * 1024; # 256 KiB
         };
 
-        storage.path = "/data/attic/storage";
+        storage = {
+          type = "local";
+          path = "/data/attic/storage";
+        };
         database.url = lib.mkIf config.services.postgresql.enable "postgresql:///${config.services.atticd.user}";
       };
     };
