@@ -22,7 +22,6 @@
     ../../modules/nvidia
     ../../modules/netbird
     ../../modules/syncthing
-    ../../modules/attic
   ];
 
   age.identityPaths = [ "${config.users.users.noa.home}/.ssh/id_ed25519" ];

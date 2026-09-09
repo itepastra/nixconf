@@ -47,6 +47,7 @@ in
     ../../hm-modules/mail
     ../../hm-modules/terminal
     ../../hm-modules/browser
+    ../../hm-modules/attic
   ];
 
   age.secrets."attic/anemone" = {
