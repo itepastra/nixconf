@@ -52,7 +52,7 @@
     };
   };
 
-  systemd.services.atticd.serviceConfig.DynamicUser = false;
+  systemd.services.atticd.serviceConfig.DynamicUser = lib.mkForce false;
 
   users.users.atticd = {
     isSystemUser = true;
