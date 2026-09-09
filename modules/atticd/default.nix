@@ -40,7 +40,7 @@
         };
 
         upstream-cache-filter = [ ];
-        database.url = "postgresql:///${config.services.atticd.user}";
+        database.url = "postgresql:///${config.services.atticd.user}?host=/run/postgresql&user=atticd";
       };
     };
 
