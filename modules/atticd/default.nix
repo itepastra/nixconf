@@ -38,6 +38,8 @@
           type = "local";
           path = "/data/atticd/storage";
         };
+
+        upstream-cache-filter = [ ];
         database.url = "postgresql:///${config.services.atticd.user}";
       };
     };
