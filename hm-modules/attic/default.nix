@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   config,
+  osConfig,
   ...
 }:
 {
@@ -10,7 +11,7 @@
     trusted-substituters = [ "http://trench.reef/anemone" ];
   };
 
-  environment.systemPackages = [
+  home.packages = [
     inputs.attic.packages.${pkgs.stdenv.hostPlatform.system}.attic
   ];
 
@@ -22,7 +23,7 @@
       default-server = "trench";
       servers.trench = {
         endpoint = "http://trench.reef";
-        token-file = config.age.secrets."attic/anemone".path;
+        token-file = osConfig.age.secrets."attic/anemone".path;
       };
     };
   };
