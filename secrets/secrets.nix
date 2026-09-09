@@ -25,6 +25,10 @@ in
     muOS
     nuOS
   ];
+  "atticd/env.age".publicKeys = [
+    noa
+    nuOS
+  ];
   "nifi/password.age".publicKeys = [
     noa
     muOS
