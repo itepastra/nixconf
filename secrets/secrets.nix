@@ -29,6 +29,12 @@ in
     noa
     nuOS
   ];
+  "attic/anemone.age".publicKeys = [
+    noa
+    nuOS
+    muOS
+    lambdaOS
+  ];
   "nifi/password.age".publicKeys = [
     noa
     muOS
