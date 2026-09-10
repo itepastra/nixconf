@@ -22,7 +22,7 @@ in
         exit 1
       fi
 
-      store_path=$(nix build -L --no-link --print-out-paths ".\#nixosConfigurations.''${name}.config.system.build.toplevel")
+      store_path=$(nix build -L --no-link --print-out-paths ".#nixosConfigurations.''${name}.config.system.build.toplevel")
       if [ $? -ne 0 ]; then
         echo "Build failed"
         exit 1
