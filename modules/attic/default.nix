@@ -15,6 +15,23 @@ in
 
   environment.systemPackages = [
     attic
+    (pkgs.writeShellScriptBin "nix-build-push" ''
+      name="$1"
+      if [ -z "$name" ]; then
+        echo "Usage: nix-build-push <nixosConfiguration name>"
+        exit 1
+      fi
+
+      store_path=$(nix build -L --no-link --print-out-paths ".\#nixosConfigurations.''${name}.config.system.build.toplevel")
+      if [ $? -ne 0 ]; then
+        echo "Build failed"
+        exit 1
+      fi
+
+      echo "Built: $store_path"
+      sudo attic push anemone "$store_path"
+    '')
+
   ];
 
   systemd.tmpfiles.rules = [
