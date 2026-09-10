@@ -167,8 +167,8 @@
     nixcord = {
       url = "github:FlameFlag/nixcord";
       inputs = {
-        flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
       };
     };
     prettier-plugins = {
