@@ -478,15 +478,37 @@
         ]
       },
       "locked": {
-        "lastModified": 1788987058,
-        "narHash": "sha256-uAGmwePpwNZemCtko+OBBtqRmM9UDBFpSvB408XgToY=",
+        "lastModified": 1789012927,
+        "narHash": "sha256-+h1H0g2XMGXK0fNUlX4ajCmCz8u05IR7k0Cj2MJviBY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "9c997ea660dd3cda996cc7332cfcf70148b05640",
+        "rev": "df044b78fd9ec60d0e54752169666e6e1d393798",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_2": {
+      "inputs": {
+        "nixpkgs": [
+          "nixcord",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788642154,
+        "narHash": "sha256-sPpQFVaFTDqO/4vvCAhuAhqTgqN/ygu+9eJcs5eB0js=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "fd0956c99c41ae3c13a73a638f1f7e963aebc4ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-26.05",
         "repo": "home-manager",
         "type": "github"
       }
@@ -550,6 +572,28 @@
         "type": "github"
       }
     },
+    "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixcord",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783744694,
+        "narHash": "sha256-2cp6N3rrwnGYLTx9l6N+NI+kwrCWxvJUbj5WJhvB29A=",
+        "owner": "nix-darwin",
+        "repo": "nix-darwin",
+        "rev": "c3e90c89649b07d1a96e4b9dd6cd0d6e44b91a74",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-darwin",
+        "ref": "nix-darwin-26.05",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
     "nix-github-actions": {
       "inputs": {
         "nixpkgs": [
@@ -573,9 +617,8 @@
     },
     "nixcord": {
       "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
+        "home-manager": "home-manager_2",
+        "nix-darwin": "nix-darwin",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -583,11 +626,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1788962100,
-        "narHash": "sha256-G5knic2BF44zsDwAEvToreC10cs0ND5J+Limz6eDxII=",
+        "lastModified": 1788996000,
+        "narHash": "sha256-tqtH7awT0UBkzYR2H5z72LIl1OdOoLH9tw1aMI1Bl3k=",
         "owner": "FlameFlag",
         "repo": "nixcord",
-        "rev": "b5a25427cca7ed257549f14437fb468f48591fdb",
+        "rev": "3c1333e6cc389fe93bee1cdb4732770bf8403faf",
         "type": "github"
       },
       "original": {
@@ -658,11 +701,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1788986147,
-        "narHash": "sha256-I344n/6b0ziZUwmooe68DoZ9qMXOsAHkcMbZ0M8UTGs=",
+        "lastModified": 1789026294,
+        "narHash": "sha256-UJIb/zm8cjj99zp6sWjKI8RtpRXXAJTVWT4NMrvUe0E=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a296d2f49483a989232ca447378b2b4481f60320",
+        "rev": "ef901458cb63e4990cb93a7c49688e06416c36e2",
         "type": "github"
       },
       "original": {
@@ -685,11 +728,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788190018,
-        "narHash": "sha256-59BAfH0txPAZrPBF4QJqwvUWppD+ICrcjA1LZAmPnrQ=",
+        "lastModified": 1789014902,
+        "narHash": "sha256-VQ3yWfYqnO0H0XEfbZyB6TjR3UCxbxC20qGnMBJXfDs=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "41844750e55f17b1385d5b09ca7ade5f11f49506",
+        "rev": "e23dfa4cb797926150e6f9081349e3b13ccbabc3",
         "type": "github"
       },
       "original": {
@@ -800,11 +843,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788916390,
-        "narHash": "sha256-IEyHQP1kKoOGYFJ7N3aXDZQWsg7d30sQoMQorNef5co=",
+        "lastModified": 1789002567,
+        "narHash": "sha256-NfQBftRXlgAOB5D/jUvK0EGv9FspRY83fa0R2sJ+2oI=",
         "owner": "ap6661",
         "repo": "septabee-flake",
-        "rev": "28132764989596ca9d72efef0a89bea1e7ab5076",
+        "rev": "ca0f4a7170288c7c9eab856e4ad6d6e241dacc43",
         "type": "github"
       },
       "original": {
