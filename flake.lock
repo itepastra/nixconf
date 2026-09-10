@@ -478,11 +478,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789012927,
-        "narHash": "sha256-+h1H0g2XMGXK0fNUlX4ajCmCz8u05IR7k0Cj2MJviBY=",
+        "lastModified": 1789047607,
+        "narHash": "sha256-TvkqeCjWyQvQs7jZ/2WcOWF1GMSgKtAP3qrw7eKpp1k=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "df044b78fd9ec60d0e54752169666e6e1d393798",
+        "rev": "f7f333f04ff6e2f94f955642a1b4956d4fcd3010",
         "type": "github"
       },
       "original": {
@@ -494,11 +494,11 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1788903053,
-        "narHash": "sha256-rp0pEO8p4PjL40o+sM/YpDTY/nKQlzKpRGNftw9+3fA=",
-        "rev": "e4d74bad335b5754b55da57ac53a86dfb07e4a4d",
+        "lastModified": 1789051681,
+        "narHash": "sha256-/39UvsXupkFJ3xkWHcG/JDgoz7EDARtG3a7eRc0VJG4=",
+        "rev": "f0dd0acf098ab44c7d97064c10d67d130156446c",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/e4d74bad335b5754b55da57ac53a86dfb07e4a4d.tar.gz?rev=e4d74bad335b5754b55da57ac53a86dfb07e4a4d"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/f0dd0acf098ab44c7d97064c10d67d130156446c.tar.gz?rev=f0dd0acf098ab44c7d97064c10d67d130156446c"
       },
       "original": {
         "type": "tarball",
@@ -681,11 +681,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1789043605,
-        "narHash": "sha256-oNxv9z/Zz8MPJQ3w+TJcAUFZNTGD3L1WJc2Co2CBT8E=",
+        "lastModified": 1789061402,
+        "narHash": "sha256-Rueq31g3otA6MZHNVp7alkDcLLGnfeDIbmobZDNA1gg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c41774f4083941522add107e34e18c9700f91bde",
+        "rev": "7de9926b004901f172e4fc5a1ea72da556267c3b",
         "type": "github"
       },
       "original": {
@@ -823,11 +823,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789002567,
-        "narHash": "sha256-NfQBftRXlgAOB5D/jUvK0EGv9FspRY83fa0R2sJ+2oI=",
+        "lastModified": 1789056742,
+        "narHash": "sha256-R7UhqeLW5Eujl5AdbbxunPoc2jPSqbhGyE7yQwt/F70=",
         "owner": "ap6661",
         "repo": "septabee-flake",
-        "rev": "ca0f4a7170288c7c9eab856e4ad6d6e241dacc43",
+        "rev": "67ee941698a90a0d131a22ea86c7bcc328617050",
         "type": "github"
       },
       "original": {
