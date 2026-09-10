@@ -43,6 +43,7 @@ in
 
   nix.settings = {
     substituters = [ "http://trench.reef/anemone?priority=10" ];
+    trusted-public-keys = [ "anemone:f/wBQ8yB5geTn96NjwRfbcoEvr8QuykN0iu0Rf2zUC8=" ];
     trusted-substituters = [ "http://trench.reef/anemone" ];
   };
 }
