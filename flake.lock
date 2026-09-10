@@ -61,16 +61,15 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1789044916,
-        "narHash": "sha256-ecxPdbSfU6q1CB3mcQx/ZVn5qAEqymDCoHxC8KnvMbI=",
-        "owner": "itepastra",
+        "lastModified": 1783346450,
+        "narHash": "sha256-AyXLhsc2drC+lunm+TB6Xs6XMMJ/m4B1YjMM1N8JXhU=",
+        "owner": "zhaofengli",
         "repo": "attic",
-        "rev": "5a742573781dbb359e284c2c5a2a1dd03cadd27e",
+        "rev": "7a19204df10d606c5070e6bb72615c3461900c05",
         "type": "github"
       },
       "original": {
-        "owner": "itepastra",
-        "ref": "fix_watch_store",
+        "owner": "zhaofengli",
         "repo": "attic",
         "type": "github"
       }

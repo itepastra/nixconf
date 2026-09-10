@@ -106,7 +106,7 @@
 
     # nix binary cache
     attic = {
-      url = "github:itepastra/attic/fix_watch_store";
+      url = "github:zhaofengli/attic";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
