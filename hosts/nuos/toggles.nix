@@ -1,3 +1,3 @@
 {
-  enableFlurry = true;
+  enableFlurry = false;
 }
