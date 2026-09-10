@@ -14,7 +14,6 @@
           order = [
             "kagi"
             "ddg"
-            "google"
           ];
           engines = {
             nix-packages = {
@@ -46,8 +45,20 @@
               definedAliases = [ "@nw" ];
             };
 
+            kagi = {
+              name = "Kagi";
+              urls = [
+                {
+                  template = "https://kagi.com/search?q=%s";
+                }
+              ];
+              definedAliases = [ "@k" ];
+            };
+
             bing.metaData.hidden = true;
-            google.metaData.alias = "@g";
+            google.metaData.hidden = true;
+            ebay.metaData.hidden = true;
+            ecosia.metaData.hidden = true;
           };
         };
         settings = {
