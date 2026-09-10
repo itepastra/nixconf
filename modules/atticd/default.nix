@@ -25,13 +25,6 @@
       settings = {
         listen = "[::1]:16320";
 
-        allowed-hosts = [
-          "[::1]"
-          "127.0.0.1"
-        ];
-
-        api-endpoint = "http://trench.reef/";
-
         jwt = { };
 
         chunking = {
