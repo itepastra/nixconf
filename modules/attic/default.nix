@@ -30,6 +30,11 @@ in
 
       echo "Built: $store_path"
       sudo attic push anemone "$store_path"
+
+      drv=$(nix path-info --derivation "$store_path")
+      requisites=$(nix-store --query --requisites --include-outputs "$drv")
+
+      echo "$requisites" | sudo xargs attic push anemone
     '')
 
   ];
