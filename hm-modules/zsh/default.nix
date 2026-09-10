@@ -6,9 +6,7 @@
   programs.zsh = {
     enable = true;
     shellAliases = {
-      nb = "nix build -L";
       nbi = "nix build -L -f .";
-      ns = "nix shell -L";
     };
     history = {
       path = "${config.xdg.dataHome}/zsh/history";
