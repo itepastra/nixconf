@@ -34,7 +34,7 @@ in
       drv=$(nix path-info --derivation "$store_path")
       requisites=$(nix-store --query --requisites --include-outputs "$drv")
 
-      echo "$requisites" | sudo xargs attic push anemone
+      echo "$requisites" | sudo xargs attic push --ignore-upstream-cache-filter anemone
     '')
     (pkgs.writeShellScriptBin "nix-shell-push" ''
       if [ -z "$IN_NIX_SHELL" ] && [ -z "$name" ]; then
@@ -59,7 +59,7 @@ in
         fi
       done)
 
-      echo "$requisites" | sort -u | sudo xargs attic push anemone
+      echo "$requisites" | sort -u | sudo xargs attic push --ignore-upstream-cache-filter anemone
     '')
   ];
 
