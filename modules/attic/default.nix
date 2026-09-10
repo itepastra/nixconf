@@ -36,7 +36,31 @@ in
 
       echo "$requisites" | sudo xargs attic push anemone
     '')
+    (pkgs.writeShellScriptBin "nix-shell-push" ''
+      if [ -z "$IN_NIX_SHELL" ] && [ -z "$name" ]; then
+        echo "Not in a nix shell"
+        exit 1
+      fi
 
+      paths=""
+      for var in $buildInputs $nativeBuildInputs $propagatedBuildInputs $propagatedNativeBuildInputs; do
+        paths="$paths $var"
+      done
+
+      if [ -z "$paths" ]; then
+        echo "No build inputs found in environment"
+        exit 1
+      fi
+
+      requisites=$(echo "$paths" | tr ' ' '\n' | grep -v '^$' | while read -r p; do
+        drv=$(nix path-info --derivation "$p" 2>/dev/null)
+        if [ -n "$drv" ]; then
+          nix-store --query --requisites --include-outputs "$drv"
+        fi
+      done)
+
+      echo "$requisites" | sort -u | sudo xargs attic push anemone
+    '')
   ];
 
   systemd.tmpfiles.rules = [
