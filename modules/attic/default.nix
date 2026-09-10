@@ -37,7 +37,7 @@ in
     serviceConfig = {
       ExecStart = "${attic}/bin/attic watch-store --ignore-upstream-cache-filter trench:anemone";
       Restart = "on-failure";
-      RestartSec = 10;
+      RestartSec = 1;
     };
   };
 
