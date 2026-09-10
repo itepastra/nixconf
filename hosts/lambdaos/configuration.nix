@@ -22,6 +22,7 @@
     ../../modules/nvidia
     ../../modules/netbird
     ../../modules/syncthing
+    ../../modules/septabee
   ];
 
   age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
