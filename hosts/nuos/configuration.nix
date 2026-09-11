@@ -15,7 +15,6 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
-    inputs.flurry.nixosModules.default
     ./disk-config.nix
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -34,6 +33,7 @@
     ../../modules/shuttlefish
     ../../modules/syncthing
     ../../modules/septabee
+    ../../modules/flurry
 
     ((import ../../common) { enableGraphics = false; })
   ];
@@ -168,19 +168,6 @@
       description = "Running from the sun into space";
       admins = [ "itepastra" ];
       extraSettingsFile = config.age.secrets."factorio/solrunners".path;
-    };
-    flurry = {
-      enable = (import ./toggles.nix).enableFlurry;
-      package = inputs.flurry.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      host = "0.0.0.0";
-      openFirewall = true;
-      grid_width = 1280;
-      grid_height = 1024;
-      features = [
-        "text"
-        "binary"
-        "palette"
-      ];
     };
     i2pd = {
       enable = true;
