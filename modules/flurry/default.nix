@@ -3,7 +3,7 @@
     inputs.flurry.nixosModules.default
   ];
   services.flurry = {
-    enable = (import ./toggles.nix).enableFlurry;
+    enable = true;
     package = inputs.flurry.packages.${pkgs.stdenv.hostPlatform.system}.default;
     host = "0.0.0.0";
     openFirewall = true;
