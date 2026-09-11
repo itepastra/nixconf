@@ -2,14 +2,13 @@
 {
   # if I have a monitor and want niri + graphical apps
   enableGraphical ? false,
-  # should add flurry and tsunami?? (yes :3)
-  enableFlut ? false,
   # GAMESS, like for things like steam and minecraft
   enableGames ? false,
   # what displays are connected? niri will be configured using this
   displays ? [ ],
   # is there any extra specific config necessary (like nvidia on lambdaOS)
   extraConfig ? { },
+  ...
 }:
 {
   config,
@@ -69,11 +68,6 @@ in
         #network things
         dig
         mtr
-      ]
-      # FLURRY AND TSUNAMI :3 (I made these)
-      ++ lib.optionals enableFlut [
-        inputs.flurry.packages.${stdenv.hostPlatform.system}.default
-        inputs.tsunami.packages.${stdenv.hostPlatform.system}.default
       ]
       # and ofc the things that are only logical with graphics
       ++ lib.optionals enableGraphical [
