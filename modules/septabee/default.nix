@@ -1,7 +1,9 @@
-{ inputs, pkgs, ... }: {
+{ inputs, ... }: {
+  imports = [ inputs.septabee.nixosModules.default ];
+
   programs.septabee = {
     enable = true;
     wayland-deps = true;
-    package = inputs.septabee.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    offline = true;
   };
 }
