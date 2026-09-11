@@ -17,6 +17,7 @@
     ./disk-config.nix
     ../../modules/netbird
     ../../modules/syncthing
+    ../../modules/septabee
   ];
 
   powerManagement.enable = true;
