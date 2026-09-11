@@ -38,7 +38,6 @@ in
       inputs.pepoapkgs.overlays.additions
       inputs.pepoapkgs.overlays.modifications
     ];
-    config.contentAdressedByDefault = true;
   };
 
   nix.settings = {
