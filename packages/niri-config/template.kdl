@@ -166,6 +166,11 @@ window-rule {
     default-column-width { proportion 1.0; }
 }
 
+window-rule {
+    match app-id=r#"^septabee$"#
+    scroll-factor 2.5
+}
+
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://github.com/niri-wm/niri/wiki/Configuration:-Window-Rules

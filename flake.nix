@@ -265,7 +265,6 @@
               inherit inputs;
             };
             modules = [
-              inputs.septabee.nixosModules.x86_64-linux.default
               ./hosts/lambdaos/configuration.nix
             ]
             ++ commonModules;
@@ -285,7 +284,6 @@
             };
             modules = [
               inputs.hardware.nixosModules.framework-amd-ai-300-series
-              inputs.septabee.nixosModules.x86_64-linux.default
               ./hosts/muos/configuration.nix
             ]
             ++ commonModules;
