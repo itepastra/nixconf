@@ -7,6 +7,8 @@
     enable = true;
     shellAliases = {
       nbi = "nix build -L -f .";
+      nbp = "nix-build-push";
+      nsp = "nix-shell-push";
     };
     history = {
       path = "${config.xdg.dataHome}/zsh/history";
