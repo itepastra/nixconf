@@ -67,7 +67,7 @@
             name = "DP-3";
             horizontal = 2560;
             vertical = 1440;
-            horizontal-offset = 2560;
+            horizontal-offset = -1440;
             vertical-offset = -600;
             refresh-rate = 144;
             scale = "1";
