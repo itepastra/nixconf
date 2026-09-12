@@ -251,7 +251,8 @@ in
     allowedUDPPorts = [ 53 ];
   };
 
-  networking.resolvconf.useLocalResolver = true;
+  networking.resolvconf.useLocalResolver = false;
+  networking.nameservers = [ "192.168.42.2" ];
 
   services.netbird.clients = builtins.listToAttrs (
     lib.map (val: {
