@@ -261,12 +261,12 @@
               ./hosts/xios/configuration.nix
             ];
           };
-          lambdaOS = nixpkgs.lib.nixosSystem {
+          leafsheep = nixpkgs.lib.nixosSystem {
             specialArgs = {
               inherit inputs;
             };
             modules = [
-              ./hosts/lambdaos/configuration.nix
+              ./hosts/leafsheep/configuration.nix
             ]
             ++ commonModules;
           };

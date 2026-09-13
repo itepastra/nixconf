@@ -30,7 +30,7 @@
   hardware.keyboard.qmk.enable = true;
 
   networking = {
-    hostName = "lambdaOS"; # Define your hostname.
+    hostName = "leafsheep"; # Define your hostname.
     firewall.allowedTCPPorts = [
       8080
       7791 # Pixelflut

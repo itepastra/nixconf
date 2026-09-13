@@ -2,7 +2,7 @@ let
   noa = "age1yubikey1qv9qr2l4srzpt9h9ess58hv4m58njxw50356vgjm92mswul2xnt22fk4t9v";
   cuttlefish = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDV2IDF4FP1T6qWcv+drtnbKyXkeB9kOAbU4wVWNfPSO";
   vaqita = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINYLME/00EUuEeTOSf2RaH30OGpXrRzsYNp404sWyxYm";
-  lambdaOS = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICII469nfANk6y6D8gd06OkmxBClpZsNXMW1kxDOreLX";
+  leafsheep = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICII469nfANk6y6D8gd06OkmxBClpZsNXMW1kxDOreLX";
 in
 {
   "factorio/solrunners.age".publicKeys = [
@@ -33,7 +33,7 @@ in
     noa
     cuttlefish
     vaqita
-    lambdaOS
+    leafsheep
   ];
   "nifi/password.age".publicKeys = [
     noa
@@ -53,7 +53,7 @@ in
   "discord/shuttlefish.age".publicKeys = [
     noa
     cuttlefish
-    lambdaOS
+    leafsheep
   ];
   "netbird/config.yaml.age".publicKeys = [
     noa

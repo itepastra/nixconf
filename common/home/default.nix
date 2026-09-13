@@ -6,7 +6,7 @@
   enableGames ? false,
   # what displays are connected? niri will be configured using this
   displays ? [ ],
-  # is there any extra specific config necessary (like nvidia on lambdaOS)
+  # is there any extra specific config necessary (like nvidia on leafsheep)
   extraConfig ? { },
   ...
 }:
