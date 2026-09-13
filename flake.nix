@@ -270,12 +270,12 @@
             ]
             ++ commonModules;
           };
-          nuOS = nixpkgs.lib.nixosSystem {
+          cuttlefish = nixpkgs.lib.nixosSystem {
             specialArgs = {
               inherit inputs;
             };
             modules = [
-              ./hosts/nuos/configuration.nix
+              ./hosts/cuttlefish/configuration.nix
             ]
             ++ commonModules;
           };

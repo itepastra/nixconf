@@ -381,9 +381,9 @@ in
           port = 22;
           user = "aur";
         };
-        "nuos" = {
-          host = "nuos";
-          hostname = "nuos";
+        "cuttlefish" = {
+          host = "cuttlefish";
+          hostname = "cuttlefish";
           addressFamily = "inet";
           identityFile = "~/.ssh/id_rsa_yubikey.pub";
           identitiesOnly = true;

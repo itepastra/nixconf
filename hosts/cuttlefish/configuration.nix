@@ -47,7 +47,7 @@
   ];
 
   networking = {
-    hostName = "nuOS"; # Define your hostname.
+    hostName = "cuttlefish"; # Define your hostname.
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
   };
   # Pick only one of the below networking options.
