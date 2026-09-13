@@ -6,7 +6,7 @@ There may be some useful parts in the clusterfuck that I made and maybe I'll try
 
 ## My systems
 
-I have three active systems, my pc (lambdaOS), my laptop (muOS) and my server (cuttlefish).
+I have three active systems, my pc (lambdaOS), my laptop (vaqita) and my server (cuttlefish).
 Both my pc and laptop are running mainly niri with plasma mostly just
 there because I didn't want to setup sddm themes myself.  
 

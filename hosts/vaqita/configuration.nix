@@ -22,7 +22,7 @@
 
   powerManagement.enable = true;
 
-  networking.hostName = "muOS";
+  networking.hostName = "vaqita";
 
   home-manager = {
     users = {

@@ -279,13 +279,13 @@
             ]
             ++ commonModules;
           };
-          muOS = nixpkgs.lib.nixosSystem {
+          vaqita = nixpkgs.lib.nixosSystem {
             specialArgs = {
               inherit inputs;
             };
             modules = [
               inputs.hardware.nixosModules.framework-amd-ai-300-series
-              ./hosts/muos/configuration.nix
+              ./hosts/vaqita/configuration.nix
             ]
             ++ commonModules;
           };
