@@ -823,15 +823,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1789173982,
-        "narHash": "sha256-ISWhS0QrJnEDcN8eb1xSsntCcxkoI7bOKACueOSwcq0=",
-        "owner": "ap6661",
+        "lastModified": 1789287821,
+        "narHash": "sha256-DfSKSIAcL5nhO7KA+QdjTY4cUg/sZOtH9ubZMbGPojU=",
+        "owner": "alsaisamo",
         "repo": "septabee-flake",
-        "rev": "925eb4056a8be6a9202d0602eaf87d2092b8cb51",
+        "rev": "2d216284c59a4a5e66fec3ed9e3819a07de8be9e",
         "type": "github"
       },
       "original": {
-        "owner": "ap6661",
+        "owner": "alsaisamo",
+        "ref": "septabee_t9",
         "repo": "septabee-flake",
         "type": "github"
       }
