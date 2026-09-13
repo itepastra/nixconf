@@ -49,7 +49,7 @@
               name = "Kagi";
               urls = [
                 {
-                  template = "https://kagi.com/search?q=%s";
+                  template = "https://kagi.com/search?q={searchTerms}";
                 }
               ];
               definedAliases = [ "@k" ];
