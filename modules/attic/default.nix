@@ -61,6 +61,26 @@ in
 
       echo "$requisites" | sort -u | sudo xargs attic push --ignore-upstream-cache-filter anemone
     '')
+    (pkgs.writeShellScriptBin "nix-push" ''
+      requisites=""
+
+      for name in "$@"; do
+        # Build the derivation and get the output store path
+        store_path=$(NIXPKGS_ALLOW_UNFREE=1 nix build --no-link --print-out-paths --impure "$name" 2>/dev/null)
+        if [ -n "$store_path" ]; then
+          reqs=$(nix-store --query --requisites "$store_path")
+          requisites="$requisites"$'\n'"$reqs"
+        else
+          echo "Warning: could not build '$name'" >&2
+        fi
+      done
+
+      if [ -z "$requisites" ]; then
+        echo "No requisites found, nothing to push." >&2
+        exit 1
+      fi
+
+      echo "$requisites" | sort -u | xargs sudo attic push --ignore-upstream-cache-filter anemone    '')
   ];
 
   systemd.tmpfiles.rules = [
