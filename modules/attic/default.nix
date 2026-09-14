@@ -29,7 +29,7 @@ in
       fi
 
       echo "Built: $store_path"
-      sudo attic push anemone "$store_path"
+      sudo attic push anemone "$store_path" --ignore-upstream-cache-filter
 
       drv=$(nix path-info --derivation "$store_path")
       requisites=$(nix-store --query --requisites --include-outputs "$drv")
