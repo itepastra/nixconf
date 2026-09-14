@@ -66,10 +66,12 @@ in
 
       for name in "$@"; do
         # Build the derivation and get the output store path
-        store_path=$(NIXPKGS_ALLOW_UNFREE=1 nix build --no-link --print-out-paths --impure "$name" 2>/dev/null)
-        if [ -n "$store_path" ]; then
-          reqs=$(nix-store --query --requisites "$store_path")
-          requisites="$requisites"$'\n'"$reqs"
+        store_paths=$(NIXPKGS_ALLOW_UNFREE=1 nix build --no-link --print-out-paths --impure "$name" 2>/dev/null)
+        if [ -n "$store_paths" ]; then
+          while IFS= read -r store_path; do
+            reqs=$(nix-store --query --requisites "$store_path")
+            requisites="$requisites"$'\n'"$reqs"
+          done <<< "$store_paths"
         else
           echo "Warning: could not build '$name'" >&2
         fi
