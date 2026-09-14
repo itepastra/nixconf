@@ -53,7 +53,7 @@ in
       fi
 
       requisites=$(echo "$paths" | tr ' ' '\n' | grep -v '^$' | while read -r p; do
-        drv=$(nix path-info --derivation "$p" 2>/dev/null)
+        drv=$(nix path-info --derivation "$p")
         if [ -n "$drv" ]; then
           nix-store --query --requisites --include-outputs "$drv"
         fi
@@ -66,7 +66,7 @@ in
 
       for name in "$@"; do
         # Build the derivation and get the output store path
-        store_paths=$(NIXPKGS_ALLOW_UNFREE=1 nix build --no-link --print-out-paths --impure "$name" 2>/dev/null)
+        store_paths=$(NIXPKGS_ALLOW_UNFREE=1 nix build --no-link --print-out-paths --impure -L "$name")
         if [ -n "$store_paths" ]; then
           while IFS= read -r store_path; do
             reqs=$(nix-store --query --requisites "$store_path")
