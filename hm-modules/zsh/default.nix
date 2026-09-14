@@ -8,6 +8,7 @@
     shellAliases = {
       nbi = "nix build -L -f .";
       nbp = "nix-build-push";
+      np = "nix-push";
       nsp = "nix-shell-push";
     };
     history = {
