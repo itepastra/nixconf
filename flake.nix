@@ -201,8 +201,7 @@
 
     # Why do I want the fucky daw? because why tf not
     septabee = {
-      #url = "github:ap6661/septabee-flake";
-      url = "github:alsaisamo/septabee-flake/septabee_t9";
+      url = "github:ap6661/septabee-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
