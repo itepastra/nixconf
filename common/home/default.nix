@@ -39,13 +39,13 @@ in
   # these have no use if there isn't any display....
   ++ lib.optionals enableGraphical [
     ../../hm-modules/automapaper
-    ../../hm-modules/games
     ../../hm-modules/discord
     ../../hm-modules/spotify
     ../../hm-modules/waybar
     ../../hm-modules/mail
     ../../hm-modules/terminal
     ../../hm-modules/browser
+    ../../hm-modules/games/minecraft
   ];
 
   nixpkgs = {
