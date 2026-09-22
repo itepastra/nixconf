@@ -76,6 +76,13 @@
             default-window-height = 0.5;
           }
         ];
+        extraConfig = {
+          nixpkgs.overlays = [
+            (final: prev: {
+              btop = (prev.btop.override { cudaSupport = true; });
+            })
+          ];
+        };
       };
       "root" = import ../../common/home/root.nix;
     };
