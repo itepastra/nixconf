@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   inputs,
   config,
   ...
@@ -97,9 +98,58 @@ in
     }"
   ];
 
-  nix.settings = {
-    substituters = [ "http://trench.reef/anemone?priority=10" ];
-    trusted-public-keys = [ "anemone:f/wBQ8yB5geTn96NjwRfbcoEvr8QuykN0iu0Rf2zUC8=" ];
-    trusted-substituters = [ "http://trench.reef/anemone" ];
+  nix.extraOptions = ''
+    !include /etc/nix/nix.conf.d/10-attic.conf
+  '';
+
+  # configuration.nix
+  environment.etc."NetworkManager/dispatcher.d/99-nix-attic" = {
+    mode = "0755";
+    text = ''
+      #!${lib.getExe pkgs.bash}
+
+      HOME_SSID="niet-bestaand-netwerk"
+      CONF=/etc/nix/nix.conf.d/10-attic.conf
+      ATTIC_SUBSTITUTER="http://trench.reef/anemone?priority=10"
+      ATTIC_KEY="anemone:f/wBQ8yB5geTn96NjwRfbcoEvr8QuykN0iu0Rf2zUC8="
+
+      get_ssid() {
+        ${lib.getExe' pkgs.networkmanager "nmcli"} -g active,ssid dev wifi | grep "^yes:" | cut -d: -f2
+      }
+
+      vpn_active() {
+        ${lib.getExe' pkgs.iproute2 "ip"} link show reef0 &>/dev/null && ${lib.getExe' pkgs.iproute2 "ip"} link show reef0 | grep -q 'UP'
+      }
+
+      enable_cache() {
+        mkdir -p "$(dirname "$CONF")"
+        cat > "$CONF" <<EOF
+      extra-substituters = $ATTIC_SUBSTITUTER
+      extra-trusted-public-keys = $ATTIC_KEY
+      extra-trusted-substituters = http://trench.reef/anemone
+      EOF
+        ${lib.getExe' pkgs.systemd "systemctl"} restart nix-daemon
+      }
+
+      disable_cache() {
+        if [[ -f "$CONF" ]]; then
+          rm -f "$CONF"
+          ${lib.getExe' pkgs.systemd "systemctl"} restart nix-daemon
+        fi
+      }
+
+      case "$2" in
+        up|connectivity-change|vpn-up)
+          if [[ "$(get_ssid)" == "$HOME_SSID" ]] && vpn_active; then
+            enable_cache
+          else
+            disable_cache
+          fi
+          ;;
+        down|pre-down|vpn-down)
+          disable_cache
+          ;;
+      esac
+    '';
   };
 }
