@@ -48,6 +48,13 @@ in
     ../../hm-modules/browser
   ];
 
+  nixpkgs = {
+    overlays = [
+      inputs.pepoapkgs.overlays.additions
+      inputs.pepoapkgs.overlays.modifications
+    ];
+  };
+
   home = {
     file = {
       # makes yubikey stuff work
