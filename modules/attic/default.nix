@@ -114,7 +114,12 @@ in
       ATTIC_KEY="anemone:f/wBQ8yB5geTn96NjwRfbcoEvr8QuykN0iu0Rf2zUC8="
 
       get_ssid() {
-        ${lib.getExe' pkgs.networkmanager "nmcli"} -g active,ssid dev wifi | grep "^yes:" | cut -d: -f2
+        ssid=$(${lib.getExe' pkgs.networkmanager "nmcli"} -g active,ssid dev wifi | grep "^yes:" | cut -d: -f2)
+        if [ -z "$ssid" ]; then
+          echo "$HOME_SSID"
+        else
+          echo "$ssid"
+        fi
       }
 
       vpn_active() {
