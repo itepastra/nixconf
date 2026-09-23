@@ -113,15 +113,6 @@ in
       ATTIC_SUBSTITUTER="http://trench.reef/anemone?priority=10"
       ATTIC_KEY="anemone:f/wBQ8yB5geTn96NjwRfbcoEvr8QuykN0iu0Rf2zUC8="
 
-      get_ssid() {
-        ssid=$(${lib.getExe' pkgs.networkmanager "nmcli"} -g active,ssid dev wifi | grep "^yes:" | cut -d: -f2)
-        if [ -z "$ssid" ]; then
-          echo "$HOME_SSID"
-        else
-          echo "$ssid"
-        fi
-      }
-
       vpn_active() {
         ${lib.getExe' pkgs.iproute2 "ip"} link show reef0 &>/dev/null && ${lib.getExe' pkgs.iproute2 "ip"} link show reef0 | grep -q 'UP'
       }
@@ -145,7 +136,7 @@ in
 
       case "$2" in
         up|connectivity-change|vpn-up)
-          if [[ "$(get_ssid)" == "$HOME_SSID" ]] && vpn_active; then
+          if [[ "$CONNECTION_ID" == "$HOME_SSID" ]] && vpn_active; then
             enable_cache
           else
             disable_cache
