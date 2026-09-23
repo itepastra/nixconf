@@ -113,14 +113,24 @@ in
       ATTIC_SUBSTITUTER="http://trench.reef/anemone?priority=10"
       ATTIC_KEY="anemone:f/wBQ8yB5geTn96NjwRfbcoEvr8QuykN0iu0Rf2zUC8="
 
+      wifi_active() {
+        ${lib.getExe pkgs.networkmanager}/bin/nmcli -g type,state dev | grep -q "^wifi:connected"
+      }
+
+      at_home_wifi() {
+        [[ "$CONNECTION_ID" == "$HOME_SSID" ]]
+      }
+
       vpn_active() {
-        ${lib.getExe' pkgs.iproute2 "ip"} link show reef0 &>/dev/null && ${lib.getExe' pkgs.iproute2 "ip"} link show reef0 | grep -q 'UP'
+        ${lib.getExe' pkgs.iproute2 "ip"} link show reef0 &>/dev/null && \
+        ${lib.getExe' pkgs.iproute2 "ip"} link show reef0 | grep -q 'UP'
       }
 
       enable_cache() {
+        local priority="$1"
         mkdir -p "$(dirname "$CONF")"
         cat > "$CONF" <<EOF
-      extra-substituters = $ATTIC_SUBSTITUTER
+      extra-substituters = $ATTIC_SUBSTITUTER?priority=''${priority}
       extra-trusted-public-keys = $ATTIC_KEY
       extra-trusted-substituters = http://trench.reef/anemone
       EOF
@@ -134,18 +144,15 @@ in
         fi
       }
 
-      case "$2" in
-        up|connectivity-change|vpn-up)
-          if [[ "$CONNECTION_ID" == "$HOME_SSID" ]] && vpn_active; then
-            enable_cache
-          else
-            disable_cache
-          fi
-          ;;
-        down|pre-down|vpn-down)
-          disable_cache
-          ;;
-      esac
+      if vpn_active; then
+        if ! wifi_active || at_home_wifi; then
+          enable_cache 10
+        else
+          enable_cache 99
+        fi
+      else
+        disable_cache
+      fi
     '';
   };
 }
