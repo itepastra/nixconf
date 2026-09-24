@@ -34,8 +34,13 @@
   };
   gopls = {
     enable = true;
+    packageFallback = true;
   };
   rust_analyzer = {
+    enable = true;
+    packageFallback = true;
+  };
+  hls = {
     enable = true;
     packageFallback = true;
   };
@@ -44,6 +49,7 @@
   };
   typst = {
     enable = true;
+    packageFallback = true;
   };
   csharp_ls = {
     enable = true;
