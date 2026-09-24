@@ -110,7 +110,7 @@ in
 
       HOME_SSID="niet-bestaand-netwerk"
       CONF=/etc/nix/nix.conf.d/10-attic.conf
-      ATTIC_SUBSTITUTER="http://trench.reef/anemone?priority=10"
+      ATTIC_SUBSTITUTER="http://trench.reef/anemone"
       ATTIC_KEY="anemone:f/wBQ8yB5geTn96NjwRfbcoEvr8QuykN0iu0Rf2zUC8="
 
       wifi_active() {
