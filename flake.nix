@@ -61,7 +61,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
-        systems.follows = "systems";
       };
     };
     # Wallpaper
