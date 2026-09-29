@@ -35,9 +35,11 @@
       8080
       7791 # Pixelflut
       38281 # Archipelago
+      25565
     ];
     firewall.allowedUDPPorts = [
       38281 # Archipelago
+      25565
     ];
 
     nameservers = [
