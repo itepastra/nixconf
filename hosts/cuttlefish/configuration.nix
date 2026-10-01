@@ -33,7 +33,6 @@
     ../../modules/shuttlefish
     ../../modules/syncthing
     ../../modules/septabee
-    ../../modules/flurry
 
     ((import ../../common) { enableGraphics = false; })
   ];
