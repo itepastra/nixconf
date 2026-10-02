@@ -32,7 +32,6 @@
     ../../modules/netbird-server
     ../../modules/shuttlefish
     ../../modules/syncthing
-    ../../modules/septabee
 
     ((import ../../common) { enableGraphics = false; })
   ];
