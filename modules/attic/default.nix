@@ -114,7 +114,7 @@ in
       ATTIC_KEY="anemone:f/wBQ8yB5geTn96NjwRfbcoEvr8QuykN0iu0Rf2zUC8="
 
       wifi_active() {
-        ${lib.getExe pkgs.networkmanager}/bin/nmcli -g type,state dev | grep -q "^wifi:connected"
+        ${lib.getExe' pkgs.networkmanager "nmcli"} -g type,state dev | grep -q "^wifi:connected"
       }
 
       at_home_wifi() {
