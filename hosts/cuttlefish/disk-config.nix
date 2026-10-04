@@ -58,25 +58,29 @@
         };
       };
     };
-    # disk.disk2 = {
-    #   device = lib.mkDefault "/dev/sda";
-    #   type = "disk";
-    #   content = {
-    #     type = "gpt";
-    #     partitions.data = {
-    #       size = "100%";
-    #       content = {
-    #         type = "btrfs";
-    #         extraArgs = [ "-f" ];
-    #         subvolumes = {
-    #           "/datafs" = {
-    #             mountpoint = "/data";
-    #             mountOptions = [ "compress=zstd" ];
-    #           };
-    #         };
-    #       };
-    #     };
-    #   };
-    # };
+    disk.disk2 = {
+      device = lib.mkDefault "/dev/sda";
+      type = "disk";
+      content = {
+        type = "gpt";
+        partitions.data = {
+          size = "100%";
+          content = {
+            type = "btrfs";
+            extraArgs = [ "-f" ];
+            subvolumes = {
+              "/datafs" = {
+                mountpoint = "/data";
+                mountOptions = [ "compress=zstd" ];
+              };
+              "/shared" = {
+                mountpoint = "/shared";
+                mountOptions = [ "compress=zstd:7" ];
+              };
+            };
+          };
+        };
+      };
+    };
   };
 }
