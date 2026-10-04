@@ -291,6 +291,8 @@
 
       nixosModules = import ./modules { inherit (nixpkgs) lib; };
 
+      homeManagerModules = import ./hm-modules { inherit (nixpkgs) lib; };
+
       formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
 
       overlays = import ./overlays { };
