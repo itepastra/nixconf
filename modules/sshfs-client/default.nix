@@ -38,7 +38,6 @@ in
           "_netdev"
           "allow_other"
           "IdentityFile=${cfg.identityFile}"
-          "User=${cfg.localUser}"
           "reconnect"
           "ServerAliveInterval=15"
         ];
