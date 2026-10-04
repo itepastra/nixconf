@@ -71,12 +71,15 @@
             subvolumes = {
               "/datafs" = {
                 mountpoint = "/data";
-                mountOptions = [ "compress=zstd" ];
+                mountOptions = [
+                  "compress=zstd"
+                  "noatime"
+                ];
               };
               "/shared" = {
                 mountpoint = "/shared";
                 mountOptions = [
-                  "compress=zstd:7"
+                  "compress=zstd"
                   "noatime"
                 ];
               };
