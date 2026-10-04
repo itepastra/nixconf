@@ -30,7 +30,7 @@ in
     environment.systemPackages = [ pkgs.sshfs ];
     systemd.mounts = [
       {
-        what = "shared@cuttlefish.machine.reef:/shared";
+        what = "sharedfs@cuttlefish.machine.reef:/shared";
         where = "/mnt/anemone";
         type = "fuse.sshfs";
         options = lib.concatStringsSep "," [
