@@ -32,6 +32,7 @@
     ../../modules/netbird-server
     ../../modules/shuttlefish
     ../../modules/syncthing
+    ../../modules/sshfs-serve
 
     ((import ../../common) { enableGraphics = false; })
   ];
