@@ -46,6 +46,7 @@ in
     ../../hm-modules/terminal
     ../../hm-modules/browser
     ../../hm-modules/games/minecraft
+    ../../hm-modules/games/osu
   ];
 
   nixpkgs = {
@@ -152,21 +153,6 @@ in
         self-pkgs = inputs.self.packages.${pkgs.stdenv.hostPlatform.system};
       };
 
-    };
-
-    desktopEntries = lib.mkIf enableGraphical {
-      gimp = {
-        name = "GIMP";
-        exec = "nix run nixpkgs\\#gimp3 -- %u";
-        terminal = false;
-        type = "Application";
-      };
-      osu = {
-        name = "Osu!";
-        exec = "bash -c \"NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs\\#osu-lazer-bin -- %u\"";
-        terminal = false;
-        type = "Application";
-      };
     };
   };
 
@@ -359,10 +345,6 @@ in
     hyprlock = {
       enable = enableGraphical;
     };
-    # add `play funny video` as alias because why not
-    zsh.shellAliases = {
-      osu = lib.mkIf enableGraphical "NIXPKGS_ALLOW_UNFREE=1 PIPEWIRE_LATENCY=64/44100 nix run --impure nixpkgs#osu-lazer-bin ";
-    };
     # lsd makes files look better
     lsd = {
       enable = true;
@@ -427,18 +409,6 @@ in
       enable = enableGraphical;
       # make notifications time out after 30 sec by default
       settings.default-timeout = "30000";
-    };
-    pipewire = {
-      enable = enableGraphical;
-      configs = {
-        "17-output-low-latency" = {
-          "context.properties" = {
-            "default.clock.quantum" = 64;
-            "default.clock.min-quantum" = 32;
-            "default.clock.max-quantum" = 2048;
-          };
-        };
-      };
     };
     playerctld.enable = enableGraphical;
     swayidle = {
