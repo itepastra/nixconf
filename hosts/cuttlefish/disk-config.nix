@@ -75,7 +75,10 @@
               };
               "/shared" = {
                 mountpoint = "/shared";
-                mountOptions = [ "compress=zstd:7" ];
+                mountOptions = [
+                  "compress=zstd:7"
+                  "noatime"
+                ];
               };
             };
           };
