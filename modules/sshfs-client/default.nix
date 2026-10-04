@@ -32,7 +32,7 @@ in
       {
         what = "shared@cuttlefish.machine.reef:/shared";
         where = "/mnt/anemone";
-        type = "fuse.ssfs";
+        type = "fuse.sshfs";
         options = lib.concatStringsSep "," [
           "defaults"
           "_netdev"
