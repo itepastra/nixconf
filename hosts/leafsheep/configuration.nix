@@ -23,7 +23,13 @@
     ../../modules/netbird
     ../../modules/syncthing
     ../../modules/septabee
+    ../../modules/sshfs-client
   ];
+
+  services.sharedMount = {
+    identityFile = "/home/noa/.ssh/id_ed25519";
+    localUser = "noa";
+  };
 
   age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
