@@ -65,4 +65,8 @@ in
     vaqita
     cuttlefish
   ];
+  "authentik/env.age".publicKeys = [
+    noa
+    cuttlefish
+  ];
 }

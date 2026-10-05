@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 let
@@ -9,53 +10,30 @@ let
 in
 {
   imports = [
-    ../postgres
+    inputs.authentik.nixosModules.default
     ../nginx
   ];
 
-  services.postgresql = {
-    ensureDatabases = [ "keycloak" ];
-    ensureUsers = [
-      {
-        name = "keycloak";
-        ensureDBOwnership = true;
-      }
-    ];
+  age = {
+    secrets."authentik/env" = {
+      file = ../../secrets/authentik/env.age;
+      owner = "authentik";
+      group = "authentik";
+    };
   };
-  services.keycloak = {
+
+  services.authentik = {
     enable = true;
-    package = pkgs.keycloak.override {
-      plugins = with pkgs.keycloakPlugins; [
-        junixsocket-common
-        junixsocket-native-common
-      ];
-    };
-    database = {
-      type = "postgresql";
-      host = "/run/postgresql";
-      createLocally = true;
-    };
-
+    environmentFile = config.age.secrets."authentik/env".path;
     settings = {
-      http-enabled = true;
-      http-port = 29919;
-
-      db-url = lib.mkForce "jdbc:postgresql:///keycloak?socketFactory=org.newsclub.net.unix.AFUNIXSocketFactory$FactoryArg&socketFactoryArg=/run/postgresql/.s.PGSQL.5432";
-
-      hostname = "https://${url}";
-      proxy-headers = "xforwarded";
     };
-  };
+    disable_startup_analytics = true;
+    avatars = "gravatars";
 
-  modules.nginx.proxies = [
-    {
-      url = url;
-      proxy_to = "http://127.0.0.1:${builtins.toString config.services.keycloak.settings.http-port}";
-    }
-  ];
-
-  systemd.services.keycloak = {
-    after = [ "postgresql.target" ];
-    bindsTo = [ "postgresql.target" ];
+    nginx = {
+      enable = true;
+      enableACME = true;
+      host = "auth.geenit.nl";
+    };
   };
 }

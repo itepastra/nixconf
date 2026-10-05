@@ -126,6 +126,18 @@
       };
     };
 
+    # authentik
+    authentik = {
+      url = "github:nix-community/authentik-nix";
+      inputs = {
+        systems.follows = "systems";
+        flake-utils.follows = "flake-utils";
+        flake-parts.follows = "flake-parts";
+        flake-compat.follows = "flake-compat";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     # pixelflut stress test tool
     tsunami = {
       url = "git+https://git.geenit.nl/noa/tsunami.git";
