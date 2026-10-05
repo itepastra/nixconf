@@ -24,7 +24,6 @@
     ../../modules/syncthing
     ../../modules/septabee
     ../../modules/sshfs-client
-    ../../modules/ratbag # for my mouse config
   ];
 
   services.sharedMount = {
