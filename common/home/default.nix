@@ -45,8 +45,8 @@ in
     ../../hm-modules/mail
     ../../hm-modules/terminal
     ../../hm-modules/browser
-    ../../hm-modules/games/minecraft
-    ../../hm-modules/games/osu
+    ../../hm-modules/minecraft
+    ../../hm-modules/osu
   ];
 
   nixpkgs = {
