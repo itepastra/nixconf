@@ -63,6 +63,7 @@
         rust = [
           "rustfmt"
         ];
+        typst = [ "typstyle" ];
         "_" = [ "trim_whitespace" ];
       };
 
@@ -145,6 +146,9 @@
         };
         bicep = {
           command = "${lib.getExe pkgs.bicep}";
+        };
+        typstyle = {
+          command = "${lib.getExe pkgs.typstyle}";
         };
       };
     };
