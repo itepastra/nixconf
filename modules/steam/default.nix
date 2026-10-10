@@ -25,5 +25,17 @@
     };
 
     hardware.steam-hardware.enable = true;
+
+    networking.firewall = {
+      allowedUDPPorts = [
+        27031
+        27032
+        27033
+        27034
+        27035
+        27036
+      ];
+      allowedTCPPorts = [ 27040 ];
+    };
   };
 }
