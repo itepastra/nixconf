@@ -17,8 +17,10 @@
       nvidia.acceptLicense = true;
       cudaSupport = true;
       allowUnfreePackages = [
+        "cccl"
         "cuda-merged"
         "cuda_cccl"
+        "cuda_crt"
         "cuda_cudart"
         "cuda_cuobjdump"
         "cuda_cupti"
@@ -39,6 +41,7 @@
         "libcusparse"
         "libnpp"
         "libnvjitlink"
+        "libnvvm"
         "nvidia-persistenced"
         "nvidia-settings"
         "nvidia-x11"
