@@ -301,10 +301,10 @@
           boxfish = nixpkgs.lib.nixosSystem {
             specialArgs = {
               inherit inputs;
-              modules = [
-                ./hosts/boxfish/configuration.nix
-              ];
             };
+            modules = [
+              ./hosts/boxfish/configuration.nix
+            ];
           };
         };
       packages = import ./packages { inherit nixpkgs inputs self; };
