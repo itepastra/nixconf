@@ -2,8 +2,8 @@
 { lib, ... }:
 {
   disko.devices = {
-    disk.disk1 = {
-      device = lib.mkDefault "/dev/nvme0n1";
+    disk.main = {
+      device = lib.mkDefault "/dev/disk/by-id/ata-SSD_PHISON_256GB_PS3110-S10C_8EFA076507E704408024";
       type = "disk";
       content = {
         type = "gpt";
@@ -43,45 +43,6 @@
                   ];
                   mountpoint = "/nix";
                 };
-
-                "/immich" = {
-                  mountOptions = [
-                    "compress=zstd"
-                    "noatime"
-                  ];
-                  mountpoint = "/var/lib/immich";
-                };
-              };
-
-            };
-          };
-        };
-      };
-    };
-    disk.disk2 = {
-      device = lib.mkDefault "/dev/sda";
-      type = "disk";
-      content = {
-        type = "gpt";
-        partitions.data = {
-          size = "100%";
-          content = {
-            type = "btrfs";
-            extraArgs = [ "-f" ];
-            subvolumes = {
-              "/datafs" = {
-                mountpoint = "/data";
-                mountOptions = [
-                  "compress=zstd"
-                  "noatime"
-                ];
-              };
-              "/shared" = {
-                mountpoint = "/shared";
-                mountOptions = [
-                  "compress=zstd"
-                  "noatime"
-                ];
               };
             };
           };
