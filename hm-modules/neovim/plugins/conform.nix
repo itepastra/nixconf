@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   lib,
   pkgs,
@@ -74,17 +75,20 @@
         clang-format = {
           command = "${lib.getExe' pkgs.clang-tools "clang-format"}";
         };
-        pycharm = {
-          command = "${lib.getExe pkgs.jetbrains.pycharm}";
+        pycharm =
+          lib.mkIf
+            (builtins.elem "pycharm" config.programs.nixvim.plugins.conform-nvim.settings.formatters_by_ft.python)
+            {
+              command = "${lib.getExe pkgs.jetbrains.pycharm}";
 
-          stdin = false;
-          args = [
-            "format"
-            "-s"
-            "${./pycharm.xml}"
-            "$FILENAME"
-          ];
-        };
+              stdin = false;
+              args = [
+                "format"
+                "-s"
+                "${./pycharm.xml}"
+                "$FILENAME"
+              ];
+            };
         black = {
           command = "${lib.getExe pkgs.black}";
           append_args = [
