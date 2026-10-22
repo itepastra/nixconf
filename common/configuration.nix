@@ -123,7 +123,6 @@ in
   boot = {
     kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
-    initrd.verbose = false;
     plymouth = rec {
       enable = enableGraphics;
       theme = "colorful";
