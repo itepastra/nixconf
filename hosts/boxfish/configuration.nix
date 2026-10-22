@@ -33,7 +33,7 @@
   ];
 
   networking = {
-    hostName = "cuttlefish"; # Define your hostname.
+    hostName = "boxfish"; # Define your hostname.
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
   };
   # Pick only one of the below networking options.
@@ -102,71 +102,13 @@
     };
   };
 
-  systemd.services = {
-    "update-from-flake" = {
-      path = with pkgs; [
-        git
-      ];
-      serviceConfig = {
-        Type = "exec";
-        User = "root";
-        ExecStart = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild switch --flake github:itepastra/nixconf";
-      };
-      wants = [
-        "network-online.target"
-      ];
-      after = [
-        "network-online.target"
-      ];
-      restartIfChanged = false;
-    };
-  };
-
   virtualisation = {
     libvirtd = {
       enable = true;
-      qemu = {
-        package = pkgs.qemu_kvm;
-        runAsRoot = true;
-        swtpm.enable = true;
-      };
-    };
-  };
-
-  age = {
-    identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    secrets = {
-      "factorio/solrunners".file = ../../secrets/factorio/solrunners.age;
     };
   };
 
   services = {
-    factorio = {
-      enable = false;
-      # package = pkgs.factorio-headless.override {
-      #   versionsJson = ./versions.json;
-      # };
-      package = pkgs.factorio-headless;
-      openFirewall = true;
-      public = true;
-      nonBlockingSaving = true;
-      game-name = "Solrunners - Space Age";
-      description = "Running from the sun into space";
-      admins = [ "itepastra" ];
-      extraSettingsFile = config.age.secrets."factorio/solrunners".path;
-    };
-    i2pd = {
-      enable = true;
-      settings = {
-        ipv4 = true;
-        bandwidth = 64;
-        port = 19494;
-        http.enabled = true;
-        sam.enabled = true;
-        httpproxy.enabled = true;
-        socksproxy.enabled = true;
-      };
-    };
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;
@@ -174,16 +116,6 @@
       openFirewall = true;
     };
   };
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [
-    19494 # i2p
-
-    38281 # archipelago
-  ];
-  networking.firewall.allowedUDPPorts = [
-    19494 # i2p
-  ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
@@ -207,6 +139,6 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "26.11"; # Did you read the comment?
 
 }

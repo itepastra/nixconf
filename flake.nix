@@ -302,7 +302,7 @@
             specialArgs = {
               inherit inputs;
               modules = [
-                ./hosts/boxfish/sconfiguration.nix
+                ./hosts/boxfish/configuration.nix
               ];
             };
           };
