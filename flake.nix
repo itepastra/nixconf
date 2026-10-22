@@ -298,6 +298,14 @@
             ]
             ++ commonModules;
           };
+          boxfish = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs;
+              modules = [
+                ./hosts/boxfish/sconfiguration.nix
+              ];
+            };
+          };
         };
       packages = import ./packages { inherit nixpkgs inputs self; };
 

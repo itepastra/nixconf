@@ -28,8 +28,8 @@ in
     };
     enableRedistributableFirmware = true;
     graphics = {
-      enable = true;
-      enable32Bit = true;
+      enable = enableGraphics;
+      enable32Bit = enableGraphics;
     };
   };
 
@@ -80,17 +80,19 @@ in
   };
 
   # TODO: find list of fonts to install
-  fonts.packages = with pkgs; [
-    font-awesome
-    noto-fonts
-    stix-two
-    fira-code
-    fira-code-symbols
-    liberation_ttf
-    maple-mono.NF
-    newcomputermodern
-    roboto
-  ];
+  fonts.packages =
+    with pkgs;
+    lib.mkIf enableGraphics [
+      font-awesome
+      noto-fonts
+      stix-two
+      fira-code
+      fira-code-symbols
+      liberation_ttf
+      maple-mono.NF
+      newcomputermodern
+      roboto
+    ];
 
   xdg.portal = {
     enable = enableGraphics;
@@ -157,7 +159,6 @@ in
       openFirewall = true;
     };
     mullvad-vpn = {
-      enable = true;
       gui.enable = enableGraphics;
     };
     displayManager = {
