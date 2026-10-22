@@ -304,7 +304,8 @@
             };
             modules = [
               ./hosts/boxfish/configuration.nix
-            ];
+            ]
+            ++ commonModules;
           };
         };
       packages = import ./packages { inherit nixpkgs inputs self; };
