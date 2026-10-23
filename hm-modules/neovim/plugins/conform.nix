@@ -51,7 +51,6 @@
         nix = [ "nixfmt" ];
         markdown = [ "prettier" ];
         yaml = [ "prettier" ];
-        bicep = [ "bicep" ];
         bash = [
           "shellcheck"
           "shellharden"
@@ -147,9 +146,6 @@
         };
         shellharden = {
           command = "${lib.getExe pkgs.shellharden}";
-        };
-        bicep = {
-          command = "${lib.getExe pkgs.bicep}";
         };
         typstyle = {
           command = "${lib.getExe pkgs.typstyle}";
