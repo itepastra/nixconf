@@ -27,7 +27,6 @@
     ../../modules/forgejo
     ../../modules/home-assistant
     ../../modules/immich
-    ../../modules/mealie
     ../../modules/netbird
     ../../modules/netbird-server
     ../../modules/shuttlefish
