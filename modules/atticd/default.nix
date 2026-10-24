@@ -28,10 +28,10 @@
         jwt = { };
 
         chunking = {
-          nar-size-threshold = 64 * 1024; # 64 KiB
-          min-size = 16 * 1024; # 16 KiB
-          avg-size = 64 * 1024; # 64 KiB
-          max-size = 256 * 1024; # 256 KiB
+          nar-size-threshold = 2 * 1024 * 1024; # 2 MiB
+          min-size = 512 * 1024; # 512 KiB
+          avg-size = 2 * 1024 * 1024; # 2 MiB
+          max-size = 8 * 1024 * 1024; # 8 MiB
         };
 
         storage = {
