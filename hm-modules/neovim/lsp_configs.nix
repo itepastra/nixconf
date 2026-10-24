@@ -51,6 +51,10 @@
     enable = true;
     packageFallback = true;
   };
+  templ = {
+    enable = true;
+    packageFallback = true;
+  };
   csharp_ls = {
     enable = true;
   };

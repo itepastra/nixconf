@@ -51,6 +51,7 @@
         nix = [ "nixfmt" ];
         markdown = [ "prettier" ];
         yaml = [ "prettier" ];
+        templ = [ "templ" ];
         bash = [
           "shellcheck"
           "shellharden"
@@ -149,6 +150,9 @@
         };
         typstyle = {
           command = "${lib.getExe pkgs.typstyle}";
+        };
+        templ = {
+          command = "templ fmt";
         };
       };
     };
