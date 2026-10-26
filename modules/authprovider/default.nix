@@ -22,6 +22,14 @@ in
     };
   };
 
+  users.users = {
+    authentik = {
+      isSystemUser = true;
+      group = "authentik";
+    };
+  };
+  users.groups.authentik = { };
+
   services.authentik = {
     enable = true;
     environmentFile = config.age.secrets."authentik/env".path;
