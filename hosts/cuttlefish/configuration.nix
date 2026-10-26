@@ -32,6 +32,7 @@
     ../../modules/shuttlefish
     ../../modules/syncthing
     ../../modules/sshfs-serve
+    ../../modules/authprovider
 
     ((import ../../common) { enableGraphics = false; })
   ];
