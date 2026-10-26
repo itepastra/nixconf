@@ -26,9 +26,9 @@ in
     enable = true;
     environmentFile = config.age.secrets."authentik/env".path;
     settings = {
+      avatars = "gravatars";
+      disable_startup_analytics = true;
     };
-    disable_startup_analytics = true;
-    avatars = "gravatars";
 
     nginx = {
       enable = true;
