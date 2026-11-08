@@ -32,6 +32,7 @@
     ../../modules/shuttlefish
     ../../modules/syncthing
     ../../modules/sshfs-serve
+    ../../modules/mealie
 
     ((import ../../common) { enableGraphics = false; })
   ];
