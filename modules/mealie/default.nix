@@ -15,8 +15,9 @@
 
     modules.nginx.proxies = [
       {
-        url = "recipes.geenit.nl";
+        url = "recipes.reef";
         proxy_to = "http://127.0.0.1:28727";
+        enableSSL = false;
       }
     ];
 
@@ -27,12 +28,11 @@
         listenAddress = "127.0.0.1";
         settings = {
           ALLOW_SIGNUP = "False";
-          BASE_URL = "https://recipes.geenit.nl";
+          BASE_URL = "http://recipes.reef";
           TZ = "europe/amsterdam";
         };
       };
     };
 
-    networking.firewall.allowedTCPPorts = [ 28728 ];
   };
 }
