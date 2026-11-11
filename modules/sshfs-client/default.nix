@@ -41,7 +41,6 @@ in
           "reconnect"
           "ServerAliveInterval=15"
         ];
-        wantedBy = [ "multi-user.target" ];
         after = [ "network-online.target" ];
         requires = [ "network-online.target" ];
       }
