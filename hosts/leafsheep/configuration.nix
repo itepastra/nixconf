@@ -55,6 +55,10 @@
     ];
   };
 
+  services.power-profiles-daemon = {
+    enable = true;
+  };
+
   home-manager = {
     users = {
       "noa" = (import ../../common/home) {
