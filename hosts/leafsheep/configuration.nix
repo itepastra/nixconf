@@ -74,6 +74,7 @@
             vertical-offset = 0;
             refresh-rate = 359.979;
             scale = "1";
+            color-depth = 10;
           }
           {
             name = "DP-3";

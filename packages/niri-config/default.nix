@@ -28,6 +28,7 @@ let
       transform ? "normal",
       default-column-width ? 0.5,
       default-window-height ? 1.0,
+      color-depth ? 8,
       ...
     }:
     ''
@@ -36,6 +37,7 @@ let
         scale ${scale}
         transform "${transform}"
         position x=${builtins.toString horizontal-offset} y=${builtins.toString vertical-offset}
+        max-bpc ${builtins.toString color-depth}
 
         layout {
           default-column-width { proportion ${builtins.toString default-column-width}; }
