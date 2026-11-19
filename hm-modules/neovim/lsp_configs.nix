@@ -55,6 +55,9 @@
     enable = true;
     packageFallback = true;
   };
+  tsc = {
+    enable = true;
+  };
   csharp_ls = {
     enable = true;
   };
