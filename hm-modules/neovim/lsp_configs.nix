@@ -55,7 +55,10 @@
     enable = true;
     packageFallback = true;
   };
-  tsc = {
+  ts_ls = {
+    enable = true;
+  };
+  eslint = {
     enable = true;
   };
   csharp_ls = {
