@@ -388,8 +388,13 @@ in
           user = "git";
         };
         "lagoon" = {
-          host = "lagoon.home.arpa";
-          hostname = "lagoon.home.arpa";
+          host = "lagoon.machine.reef";
+          hostname = "lagoon.machine.reef";
+          forwardAgent = true;
+        };
+        "leafsheep" = {
+          host = "leafsheep.machine.reef";
+          hostname = "leafsheep.machine.reef";
           forwardAgent = true;
         };
       };
